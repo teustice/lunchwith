@@ -22,12 +22,7 @@ export class Main extends Component {
 
 Main.defaultProps = {
   setRegion: () => {},
-  region: {
-    latitude: 45.521371,
-    longitude: -122.673168,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  }
+  region: {}
 };
 
 Main.propTypes = {
