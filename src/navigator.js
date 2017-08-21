@@ -7,14 +7,14 @@ import Main from './containers/Main';
 import routesNames from './lib/constants/routes';
 
 const routes = {
-  [routesNames.Splash]: {
-    screen: Splash,
+  [routesNames.Main]: {
+    screen: Main,
     navigationOptions: {
       header: null,
     },
   },
-  [routesNames.Main]: {
-    screen: Main,
+  [routesNames.Splash]: {
+    screen: Splash,
     navigationOptions: {
       header: null,
     },

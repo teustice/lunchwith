@@ -5,28 +5,24 @@ import MapView from 'react-native-maps';
 export class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      region: {
-        latitude: 45.521371,
-        longitude: -122.673168,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }
-    }
   }
 
   onRegionChange(region) {
-    this.setState({ region });
+    this.props.setRegion({ region });
     console.log(region);
   }
 
   render() {
     return (
       <View >
-
         <MapView
           style={staticStyles.map}
-          initialRegion={this.state.region}
+          initialRegion={{
+            latitude: 45.521371,
+            longitude: -122.673168,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
           onRegionChange={this.onRegionChange.bind(this)}
           showsUserLocation={true}
           showsMyLocationButton={true}
