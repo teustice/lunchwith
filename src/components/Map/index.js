@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, Button } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Button, Image } from 'react-native';
 import MapView from 'react-native-maps';
 import markers from '../../lib/mapSeed';
 
@@ -27,14 +27,29 @@ export class Map extends Component {
           onRegionChange={this.onRegionChange.bind(this)}
           showsUserLocation={true}
         >
-        {console.log(markers)}
           {markers.map(marker => (
             <MapView.Marker
-              key={marker.key}
+              key={marker.id}
               image={require('../../lib/images/dev.png')}
               coordinate={marker.coordinates}
               title={marker.title}
-            />
+            >
+              <MapView.Callout>
+                <View
+                  style={{
+                    height: 100,
+                    width: 100,
+                  }}
+                >
+                  <Image
+                    source={require('../../lib/images/hass.jpeg')}
+                    style={{height: 90, width: 100}}
+                  >
+                  </Image>
+                  <Text style={{color: 'black', alignItems:'center'}}>{marker.title}</Text>
+                </View>
+              </MapView.Callout>
+            </MapView.Marker>
           ))}
         </MapView>
       </View>
