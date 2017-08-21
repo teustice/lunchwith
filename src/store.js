@@ -4,14 +4,14 @@ import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 import createActionBuffer from 'redux-action-buffer'
 import { REHYDRATE } from 'redux-persist/constants'
-import { createMiddleware as createBeaconMiddleware } from 'redux-beacon';
-import { logger as beaconLogger } from 'redux-beacon/extensions/logger';
-import { Segment } from 'redux-beacon/targets/segment';
-import { offlineReactNative } from 'redux-beacon/extensions/offline-react-native';
+// import { createMiddleware as createBeaconMiddleware } from 'redux-beacon';
+// import { logger as beaconLogger } from 'redux-beacon/extensions/logger';
+// import { Segment } from 'redux-beacon/targets/segment';
+// import { offlineReactNative } from 'redux-beacon/extensions/offline-react-native';
 
 import getRootReducer from './reducers/index';
 import sagas from './sagas/index';
-import eventsMap from './beacon-events';
+// import eventsMap from './beacon-events';
 import getConnected from './selectors/connected';
 
 const loggerMiddleware = createLogger({
@@ -27,13 +27,9 @@ if (__DEV__ === true) {
 const sagaMiddleware = createSagaMiddleware();
 middlewares.push(sagaMiddleware);
 
-const offlineStorage = offlineReactNative(AsyncStorage, getConnected);
-const beaconMiddleware = createBeaconMiddleware(
-  eventsMap,
-  Segment,
-  { beaconLogger, offlineStorage },
-);
-middlewares.push(beaconMiddleware);
+// const offlineStorage = offlineReactNative(AsyncStorage, getConnected);
+
+// middlewares.push(beaconMiddleware);
 
 const enhancer = compose(
   applyMiddleware(...middlewares),
