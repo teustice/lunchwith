@@ -7,33 +7,27 @@ export class Map extends Component {
     super(props);
     this.state = {
       region: {
-        latitude: 45.485346,
-        longitude: -122.838571,
+        latitude: 45.521371,
+        longitude: -122.673168,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       }
-    };
+    }
   }
 
-  changeRegion() {
-    this.setState({region: {
-      latitude: 46.485346,
-      longitude: -122.838571,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }})
+  onRegionChange(region) {
+    this.setState({ region });
+    console.log(region);
   }
 
   render() {
     return (
       <View >
-        <Button
-          title="click to go somewhere"
-          onPress={this.changeRegion.bind(this)}
-        />
+
         <MapView
           style={staticStyles.map}
-          region={this.state.region}
+          initialRegion={this.state.region}
+          onRegionChange={this.onRegionChange.bind(this)}
           showsUserLocation={true}
           showsMyLocationButton={true}
         />
