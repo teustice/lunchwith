@@ -1,4 +1,4 @@
 export default {
   Splash: 'Splash',
-  Main: 'Main',
+  MapScreen: 'MapScreen',
 }

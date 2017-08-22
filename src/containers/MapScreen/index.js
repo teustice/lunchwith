@@ -5,27 +5,29 @@ import PropTypes from 'prop-types';
 
 import positionerStyle from '../../lib/styles/positioner';
 import Map from '../../components/Map/index';
+import Places from '../../components/Places';
 import { connect } from 'react-redux';
 
 import ActionCreators from '../../actions/index';
 import getRegion from '../../selectors/region';
 
-export class Main extends Component {
+export class MapScreen extends Component {
   render() {
     return (
       <View>
+        <Places />
         <Map setRegion={this.props.setRegion} region={this.props.region}/>
       </View>
     );
   }
 }
 
-Main.defaultProps = {
+MapScreen.defaultProps = {
   setRegion: () => {},
   region: {}
 };
 
-Main.propTypes = {
+MapScreen.propTypes = {
   setRegion: PropTypes.func.isRequired,
   region: PropTypes.object.isRequired,
 };
@@ -38,4 +40,4 @@ function mapStateToProps(store) {
   return { region: getRegion(store) };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(MapScreen);

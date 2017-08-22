@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } f
 import MapView from 'react-native-maps';
 import markers from '../../lib/mapSeed';
 import MarkerCallout from '../MarkerCallout';
-import Places from '../Places';
 
 export class Map extends Component {
   constructor(props) {
@@ -18,7 +17,6 @@ export class Map extends Component {
   render() {
     return (
       <View >
-        <Places />
         <MapView
           style={staticStyles.map}
           initialRegion={{

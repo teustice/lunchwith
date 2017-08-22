@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 
 import Splash from './containers/Splash';
-import Main from './containers/Main';
+import MapScreen from './containers/MapScreen';
 import routesNames from './lib/constants/routes';
 
 const routes = {
-  [routesNames.Main]: {
-    screen: Main,
+  [routesNames.MapScreen]: {
+    screen: MapScreen,
     navigationOptions: {
       header: null,
     },
