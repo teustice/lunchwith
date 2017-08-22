@@ -31,7 +31,7 @@ export class Map extends Component {
           {this.props.markers.map(marker => (
             <MapView.Marker
               key={marker.id}
-              image={require('../../lib/images/dev.png')}
+              image={require('../../lib/images/pin.png')}
               coordinate={marker.coordinates}
               title={marker.title}
             >
