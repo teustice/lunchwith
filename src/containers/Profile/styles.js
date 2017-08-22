@@ -12,6 +12,9 @@ const staticStyles = StyleSheet.create({
   text: {
     color: colors.black,
   },
+  calloutImage: {
+    height: 150, width: 150, borderRadius: 75,
+  },
 });
 
 
