@@ -18,6 +18,7 @@ export class Map extends Component {
     return (
       <View >
         <MapView
+          provider={'google'}
           style={staticStyles.map}
           initialRegion={{
             latitude: 45.521371,

@@ -36,7 +36,7 @@ const staticStyles = StyleSheet.create({
     width: 100,
   },
   calloutImage: {
-    height: 90, width: 100
+    height: 80, width: 100
   },
   calloutName: {
     color: 'black',
