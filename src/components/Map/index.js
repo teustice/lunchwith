@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, Button, Image } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
 import MapView from 'react-native-maps';
 import markers from '../../lib/mapSeed';
+import RNGooglePlaces from 'react-native-google-places';
 
 export class Map extends Component {
   constructor(props) {
     super(props);
+  }
+
+  openSearchModal() {
+    RNGooglePlaces.openPlacePickerModal({
+      type: 'establishment',
+  	  latitude: 45.521371,
+      longitude: -122.673168,
+  	  radius: 10
+    })
+    .then((place) => {
+		console.log(place);
+		// place represents user's selection from the
+		// suggestions and it is a simplified Google Place object.
+    })
+    .catch(error => console.log(error.message));  // error is a Javascript Error object
   }
 
   onRegionChange(region) {
@@ -16,6 +32,12 @@ export class Map extends Component {
   render() {
     return (
       <View >
+        <TouchableOpacity
+          style={{height: 50}}
+          onPress={() => this.openSearchModal()}
+        >
+          <Text>Pick a Place</Text>
+        </TouchableOpacity>
         <MapView
           style={staticStyles.map}
           initialRegion={{

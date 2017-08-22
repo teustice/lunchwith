@@ -1,0 +1,6 @@
+source 'https://github.com/CocoaPods/Specs.git'
+target 'rnTemplate' do
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
+  pod 'GoogleMaps'
+end
