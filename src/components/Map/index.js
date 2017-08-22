@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
 import MapView from 'react-native-maps';
 import markers from '../../lib/mapSeed';
+import MarkerCallout from '../MarkerCallout';
 import RNGooglePlaces from 'react-native-google-places';
 
 export class Map extends Component {
@@ -57,19 +58,7 @@ export class Map extends Component {
               title={marker.title}
             >
               <MapView.Callout>
-                <View
-                  style={{
-                    height: 100,
-                    width: 100,
-                  }}
-                >
-                  <Image
-                    source={require('../../lib/images/hass.jpeg')}
-                    style={{height: 90, width: 100}}
-                  >
-                  </Image>
-                  <Text style={{color: 'black', alignItems:'center'}}>{marker.title}</Text>
-                </View>
+                < MarkerCallout calloutTitle={marker.title}/>
               </MapView.Callout>
             </MapView.Marker>
           ))}
