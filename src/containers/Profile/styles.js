@@ -4,10 +4,13 @@ import colors from '../../lib/colors';
 
 const staticStyles = StyleSheet.create({
   container: {
-    backgroundColor: colors.black,
+    backgroundColor: colors.white,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  text: {
+    color: colors.black,
   },
 });
 
@@ -15,7 +18,7 @@ const staticStyles = StyleSheet.create({
 const dynamicStyles = {
   getTitle: color => (
     {
-      color: colors[color],
+      color: colors.black,
       fontSize: 25,
     }
   ),
