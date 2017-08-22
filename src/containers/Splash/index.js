@@ -26,7 +26,7 @@ export class Splash extends Component {
           <Button
             text={'Go to map'}
             onPress={() => {
-              this.props.navigation.navigate('Main');
+              this.props.navigation.navigate('MapScreen');
             }}
           />
         </View>
