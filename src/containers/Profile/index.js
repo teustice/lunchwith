@@ -14,7 +14,7 @@ export class Profile extends Component {
   render() {
     return (
       <View style={staticStyles.container}>
-        <View style={positionerStyle.centeringFromBottom('20%')}>
+        <View style={positionerStyle.centeringFromBottom('50%')}>
           <Button
           text={'edit profile'}
           onPress={() => {
