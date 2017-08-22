@@ -4,6 +4,7 @@ import { TabNavigator, addNavigationHelpers } from 'react-navigation';
 
 import Splash from './containers/Splash';
 import MapScreen from './containers/MapScreen';
+import Profile from './containers/Profile';
 import routesNames from './lib/constants/routes';
 
 const routes = {
@@ -19,6 +20,12 @@ const routes = {
       header: null,
     },
   },
+  [routesNames.Profile]: {
+    screen: Profile,
+    navigationOptions: {
+      header: null,
+    }
+  }
 };
 
 const AppNavigator = TabNavigator(routes);
