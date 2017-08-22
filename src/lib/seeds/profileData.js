@@ -4,11 +4,12 @@ const profileData = [
     name: 'Audrey Dovetail',
     jobTitle: 'React Native Developer',
     employer: 'EyeCue Lab',
-    skills: {
-      'react-native',
-      'java',
-      'RESTful APIs',
-      'AWS',
+    experience: '8 years',
+    skills: [{
+      1: 'react-native'},{
+      2: 'java'},{
+      3: 'RESTful APIs'},{
+      4: 'AWS'}]
     },
 ]
 
