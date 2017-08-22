@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StackNavigator, addNavigationHelpers } from 'react-navigation';
+import { TabNavigator, addNavigationHelpers } from 'react-navigation';
 
 import Splash from './containers/Splash';
 import MapScreen from './containers/MapScreen';
@@ -21,7 +21,7 @@ const routes = {
   },
 };
 
-const AppNavigator = StackNavigator(routes);
+const AppNavigator = TabNavigator(routes);
 
 const AppWithoutNavigationState = props => (
   <AppNavigator
