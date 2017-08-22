@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import RNGooglePlaces from 'react-native-google-places';
 import PropTypes from 'prop-types';
 
@@ -26,13 +26,25 @@ export class Places extends Component {
   render() {
     return (
       <TouchableOpacity
-        style={{height: 50}}
+        style={staticStyles.touchableContainer}
         onPress={() => this.openSearchModal()}
       >
-        <Text>Pick a Place</Text>
+        <Text style={staticStyles.text}>Find a restaurant</Text>
       </TouchableOpacity>
     );
   }
 }
+
+const staticStyles = StyleSheet.create({
+  touchableContainer: {
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#1c2833'
+  },
+  text: {
+    color: 'white',
+  }
+});
 
 export default Places;

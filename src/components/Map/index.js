@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
 import MapView from 'react-native-maps';
-import markers from '../../lib/mapSeed';
 import MarkerCallout from '../MarkerCallout';
 
 export class Map extends Component {
@@ -29,7 +28,7 @@ export class Map extends Component {
           onRegionChange={this.onRegionChange.bind(this)}
           showsUserLocation={true}
         >
-          {markers.map(marker => (
+          {this.props.markers.map(marker => (
             <MapView.Marker
               key={marker.id}
               image={require('../../lib/images/dev.png')}
@@ -55,7 +54,7 @@ const staticStyles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height
+    height: (Dimensions.get('window').height - 50)
   }
 });
 
