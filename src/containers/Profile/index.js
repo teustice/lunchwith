@@ -9,11 +9,12 @@ import getTitle from '../../selectors/title';
 import positionerStyle from '../../lib/styles/positioner';
 import Button from '../../components/Button/index';
 import { staticStyles, dynamicStyles } from './styles';
-import { profileData } from '../../lib/seeds/profileData'
+import profileData from '../../lib/seeds/profileData'
 
 export class Profile extends Component {
   render() {
     return (
+      
       <View style={staticStyles.container}>
         <View style={positionerStyle.centeringFromBottom('50%')}>
           <Button
@@ -22,11 +23,11 @@ export class Profile extends Component {
             this.props.navigation.navigate('MapScreen');
           }}
           />
-          <Text style={dynamicStyles.getTitle('white')}>{this.props.title}</Text>
           <Image
             source={require('../../lib/images/dev-portrait.jpeg')}
             style={staticStyles.calloutImage}
           ></Image>
+          <Text>{profileData[0].name}</Text>
         </View>
       </View>
     );
