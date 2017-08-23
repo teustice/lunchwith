@@ -9,6 +9,7 @@ import getTitle from '../../selectors/title';
 import positionerStyle from '../../lib/styles/positioner';
 import Button from '../../components/Button/index';
 import { staticStyles, dynamicStyles } from './styles';
+import { profileData } from '../../lib/seeds/profileData'
 
 export class Profile extends Component {
   render() {
