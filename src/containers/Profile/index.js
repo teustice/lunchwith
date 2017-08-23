@@ -14,7 +14,7 @@ import profileData from '../../lib/seeds/profileData'
 export class Profile extends Component {
   render() {
     return (
-      
+
       <View style={staticStyles.container}>
         <View style={positionerStyle.centeringFromBottom('50%')}>
           <Button
@@ -28,6 +28,8 @@ export class Profile extends Component {
             style={staticStyles.calloutImage}
           ></Image>
           <Text>{profileData[0].name}</Text>
+          <Text>{profileData[0].employer}</Text>
+          <Text>{profileData[0].bio}</Text>
         </View>
       </View>
     );
