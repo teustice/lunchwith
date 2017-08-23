@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
 import user from '../../lib/seeds/profileData';
 import findUserById from '../../lib/helpers/userById';
-import { staticStyles, dynamicStyles } from './styles';
 
 export class Header extends Component {
   constructor(props) {
