@@ -36,7 +36,7 @@ export class Map extends Component {
               title={tempUser.name}
             >
               <MapView.Callout>
-                <MarkerCallout calloutTitle={tempUser.name}/>
+                <MarkerCallout calloutTitle={tempUser.name} profileImage={tempUser.profileImage}/>
               </MapView.Callout>
             </MapView.Marker>
           ))}
