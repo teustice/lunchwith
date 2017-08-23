@@ -11,7 +11,7 @@ export class MarkerCallout extends Component {
     return (
       <View style={staticStyles.calloutContainer}>
         <Image
-          source={require('../../lib/images/hass.jpeg')}
+          source={{uri: this.props.profileImage}}
           style={staticStyles.calloutImage}
         >
         </Image>
