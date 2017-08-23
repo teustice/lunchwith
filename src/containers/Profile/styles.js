@@ -17,14 +17,4 @@ const staticStyles = StyleSheet.create({
   },
 });
 
-
-const dynamicStyles = {
-  getTitle: color => (
-    {
-      color: colors.black,
-      fontSize: 25,
-    }
-  ),
-};
-
-export { staticStyles, dynamicStyles };
+export { staticStyles };

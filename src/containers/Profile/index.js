@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import ActionCreators from '../../actions/index';
 import positionerStyle from '../../lib/styles/positioner';
 import Button from '../../components/Button/index';
-import { staticStyles, dynamicStyles } from './styles';
+import { staticStyles } from './styles';
 import profileData from '../../lib/seeds/profileData';
 import Bio from '../../components/Profile/bio';
 import Header from '../../components/Profile/header';
