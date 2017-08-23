@@ -10,6 +10,7 @@ import Button from '../../components/Button/index';
 import { staticStyles, dynamicStyles } from './styles';
 import profileData from '../../lib/seeds/profileData';
 import Bio from '../../components/Profile/bio';
+import Header from '../../components/Profile/header';
 import getUser from '../../selectors/user';
 
 export class Profile extends Component {
@@ -24,15 +25,7 @@ export class Profile extends Component {
             this.props.navigation.navigate('MapScreen');
           }}
           />
-          <Image
-            source={require('../../lib/images/dev-portrait.jpeg')}
-            style={staticStyles.calloutImage}
-          ></Image>
-          <Text>{profileData[0].name}</Text>
-          <Text>{profileData[0].employer}</Text>
-
-        </View>
-        <View>
+          <Header setUser={this.props.setUser} />
           <Bio setUser={this.props.setUser} />
         </View>
       </View>
