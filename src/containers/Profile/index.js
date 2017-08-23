@@ -14,7 +14,9 @@ import Header from '../../components/Profile/header';
 import getUser from '../../selectors/user';
 
 export class Profile extends Component {
+
   render() {
+
     return (
 
       <View style={staticStyles.container}>

@@ -16,11 +16,7 @@ export class Header extends Component {
     let tempUser = findUserById(1);
     return (
       <View >
-        <Image
-          source={require('../../lib/images/hass.jpeg')}
-          style={staticStyles.calloutImage}
-        >
-        </Image>
+
         <Text>{tempUser.name}</Text>
         <Text>{tempUser.company}</Text>
       </View>
