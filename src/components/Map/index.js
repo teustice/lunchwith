@@ -10,9 +10,6 @@ export class Map extends Component {
     super(props);
   }
 
-  onRegionChange(region) {
-    this.props.setRegion({ region });
-  }
 
   render() {
     let tempUser = {}
@@ -27,18 +24,19 @@ export class Map extends Component {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421
           }}
-          onRegionChange={this.onRegionChange.bind(this)}
+          onRegionChange={region=>{this.props.setRegion({region});}}
           showsUserLocation={true}
         >
           {this.props.markers.map(marker => (
+            tempUser = findUserById(marker.userId),
             <MapView.Marker
               key={marker.id}
               image={require('../../lib/images/pin.png')}
               coordinate={marker.coordinates}
-              title={findUserById(marker.userId).name}
+              title={tempUser.name}
             >
               <MapView.Callout>
-                < MarkerCallout calloutTitle={findUserById(marker.userId).name}/>
+                <MarkerCallout calloutTitle={tempUser.name}/>
               </MapView.Callout>
             </MapView.Marker>
           ))}
