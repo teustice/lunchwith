@@ -56,7 +56,7 @@ const staticStyles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').height - 50)
+    height: (Dimensions.get('window').height)
   }
 });
 

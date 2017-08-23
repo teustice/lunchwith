@@ -17,7 +17,9 @@ const users = [
       }
     ],
     bio: "Hey I'm Dave, the coolest developer of them all!",
-    company: 'Planet Argon'
+    company: 'Planet Argon',
+    jobTitle: 'React Native Developer',
+    experience: 4
   },
   {
     id: 2,
@@ -37,7 +39,9 @@ const users = [
       }
     ],
     bio: "Hey I'm Dave, the coolest developer of them all!",
-    company: 'EyeCue Lab'
+    company: 'EyeCue Lab',
+    jobTitle: 'React Native Developer',
+    experience: 4
   },
   {
     name: 'Dave the Dev3',
@@ -57,7 +61,9 @@ const users = [
       }
     ],
     bio: "Hey I'm Dave, the coolest developer of them all!",
-    company: 'Sq1'
+    company: 'Sq1',
+    jobTitle: 'React Native Developer',
+    experience: 4
   },
   {
     name: 'Dave the Dev4',
@@ -77,7 +83,9 @@ const users = [
       }
     ],
     bio: "Hey I'm Dave, the coolest developer of them all!",
-    company: 'New Relic'
+    company: 'New Relic',
+    jobTitle: 'React Native Developer',
+    experience: 4
   },
   {
     name: 'Dave the Dev5',
@@ -97,7 +105,9 @@ const users = [
       }
     ],
     bio: "Hey I'm Dave, the coolest developer of them all!",
-    company: 'New Relic'
+    company: 'New Relic',
+    jobTitle: 'React Native Developer',
+    experience: 4
   },
   {
     name: 'Dave the Dev6',
@@ -117,7 +127,9 @@ const users = [
       }
     ],
     bio: "Hey I'm Dave, the coolest developer of them all!",
-    company: 'EyeCue Lab'
+    company: 'EyeCue Lab',
+    jobTitle: 'React Native Developer',
+    experience: 4
   },
   {
     name: 'Dave the Dev7',
@@ -137,7 +149,9 @@ const users = [
       }
     ],
     bio: "Hey I'm Dave, the coolest developer of them all!",
-    company: 'Planet Argon'
+    company: 'Planet Argon',
+    jobTitle: 'React Native Developer',
+    experience: 4
   },
   {
     name: 'Dave the Dev8',
@@ -157,7 +171,9 @@ const users = [
       }
     ],
     bio: "Hey I'm Dave, the coolest developer of them all!",
-    company: 'Planet Argon'
+    company: 'Planet Argon',
+    jobTitle: 'React Native Developer',
+    experience: 4
   },
   {
     name: 'Dave the Dev9',
@@ -177,7 +193,9 @@ const users = [
       }
     ],
     bio: "Hey I'm Dave, the coolest developer of them all!",
-    company: 'New Relic'
+    company: 'New Relic',
+    jobTitle: 'React Native Developer',
+    experience: 4
   }
 ]
 
