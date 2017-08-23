@@ -6,5 +6,7 @@ export const REGION_SET = 'REGION_SET';
 export const REGION_FETCH = 'REGION_FETCH';
 export const MARKERS_SET = 'MARKERS_SET';
 export const MARKERS_FETCH = 'MARKERS_FETCH';
+export const USER_SET = 'USER_SET';
+export const USER_FETCH = 'USER_FETCH';
 // errors
 export const GENERIC_ERROR = 'GENERIC_ERROR';
