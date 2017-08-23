@@ -4,12 +4,12 @@ import MapView from 'react-native-maps';
 import MarkerCallout from '../MarkerCallout';
 import users from '../../lib/seeds/userSeed';
 import findUserById from '../../lib/helpers/userById';
+import Carousel from 'react-native-snap-carousel';
 
 export class Map extends Component {
   constructor(props) {
     super(props);
   }
-
 
   render() {
     let tempUser = {}
@@ -18,13 +18,16 @@ export class Map extends Component {
         <MapView
           provider={'google'}
           style={staticStyles.map}
+          showsBuildings={false}
+          showsTraffic={false}
+          showsPointsOfInterest={false}
           initialRegion={{
             latitude: 45.521371,
             longitude: -122.673168,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421
           }}
-          onRegionChange={region=>{this.props.setRegion({region});}}
+          onRegionChangeComplete={region=>{this.props.setRegion({region});}}
           showsUserLocation={true}
         >
           {this.props.markers.map(marker => (
@@ -46,6 +49,7 @@ export class Map extends Component {
   }
 }
 
+
 const staticStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -54,7 +58,7 @@ const staticStyles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').height)
+    height: Dimensions.get('window').height
   }
 });
 
