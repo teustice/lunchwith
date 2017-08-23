@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
 import MapView from 'react-native-maps';
 import MarkerCallout from '../MarkerCallout';
+import users from '../../lib/seeds/userSeed';
+import findUserById from '../../lib/helpers/userById';
 
 export class Map extends Component {
   constructor(props) {
@@ -10,10 +12,10 @@ export class Map extends Component {
 
   onRegionChange(region) {
     this.props.setRegion({ region });
-    console.log(region);
   }
 
   render() {
+    let tempUser = {}
     return (
       <View >
         <MapView
@@ -33,10 +35,10 @@ export class Map extends Component {
               key={marker.id}
               image={require('../../lib/images/pin.png')}
               coordinate={marker.coordinates}
-              title={marker.title}
+              title={findUserById(marker.userId).name}
             >
               <MapView.Callout>
-                < MarkerCallout calloutTitle={marker.title}/>
+                < MarkerCallout calloutTitle={findUserById(marker.userId).name}/>
               </MapView.Callout>
             </MapView.Marker>
           ))}

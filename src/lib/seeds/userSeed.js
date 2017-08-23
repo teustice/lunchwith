@@ -181,4 +181,4 @@ const users = [
   }
 ]
 
-export default markers;
+export default users;
