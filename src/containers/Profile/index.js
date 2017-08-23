@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,38 +9,37 @@ import getTitle from '../../selectors/title';
 import positionerStyle from '../../lib/styles/positioner';
 import Button from '../../components/Button/index';
 import { staticStyles, dynamicStyles } from './styles';
+import profileData from '../../lib/seeds/profileData'
 
-export class Splash extends Component {
+export class Profile extends Component {
   render() {
     return (
+      
       <View style={staticStyles.container}>
-        <Text style={dynamicStyles.getTitle('white')}>{this.props.title}</Text>
-        <View style={positionerStyle.centeringFromBottom('20%')}>
+        <View style={positionerStyle.centeringFromBottom('50%')}>
           <Button
-            text={'Fetch Remote Title'}
-            type={'standard'}
-            onPress={() => {
-              this.props.fetchTitle();
-            }}
+          text={'edit profile'}
+          onPress={() => {
+            this.props.navigation.navigate('MapScreen');
+          }}
           />
-          <Button
-            text={'Go to map'}
-            onPress={() => {
-              this.props.navigation.navigate('MapScreen');
-            }}
-          />
+          <Image
+            source={require('../../lib/images/dev-portrait.jpeg')}
+            style={staticStyles.calloutImage}
+          ></Image>
+          <Text>{profileData[0].name}</Text>
         </View>
       </View>
     );
   }
 }
 
-Splash.defaultProps = {
+Profile.defaultProps = {
   fetchTitle: () => {},
   title: '',
 };
 
-Splash.propTypes = {
+Profile.propTypes = {
   fetchTitle: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
 };
@@ -55,4 +54,4 @@ function mapStateToProps(store) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Splash);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
