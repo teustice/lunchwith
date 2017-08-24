@@ -5,6 +5,8 @@ import fetchRegion from './fetch-region';
 import setMarkers from './set-markers';
 import fetchMarkers from './fetch-markers';
 import setConnectivity from './set-connectivity';
+import setBusiness from './set-business';
+import fetchBusiness from './fetch-business';
 import { genericError } from './errors';
 
 const ActionCreators = {
@@ -16,6 +18,8 @@ const ActionCreators = {
   fetchMarkers,
   setConnectivity,
   genericError,
+  fetchBusiness,
+  setBusiness, 
 };
 
 export default ActionCreators;

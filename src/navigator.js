@@ -5,6 +5,7 @@ import { TabNavigator, addNavigationHelpers } from 'react-navigation';
 import Splash from './containers/Splash';
 import MapScreen from './containers/MapScreen';
 import Profile from './containers/Profile';
+import Onboard from './containers/Onboard';
 import routesNames from './lib/constants/routes';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -25,6 +26,13 @@ const routes = {
   },
   [routesNames.Profile]: {
     screen: Profile,
+    navigationOptions: {
+      header: null,
+      tabBarIcon: ({ tintColor }) => <Icon size={ 20 } name={ 'user' } color={ tintColor }/>
+    }
+  },
+  [routesNames.Onboard]: {
+    screen: Onboard,
     navigationOptions: {
       header: null,
       tabBarIcon: ({ tintColor }) => <Icon size={ 20 } name={ 'user' } color={ tintColor }/>

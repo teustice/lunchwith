@@ -4,8 +4,12 @@ import title from './title';
 import connectivity from './connectivity';
 import region from './region';
 import markers from './markers';
+import user from './user';
+import business from './business';
+// redux-form reducer
+import { reducer as formReducer } from 'redux-form'
 
-export const reducers = { title, connectivity, region, markers };
+export const reducers = { title, connectivity, region, markers, user, business, form: formReducer  };
 
 export default function getRootReducer(navReducer) {
   return combineReducers({
