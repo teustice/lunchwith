@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
@@ -9,6 +9,7 @@ import ActionCreators from '../../actions/index';
 import getRegion from '../../selectors/region';
 import getMarkers from '../../selectors/markers';
 import getUserLocation from '../../selectors/userLocation';
+import findUserById from '../../lib/helpers/userById';
 
 export class MapScreen extends Component {
   render() {
@@ -24,6 +25,14 @@ export class MapScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+});
 
 MapScreen.defaultProps = {
   setRegion: () => {},

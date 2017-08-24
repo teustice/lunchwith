@@ -4,7 +4,7 @@ import MapView from 'react-native-maps';
 import MarkerCallout from '../MarkerCallout';
 import users from '../../lib/seeds/userSeed';
 import findUserById from '../../lib/helpers/userById';
-import Carousel from 'react-native-snap-carousel';
+import ProfileCarousel from '../../components/ProfileCarousel';
 
 export class Map extends Component {
   constructor(props) {
@@ -15,9 +15,10 @@ export class Map extends Component {
     let tempUser = {}
     return (
       <View >
+
         <MapView
-          provider={'google'}
           style={staticStyles.map}
+          provider={'google'}
           showsBuildings={false}
           showsTraffic={false}
           showsPointsOfInterest={false}
@@ -38,7 +39,9 @@ export class Map extends Component {
               </MapView.Callout>
             </MapView.Marker>
           ))}
+
         </MapView>
+        <ProfileCarousel firstItem={2}/>
       </View>
     );
   }
@@ -53,8 +56,14 @@ const staticStyles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height
-  }
+    height: (Dimensions.get('window').height),
+    position: 'absolute',
+         top: 0,
+         bottom: 0,
+         left: 0,
+         right: 0,
+  },
+
 });
 
 export default Map;
