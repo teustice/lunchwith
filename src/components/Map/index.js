@@ -4,14 +4,11 @@ import MapView from 'react-native-maps';
 import MarkerCallout from '../MarkerCallout';
 import users from '../../lib/seeds/userSeed';
 import findUserById from '../../lib/helpers/userById';
+import Carousel from 'react-native-snap-carousel';
 
 export class Map extends Component {
   constructor(props) {
     super(props);
-  }
-
-  onRegionChange(region) {
-    this.props.setRegion({ region });
   }
 
   render() {
@@ -21,24 +18,23 @@ export class Map extends Component {
         <MapView
           provider={'google'}
           style={staticStyles.map}
-          initialRegion={{
-            latitude: 45.521371,
-            longitude: -122.673168,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-          }}
-          onRegionChange={this.onRegionChange.bind(this)}
+          showsBuildings={false}
+          showsTraffic={false}
+          showsPointsOfInterest={false}
+          initialRegion={this.props.initialRegion}
+          onRegionChangeComplete={region=>{this.props.setRegion({region});}}
           showsUserLocation={true}
         >
           {this.props.markers.map(marker => (
+            tempUser = findUserById(marker.userId),
             <MapView.Marker
               key={marker.id}
               image={require('../../lib/images/pin.png')}
               coordinate={marker.coordinates}
-              title={findUserById(marker.userId).name}
+              title={tempUser.name}
             >
               <MapView.Callout>
-                < MarkerCallout calloutTitle={findUserById(marker.userId).name}/>
+                <MarkerCallout calloutTitle={tempUser.name} profileImage={tempUser.profileImage}/>
               </MapView.Callout>
             </MapView.Marker>
           ))}
@@ -48,6 +44,7 @@ export class Map extends Component {
   }
 }
 
+
 const staticStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -56,7 +53,7 @@ const staticStyles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').height)
+    height: Dimensions.get('window').height
   }
 });
 
