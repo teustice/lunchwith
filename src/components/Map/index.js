@@ -21,12 +21,7 @@ export class Map extends Component {
           showsBuildings={false}
           showsTraffic={false}
           showsPointsOfInterest={false}
-          initialRegion={{
-            latitude: 45.521371,
-            longitude: -122.673168,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-          }}
+          initialRegion={this.props.initialRegion}
           onRegionChangeComplete={region=>{this.props.setRegion({region});}}
           showsUserLocation={true}
         >
