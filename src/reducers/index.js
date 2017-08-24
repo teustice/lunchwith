@@ -4,9 +4,9 @@ import title from './title';
 import connectivity from './connectivity';
 import region from './region';
 import markers from './markers';
-import user from './user';
+import userLocation from './userLocation';
 
-export const reducers = { title, connectivity, region, markers, user };
+export const reducers = { title, connectivity, region, markers, userLocation };
 
 export default function getRootReducer(navReducer) {
   return combineReducers({

@@ -1,1 +1,1 @@
-export default state => state.user.get('userLocation');
+export default state => state.userLocation.get('userLocation');
