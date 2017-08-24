@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   StyleSheet,
   Text,
@@ -20,6 +20,11 @@ import {
 } from 'react-native-clean-form'
 import { Field, reduxForm } from 'redux-form'
 import Businesses from '../../components/Places/businesses';
+import ActionCreators from '../../actions/index';
+import getCompany from '../../selectors/business';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 const submit = values => {
   console.log('submitting form', values)
@@ -36,37 +41,62 @@ const radii = [
   {label: '10 mi', value: '10'},
 ]
 
-const FormView = props => (
-  <Form>
-    <FieldsContainer>
-      <Fieldset label="Contact details">
-        <FormGroup>
-          <Label>First name</Label>
-          <Input placeholder="John" />
-        </FormGroup>
-        <FormGroup>
-          <Label>Last name</Label>
-          <Input placeholder="Doe" />
-        </FormGroup>
-        <FormGroup>
-          <Businesses />
+export class FormView extends Component {
+  render() {
+    console.log(this.props.company.name);
+    return (
+      <Form>
+        <FieldsContainer>
+          <Fieldset label="Contact details">
+            <FormGroup>
+              <Label>First name</Label>
+              <Input placeholder="John" />
+            </FormGroup>
+            <FormGroup>
+              <Label>Last name</Label>
+              <Input placeholder="Doe" />
+            </FormGroup>
+            <FormGroup>
+              <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} />
 
-        </FormGroup>
-        <FormGroup>
-        <Label>Lunch Radius</Label>
-        <Select
-        name="radius"
-        label="Radius"
-        options={radii}
-        placeholder="1"
-        />
-        </FormGroup>
-      </Fieldset>
-    </FieldsContainer>
-    <ActionsContainer>
-      <Button icon="md-checkmark" iconPlacement="right">Save</Button>
-    </ActionsContainer>
-  </Form>
-)
+            </FormGroup>
+            <FormGroup>
+            <Label>Lunch Radius</Label>
+            <Select
+            name="radius"
+            label="Radius"
+            options={radii}
+            placeholder="1"
+            />
+            </FormGroup>
+            <FormGroup>
 
-export default FormView
+            </FormGroup>
+          </Fieldset>
+        </FieldsContainer>
+        <ActionsContainer>
+          <Button icon="md-checkmark" iconPlacement="right">Save</Button>
+        </ActionsContainer>
+      </Form>
+    )
+  }
+}
+
+FormView.defaultProps = {
+  setBusiness: () => {},
+  company: {}
+};
+
+FormView.propTypes = {
+  setBusiness: PropTypes.func.isRequired,
+};
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ActionCreators, dispatch);
+}
+
+function mapStateToProps(store) {
+  return { company: getCompany(store) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormView);
