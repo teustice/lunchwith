@@ -8,9 +8,12 @@ const staticStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: 100,
   },
   text: {
     color: colors.black,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
   calloutImage: {
     height: 150, width: 150, borderRadius: 75,

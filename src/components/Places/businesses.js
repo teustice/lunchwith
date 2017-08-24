@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import RNGooglePlaces from 'react-native-google-places';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 export class Businesses extends Component {
   constructor(props) {
@@ -15,8 +14,6 @@ export class Businesses extends Component {
   		console.log(place);
       this.props.setBusiness(place);
 
-  		// place represents user's selection from the
-  		// suggestions and it is a simplified Google Place object.
       })
       .catch(error => console.log(error.message));  // error is a Javascript Error object
   }
