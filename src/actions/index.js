@@ -9,6 +9,8 @@ import setUserLocation from './set-userLocation';
 import setConnectivity from './set-connectivity';
 import setBusiness from './set-business';
 import fetchBusiness from './fetch-business';
+import setCarouselIndex from './set-carouselIndex';
+import fetchCarouselIndex from './fetch-carouselIndex';
 import { genericError } from './errors';
 
 const ActionCreators = {
@@ -23,7 +25,9 @@ const ActionCreators = {
   setConnectivity,
   genericError,
   fetchBusiness,
-  setBusiness, 
+  setBusiness,
+  setCarouselIndex,
+  fetchCarouselIndex,
 };
 
 export default ActionCreators;

@@ -12,26 +12,33 @@ export class ProfileCarousel extends Component {
   constructor(props) {
     super(props);
   }
+
   _renderItem (marker, index) {
     let user = findUserById(marker.item.userId)
     return (
-      <View style={styles.contentContainer}>
+      <View>
         <ProfileModal profile={user}/>
       </View>
     );
+  }
+
+  updateCarouselIndex(index) {
+    console.log(index);
+    this.props.setCarouselIndex(index);
   }
 
   render() {
     return (
       <View style={styles.carousel}>
          <Carousel
-            ref={'carousel'}
+            ref={(c) => { this._carousel = c; }}
             data={this.props.markers}
             renderItem={this._renderItem}
             sliderWidth={Dimensions.get('window').width}
             inactiveSlideScale={1}
             inactiveSlideOpacity={1}
-            firstItem={(this.props.firstItem) - 1}
+            firstItem={this.props.carouselIndex}
+            onSnapToItem={(index) => this.updateCarouselIndex(index)}
             autoplay={false}
             enableSnap={true}
             snapOnAndroid={true} //to enable snapping on android
@@ -60,15 +67,10 @@ const styles = StyleSheet.create({
   qaContainer:{
     backgroundColor: 'crimson',
   },
-  contentContainer:{
-  },
 	slide: {
     flexDirection: 'column',
     width: Dimensions.get('window').width,
 	},
-  content: {
-  }
-
 });
 
 export default ProfileCarousel;

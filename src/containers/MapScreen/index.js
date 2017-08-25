@@ -9,6 +9,7 @@ import ActionCreators from '../../actions/index';
 import getRegion from '../../selectors/region';
 import getMarkers from '../../selectors/markers';
 import getUserLocation from '../../selectors/userLocation';
+import getCarouselIndex from '../../selectors/carouselIndex';
 import findUserById from '../../lib/helpers/userById';
 import ProfileCarousel from '../../components/ProfileCarousel';
 
@@ -22,7 +23,12 @@ export class MapScreen extends Component {
           markers={this.props.markers}
           initialRegion={this.props.userLocation}
         />
-        <ProfileCarousel markers={this.props.markers} setRegion={this.props.setRegion}/>
+        <ProfileCarousel
+          markers={this.props.markers}
+          setRegion={this.props.setRegion}
+          carouselIndex={this.props.carouselIndex}
+          setCarouselIndex={this.props.setCarouselIndex}
+        />
       </View>
     );
   }
@@ -38,11 +44,13 @@ const styles = StyleSheet.create({
 
 MapScreen.defaultProps = {
   setRegion: () => {},
+  setCarouselIndex: () => {},
   region: {},
 };
 
 MapScreen.propTypes = {
   setRegion: PropTypes.func.isRequired,
+  setCarouselIndex: PropTypes.func.isRequired,
   region: PropTypes.object.isRequired,
 };
 
@@ -51,7 +59,12 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(store) {
-  return { region: getRegion(store), markers: getMarkers(store), userLocation: getUserLocation(store) };
+  return {
+    region: getRegion(store),
+    markers: getMarkers(store),
+    userLocation: getUserLocation(store),
+    carouselIndex: getCarouselIndex(store)
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapScreen);
