@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import colors from '../../lib/colors';
 
-const staticStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
     flex: 1,
@@ -10,15 +10,28 @@ const staticStyles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 100,
   },
+  button: {
+    backgroundColor: 'yellow',
+    color: 'white',
+    height: 30,
+    lineHeight: 30,
+    marginTop: 10,
+    textAlign: 'center',
+  },
   text: {
-    color: colors.black,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    color: 'lightgrey',
+    alignSelf: 'stretch',
+    textAlign: 'left',
   },
-  calloutImage: {
-    height: 150, width: 150, borderRadius: 75,
-  },
-});
+  input: {
+    borderColor: 'lightgrey',
+    borderBottomWidth: 1,
+    marginBottom: 12,
+    height: 37,
+    alignSelf: 'stretch',
+    textAlign: 'center',
+  }
+})
 
 
 const dynamicStyles = {
@@ -30,4 +43,4 @@ const dynamicStyles = {
   ),
 };
 
-export { staticStyles, dynamicStyles };
+export { styles, dynamicStyles };
