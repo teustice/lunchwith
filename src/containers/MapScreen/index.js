@@ -10,17 +10,19 @@ import getRegion from '../../selectors/region';
 import getMarkers from '../../selectors/markers';
 import getUserLocation from '../../selectors/userLocation';
 import findUserById from '../../lib/helpers/userById';
+import ProfileCarousel from '../../components/ProfileCarousel';
 
 export class MapScreen extends Component {
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <Map
           setRegion={this.props.setRegion}
           region={this.props.region}
           markers={this.props.markers}
           initialRegion={this.props.userLocation}
         />
+        <ProfileCarousel markers={this.props.markers} setRegion={this.props.setRegion}/>
       </View>
     );
   }

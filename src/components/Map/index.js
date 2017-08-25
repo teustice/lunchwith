@@ -4,7 +4,6 @@ import MapView from 'react-native-maps';
 import MarkerCallout from '../MarkerCallout';
 import users from '../../lib/seeds/userSeed';
 import findUserById from '../../lib/helpers/userById';
-import ProfileCarousel from '../../components/ProfileCarousel';
 
 export class Map extends Component {
   constructor(props) {
@@ -41,7 +40,6 @@ export class Map extends Component {
           ))}
 
         </MapView>
-        <ProfileCarousel firstItem={2}/>
       </View>
     );
   }
@@ -56,12 +54,7 @@ const staticStyles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').height),
-    position: 'absolute',
-         top: 0,
-         bottom: 0,
-         left: 0,
-         right: 0,
+    height: ((Dimensions.get('window').height)* 10/12),
   },
 
 });

@@ -3,32 +3,31 @@ import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity, Sc
 import MapView from 'react-native-maps';
 import MarkerCallout from '../MarkerCallout';
 import userSeed from '../../lib/seeds/userSeed';
+import ActionCreators from '../../actions/index';
 import findUserById from '../../lib/helpers/userById';
 import Carousel from 'react-native-snap-carousel';
-import Drawer from '../../lib/react-native-bottom-drawer';
+import ProfileModal from '../ProfileModal';
 
 export class ProfileCarousel extends Component {
   constructor(props) {
     super(props);
   }
-  _renderItem (user, index) {
-    // lib/react-native-bottom-drawer to style drawer
+  _renderItem (marker, index) {
+    let user = findUserById(marker.item.userId)
     return (
       <View style={styles.contentContainer}>
-        <Drawer customStyles={styles.drawer} teaserHeight={200}>
-          <Text>{user.item.name}</Text>
-        </Drawer>
+        <ProfileModal profile={user}/>
       </View>
     );
   }
 
   render() {
     return (
-      <View>
+      <View style={styles.carousel}>
          <Carousel
             ref={'carousel'}
-            data={this.props.users}
-            renderItem={this._renderItem.bind(this)}
+            data={this.props.markers}
+            renderItem={this._renderItem}
             sliderWidth={Dimensions.get('window').width}
             inactiveSlideScale={1}
             inactiveSlideOpacity={1}
@@ -43,6 +42,7 @@ export class ProfileCarousel extends Component {
   }
 }
 
+let tempUsers = [];
 ProfileCarousel.defaultProps = {
   users: userSeed,
 };
@@ -61,18 +61,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'crimson',
   },
   contentContainer:{
-    marginTop: ((Dimensions.get('window').height) * 9/10),
-    minHeight:((Dimensions.get('window').height)*1/4),
   },
 	slide: {
     flexDirection: 'column',
     width: Dimensions.get('window').width,
 	},
   content: {
-  },
-  drawer: {
-    backgroundColor: 'white'
   }
+
 });
 
 export default ProfileCarousel;

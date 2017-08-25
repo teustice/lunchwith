@@ -1,6 +1,6 @@
 const markers = [
   {
-    id: 1,
+    id: 0,
     userId: 9,
     coordinates: {
       latitude: 45.521371,
@@ -8,7 +8,7 @@ const markers = [
     },
   },
   {
-    id: 2,
+    id: 1,
     userId: 8,
     coordinates: {
       latitude: 45.571471,
@@ -16,7 +16,7 @@ const markers = [
     },
   },
   {
-    id: 3,
+    id: 2,
     userId: 7,
     coordinates: {
       latitude: 45.541321,
@@ -24,7 +24,7 @@ const markers = [
     },
   },
   {
-    id: 4,
+    id: 3,
     userId: 6,
     coordinates: {
       latitude: 45.521171,
@@ -32,7 +32,7 @@ const markers = [
     },
   },
   {
-    id: 5,
+    id: 4,
     userId: 5,
     coordinates: {
       latitude: 45.541371,
@@ -40,7 +40,7 @@ const markers = [
     },
   },
   {
-    id: 6,
+    id: 5,
     userId: 4,
     coordinates: {
       latitude: 45.521171,
@@ -48,7 +48,7 @@ const markers = [
     },
   },
   {
-    id: 7,
+    id: 6,
     userId: 3,
     coordinates: {
       latitude: 45.527371,
@@ -56,7 +56,7 @@ const markers = [
     },
   },
   {
-    id: 8,
+    id: 7,
     userId: 2,
     coordinates: {
       latitude: 45.531371,
@@ -64,7 +64,7 @@ const markers = [
     },
   },
   {
-    id: 9,
+    id: 8,
     userId: 1,
     coordinates: {
       latitude: 45.525391,
