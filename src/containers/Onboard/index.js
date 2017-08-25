@@ -54,6 +54,8 @@ FormView.defaultProps = {
   setJobTitle: () => {},
   setLunchRadius: () => {},
   setBio: () => {},
+  setExperienceValue: () => {},
+  experienceValue: 0,
   company: {},
   firstName: {},
   lastName: {},

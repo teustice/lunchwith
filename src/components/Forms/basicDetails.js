@@ -27,6 +27,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Skills from './skills';
+import ExperienceSlider from './slider';
 
 
 const radii = [
@@ -78,7 +79,8 @@ export class FormView extends Component {
             </FormGroup>
             <Skills/>
 
-              <Slider maximumValue={10} step={1}/>
+            <Label>Experience (years)</Label>
+            <ExperienceSlider/>
           </Fieldset>
         </FieldsContainer>
         <ActionsContainer>
