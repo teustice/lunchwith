@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import RNGooglePlaces from 'react-native-google-places';
 import PropTypes from 'prop-types';
 
+
 export class Businesses extends Component {
   constructor(props) {
     super(props);
@@ -21,9 +22,9 @@ export class Businesses extends Component {
   render() {
     return (
       <TouchableOpacity
-        onPress={() => this.openSearchModal()}
+      style={staticStyles.container} onPress={() => this.openSearchModal()}
       >
-        <Text>{this.props.company}</Text>
+        <Text style={staticStyles.text}>{this.props.company}</Text>
       </TouchableOpacity>
     );
   }
@@ -38,6 +39,15 @@ const staticStyles = StyleSheet.create({
   },
   text: {
     color: 'white',
+  },
+  container: {
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#4688DA',
+    color: 'white',
+    marginBottom: 10,
+    borderRadius: 2,
   }
 });
 

@@ -4,7 +4,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  Slider
 } from 'react-native'
 import {
   ActionsContainer,
@@ -25,13 +26,14 @@ import getCompany from '../../selectors/business';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Skills from './skills';
 
 
 const radii = [
-  {label: '1 mi', value: '1'},
-  {label: '3 mi', value: '3'},
-  {label: '5 mi', value: '5'},
-  {label: '10 mi', value: '10'},
+  {label: '1 mile', value: '1'},
+  {label: '3 miles', value: '3'},
+  {label: '5 miles', value: '5'},
+  {label: '10 miles', value: '10'},
 ]
 
 export class FormView extends Component {
@@ -41,10 +43,10 @@ export class FormView extends Component {
 
 
   render() {
-    
+
     return (
       <Form>
-        <FieldsContainer>
+        <FieldsContainer style={{marginTop: 20}}>
           <Fieldset label="Contact details">
             <FormGroup>
               <Label>First name</Label>
@@ -54,10 +56,9 @@ export class FormView extends Component {
               <Label>Last name</Label>
               <Input placeholder="Doe" />
             </FormGroup>
-            <FormGroup>
-              <Label>Company</Label>
-              <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} style={{left: '30px'}} />
-            </FormGroup>
+
+              <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} />
+
             <FormGroup>
             <Label>Job Title</Label>
               <Input placeholder="Backend Developer" />
@@ -68,17 +69,16 @@ export class FormView extends Component {
             name="radius"
             label="Radius"
             options={radii}
-            placeholder="1"
+            placeholder="1 mile"
             />
             </FormGroup>
             <FormGroup>
               <Label>Bio</Label>
               <Input placeholder="Say something about yourself!" />
             </FormGroup>
-            <ActionsContainer>
-              <Button>Add a Skill</Button>
-            </ActionsContainer>
+            <Skills/>
 
+              <Slider maximumValue={10} step={1}/>
           </Fieldset>
         </FieldsContainer>
         <ActionsContainer>
@@ -87,6 +87,12 @@ export class FormView extends Component {
       </Form>
     )
   }
+}
+
+OnButtonPress = () => {
+    this.props.navigator.push({
+      id: 'ScreenSecond'
+    })
 }
 
 
