@@ -28,6 +28,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Skills from './skills';
 import ExperienceSlider from './slider';
+import MultiSliderUse from './multislider';
 
 
 const radii = [
@@ -81,6 +82,7 @@ export class FormView extends Component {
 
             <Label>Experience (years)</Label>
             <ExperienceSlider/>
+            <MultiSliderUse />
           </Fieldset>
         </FieldsContainer>
         <ActionsContainer>
