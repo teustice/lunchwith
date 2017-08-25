@@ -82,7 +82,22 @@ export class FormView extends Component {
 
             <Label>Experience (years)</Label>
             <ExperienceSlider/>
+            <Text style={styles.title}>Lunch Availability</Text>
+            <Label>Monday: </Label>
             <MultiSliderUse />
+            <Label>Tuesday: </Label>
+            <MultiSliderUse />
+            <Label>Wednesday: </Label>
+            <MultiSliderUse />
+            <Label>Thursday: </Label>
+            <MultiSliderUse />
+            <Label>Friday: </Label>
+            <MultiSliderUse />
+            <Label>Saturday: </Label>
+            <MultiSliderUse />
+            <Label>Sunday: </Label>
+            <MultiSliderUse />
+
           </Fieldset>
         </FieldsContainer>
         <ActionsContainer>
@@ -93,11 +108,15 @@ export class FormView extends Component {
   }
 }
 
-OnButtonPress = () => {
-    this.props.navigator.push({
-      id: 'ScreenSecond'
-    })
-}
+var styles = StyleSheet.create({
+  title: {
+    fontSize: 15,
+    color: 'grey',
+    paddingVertical: 20,
+    alignSelf: 'flex-start',
+  },
+});
+
 
 
 export default FormView;

@@ -14,17 +14,12 @@ import {
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
 
-
-
 class MultiSliderUse extends React.Component {
   state = {
-
     sliderOneChanging: false,
     sliderOneValue: [5],
     multiSliderValue: [0, 6],
   };
-
-
 
   timeToConvert = (i) => {
     if (i < 2) {
@@ -36,11 +31,6 @@ class MultiSliderUse extends React.Component {
     }
   }
 
-
-
-
-
-
   multiSliderValuesChange = (values) => {
     this.setState({
       multiSliderValue: values,
@@ -50,11 +40,10 @@ class MultiSliderUse extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Lunch Availability</Text>
         <View style={styles.sliders}>
 
           <View style={styles.sliderOne}>
-            <Text style={styles.text}>Monday: </Text>
+
             <Text style={styles.text}>{this.timeToConvert(this.state.multiSliderValue[0])} </Text>
             <Text style={styles.text}>-</Text>
             <Text style={styles.text}> {this.timeToConvert(this.state.multiSliderValue[1])}</Text>
@@ -90,14 +79,9 @@ var styles = StyleSheet.create({
   },
   text: {
     alignSelf: 'center',
-    paddingVertical: 20,
+    paddingBottom: 20,
+    marginTop: 0,
     color: 'grey',
-  },
-  title: {
-    fontSize: 15,
-    color: 'grey',
-    paddingVertical: 20,
-    alignSelf: 'flex-start',
   },
   sliderOne: {
     flexDirection: 'row',
