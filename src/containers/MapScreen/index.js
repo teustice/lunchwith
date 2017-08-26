@@ -9,7 +9,7 @@ import ActionCreators from '../../actions/index';
 import getRegion from '../../selectors/region';
 import getMarkers from '../../selectors/markers';
 import getUserLocation from '../../selectors/userLocation';
-import getCarouselIndex from '../../selectors/carouselIndex';
+import getCarousel from '../../selectors/carousel';
 import findUserById from '../../lib/helpers/userById';
 import ProfileCarousel from '../../components/ProfileCarousel';
 
@@ -26,8 +26,8 @@ export class MapScreen extends Component {
         <ProfileCarousel
           markers={this.props.markers}
           setRegion={this.props.setRegion}
-          carouselIndex={this.props.carouselIndex}
-          setCarouselIndex={this.props.setCarouselIndex}
+          carousel={this.props.carousel}
+          setCarousel={this.props.setCarousel}
         />
       </View>
     );
@@ -44,14 +44,16 @@ const styles = StyleSheet.create({
 
 MapScreen.defaultProps = {
   setRegion: () => {},
-  setCarouselIndex: () => {},
+  setCarousel: () => {},
   region: {},
+  carousel: {},
 };
 
 MapScreen.propTypes = {
   setRegion: PropTypes.func.isRequired,
-  setCarouselIndex: PropTypes.func.isRequired,
+  setCarousel: PropTypes.func.isRequired,
   region: PropTypes.object.isRequired,
+  carousel: PropTypes.object.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -63,7 +65,7 @@ function mapStateToProps(store) {
     region: getRegion(store),
     markers: getMarkers(store),
     userLocation: getUserLocation(store),
-    carouselIndex: getCarouselIndex(store)
+    carousel: getCarousel(store)
   };
 }
 

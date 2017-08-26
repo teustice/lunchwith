@@ -22,23 +22,18 @@ export class ProfileCarousel extends Component {
     );
   }
 
-  updateCarouselIndex(index) {
-    console.log(index);
-    this.props.setCarouselIndex(index);
-  }
-
   render() {
     return (
       <View style={styles.carousel}>
          <Carousel
-            ref={(c) => { this._carousel = c; }}
+            ref={'carousel'}
             data={this.props.markers}
-            renderItem={this._renderItem}
+            renderItem={this._renderItem.bind(this)}
             sliderWidth={Dimensions.get('window').width}
             inactiveSlideScale={1}
             inactiveSlideOpacity={1}
-            firstItem={this.props.carouselIndex}
-            onSnapToItem={(index) => this.updateCarouselIndex(index)}
+            firstItem={0}
+            onSnapToItem={index=>{this.props.setCarousel({index: index});}}
             autoplay={false}
             enableSnap={true}
             snapOnAndroid={true} //to enable snapping on android

@@ -19,7 +19,7 @@ export const USER_FETCH = 'USER_FETCH';
 export const BUSINESS_SET = 'BUSINESS_SET';
 export const BUSINESS_FETCH = 'BUSINESS_FETCH';
 //Carousel
-export const CAROUSEL_INDEX_SET = 'CAROUSEL_INDEX_SET';
-export const CAROUSEL_INDEX_FETCH = 'CAROUSEL_INDEX_FETCH';
+export const CAROUSEL_SET = 'CAROUSEL_SET';
+export const CAROUSEL_FETCH = 'CAROUSEL_FETCH';
 // errors
 export const GENERIC_ERROR = 'GENERIC_ERROR';
