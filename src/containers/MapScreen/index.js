@@ -26,6 +26,7 @@ export class MapScreen extends Component {
           initialRegion={this.props.userLocation}
         />
         <ProfileCarousel
+          setMarkers={this.props.setMarkers}
           markers={this.props.markers}
           users={this.props.users}
           setRegion={this.props.setRegion}
@@ -48,16 +49,17 @@ const styles = StyleSheet.create({
 MapScreen.defaultProps = {
   setRegion: () => {},
   setCarousel: () => {},
+  setMarkers: () => {},
   region: {},
   carousel: {},
 };
 
-// MapScreen.propTypes = {
-//   setRegion: PropTypes.func.isRequired,
-//   setCarousel: PropTypes.func.isRequired,
-//   region: PropTypes.object.isRequired,
-//   carousel: PropTypes.object.isRequired,
-// };
+MapScreen.propTypes = {
+  setRegion: PropTypes.func.isRequired,
+  setCarousel: PropTypes.func.isRequired,
+  region: PropTypes.object.isRequired,
+  carousel: PropTypes.object.isRequired,
+};
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);

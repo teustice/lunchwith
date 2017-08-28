@@ -10,9 +10,13 @@ export class Map extends Component {
     super(props);
   }
 
+
+  componentDidUpdate(prevProps, prevState){
+    this.refs.map.animateToRegion(this.props.region, 350);
+  }
+
   render() {
     let tempUser = {}
-    console.log(this.props.region.latitude);
     return (
       <View >
 
@@ -23,7 +27,7 @@ export class Map extends Component {
           showsBuildings={false}
           showsTraffic={false}
           showsPointsOfInterest={false}
-          region={this.props.region}
+          initialRegion={this.props.initialRegion}
           onRegionChangeComplete={region=>{this.props.setRegion(region);}}
           showsUserLocation={true}
         >

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity, Sc
 import MapView from 'react-native-maps';
 import MarkerCallout from '../MarkerCallout';
 import userSeed from '../../lib/seeds/userSeed';
+import markers from '../../lib/seeds/mapSeed';
 import ActionCreators from '../../actions/index';
 import findUserById from '../../lib/helpers/userById';
 import Carousel from 'react-native-snap-carousel';
@@ -24,28 +25,34 @@ export class ProfileCarousel extends Component {
   }
 
   _renderItem (marker, index) {
+    // console.log(marker.index);
+    if (carouselCounter <= this.props.markers.length) {
+      marker.item['carouselId'] = marker.index;
+      tempMarkers.push(marker.item)
+      carouselCounter += 1;
+    } else if (carouselCounter === this.props.markers.length) {
+      this.props.setMarkers(tempMarkers);
+      carouselCounter = 0;
+      tempMarkers = [];
+    }
+    // console.log(this.props.markers);
     let user = findUserById(marker.item.userId)
     return (
       <View>
         <View style={{ flexDirection: 'row', alignSelf:'center'}}>
-          <View style={styles.prevButton}>
-            <Button
-            title="<-"
-            onPress={() => { this.previousItem(this.props.carousel.index, marker.item); }}
-            />
-          </View>
-
           <ProfileModal profile={user}/>
-
-          <View style={styles.nextButton}>
-            <Button
-            title="->"
-            onPress={() => { this.nextItem(this.props.carousel.index, marker.item); }}
-            />
-          </View>
         </View>
       </View>
     );
+  }
+
+  onSnap(index) {
+    this.props.setCarousel({index: index});
+    for(let i = 0; i < this.props.markers.length; i++){
+      if (this.props.markers[i].carouselId === index ){
+        this.props.setRegion(this.props.markers[i].coordinates);
+      }
+    }
   }
 
   render() {
@@ -53,13 +60,13 @@ export class ProfileCarousel extends Component {
       <View style={styles.carousel}>
          <Carousel
             ref={'carousel'}
-            data={this.props.markers}
+            data={markers}
             renderItem={this._renderItem.bind(this)}
             sliderWidth={Dimensions.get('window').width}
             inactiveSlideScale={1}
             inactiveSlideOpacity={1}
             firstItem={this.props.carousel.index}
-            onSnapToItem={index=>{this.props.setCarousel({index: index});}}
+            onSnapToItem={this.onSnap.bind(this)}
             autoplay={false}
             enableSnap={true}
             snapOnAndroid={true} //to enable snapping on android
@@ -70,7 +77,8 @@ export class ProfileCarousel extends Component {
   }
 }
 
-let tempUsers = [];
+let tempMarkers = [];
+let carouselCounter = 0;
 
 const styles = StyleSheet.create({
   container: {
