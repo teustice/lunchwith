@@ -10,13 +10,14 @@ export class Map extends Component {
     super(props);
   }
 
-
   componentDidUpdate(prevProps, prevState){
-    this.refs.map.animateToRegion(this.props.region, 350);
+    if(prevProps.carousel.index != this.props.carousel.index) {
+      this.refs.map.animateToRegion(this.props.region, 350);
+    }
   }
 
   render() {
-    let tempUser = {}
+    let tempUser = {};
     return (
       <View >
 
@@ -50,7 +51,6 @@ export class Map extends Component {
     );
   }
 }
-
 
 const staticStyles = StyleSheet.create({
   container: {
