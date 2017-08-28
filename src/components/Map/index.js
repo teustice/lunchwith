@@ -17,6 +17,7 @@ export class Map extends Component {
       <View >
 
         <MapView
+          ref={'map'}
           style={staticStyles.map}
           provider={'google'}
           showsBuildings={false}

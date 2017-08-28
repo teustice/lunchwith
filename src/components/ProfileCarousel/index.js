@@ -14,7 +14,12 @@ export class ProfileCarousel extends Component {
   }
 
   nextItem(carouselIndex, marker) {
-    this.refs.carousel.snapToNext(true);
+    this.refs.carousel.snapToNext();
+    this.props.setRegion(marker.coordinates);
+  }
+
+  previousItem(carouselIndex, marker) {
+    this.refs.carousel.snapToPrev();
     this.props.setRegion(marker.coordinates);
   }
 
@@ -22,11 +27,23 @@ export class ProfileCarousel extends Component {
     let user = findUserById(marker.item.userId)
     return (
       <View>
-        <Button
-        title="NEXT"
-        onPress={() => { this.nextItem(this.props.carousel.index, marker.item); }}
-        />
-        <ProfileModal profile={user}/>
+        <View style={{ flexDirection: 'row', alignSelf:'center'}}>
+          <View style={styles.prevButton}>
+            <Button
+            title="<-"
+            onPress={() => { this.previousItem(this.props.carousel.index, marker.item); }}
+            />
+          </View>
+
+          <ProfileModal profile={user}/>
+
+          <View style={styles.nextButton}>
+            <Button
+            title="->"
+            onPress={() => { this.nextItem(this.props.carousel.index, marker.item); }}
+            />
+          </View>
+        </View>
       </View>
     );
   }
@@ -61,6 +78,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  carousel: {
+  },
   viewContainer: {
     flex: 1,
     alignItems: 'center'
@@ -71,6 +90,12 @@ const styles = StyleSheet.create({
 	slide: {
     flexDirection: 'column',
     width: Dimensions.get('window').width,
+	},
+	nextButton: {
+
+	},
+	prevButton: {
+
 	},
 });
 
