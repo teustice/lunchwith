@@ -87,20 +87,19 @@ export class FormView extends Component {
             <Label>Experience (years)</Label>
             <ExperienceSlider/>
             <Text style={styles.title}>Lunch Availability</Text>
-            <Label>Monday: </Label>
-
+            <Label>Monday</Label>
             <MultiSliderUse />
-            <Label>Tuesday: </Label>
+            <Label>Tuesday</Label>
             <MultiSliderUse />
-            <Label>Wednesday: </Label>
+            <Label>Wednesday</Label>
             <MultiSliderUse />
-            <Label>Thursday: </Label>
+            <Label>Thursday</Label>
             <MultiSliderUse />
-            <Label>Friday: </Label>
+            <Label>Friday</Label>
             <MultiSliderUse />
-            <Label>Saturday: </Label>
+            <Label>Saturday</Label>
             <MultiSliderUse />
-            <Label>Sunday: </Label>
+            <Label>Sunday</Label>
             <MultiSliderUse />
 
           </Fieldset>
