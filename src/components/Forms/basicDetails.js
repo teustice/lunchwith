@@ -43,6 +43,10 @@ export class FormView extends Component {
     super(props);
   }
 
+  componentDidMount() {
+
+  }
+
 
   render() {
 
@@ -84,6 +88,7 @@ export class FormView extends Component {
             <ExperienceSlider/>
             <Text style={styles.title}>Lunch Availability</Text>
             <Label>Monday: </Label>
+
             <MultiSliderUse />
             <Label>Tuesday: </Label>
             <MultiSliderUse />
@@ -107,6 +112,8 @@ export class FormView extends Component {
     )
   }
 }
+
+
 
 var styles = StyleSheet.create({
   title: {

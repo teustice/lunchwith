@@ -28,13 +28,6 @@ import { bindActionCreators } from 'redux';
 import { styles } from './styles';
 import FormView from '../../components/Forms/basicDetails'
 
-const radii = [
-  {label: '1 mi', value: '1'},
-  {label: '3 mi', value: '3'},
-  {label: '5 mi', value: '5'},
-  {label: '10 mi', value: '10'},
-]
-
 export class OnBoard extends Component {
   render() {
     return (

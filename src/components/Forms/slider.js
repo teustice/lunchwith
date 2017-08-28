@@ -26,7 +26,7 @@ const ExperienceSlider = React.createClass({
     return (
       <View>
         <Text style={styles.text} >
-          {this.state.value && +this.state.value.toFixed(0)}
+          {this.state.value && +this.state.value.toFixed(0)} years
         </Text>
         <Slider
           {...this.props}
