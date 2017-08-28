@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-
 import {
   StyleSheet,
   View,
@@ -14,14 +13,12 @@ import {
 
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-
 class MultiSliderUse extends React.Component {
 
   // initial state of multislider
   state = {
     multiSliderValue: [1, 5],
   };
-
 
 // Initial state for switch
   getInitialState() {
@@ -49,13 +46,9 @@ class MultiSliderUse extends React.Component {
     });
   }
 
-
-
   render() {
-
     return (
       <View style={styles.container}>
-
         <Switch
           onValueChange={(value) => {this.setState({eventSwitchIsOn: value} )}}
           value={this.state.eventSwitchIsOn}
@@ -74,11 +67,8 @@ class MultiSliderUse extends React.Component {
                 snapped
                 />
               </View>
-
            : null }
-
         </View>
-
       </View>
     );
   }
