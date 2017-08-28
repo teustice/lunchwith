@@ -12,6 +12,7 @@ export class Map extends Component {
 
   render() {
     let tempUser = {}
+    console.log(this.props.region.latitude);
     return (
       <View >
 
@@ -21,8 +22,8 @@ export class Map extends Component {
           showsBuildings={false}
           showsTraffic={false}
           showsPointsOfInterest={false}
-          initialRegion={this.props.initialRegion}
-          onRegionChangeComplete={region=>{this.props.setRegion({region});}}
+          region={this.props.region}
+          onRegionChangeComplete={region=>{this.props.setRegion(region);}}
           showsUserLocation={true}
         >
           {this.props.markers.map(marker => (

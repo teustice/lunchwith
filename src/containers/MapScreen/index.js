@@ -7,6 +7,7 @@ import Map from '../../components/Map/index';
 import { connect } from 'react-redux';
 import ActionCreators from '../../actions/index';
 import getRegion from '../../selectors/region';
+import getUser from '../../selectors/user';
 import getMarkers from '../../selectors/markers';
 import getUserLocation from '../../selectors/userLocation';
 import getCarousel from '../../selectors/carousel';
@@ -14,6 +15,7 @@ import findUserById from '../../lib/helpers/userById';
 import ProfileCarousel from '../../components/ProfileCarousel';
 
 export class MapScreen extends Component {
+
   render() {
     return (
       <View>
@@ -25,6 +27,7 @@ export class MapScreen extends Component {
         />
         <ProfileCarousel
           markers={this.props.markers}
+          users={this.props.users}
           setRegion={this.props.setRegion}
           carousel={this.props.carousel}
           setCarousel={this.props.setCarousel}
@@ -65,7 +68,8 @@ function mapStateToProps(store) {
     region: getRegion(store),
     markers: getMarkers(store),
     userLocation: getUserLocation(store),
-    carousel: getCarousel(store)
+    carousel: getCarousel(store),
+    users: getUser(store)
   };
 }
 

@@ -5,6 +5,8 @@ const markers = [
     coordinates: {
       latitude: 45.521371,
       longitude: -122.673168,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
     },
   },
   {
@@ -13,6 +15,8 @@ const markers = [
     coordinates: {
       latitude: 45.571471,
       longitude: -122.673368,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
     },
   },
   {
@@ -21,6 +25,8 @@ const markers = [
     coordinates: {
       latitude: 45.541321,
       longitude: -122.677168,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
     },
   },
   {
@@ -29,6 +35,8 @@ const markers = [
     coordinates: {
       latitude: 45.521171,
       longitude: -122.622968,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
     },
   },
   {
@@ -37,6 +45,8 @@ const markers = [
     coordinates: {
       latitude: 45.541371,
       longitude: -122.677168,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
     },
   },
   {
@@ -45,6 +55,8 @@ const markers = [
     coordinates: {
       latitude: 45.521171,
       longitude: -122.693168,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
     },
   },
   {
@@ -53,6 +65,8 @@ const markers = [
     coordinates: {
       latitude: 45.527371,
       longitude: -122.613168,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
     },
   },
   {
@@ -61,6 +75,8 @@ const markers = [
     coordinates: {
       latitude: 45.531371,
       longitude: -122.633168,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
     },
   },
   {
@@ -69,6 +85,8 @@ const markers = [
     coordinates: {
       latitude: 45.525391,
       longitude: -122.627168,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
     },
   }
 ]

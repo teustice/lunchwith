@@ -13,10 +13,19 @@ export class ProfileCarousel extends Component {
     super(props);
   }
 
+  nextItem(carouselIndex, marker) {
+    this.refs.carousel.snapToNext(true);
+    this.props.setRegion(marker.coordinates);
+  }
+
   _renderItem (marker, index) {
     let user = findUserById(marker.item.userId)
     return (
       <View>
+        <Button
+        title="NEXT"
+        onPress={() => { this.nextItem(this.props.carousel.index, marker.item); }}
+        />
         <ProfileModal profile={user}/>
       </View>
     );
@@ -45,9 +54,6 @@ export class ProfileCarousel extends Component {
 }
 
 let tempUsers = [];
-ProfileCarousel.defaultProps = {
-  users: userSeed,
-};
 
 const styles = StyleSheet.create({
   container: {
