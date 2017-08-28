@@ -46,64 +46,39 @@ class MultiSliderUse extends React.Component {
   multiSliderValuesChange = (values) => {
     this.setState({
       multiSliderValue: values,
-      status: false,
     });
   }
 
-  _renderMultiSlider = () => {
-    if (this.state.status) {
-      return (
-        <View>
-        <Text style={styles.text}>{this.timeToConvert(this.state.multiSliderValue[0])} - {this.timeToConvert(this.state.multiSliderValue[1])}</Text>
-        <MultiSlider
-        values={[this.state.multiSliderValue[0], this.state.multiSliderValue[1]]}
-        sliderLength={320}
-        onValuesChange={this.multiSliderValuesChange}
-        min={0}
-        max={6}
-        step={1}
-        allowOverlap
-        snapped
-        />
-      </View>
-      );
-    } else {
-      return null;
-    }
-  }
+
 
   render() {
-    console.log('test ' );
+
     return (
       <View style={styles.container}>
+
+        <Switch
+          onValueChange={(value) => {this.setState({eventSwitchIsOn: value} )}}
+          value={this.state.eventSwitchIsOn}
+        />
         <View style={styles.sliders}>
+          {this.state.eventSwitchIsOn ?
+              <View>
+                <Text style={styles.text}>{this.timeToConvert(this.state.multiSliderValue[0])} - {this.timeToConvert(this.state.multiSliderValue[1])}</Text>
+                <MultiSlider
+                values={[this.state.multiSliderValue[0], this.state.multiSliderValue[1]]}
+                sliderLength={320}
+                onValuesChange={this.multiSliderValuesChange}
+                min={0}
+                max={6}
+                allowOverlap
+                snapped
+                />
+              </View>
 
-          <View style={styles.sliderOne}>
-            <Switch
-              onValueChange={(value) => {this.setState({eventSwitchIsOn: value, status: !this.state.status}), this._renderMultiSlider()}}
-              style={{marginBottom: 30}}
-              value={this.state.eventSwitchIsOn}
-            />
-            {this.state.eventSwitchIsOn ?
-                <View>
-                  <Text style={styles.text}>{this.timeToConvert(this.state.multiSliderValue[0])} - {this.timeToConvert(this.state.multiSliderValue[1])}</Text>
-                  <MultiSlider
-                  values={[this.state.multiSliderValue[0], this.state.multiSliderValue[1]]}
-                  sliderLength={320}
-                  onValuesChange={this.multiSliderValuesChange}
-                  min={0}
-                  max={6}
-                  step={1}
-                  allowOverlap
-                  snapped
-                  />
-                </View>
+           : null }
 
-             : null }
-
-
-          </View>
         </View>
+
       </View>
     );
   }
@@ -119,18 +94,16 @@ var styles = StyleSheet.create({
     alignItems: 'center',
   },
   sliders: {
-    marginVertical: 20,
+    marginTop: 20,
     width: 320,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     alignSelf: 'center',
     paddingBottom: 20,
     marginTop: 0,
     color: 'grey',
-  },
-  sliderOne: {
-    flexDirection: 'row',
-
   },
 
 });
