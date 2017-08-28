@@ -32,7 +32,7 @@ export class ProfileCarousel extends Component {
             sliderWidth={Dimensions.get('window').width}
             inactiveSlideScale={1}
             inactiveSlideOpacity={1}
-            firstItem={0}
+            firstItem={this.props.carousel.index}
             onSnapToItem={index=>{this.props.setCarousel({index: index});}}
             autoplay={false}
             enableSnap={true}

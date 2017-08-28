@@ -11,7 +11,7 @@ import userLocation from './userLocation';
 import carousel from './carousel';
 
 
-export const reducers = { title, connectivity, region, markers, userLocation, user, business, form: formReducer, carousel };
+export const reducers = { title, connectivity, region, markers, userLocation, user, business, carousel, form: formReducer };
 
 export default function getRootReducer(navReducer) {
   return combineReducers({

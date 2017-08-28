@@ -16,7 +16,7 @@ import ProfileCarousel from '../../components/ProfileCarousel';
 export class MapScreen extends Component {
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View>
         <Map
           setRegion={this.props.setRegion}
           region={this.props.region}
@@ -49,12 +49,12 @@ MapScreen.defaultProps = {
   carousel: {},
 };
 
-MapScreen.propTypes = {
-  setRegion: PropTypes.func.isRequired,
-  setCarousel: PropTypes.func.isRequired,
-  region: PropTypes.object.isRequired,
-  carousel: PropTypes.object.isRequired,
-};
+// MapScreen.propTypes = {
+//   setRegion: PropTypes.func.isRequired,
+//   setCarousel: PropTypes.func.isRequired,
+//   region: PropTypes.object.isRequired,
+//   carousel: PropTypes.object.isRequired,
+// };
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
