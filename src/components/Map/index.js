@@ -4,6 +4,7 @@ import MapView from 'react-native-maps';
 import MarkerCallout from '../MarkerCallout';
 import users from '../../lib/seeds/userSeed';
 import findUserById from '../../lib/helpers/userById';
+import mapStyle from '../../lib/mapStyle';
 
 export class Map extends Component {
   constructor(props) {
@@ -42,6 +43,7 @@ export class Map extends Component {
           initialRegion={this.props.initialRegion}
           onRegionChangeComplete={region=>{this.props.setRegion(region);}}
           showsUserLocation={true}
+          customMapStyle={mapStyle}
         >
           {this.props.markers.map(marker => (
             tempUser = findUserById(marker.userId),
