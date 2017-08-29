@@ -11,29 +11,22 @@ export class Map extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
+    //display marker callout on carousel change
     let refArray = Object.entries(this.refs);
     if(refArray.length >= this.props.markers.length){
       for(let i=0; i < refArray.length; i++){
-        //only access marker refs
-        if(refArray[i][0] === `marker${i}`) {
-          if(refArray[i][1].props.coordinate === this.props.region){
-            refArray[i][1].showCallout();
-          }
+        //only access marker refs, and compare to current region
+        if(refArray[i][1].props.coordinate && refArray[i][1].props.coordinate === this.props.region){
+          refArray[i][1].showCallout();
         }
       }
     }
 
+    //only animate region change if the carousel has moved
     if(prevProps.carousel.index != this.props.carousel.index) {
       this.refs.map.animateToRegion(this.props.region, 350);
     }
   }
-
-  //if region === marker, display callout
-  // showCallout(markerRef) {
-  //   if(markerRef ) {
-  //     markerRef.showCallout();
-  //   }
-  // }
 
   render() {
     let tempUser = {};
@@ -64,7 +57,6 @@ export class Map extends Component {
               </MapView.Callout>
             </MapView.Marker>
           ))}
-
         </MapView>
       </View>
     );
