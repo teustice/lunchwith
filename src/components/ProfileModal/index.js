@@ -13,44 +13,43 @@ class ProfileModal extends Component {
 
   render() {
     return (
-      <View style={staticStyles.modalBackground}>
-        <Modal
-          animationType={"slide"}
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {alert("Modal has been closed.")}}
-          >
-          <View style={staticStyles.closeModal}>
-            <TouchableHighlight onPress={() => {
-              this.setModalVisible(!this.state.modalVisible)
-            }}>
+      <TouchableHighlight onPress={() => {
+        this.setModalVisible(true)
+      }}>
+        <View style={staticStyles.modalBackground}>
+          <Modal
+            animationType={"slide"}
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {alert("Modal has been closed.")}}
+            >
+            <View style={staticStyles.closeModal}>
+              <TouchableHighlight onPress={() => {
+                this.setModalVisible(!this.state.modalVisible)
+              }}>
+                <Image
+                  source={require('../../lib/images/close-button.png')}
+                  style={{width: 30, height: 30}}
+                />
+              </TouchableHighlight>
+            </View>
+           <View style={staticStyles.container}>
+            <View style={staticStyles.content}>
+              <Text>{this.props.profile.name}</Text>
               <Image
-                source={require('../../lib/images/close-button.png')}
-                style={{width: 30, height: 30}}
+                style={staticStyles.profileImage}
+                source={{uri: this.props.profile.profileImage}}
               />
-            </TouchableHighlight>
-          </View>
-         <View style={staticStyles.container}>
-          <View style={staticStyles.content}>
-            <Text>{this.props.profile.name}</Text>
-            <Image
-              style={staticStyles.profileImage}
-              source={{uri: this.props.profile.profileImage}}
-            />
-          </View>
-         </View>
-        </Modal>
-
-        <TouchableHighlight onPress={() => {
-          this.setModalVisible(true)
-        }}>
+            </View>
+           </View>
+          </Modal>
           <View>
             <Text>{this.props.profile.name}</Text>
             <Text>{this.props.profile.company}</Text>
-          </View>
-        </TouchableHighlight>
 
-      </View>
+          </View>
+        </View>
+      </TouchableHighlight>
     );
   }
 }
@@ -59,12 +58,14 @@ const staticStyles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.95)'
   },
   modalBackground: {
-    marginLeft: 10,
-    marginRight: 10,
-    height:((Dimensions.get('window').height)*1/9),
-    backgroundColor: 'white',
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginBottom: 50,
+    height:((Dimensions.get('window').height)*1/10),
+    backgroundColor: 'rgba(255, 255, 255, 0.9)'
   },
   profileImage: {
     width: 50,

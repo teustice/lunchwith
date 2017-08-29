@@ -72,6 +72,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   carousel: {
+    position: 'absolute',
+    bottom: 30,
   },
   contentContainer: {
     flexDirection: 'row',
