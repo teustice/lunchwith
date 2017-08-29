@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, View, StyleSheet, Dimensions, Image } from 'react-native';
+import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
 
 class ProfileModal extends Component {
 
@@ -13,15 +13,16 @@ class ProfileModal extends Component {
 
   render() {
     return (
-      <TouchableHighlight onPress={() => {
-        this.setModalVisible(true)
-      }}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          this.setModalVisible(true)
+        }}
+      >
         <View style={staticStyles.modalBackground}>
           <Modal
             animationType={"slide"}
             transparent={true}
             visible={this.state.modalVisible}
-            onRequestClose={() => {alert("Modal has been closed.")}}
             >
             <View style={staticStyles.closeModal}>
               <TouchableHighlight onPress={() => {
@@ -43,13 +44,12 @@ class ProfileModal extends Component {
             </View>
            </View>
           </Modal>
-          <View>
-            <Text>{this.props.profile.name}</Text>
-            <Text>{this.props.profile.company}</Text>
 
+          <View style={staticStyles.profileSnippet}>
+            <Text style={staticStyles.profileName}>{this.props.profile.name}</Text>
           </View>
         </View>
-      </TouchableHighlight>
+      </TouchableWithoutFeedback>
     );
   }
 }
@@ -78,6 +78,13 @@ const staticStyles = StyleSheet.create({
     marginTop: 30,
     marginRight: 10,
     alignSelf: 'flex-end',
+  },
+  profileName:{
+    fontSize: 18,
+    paddingTop:10,
+  },
+  profileSnippet:{
+    borderRadius: 10,
   }
 });
 
