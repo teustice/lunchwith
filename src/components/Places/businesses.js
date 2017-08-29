@@ -45,7 +45,6 @@ const staticStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#4688DA',
-    color: 'white',
     marginBottom: 10,
     borderRadius: 2,
   }

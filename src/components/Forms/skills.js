@@ -111,7 +111,7 @@ const staticStyles = StyleSheet.create({
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'lightgrey',
+    borderColor: 'black',
     borderRadius: 2,
     height: 35,
     fontSize: 12,
@@ -132,8 +132,8 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   titleText: {
-    fontSize: 18,
-    fontWeight: '500',
+    fontSize: 14,
+    fontWeight: '300',
     marginBottom: 10,
     marginTop: 10,
     textAlign: 'center'
