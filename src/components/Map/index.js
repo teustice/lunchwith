@@ -20,7 +20,6 @@ export class Map extends Component {
     let tempUser = {};
     return (
       <View >
-
         <MapView
           ref={'map'}
           style={staticStyles.map}

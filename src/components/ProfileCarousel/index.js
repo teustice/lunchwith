@@ -14,28 +14,13 @@ export class ProfileCarousel extends Component {
     super(props);
   }
 
-  nextItem(carouselIndex, marker) {
-    this.refs.carousel.snapToNext();
-    this.props.setRegion(marker.coordinates);
-  }
-
-  previousItem(carouselIndex, marker) {
-    this.refs.carousel.snapToPrev();
-    this.props.setRegion(marker.coordinates);
+  componentDidMount(){
+    for(let i=0; i < this.props.markers.length; i++) {
+      markers[i]['carouselId'] = i;
+    };
   }
 
   _renderItem (marker, index) {
-    // console.log(marker.index);
-    if (carouselCounter <= this.props.markers.length) {
-      marker.item['carouselId'] = marker.index;
-      tempMarkers.push(marker.item)
-      carouselCounter += 1;
-    } else if (carouselCounter === this.props.markers.length) {
-      this.props.setMarkers(tempMarkers);
-      carouselCounter = 0;
-      tempMarkers = [];
-    }
-    // console.log(this.props.markers);
     let user = findUserById(marker.item.userId)
     return (
       <View>
@@ -60,13 +45,13 @@ export class ProfileCarousel extends Component {
       <View style={styles.carousel}>
          <Carousel
             ref={'carousel'}
-            data={markers}
+            data={this.props.markers}
             renderItem={this._renderItem.bind(this)}
             sliderWidth={Dimensions.get('window').width}
             inactiveSlideScale={1}
             inactiveSlideOpacity={1}
             firstItem={this.props.carousel.index}
-            onSnapToItem={this.onSnap.bind(this)}
+            onSnapToItem={(index) => this.onSnap(index)}
             autoplay={false}
             enableSnap={true}
             snapOnAndroid={true} //to enable snapping on android
@@ -77,7 +62,6 @@ export class ProfileCarousel extends Component {
   }
 }
 
-let tempMarkers = [];
 let carouselCounter = 0;
 
 const styles = StyleSheet.create({
@@ -98,12 +82,6 @@ const styles = StyleSheet.create({
 	slide: {
     flexDirection: 'column',
     width: Dimensions.get('window').width,
-	},
-	nextButton: {
-
-	},
-	prevButton: {
-
 	},
 });
 
