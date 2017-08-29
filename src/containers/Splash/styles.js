@@ -4,7 +4,7 @@ import colors from '../../lib/colors';
 
 const staticStyles = StyleSheet.create({
   container: {
-    backgroundColor: colors.black,
+    backgroundColor: colors.white,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

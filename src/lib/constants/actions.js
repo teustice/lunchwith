@@ -15,8 +15,11 @@ export const USER_LOCATION_FETCH = 'USER_LOCATION_FETCH';
 //User
 export const USER_SET = 'USER_SET';
 export const USER_FETCH = 'USER_FETCH';
-//Business 
+//Business
 export const BUSINESS_SET = 'BUSINESS_SET';
 export const BUSINESS_FETCH = 'BUSINESS_FETCH';
+//Carousel
+export const CAROUSEL_SET = 'CAROUSEL_SET';
+export const CAROUSEL_FETCH = 'CAROUSEL_FETCH';
 // errors
 export const GENERIC_ERROR = 'GENERIC_ERROR';

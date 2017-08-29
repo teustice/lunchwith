@@ -44,6 +44,7 @@ export class Profile extends Component {
             </TouchableHighlight>
             <FormView setBusiness={this.props.setBusiness} />
 
+<<<<<<< HEAD
 
           </View>
          </View>
@@ -59,6 +60,19 @@ export class Profile extends Component {
             <Header setUser={this.props.setUser} />
             <Bio setUser={this.props.setUser} />
           </View>
+=======
+      <View style={staticStyles.container}>
+
+        <View style={positionerStyle.centeringFromBottom('50%')}>
+          <Button
+          text={'edit profile'}
+          onPress={() => {
+            this.props.navigation.navigate('MapScreen');
+          }}
+          />
+          <Header setUser={this.props.setUser} />
+          <Bio setUser={this.props.setUser} />
+>>>>>>> 0af1342918618d7c98e2229f406c7a7b6c17994b
         </View>
       </View>
 
