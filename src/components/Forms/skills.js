@@ -17,16 +17,16 @@ import {
 import { Field, reduxForm, Picker } from 'redux-form'
 import Autocomplete from 'react-native-autocomplete-input';
 
-const SKILLS = {"results": [{"title": "Javascript"}, {"title": "Ruby"}]};
+const SKILLS = {"results": [{"title": "Javascript", "id": "1"}, {"title": "Ruby", "id": "2"}]};
 
 class Skills extends Component {
 
   static renderSkill(skill) {
-    const { title } = skill;
+    const { title, id } = skill;
 
     return (
       <View>
-        <Text style={styles.titleText}>{title}</Text>
+        <Text style={styles.titleText}>{title}, {id}</Text>
       </View>
     );
   }
@@ -40,10 +40,9 @@ class Skills extends Component {
   }
 
   componentDidMount() {
-    const { 'results': skills } = SKILLS;
+    const { "results": skills } = SKILLS;
     this.setState({ skills });
     console.log(this.state);
-    console.log(SKILLS);
   }
 
   findSkill(query) {
@@ -57,14 +56,17 @@ class Skills extends Component {
   }
 
   render() {
-    console.log("why " + SKILLS.results);
     const { query } = this.state;
     const skills = this.findSkill(query);
+    const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
+
     return(
     <View>
       <Autocomplete
-        data={skills}
+        style={styles.container}
+        data={skills.length === 1 && comp(query, skills[0].title) ? [] : skills}
         defaultValue={query}
+        placeholder={"   Enter a Skill"}
         onChangeText={text => this.setState({ query: text })}
         renderItem={({ title }) => (
           <TouchableOpacity onPress={() => this.setState({ query: title })}>
@@ -74,17 +76,14 @@ class Skills extends Component {
       />
 
       <View style={styles.descriptionContainer}>
+
         {skills.length > 0 ? (
           Skills.renderSkill(skills[0])
-        ) : (
-          <Text style={styles.infoText}>
-            Enter a Skill
-          </Text>
-        )}
+          ): null
+      }
       </View>
     </View>)
   }
-
 }
 
 const staticStyles = StyleSheet.create({
@@ -112,21 +111,20 @@ const staticStyles = StyleSheet.create({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F5FCFF',
-    flex: 1,
-    paddingTop: 25
+    borderColor: 'lightgrey',
+    borderRadius: 2,
+    height: 35,
+    fontSize: 12,
   },
   autocompleteContainer: {
     marginLeft: 10,
-    marginRight: 10
+    marginRight: 10,
   },
   itemText: {
-    fontSize: 15,
-    margin: 2
+    fontSize: 12,
+    margin: 2,
   },
   descriptionContainer: {
-    // `backgroundColor` needs to be set otherwise the
-    // autocomplete input will disappear on text input.
     backgroundColor: '#F5FCFF',
     marginTop: 8
   },
@@ -141,7 +139,5 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 });
-
-
 
 export default Skills;
