@@ -26,7 +26,11 @@ export class ProfileCarousel extends Component {
     return (
       <View >
         <View style={styles.contentContainer}>
-          <ProfileModal profile={user}/>
+          <ProfileModal
+            profile={user}
+            profileModal={this.props.profileModal}
+            setProfileModal={this.props.setProfileModal}
+          />
         </View>
       </View>
     );

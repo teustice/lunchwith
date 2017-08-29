@@ -21,5 +21,8 @@ export const BUSINESS_FETCH = 'BUSINESS_FETCH';
 //Carousel
 export const CAROUSEL_SET = 'CAROUSEL_SET';
 export const CAROUSEL_FETCH = 'CAROUSEL_FETCH';
+//Profile Modal
+export const PROFILE_MODAL_SET = 'PROFILE_MODAL_SET';
+export const PROFILE_MODAL_FETCH = 'PROFILE_MODAL_FETCH';
 // errors
 export const GENERIC_ERROR = 'GENERIC_ERROR';

@@ -11,6 +11,8 @@ import setBusiness from './set-business';
 import fetchBusiness from './fetch-business';
 import setCarousel from './set-carousel';
 import fetchCarousel from './fetch-carousel';
+import setProfileModal from './set-profileModal';
+import fetchProfileModal from './fetch-profileModal';
 import { genericError } from './errors';
 
 const ActionCreators = {
@@ -28,6 +30,8 @@ const ActionCreators = {
   setBusiness,
   setCarousel,
   fetchCarousel,
+  setProfileModal,
+  fetchProfileModal
 };
 
 export default ActionCreators;
