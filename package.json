@@ -13,6 +13,7 @@
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.12",
     "react-native": "0.47.1",
+    "react-native-autocomplete-input": "^3.3.1",
     "react-native-clean-form": "^0.4.2",
     "react-native-floating-label-text-input": "^0.1.5",
     "react-native-google-places": "^2.4.2",

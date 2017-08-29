@@ -15,35 +15,76 @@ import {
   Switch
 } from 'react-native-clean-form'
 import { Field, reduxForm, Picker } from 'redux-form'
+import Autocomplete from 'react-native-autocomplete-input';
 
-const topLevelSkills = [
-  {label: 'Front End Development', value: 'frontEndDev'},
-  {label: 'Back End Development', value: 'backEndDev'},
-]
+const SKILLS = {"results": [{"title": "Javascript"}, {"title": "Ruby"}]};
 
-export class Skills extends Component {
-  constructor(props) {
-    super(props);
+class Skills extends Component {
+
+  static renderSkill(skill) {
+    const { title } = skill;
+
+    return (
+      <View>
+        <Text style={styles.titleText}>{title}</Text>
+      </View>
+    );
   }
 
-  openSkillsModal() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      skills: [],
+      query: ''
+    };
+  }
 
+  componentDidMount() {
+    const { 'results': skills } = SKILLS;
+    this.setState({ skills });
+    console.log(this.state);
+    console.log(SKILLS);
+  }
 
+  findSkill(query) {
+    if (query === '') {
+      return [];
+    }
+
+    const { skills } = this.state;
+    const regex = new RegExp(`${query.trim()}`, 'i');
+    return skills.filter(skill => skill.title.search(regex) >= 0);
   }
 
   render() {
-    return (
-      <FormGroup style={staticStyles.container}>
-        <Label style={staticStyles.text}>Add a Skill</Label>
-        <Select
-        name="skills"
-        label="Skills"
-        options={topLevelSkills}
-        placeholder="Add a Skill"
-        />
-      </FormGroup>
-    );
+    console.log("why " + SKILLS.results);
+    const { query } = this.state;
+    const skills = this.findSkill(query);
+    return(
+    <View>
+      <Autocomplete
+        data={skills}
+        defaultValue={query}
+        onChangeText={text => this.setState({ query: text })}
+        renderItem={({ title }) => (
+          <TouchableOpacity onPress={() => this.setState({ query: title })}>
+            <Text style={styles.itemText}>{title}</Text>
+          </TouchableOpacity>
+        )}
+      />
+
+      <View style={styles.descriptionContainer}>
+        {skills.length > 0 ? (
+          Skills.renderSkill(skills[0])
+        ) : (
+          <Text style={styles.infoText}>
+            Enter a Skill
+          </Text>
+        )}
+      </View>
+    </View>)
   }
+
 }
 
 const staticStyles = StyleSheet.create({
@@ -64,6 +105,40 @@ const staticStyles = StyleSheet.create({
     color: 'white',
     marginBottom: 10,
     borderRadius: 2,
+  }
+});
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#F5FCFF',
+    flex: 1,
+    paddingTop: 25
+  },
+  autocompleteContainer: {
+    marginLeft: 10,
+    marginRight: 10
+  },
+  itemText: {
+    fontSize: 15,
+    margin: 2
+  },
+  descriptionContainer: {
+    // `backgroundColor` needs to be set otherwise the
+    // autocomplete input will disappear on text input.
+    backgroundColor: '#F5FCFF',
+    marginTop: 8
+  },
+  infoText: {
+    textAlign: 'center'
+  },
+  titleText: {
+    fontSize: 18,
+    fontWeight: '500',
+    marginBottom: 10,
+    marginTop: 10,
+    textAlign: 'center'
   }
 });
 
