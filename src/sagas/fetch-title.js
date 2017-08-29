@@ -9,7 +9,6 @@ const executeFetchTitle = () => {
   const root = 'https://jsonplaceholder.typicode.com';
   const params = '/posts/1';
   return Api.get(root + params).then((val) => {
-    console.log(val);
     return val.title.slice(0, 8);
   });
 };
