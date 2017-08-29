@@ -16,7 +16,7 @@ function* fetchBusiness(action) {
     yield put(setBusiness(markers));
   } catch (error) {
     console.warn(error);
-    yield put(genericError('Failed to fetch markers'));
+    yield put(genericError('Failed to fetch business'));
   }
 }
 

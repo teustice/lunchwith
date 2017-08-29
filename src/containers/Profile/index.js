@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Modal, TouchableHighlight } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -12,13 +12,55 @@ import profileData from '../../lib/seeds/profileData';
 import Bio from '../../components/Profile/bio';
 import Header from '../../components/Profile/header';
 import getUser from '../../selectors/user';
+import FormView from '../../components/Forms/basicDetails';
+import getCompany from '../../selectors/business';
 
 export class Profile extends Component {
+
+  state = {
+    modalVisible: false,
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
 
   render() {
 
     return (
+      <View style={{marginTop: 22}}>
+        <Modal
+          animationType={"slide"}
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {alert("Modal has been closed.")}}
+          >
+         <View style={{marginTop: 22}}>
+          <View>
+            <TouchableHighlight onPress={() => {
+              this.setModalVisible(!this.state.modalVisible)
+            }}>
+            <Text>Go Back</Text>
+            </TouchableHighlight>
+            <FormView setBusiness={this.props.setBusiness} />
 
+<<<<<<< HEAD
+
+          </View>
+         </View>
+        </Modal>
+
+        <TouchableHighlight onPress={() => {
+          this.setModalVisible(true)
+        }}>
+          <Text>Edit Profile</Text>
+        </TouchableHighlight>
+        <View style={staticStyles.container}>
+          <View style={positionerStyle.centeringFromBottom('50%')}>
+            <Header setUser={this.props.setUser} />
+            <Bio setUser={this.props.setUser} />
+          </View>
+=======
       <View style={staticStyles.container}>
 
         <View style={positionerStyle.centeringFromBottom('50%')}>
@@ -30,11 +72,35 @@ export class Profile extends Component {
           />
           <Header setUser={this.props.setUser} />
           <Bio setUser={this.props.setUser} />
+>>>>>>> 0af1342918618d7c98e2229f406c7a7b6c17994b
         </View>
       </View>
+
+
     );
   }
 }
+
+
+FormView.defaultProps = {
+  setFirstName: () => {},
+  setLastName: () => {},
+  setBusiness: () => {},
+  setJobTitle: () => {},
+  setLunchRadius: () => {},
+  setBio: () => {},
+  setExperienceValue: () => {},
+  experienceValue: 0,
+  company: {},
+  firstName: {},
+  lastName: {},
+  jobTitle: {},
+  lunchRadius: {},
+  bio: {},
+};
+
+FormView.propTypes = {
+};
 
 Profile.defaultProps = {
   fetchUser: () => {},
@@ -42,14 +108,18 @@ Profile.defaultProps = {
 };
 
 Profile.propTypes = {
+  setBusiness: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
 };
 
+function mapStateToProps(store) {
+  return { company: getCompany(store) };
+}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
 }
 
 
-export default connect(mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

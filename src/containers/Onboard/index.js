@@ -25,66 +25,36 @@ import getCompany from '../../selectors/business';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { styles } from './styles';
+import FormView from '../../components/Forms/basicDetails'
 
-const submit = values => {
-  console.log('submitting form', values)
-}
-
-const renderInput = ({ input: { onChange, ...restInput }}) => {
-  return <TextInput style={styles.input} onChangeText={onChange} {...restInput} />
-}
-
-const radii = [
-  {label: '1 mi', value: '1'},
-  {label: '3 mi', value: '3'},
-  {label: '5 mi', value: '5'},
-  {label: '10 mi', value: '10'},
-]
-
-export class FormView extends Component {
+export class OnBoard extends Component {
   render() {
-    console.log(this.props.company.name);
     return (
-      <Form>
-        <FieldsContainer>
-          <Fieldset label="Contact details">
-            <FormGroup>
-              <Label>First name</Label>
-              <Input placeholder="John" />
-            </FormGroup>
-            <FormGroup>
-              <Label>Last name</Label>
-              <Input placeholder="Doe" />
-            </FormGroup>
-            <FormGroup>
-              <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} />
-
-            </FormGroup>
-            <FormGroup>
-            <Label>Lunch Radius</Label>
-            <Select
-            name="radius"
-            label="Radius"
-            options={radii}
-            placeholder="1"
-            />
-            </FormGroup>
-            <FormGroup>
-
-            </FormGroup>
-          </Fieldset>
-        </FieldsContainer>
-        <ActionsContainer>
-          <Button icon="md-checkmark" iconPlacement="right">Save</Button>
-        </ActionsContainer>
-      </Form>
-    )
+      <View>
+        <FormView
+          setBusiness={this.props.setBusiness}
+        />
+      </View>
+    );
   }
 }
 
 FormView.defaultProps = {
+  setFirstName: () => {},
+  setLastName: () => {},
   setBusiness: () => {},
-  company: {}
+  setJobTitle: () => {},
+  setLunchRadius: () => {},
+  setBio: () => {},
+  setExperienceValue: () => {},
+  experienceValue: 0,
+  company: {},
+  firstName: {},
+  lastName: {},
+  jobTitle: {},
+  lunchRadius: {},
+  bio: {},
 };
 
 FormView.propTypes = {
