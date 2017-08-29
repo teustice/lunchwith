@@ -15,6 +15,7 @@ export class ProfileCarousel extends Component {
   }
 
   componentDidMount(){
+    //generate carouselId in markers for region snapping
     for(let i=0; i < this.props.markers.length; i++) {
       markers[i]['carouselId'] = i;
     };

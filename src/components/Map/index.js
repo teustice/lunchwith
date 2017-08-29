@@ -11,10 +11,29 @@ export class Map extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
+    let refArray = Object.entries(this.refs);
+    if(refArray.length >= this.props.markers.length){
+      for(let i=0; i < refArray.length; i++){
+        //only access marker refs
+        if(refArray[i][0] === `marker${i}`) {
+          if(refArray[i][1].props.coordinate === this.props.region){
+            refArray[i][1].showCallout();
+          }
+        }
+      }
+    }
+
     if(prevProps.carousel.index != this.props.carousel.index) {
       this.refs.map.animateToRegion(this.props.region, 350);
     }
   }
+
+  //if region === marker, display callout
+  // showCallout(markerRef) {
+  //   if(markerRef ) {
+  //     markerRef.showCallout();
+  //   }
+  // }
 
   render() {
     let tempUser = {};
@@ -35,6 +54,7 @@ export class Map extends Component {
             tempUser = findUserById(marker.userId),
             <MapView.Marker
               key={marker.id}
+              ref={`marker${marker.id}`}
               image={require('../../lib/images/pin.png')}
               coordinate={marker.coordinates}
               title={tempUser.name}
