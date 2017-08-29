@@ -12,7 +12,19 @@ export class Map extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-    //display marker callout on carousel change
+    //only animate region change if the carousel has moved
+    if(prevProps.carousel.index != this.props.carousel.index) {
+      if(this.props.carousel.regionAnimation === false){
+        console.log('no animation');
+      } else {
+        //only need to show callout for carousel change
+        this.showCallout();
+        this.refs.map.animateToRegion(this.props.region, 350);
+      }
+    }
+  }
+
+  showCallout(){
     let refArray = Object.entries(this.refs);
     if(refArray.length >= this.props.markers.length){
       for(let i=0; i < refArray.length; i++){
@@ -21,11 +33,6 @@ export class Map extends Component {
           refArray[i][1].showCallout();
         }
       }
-    }
-
-    //only animate region change if the carousel has moved
-    if(prevProps.carousel.index != this.props.carousel.index) {
-      this.refs.map.animateToRegion(this.props.region, 350);
     }
   }
 
@@ -53,6 +60,7 @@ export class Map extends Component {
               image={require('../../lib/images/pin.png')}
               coordinate={marker.coordinates}
               title={tempUser.name}
+              onPress={(event) => {this.props.setCarousel({index: marker.carouselId, regionAnimation: false})} }
             >
               <MapView.Callout>
                 <MarkerCallout calloutTitle={tempUser.name} profileImage={tempUser.profileImage}/>

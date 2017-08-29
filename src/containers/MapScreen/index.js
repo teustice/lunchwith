@@ -21,6 +21,7 @@ export class MapScreen extends Component {
       <View>
         <Map
           carousel={this.props.carousel}
+          setCarousel={this.props.setCarousel}
           setRegion={this.props.setRegion}
           region={this.props.region}
           markers={this.props.markers}
