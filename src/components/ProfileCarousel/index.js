@@ -24,8 +24,8 @@ export class ProfileCarousel extends Component {
   _renderItem (marker, index) {
     let user = findUserById(marker.item.userId)
     return (
-      <View>
-        <View style={{ flexDirection: 'row', alignSelf:'center'}}>
+      <View >
+        <View style={styles.contentContainer}>
           <ProfileModal profile={user}/>
         </View>
       </View>
@@ -72,6 +72,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   carousel: {
+  },
+  contentContainer: {
+    flexDirection: 'row',
+    alignSelf:'center',
   },
   viewContainer: {
     flex: 1,
