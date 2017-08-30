@@ -22,10 +22,13 @@ export class RadiusMap extends Component {
     this.props.setLunchRadiusMarker(location.coordinate)
   }
 
+  milesToMeters(num){
+    parsedNum = parseInt(num);
+    return (parsedNum * 1609.344);
+  }
+
   renderMarker(){
-    console.log('attempting render');
     if(this.props.lunchRadiusMarker && this.props.lunchRadiusMarker.latitude){
-      console.log('rendering marker');
       return(
         <View>
           <MapView.Marker
@@ -34,7 +37,7 @@ export class RadiusMap extends Component {
           />
           <MapView.Circle
             center={this.props.lunchRadiusMarker}
-            radius={500}
+            radius={this.milesToMeters(this.props.lunchRadiusSlider)}
             fillColor={'rgba(100,100,200, 0.3)'}
           />
         </View>
