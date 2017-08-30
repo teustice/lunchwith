@@ -25,6 +25,7 @@ export class RadiusSlider extends Component {
           onValueChange={(value) => this.changeSliderValue(value)}
           maximumValue={5}
           minimumValue={0.5}
+          step={0.5}
         />
       </View>
     );
