@@ -24,7 +24,7 @@ class Skills extends Component {
     const { title, id } = skill;
     return (
       <View>
-        <Text style={styles.titleText}>{title}, {id}</Text>
+        <Text style={styles.titleText}>{title}</Text>
       </View>
     );
   }
@@ -54,6 +54,12 @@ class Skills extends Component {
     console.log(this.state);
   }
 
+  onBlur() {
+    this.setState({
+      query: ''
+    })
+  }
+
   findSkill(query) {
     if (query === '') {
       return [];
@@ -76,12 +82,20 @@ class Skills extends Component {
         defaultValue={query}
         placeholder={"   Enter a Skill"}
         onChangeText={text => this.setState({ query: text })}
+
         renderItem={({ title }) => (
-          <TouchableOpacity onPress={() => {this.setState({ query: title, currentSkills: [...this.state.currentSkills, title] }), console.log('double trouble' );}}>
+          <TouchableOpacity onFocus={() => {this.setState({ query: title })}} onPress={() => {this.setState({ currentSkills: [...this.state.currentSkills, title], query: '' }), console.log('double trouble' );}}>
             <Text style={styles.itemText}>{title}</Text>
           </TouchableOpacity>
         )}
       />
+
+      <View style={styles.descriptionContainer}>
+        {skills.length > 0 ? (
+            Skills.renderSkill(skills[0])
+        ): null
+        }
+      </View>
 
       <View style={styles.descriptionContainer}>
 
