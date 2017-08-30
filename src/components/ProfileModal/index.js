@@ -68,7 +68,6 @@ const staticStyles = StyleSheet.create({
     height:((Dimensions.get('window').height)*1/10),
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
     borderRadius: 10,
-
   },
   profileImage: {
     width: 50,

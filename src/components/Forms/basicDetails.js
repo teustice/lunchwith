@@ -29,6 +29,7 @@ import { bindActionCreators } from 'redux';
 import Skills from './skills';
 import ExperienceSlider from './slider';
 import MultiSliderUse from './multislider';
+import RadiusMap from './radiusMap';
 
 
 const radii = [
@@ -47,11 +48,16 @@ export class FormView extends Component {
 
   }
 
-
   render() {
-
     return (
       <Form>
+        <RadiusMap
+          lunchRadiusMarker={this.props.lunchRadiusMarker}
+          setLunchRadiusMarker={this.props.setLunchRadiusMarker}
+          setRegion={this.props.setRegion}
+          markers={this.props.markers}
+          initialRegion={this.props.userLocation}
+        />
         <FieldsContainer style={{marginTop: 20}}>
           <Fieldset label="Contact details">
             <FormGroup>

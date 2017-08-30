@@ -17,7 +17,7 @@ export class Map extends Component {
       if(this.props.carousel.regionAnimation === false){
         console.log('no animation');
       } else {
-        //only need to show callout for carousel change
+        //manually trigger callout for carousel change
         this.showCallout();
         this.refs.map.animateToRegion(this.props.region, 350);
       }
