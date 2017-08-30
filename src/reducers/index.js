@@ -11,7 +11,7 @@ import userLocation from './userLocation';
 import carousel from './carousel';
 import profileModal from './profileModal';
 import lunchRadiusMarker from './lunchRadiusMarker';
-
+import lunchRadiusSlider from './lunchRadiusSlider';
 
 export const reducers = {
   title,
@@ -24,6 +24,7 @@ export const reducers = {
   carousel,
   profileModal,
   lunchRadiusMarker,
+  lunchRadiusSlider,
   form: formReducer
 };
 

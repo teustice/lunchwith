@@ -15,6 +15,8 @@ import setProfileModal from './set-profileModal';
 import fetchProfileModal from './fetch-profileModal';
 import setLunchRadiusMarker from './set-lunchRadiusMarker';
 import fetchLunchRadiusMarker from './fetch-lunchRadiusMarker';
+import setLunchRadiusSlider from './set-lunchRadiusSlider';
+import fetchLunchRadiusSlider from './fetch-lunchRadiusSlider';
 import { genericError } from './errors';
 
 const ActionCreators = {
@@ -35,7 +37,9 @@ const ActionCreators = {
   setProfileModal,
   fetchProfileModal,
   setLunchRadiusMarker,
-  fetchLunchRadiusMarker
+  fetchLunchRadiusMarker,
+  setLunchRadiusSlider,
+  fetchLunchRadiusSlider
 };
 
 export default ActionCreators;

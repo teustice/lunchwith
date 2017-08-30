@@ -30,6 +30,7 @@ import Skills from './skills';
 import ExperienceSlider from './slider';
 import MultiSliderUse from './multislider';
 import RadiusMap from './radiusMap';
+import RadiusSlider from './radiusSlider';
 
 
 const radii = [
@@ -44,10 +45,6 @@ export class FormView extends Component {
     super(props);
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
     return (
       <Form>
@@ -57,6 +54,10 @@ export class FormView extends Component {
           setRegion={this.props.setRegion}
           markers={this.props.markers}
           initialRegion={this.props.userLocation}
+        />
+        <RadiusSlider
+          lunchRadiusSlider={this.props.lunchRadiusSlider}
+          setLunchRadiusSlider={this.props.setLunchRadiusSlider}
         />
         <FieldsContainer style={{marginTop: 20}}>
           <Fieldset label="Contact details">

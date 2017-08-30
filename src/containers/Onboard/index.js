@@ -24,6 +24,7 @@ import getCompany from '../../selectors/business';
 import getRegion from '../../selectors/region';
 import getUserLocation from '../../selectors/userLocation';
 import getLunchRadiusMarker from '../../selectors/lunchRadiusMarker';
+import getLunchRadiusSlider from '../../selectors/lunchRadiusSlider';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -41,6 +42,8 @@ export class OnBoard extends Component {
           initialRegion={this.props.userLocation}
           lunchRadiusMarker={this.props.lunchRadiusMarker}
           setLunchRadiusMarker={this.props.setLunchRadiusMarker}
+          lunchRadiusSlider={this.props.lunchRadiusSlider}
+          setLunchRadiusSlider={this.props.setLunchRadiusSlider}
           setBusiness={this.props.setBusiness}
         />
       </View>
@@ -79,6 +82,7 @@ function mapStateToProps(store) {
     region: getRegion(store),
     userLocation: getUserLocation(store),
     lunchRadiusMarker: getLunchRadiusMarker(store),
+    lunchRadiusSlider: getLunchRadiusSlider(store),
   };
 }
 
