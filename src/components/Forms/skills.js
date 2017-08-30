@@ -33,8 +33,9 @@ class Skills extends Component {
 // Want to use this to display all skills which are added from list
   static renderSkills(skills) {
     return (<View>
+      <Text style={styles.listHead}>Your Skills</Text>
       {skills.map((skill, index) =>
-        <Text key={index} style={styles.titleText}>{skill}!</Text>
+        <Text key={index} style={styles.titleText}>{skill}</Text>
       )}
     </View>);
   }
@@ -64,8 +65,10 @@ class Skills extends Component {
     if (query === '') {
       return [];
     }
+    // slicedQuery adjusts the suggestions dropdown so that full values do not cause suggestions to disappear 
+    const slicedQuery = query.split('').pop()
     const { skills } = this.state;
-    const regex = new RegExp(`${query.trim()}`, 'i');
+    const regex = new RegExp(`${slicedQuery.trim()}`, 'i');
     return skills.filter(skill => skill.title.search(regex) >= 0);
   }
 
@@ -92,16 +95,15 @@ class Skills extends Component {
 
       <View style={styles.descriptionContainer}>
         {skills.length > 0 ? (
-            Skills.renderSkill(skills[0])
+            <Text></Text>
         ): null
         }
       </View>
 
       <View style={styles.descriptionContainer}>
-
         {this.state.currentSkills.length > 0 ? (
           Skills.renderSkills(this.state.currentSkills)
-          ): null
+        ): null
         }
       </View>
     </View>)
@@ -147,8 +149,8 @@ const styles = StyleSheet.create({
     margin: 2,
   },
   descriptionContainer: {
-    backgroundColor: '#F5FCFF',
-    marginTop: 8
+    marginVertical: 5,
+
   },
   infoText: {
     textAlign: 'center'
@@ -159,7 +161,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     textAlign: 'center'
-  }
+  },
+  listHead: {
+    fontSize: 12,
+    color: 'lightgrey',
+  },
 });
 
 export default Skills;

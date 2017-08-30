@@ -53,7 +53,7 @@ export class FormView extends Component {
     return (
       <Form>
         <FieldsContainer style={{marginTop: 20}}>
-          <Fieldset label="Contact details">
+          <Fieldset   label="Contact details">
             <FormGroup>
               <Label>First name</Label>
               <Input placeholder="John" />
@@ -82,10 +82,10 @@ export class FormView extends Component {
               <Label>Bio</Label>
               <Input placeholder="Say something about yourself!" />
             </FormGroup>
-            <Skills/>
+            <Skills />
 
-            <Label>Experience (years)</Label>
-            <ExperienceSlider/>
+            <Label>Total Tech Experience (years)</Label>
+            <ExperienceSlider />
             <Text style={styles.title}>Lunch Availability</Text>
             <Label>Monday</Label>
             <MultiSliderUse />
