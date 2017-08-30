@@ -16,14 +16,12 @@ import {
 } from 'react-native-clean-form'
 import { Field, reduxForm, Picker } from 'redux-form'
 import Autocomplete from 'react-native-autocomplete-input';
-
-const SKILLS = {"results": [{"title": "Javascript", "id": "1"}, {"title": "Ruby", "id": "2"}]};
+import SKILLS from '../../lib/seeds/skillSeed';
 
 class Skills extends Component {
 
   static renderSkill(skill) {
     const { title, id } = skill;
-
     return (
       <View>
         <Text style={styles.titleText}>{title}, {id}</Text>
@@ -31,11 +29,22 @@ class Skills extends Component {
     );
   }
 
+
+// Want to use this to display all skills which are added from list
+  static renderSkills(skills) {
+    return (<View>
+      {skills.map((skill, index) =>
+        <Text key={index} style={styles.titleText}>{skill}!</Text>
+      )}
+    </View>);
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       skills: [],
-      query: ''
+      currentSkills: [],
+      query: '',
     };
   }
 
@@ -49,7 +58,6 @@ class Skills extends Component {
     if (query === '') {
       return [];
     }
-
     const { skills } = this.state;
     const regex = new RegExp(`${query.trim()}`, 'i');
     return skills.filter(skill => skill.title.search(regex) >= 0);
@@ -69,7 +77,7 @@ class Skills extends Component {
         placeholder={"   Enter a Skill"}
         onChangeText={text => this.setState({ query: text })}
         renderItem={({ title }) => (
-          <TouchableOpacity onPress={() => this.setState({ query: title })}>
+          <TouchableOpacity onPress={() => {this.setState({ query: title, currentSkills: [...this.state.currentSkills, title] }), console.log('double trouble' );}}>
             <Text style={styles.itemText}>{title}</Text>
           </TouchableOpacity>
         )}
@@ -77,10 +85,10 @@ class Skills extends Component {
 
       <View style={styles.descriptionContainer}>
 
-        {skills.length > 0 ? (
-          Skills.renderSkill(skills[0])
+        {this.state.currentSkills.length > 0 ? (
+          Skills.renderSkills(this.state.currentSkills)
           ): null
-      }
+        }
       </View>
     </View>)
   }
