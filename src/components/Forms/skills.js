@@ -20,6 +20,7 @@ import SKILLS from '../../lib/seeds/skillSeed';
 
 class Skills extends Component {
 
+// Only renders as a placeholder the current most likely skill from suggested skills
   static renderSkill(skill) {
     const { title, id } = skill;
     return (
@@ -29,8 +30,7 @@ class Skills extends Component {
     );
   }
 
-
-// Want to use this to display all skills which are added from list
+// Displays list of skills belonging to currentSkills state
   static renderSkills(skills) {
     return (<View>
       <Text style={styles.listHead}>Your Skills</Text>
@@ -55,17 +55,11 @@ class Skills extends Component {
     console.log(this.state);
   }
 
-  onBlur() {
-    this.setState({
-      query: ''
-    })
-  }
-
   findSkill(query) {
     if (query === '') {
       return [];
     }
-    // slicedQuery adjusts the suggestions dropdown so that full values do not cause suggestions to disappear 
+    // slicedQuery adjusts the suggestions dropdown so that full values do not cause suggestions to disappear
     const slicedQuery = query.split('').pop()
     const { skills } = this.state;
     const regex = new RegExp(`${slicedQuery.trim()}`, 'i');
@@ -93,6 +87,7 @@ class Skills extends Component {
         )}
       />
 
+// Displays current most suggested skill
       <View style={styles.descriptionContainer}>
         {skills.length > 0 ? (
             <Text></Text>
@@ -100,6 +95,7 @@ class Skills extends Component {
         }
       </View>
 
+// Displays list of skills belonging to currentSkills state if any exist
       <View style={styles.descriptionContainer}>
         {this.state.currentSkills.length > 0 ? (
           Skills.renderSkills(this.state.currentSkills)
