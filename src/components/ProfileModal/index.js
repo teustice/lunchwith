@@ -47,6 +47,7 @@ class ProfileModal extends Component {
 
           <View style={staticStyles.profileSnippet}>
             <Text style={staticStyles.profileName}>{this.props.profile.name}</Text>
+            <Text style={staticStyles.jobTitle}>{this.props.profile.jobTitle}</Text>
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -63,9 +64,11 @@ const staticStyles = StyleSheet.create({
   modalBackground: {
     paddingLeft: 10,
     paddingRight: 10,
-    marginBottom: 50,
+    marginBottom: 40,
     height:((Dimensions.get('window').height)*1/10),
-    backgroundColor: 'rgba(255, 255, 255, 0.9)'
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    borderRadius: 10,
+
   },
   profileImage: {
     width: 50,
@@ -83,8 +86,11 @@ const staticStyles = StyleSheet.create({
     fontSize: 18,
     paddingTop:10,
   },
+  jobTitle:{
+    color: 'grey',
+  },
   profileSnippet:{
-    borderRadius: 10,
+    alignItems: 'center',
   }
 });
 
