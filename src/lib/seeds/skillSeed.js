@@ -1,4 +1,17 @@
-const SKILLS = {"results": [{"title": "Javascript", "id": "1"}, {"title": "Ruby", "id": "2"}]};
+// placeholder skills for onboarding and profile editing
+
+const SKILLS = {"results":
+                  [{"title": "Javascript", "id": "1"},
+                  {"title": "Ruby", "id": "2"},
+                  {"title": "Python", "id": "3"},
+                  {"title": "Java", "id": "4"},
+                  {"title": "PHP", "id": "5"},
+                  {"title": "CSS", "id": "6"},
+                  {"title": "Node", "id": "7"},
+                  {"title": "C#", "id": "8"},
+                  {"title": "Go", "id": "9"},
+                  {"title": "React-Native", "id": "10"},
+                ]};
 
 // relational skills for future reference, not currenlty used
 // const nothing = [
