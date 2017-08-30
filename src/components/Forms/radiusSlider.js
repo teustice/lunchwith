@@ -9,8 +9,8 @@ import {
 
 export class RadiusSlider extends Component {
   changeSliderValue(sliderValue){
-    let value = sliderValue.toFixed(0);
-    if(this.props.lunchRadiusSlider !== value){
+    let value = sliderValue.toFixed(1);
+    if(this.props.lunchRadiusSlider != value){
       this.props.setLunchRadiusSlider(value);
     }
   }
@@ -22,7 +22,10 @@ export class RadiusSlider extends Component {
         </Text>
         <Slider
           value={parseInt(this.props.lunchRadiusSlider)}
-          onValueChange={(value) => this.changeSliderValue(value)} maximumValue={10} />
+          onValueChange={(value) => this.changeSliderValue(value)}
+          maximumValue={5}
+          minimumValue={0.5}
+        />
       </View>
     );
   }

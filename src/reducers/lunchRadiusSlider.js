@@ -4,7 +4,7 @@ import createReducer from '../lib/helpers/createReducer';
 import { LUNCH_RADIUS_SLIDER_SET } from '../lib/constants/actions';
 
 
-const defaultState = Map().set('lunchRadiusSlider', 0);
+const defaultState = Map().set('lunchRadiusSlider', 1);
 
 export default createReducer(defaultState, {
 
