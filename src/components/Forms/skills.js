@@ -31,13 +31,28 @@ class Skills extends Component {
   }
 
 // Displays list of skills belonging to currentSkills state
-  static renderSkills(skills) {
+  static renderSkills(skills, props) {
     return (<View>
       <Text style={styles.listHead}>Your Skills</Text>
       {skills.map((skill, index) =>
-        <Text key={index} style={styles.titleText}>{skill}</Text>
+        <View>
+          <Text key={index} style={styles.titleText}>{skill}</Text>
+          <TouchableOpacity
+            onPress={(skill, index) => {this.skillRemove(skill, index).bind(this)}}>
+            <Text>remove skill</Text>
+          </TouchableOpacity>
+        </View>
+
       )}
     </View>);
+  }
+
+
+  static skillRemove(skill, i) {
+    var array = this.state.currentSkills;
+    var index = array.indexOf(skill.target.value)
+    array.splice(index, 1);
+    this.setState({currentSkills: array});
   }
 
   constructor(props) {
@@ -47,12 +62,13 @@ class Skills extends Component {
       currentSkills: [],
       query: '',
     };
+    
+
   }
 
   componentDidMount() {
     const { "results": skills } = SKILLS;
     this.setState({ skills });
-    console.log(this.state);
   }
 
   findSkill(query) {
@@ -81,13 +97,18 @@ class Skills extends Component {
         onChangeText={text => this.setState({ query: text })}
 
         renderItem={({ title }) => (
-          <TouchableOpacity onFocus={() => {this.setState({ query: title })}} onPress={() => {this.setState({ currentSkills: [...this.state.currentSkills, title], query: '' }), console.log('double trouble' );}}>
+          <TouchableOpacity
+            onFocus={() =>
+              {this.setState({ query: title })}}
+            onPress={() =>
+              {this.setState({ currentSkills: [...this.state.currentSkills, title],
+              query: '' })}}>
             <Text style={styles.itemText}>{title}</Text>
           </TouchableOpacity>
         )}
       />
 
-// Displays current most suggested skill
+
       <View style={styles.descriptionContainer}>
         {skills.length > 0 ? (
             <Text></Text>
@@ -95,10 +116,10 @@ class Skills extends Component {
         }
       </View>
 
-// Displays list of skills belonging to currentSkills state if any exist
+
       <View style={styles.descriptionContainer}>
         {this.state.currentSkills.length > 0 ? (
-          Skills.renderSkills(this.state.currentSkills)
+          Skills.renderSkills(this.state.currentSkills.bind(this))
         ): null
         }
       </View>
