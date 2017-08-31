@@ -5,10 +5,72 @@ import MarkerCallout from '../MarkerCallout';
 import users from '../../lib/seeds/userSeed';
 import findUserById from '../../lib/helpers/userById';
 import mapStyle from '../../lib/mapStyle';
+import supercluster from 'supercluster';
 
 export class Map extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      tempMarkers: []
+    }
+  }
+
+  _createCluster(data) {
+    const index = supercluster({
+      radius: 60,
+      maxZoom: 15, // Default: 16
+      nodeSize: 128,
+    });
+    index.load(data.features);
+    return index;
+  }
+
+  //Convert to GeoJSON
+  _convertPoints(data) {
+    const results = {
+      type: 'MapCollection',
+      features: [],
+    };
+    data.map((value, key) => {
+      array = {
+        type: 'Map',
+        properties: {
+          id: value.id,
+          userId: value.userId,
+          carouselId: value.carouselId,
+          lat_x: value.coordinates.latitude,
+          long_x: value.coordinates.longitude,
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: [
+            value.coordinates.longitude,
+            value.coordinates.latitude,
+          ],
+        },
+      };
+      results.features.push(array);
+    });
+    return results;
+  }
+
+  _getZoomLevel(region = this.props.region) {
+    const angle = region.longitudeDelta;
+    const level = Math.round(Math.log(360 / angle) / Math.LN2);
+    return level;
+  }
+
+
+  _createRegions() {
+    const padding = 0;
+    console.log(this.state.tempMarkers);
+    const markers = this.state.tempMarkers.getClusters([
+      this.props.region.longitude - (this.props.region.longitudeDelta * (0.5 + padding)),
+      this.props.region.latitude - (this.props.region.latitudeDelta * (0.5 + padding)),
+      this.props.region.longitude + (this.props.region.longitudeDelta * (0.5 + padding)),
+      this.props.region.latitude + (this.props.region.latitudeDelta * (0.5 + padding)),
+    ], this._getZoomLevel());
+    return markers.map(marker => this.renderMarkers(marker));
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -36,8 +98,23 @@ export class Map extends Component {
     }
   }
 
+  renderMarkers(marker){
+    // let tempUser = findUserById(marker.properties.userId);
+    console.log(marker);
+    return(
+        <MapView.Marker
+          key={marker.properties.id}
+          ref={`marker${marker.properties.id}`}
+          image={require('../../lib/images/pin.png')}
+          coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
+          onPress={(event) => {this.props.setCarousel({index: marker.properties.carouselId, regionAnimation: false})} }
+        >
+        </MapView.Marker>
+    )
+  }
+
   render() {
-    let tempUser = {};
+    this.state.tempMarkers = this._createCluster(this._convertPoints(this.props.markers));
     return (
       <View >
         <MapView
@@ -52,21 +129,7 @@ export class Map extends Component {
           showsUserLocation={true}
           customMapStyle={mapStyle}
         >
-          {this.props.markers.map(marker => (
-            tempUser = findUserById(marker.userId),
-            <MapView.Marker
-              key={marker.id}
-              ref={`marker${marker.id}`}
-              image={require('../../lib/images/pin.png')}
-              coordinate={marker.coordinates}
-              title={tempUser.name}
-              onPress={(event) => {this.props.setCarousel({index: marker.carouselId, regionAnimation: false})} }
-            >
-              <MapView.Callout>
-                <MarkerCallout calloutTitle={tempUser.name} profileImage={tempUser.profileImage}/>
-              </MapView.Callout>
-            </MapView.Marker>
-          ))}
+        {this._createRegions()}
         </MapView>
       </View>
     );
