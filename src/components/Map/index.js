@@ -72,36 +72,36 @@ export class Map extends Component {
     return markers.map(marker => this.renderMarkers(marker));
   }
 
-  componentDidUpdate(prevProps, prevState){
-    //only animate region change if the carousel has moved
-    if(prevProps.carousel.index != this.props.carousel.index) {
-      if(this.props.carousel.regionAnimation === false){
-        console.log('no animation');
-      } else {
-        //manually trigger callout for carousel change
-        this.showCallout();
-        this.refs.map.animateToRegion(this.props.region, 350);
-      }
-    }
-  }
+  // componentDidUpdate(prevProps, prevState){
+  //   //only animate region change if the carousel has moved
+  //   if(prevProps.carousel.index != this.props.carousel.index) {
+  //     if(this.props.carousel.regionAnimation === false){
+  //       console.log('no animation');
+  //     } else {
+  //       //manually trigger callout for carousel change
+  //       this.showCallout();
+  //       this.refs.map.animateToRegion(this.props.region, 350);
+  //     }
+  //   }
+  // }
 
-  showCallout(){
-    let refArray = Object.entries(this.refs);
-    if(refArray.length >= this.props.markers.length){
-      for(let i=0; i < refArray.length; i++){
-        //only access marker refs, and compare to current region
-        if(refArray[i][1].props.coordinate && refArray[i][1].props.coordinate === this.props.region){
-          refArray[i][1].showCallout();
-        }
-      }
-    }
-  }
+  // showCallout(){
+  //   let refArray = Object.entries(this.refs);
+  //   if(refArray.length >= this.props.markers.length){
+  //     for(let i=0; i < refArray.length; i++){
+  //       //only access marker refs, and compare to current region
+  //       if(refArray[i][1].props.coordinate && refArray[i][1].props.coordinate === this.props.region){
+  //         refArray[i][1].showCallout();
+  //       }
+  //     }
+  //   }
+  // }
 
   renderMarkers(marker){
     console.log(marker);
     return(
         <MapView.Marker
-          key={marker.properties.id || marker.properties.cluster_id}
+          key={marker.properties.id || (marker.properties.cluster_id + 100000)}
           ref={`marker${marker.properties.id}`}
           image={require('../../lib/images/pin.png')}
           coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}

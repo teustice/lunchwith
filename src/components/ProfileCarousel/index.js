@@ -16,9 +16,9 @@ export class ProfileCarousel extends Component {
 
   componentDidMount(){
     //generate carouselId in markers for region snapping
-    for(let i=0; i < this.props.markers.length; i++) {
-      markers[i]['carouselId'] = i;
-    };
+    // for(let i=0; i < this.props.markers.length; i++) {
+    //   markers[i]['carouselId'] = i;
+    // };
   }
 
   _renderItem (marker, index) {
@@ -38,14 +38,14 @@ export class ProfileCarousel extends Component {
     );
   }
 
-  onSnap(index) {
-    this.props.setCarousel({index: index});
-    for(let i = 0; i < this.props.markers.length; i++){
-      if (this.props.markers[i].carouselId === index ){
-        this.props.setRegion(this.props.markers[i].coordinates);
-      }
-    }
-  }
+  // onSnap(index) {
+  //   this.props.setCarousel({index: index});
+  //   for(let i = 0; i < this.props.markers.length; i++){
+  //     if (this.props.markers[i].carouselId === index ){
+  //       this.props.setRegion(this.props.markers[i].coordinates);
+  //     }
+  //   }
+  // }
 
   render() {
     return (
@@ -58,7 +58,6 @@ export class ProfileCarousel extends Component {
             inactiveSlideScale={1}
             inactiveSlideOpacity={1}
             firstItem={this.props.carousel.index}
-            onSnapToItem={(index) => this.onSnap(index)}
             autoplay={false}
             enableSnap={true}
             snapOnAndroid={true} //to enable snapping on android
