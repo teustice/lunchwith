@@ -88,6 +88,66 @@ const markers = [
       latitudeDelta: 0.01,
       longitudeDelta: 0.01
     },
+  },
+  {
+    id: 9,
+    userId: 10,
+    coordinates: {
+      latitude: 45.525311,
+      longitude: -122.623168,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
+    },
+  },
+  {
+    id: 10,
+    userId: 11,
+    coordinates: {
+      latitude: 45.525111,
+      longitude: -122.623468,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
+    },
+  },
+  {
+    id: 11,
+    userId: 12,
+    coordinates: {
+      latitude: 45.521111,
+      longitude: -122.624468,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
+    },
+  },
+  {
+    id: 12,
+    userId: 13,
+    coordinates: {
+      latitude: 45.521511,
+      longitude: -122.623468,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
+    },
+  },
+  {
+    id: 13,
+    userId: 14,
+    coordinates: {
+      latitude: 45.521911,
+      longitude: -122.623968,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
+    },
+  },
+  {
+    id: 14,
+    userId: 15,
+    coordinates: {
+      latitude: 45.522911,
+      longitude: -122.622968,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
+    },
   }
 ]
 

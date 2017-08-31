@@ -18,7 +18,6 @@ import ProfileCarousel from '../../components/ProfileCarousel';
 
 export class MapScreen extends Component {
   render() {
-    console.log(this.props.clusters);
     return (
       <View>
         <Map

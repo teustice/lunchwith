@@ -98,20 +98,23 @@ export class Map extends Component {
   }
 
   renderMarkers(marker){
+    console.log(marker);
     return(
         <MapView.Marker
-          key={marker.properties.id}
+          key={marker.properties.id || marker.properties.cluster_id}
           ref={`marker${marker.properties.id}`}
           image={require('../../lib/images/pin.png')}
           coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
-          onPress={(event) => {this.props.setCarousel({index: marker.properties.carouselId, regionAnimation: false})} }
+          onPress={(event) => {this.props.setCarousel({index: marker.properties.carouselId, regionAnimation: false})}}
         >
+        <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
         </MapView.Marker>
     )
   }
 
   render() {
-    this.state.tempMarkers = this._createCluster(this._convertPoints(this.props.markers));
+    let convertedMarkers = this._convertPoints(this.props.markers)
+    this.state.tempMarkers = this._createCluster(convertedMarkers);
     return (
       <View >
         <MapView
@@ -143,6 +146,11 @@ const staticStyles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
   },
+  markerText: {
+    color: 'white',
+    marginLeft: 8,
+    marginTop: 3,
+  }
 });
 
 export default Map;
