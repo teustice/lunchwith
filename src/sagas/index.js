@@ -4,6 +4,7 @@ import watchFetchTitle from './fetch-title';
 import watchFetchMarkers from './fetch-markers';
 import watchFetchUser from './fetch-user';
 import watchFetchUserLocation from './fetch-userLocation';
+import watchFetchNewUser from './fetch-newUser';
 
 
 export default function* rootSaga() {

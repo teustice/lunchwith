@@ -38,7 +38,7 @@ class Skills extends Component {
         <View>
           <Text key={index} style={styles.titleText}>{skill}</Text>
           <TouchableOpacity
-            onPress={(skill, index) => {this.skillRemove(skill, index).bind(this)}}>
+            onPress={(skill, index) => {this.skillRemove(skill, index)}}>
             <Text>remove skill</Text>
           </TouchableOpacity>
         </View>
@@ -46,7 +46,6 @@ class Skills extends Component {
       )}
     </View>);
   }
-
 
   static skillRemove(skill, i) {
     var array = this.state.currentSkills;
@@ -62,8 +61,6 @@ class Skills extends Component {
       currentSkills: [],
       query: '',
     };
-    
-
   }
 
   componentDidMount() {
@@ -119,7 +116,7 @@ class Skills extends Component {
 
       <View style={styles.descriptionContainer}>
         {this.state.currentSkills.length > 0 ? (
-          Skills.renderSkills(this.state.currentSkills.bind(this))
+          Skills.renderSkills(this.state.currentSkills)
         ): null
         }
       </View>
