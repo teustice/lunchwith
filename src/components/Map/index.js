@@ -63,7 +63,6 @@ export class Map extends Component {
 
   _createRegions() {
     const padding = 0;
-    console.log(this.state.tempMarkers);
     const markers = this.state.tempMarkers.getClusters([
       this.props.region.longitude - (this.props.region.longitudeDelta * (0.5 + padding)),
       this.props.region.latitude - (this.props.region.latitudeDelta * (0.5 + padding)),
@@ -99,8 +98,6 @@ export class Map extends Component {
   }
 
   renderMarkers(marker){
-    // let tempUser = findUserById(marker.properties.userId);
-    console.log(marker);
     return(
         <MapView.Marker
           key={marker.properties.id}

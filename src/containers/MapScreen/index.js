@@ -12,12 +12,13 @@ import getMarkers from '../../selectors/markers';
 import getUserLocation from '../../selectors/userLocation';
 import getCarousel from '../../selectors/carousel';
 import getProfileModal from '../../selectors/profileModal';
+import getClusters from '../../selectors/clusters';
 import findUserById from '../../lib/helpers/userById';
 import ProfileCarousel from '../../components/ProfileCarousel';
 
 export class MapScreen extends Component {
-
   render() {
+    console.log(this.props.clusters);
     return (
       <View>
         <Map
@@ -27,6 +28,7 @@ export class MapScreen extends Component {
           region={this.props.region}
           markers={this.props.markers}
           initialRegion={this.props.userLocation}
+          clusters={this.props.clusters}
         />
         <ProfileCarousel
           setMarkers={this.props.setMarkers}
@@ -78,7 +80,8 @@ function mapStateToProps(store) {
     userLocation: getUserLocation(store),
     carousel: getCarousel(store),
     profileModal: getProfileModal(store),
-    users: getUser(store)
+    users: getUser(store),
+    clusters: getClusters(store)
   };
 }
 
