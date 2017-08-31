@@ -52,8 +52,6 @@ export class FormView extends Component {
           lunchRadiusMarker={this.props.lunchRadiusMarker}
           setLunchRadiusMarker={this.props.setLunchRadiusMarker}
           lunchRadiusSlider={this.props.lunchRadiusSlider}
-          setRegion={this.props.setRegion}
-          markers={this.props.markers}
           initialRegion={this.props.userLocation}
         />
         <RadiusSlider

@@ -64,10 +64,11 @@ const staticStyles = StyleSheet.create({
   modalBackground: {
     paddingLeft: 10,
     paddingRight: 10,
-    marginBottom: 40,
-    height:((Dimensions.get('window').height)*1/10),
+    marginBottom: 30,
+    height:((Dimensions.get('window').height)*2/10),
+    width:((Dimensions.get('window').width)*8/10),
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    borderRadius: 10,
+    borderRadius: 4,
   },
   profileImage: {
     width: 50,

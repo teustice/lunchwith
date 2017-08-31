@@ -37,7 +37,6 @@ export class OnBoard extends Component {
     return (
       <View>
         <FormView
-          setRegion={this.props.setRegion}
           markers={this.props.markers}
           initialRegion={this.props.userLocation}
           lunchRadiusMarker={this.props.lunchRadiusMarker}

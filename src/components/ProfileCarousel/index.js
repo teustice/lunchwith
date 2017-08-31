@@ -26,11 +26,13 @@ export class ProfileCarousel extends Component {
     return (
       <View >
         <View style={styles.contentContainer}>
+          <View style={styles.viewContainer}>
           <ProfileModal
             profile={user}
             profileModal={this.props.profileModal}
             setProfileModal={this.props.setProfileModal}
           />
+        </View>
         </View>
       </View>
     );
@@ -60,8 +62,10 @@ export class ProfileCarousel extends Component {
             autoplay={false}
             enableSnap={true}
             snapOnAndroid={true} //to enable snapping on android
-            itemWidth={Dimensions.get('window').width}
-            slideStyle={styles.slide} />
+            enableMomentum={false}
+            itemWidth={((Dimensions.get('window').width)*8/10)}
+            sliderWidth={(Dimensions.get('window').width)}
+          />
       </View>
     );
   }
@@ -80,19 +84,17 @@ const styles = StyleSheet.create({
     bottom: 30,
   },
   contentContainer: {
-    flexDirection: 'row',
-    alignSelf:'center',
+    width: (Dimensions.get('window').width),
+    marginRight: -((Dimensions.get('window').width) * 2/10),
   },
   viewContainer: {
-    flex: 1,
-    alignItems: 'center'
 	},
   qaContainer:{
     backgroundColor: 'crimson',
   },
 	slide: {
     flexDirection: 'column',
-    width: Dimensions.get('window').width,
+    width: (Dimensions.get('window').width ),
 	},
 });
 

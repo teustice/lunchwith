@@ -46,7 +46,7 @@ export class RadiusMap extends Component {
     return (
       <View >
         <MapView
-          ref={'map'}
+          ref={'radiusMap'}
           style={staticStyles.map}
           provider={'google'}
           showsBuildings={false}
