@@ -14,17 +14,8 @@ export class ProfileCarousel extends Component {
     super(props);
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   nextProps.clusters != this.props.clusters
-  // }
-
   _renderItem (marker, index) {
-    let user = {};
-    if(this.props.clusters[0] || this.props.clusters.properties) {
-      user = findUserById(marker.item.properties.userId)
-    } else {
-      user = findUserById(marker.item.userId)
-    }
+    let user = findUserById(marker.item.properties.userId)
     return (
       <View >
         <View style={styles.contentContainer}>
@@ -51,10 +42,8 @@ export class ProfileCarousel extends Component {
   markerOrCluster(){
     if(this.props.clusters[0]) {
       return this.props.clusters
-    } else if(this.props.clusters.properties){
-      return [this.props.clusters]
     } else {
-      return this.props.markers
+      return [this.props.clusters] //single user
     }
   }
 

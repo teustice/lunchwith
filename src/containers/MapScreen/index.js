@@ -17,6 +17,23 @@ import findUserById from '../../lib/helpers/userById';
 import ProfileCarousel from '../../components/ProfileCarousel';
 
 export class MapScreen extends Component {
+  renderCarousel(){
+    if(this.props.clusters[0] || this.props.clusters.properties){
+      return(
+        <ProfileCarousel
+          setMarkers={this.props.setMarkers}
+          markers={this.props.markers}
+          clusters={this.props.clusters}
+          users={this.props.users}
+          setRegion={this.props.setRegion}
+          carousel={this.props.carousel}
+          setCarousel={this.props.setCarousel}
+          profileModal={this.props.profileModal}
+          setProfileModal={this.props.setProfileModal}
+        />
+      )
+    }
+  }
   render() {
     return (
       <View>
@@ -30,17 +47,7 @@ export class MapScreen extends Component {
           clusters={this.props.clusters}
           setClusters={this.props.setClusters}
         />
-        <ProfileCarousel
-          setMarkers={this.props.setMarkers}
-          markers={this.props.markers}
-          clusters={this.props.clusters}
-          users={this.props.users}
-          setRegion={this.props.setRegion}
-          carousel={this.props.carousel}
-          setCarousel={this.props.setCarousel}
-          profileModal={this.props.profileModal}
-          setProfileModal={this.props.setProfileModal}
-        />
+        {this.renderCarousel()}
       </View>
     );
   }
