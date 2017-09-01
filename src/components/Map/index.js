@@ -60,7 +60,6 @@ export class Map extends Component {
     return level;
   }
 
-
   _createRegions() {
     const padding = 0;
     const markers = this.state.tempMarkers.getClusters([
@@ -97,15 +96,22 @@ export class Map extends Component {
   //   }
   // }
 
+  findChildren(marker){
+    if(marker.properties.cluster_id){
+      console.log(this.state.tempMarkers.getLeaves(marker.properties.cluster_id, this._getZoomLevel()));
+    } else if(marker.properties.id){
+      console.log(marker);
+    }
+  }
+
   renderMarkers(marker){
-    console.log(marker);
     return(
         <MapView.Marker
-          key={marker.properties.id || (marker.properties.cluster_id + 100000)}
+          key={marker.properties.id || (`cluster${marker.properties.cluster_id}`)}
           ref={`marker${marker.properties.id}`}
           image={require('../../lib/images/pin.png')}
+          onPress={e => this.findChildren(marker)}
           coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
-          onPress={(event) => {this.props.setCarousel({index: marker.properties.carouselId, regionAnimation: false})}}
         >
         <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
         </MapView.Marker>
