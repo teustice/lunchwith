@@ -50,12 +50,9 @@ class Skills extends Component {
                 <View>
                   <Text key={index} style={styles.titleText}>{skill}</Text>
                 </View>
-
               )}
             </View>);
   }
-
-
 
   constructor(props) {
     super(props);

@@ -23,6 +23,8 @@ import setLunchRadiusSlider from './set-lunchRadiusSlider';
 import fetchLunchRadiusSlider from './fetch-lunchRadiusSlider';
 import fetchClusters from './fetch-clusters';
 import setClusters from './set-clusters';
+import fetchExperienceSlider from './fetch-experienceSlider';
+import setExperienceSlider from './set-experienceSlider';
 
 import { genericError } from './errors';
 
@@ -50,7 +52,9 @@ const ActionCreators = {
   setLunchRadiusSlider,
   fetchClusters,
   setClusters,
-  fetchLunchRadiusSlider
+  fetchLunchRadiusSlider,
+  setExperienceSlider,
+  fetchExperienceSlider,
 };
 
 export default ActionCreators;

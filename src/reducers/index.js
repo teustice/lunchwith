@@ -14,6 +14,7 @@ import newUser from './newUser';
 import profileModal from './profileModal';
 import lunchRadiusMarker from './lunchRadiusMarker';
 import lunchRadiusSlider from './lunchRadiusSlider';
+import experienceSlider from './experienceSlider';
 import clusters from './clusters';
 
 export const reducers = {
@@ -31,6 +32,7 @@ export const reducers = {
   clusters,
   form: formReducer,
   newUser,
+  experienceSlider,
 };
 
 export default function getRootReducer(navReducer) {

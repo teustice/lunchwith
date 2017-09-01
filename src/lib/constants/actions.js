@@ -37,6 +37,9 @@ export const LUNCH_RADIUS_SLIDER_SET = 'LUNCH_RADIUS_SLIDER_SET';
 //Clusters
 export const CLUSTERS_FETCH = 'CLUSTERS_FETCH';
 export const CLUSTERS_SET = 'CLUSTERS_SET';
+//Experience sliders
+export const EXPERIENCE_SLIDER_FETCH = 'EXPERIENCE_SLIDER_FETCH';
+export const EXPERIENCE_SLIDER_SET = 'EXPERIENCE_SLIDER_SET';
 
 // errors
 export const GENERIC_ERROR = 'GENERIC_ERROR';

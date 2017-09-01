@@ -11,35 +11,29 @@ var {
 
 class ExperienceSlider extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
+  changeSliderValue(sliderValue){
+    let value = sliderValue.toFixed(1);
+    if(this.props.experienceSlider != value){
+      this.props.setExperienceSlider(value);
+    }
   }
-
-
-
-  handleChange(value) {
-     return {
-       value: this.props.onExperienceChange(value)
-     };
-   }
-
   render() {
-    const totalExperience = this.props.value;
-    console.log(this.props);
     return (
       <View>
         <Text style={styles.text} >
-          {this.props.valueProp.toFixed()} years
+          {this.props.experienceSlider} years
         </Text>
         <Slider
-          {...this.props}
-          onValueChange={(value) => this.handleChange(value)} maximumValue={10} />
+          value={parseInt(this.props.experienceSlider)}
+          onValueChange={(value) => this.changeSliderValue(value)}
+          maximumValue={10}
+
+          step={0.5}
+        />
       </View>
     );
   }
 }
-
 var styles = StyleSheet.create({
   slider: {
     height: 10,

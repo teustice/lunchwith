@@ -49,17 +49,43 @@ export class FormView extends Component {
     this.state = {
       experience: 0,
       skills: [],
+      monday: [1, 5],
+      tuesday: [1, 5],
+      wednesday: [1, 5],
+      thursday: [1, 5],
+      friday: [1, 5],
+      saturday: [1, 5],
+      sunday: [1, 5],
     };
     this.handleExperienceChange = this.handleExperienceChange.bind(this);
     this.handleSkillsChange = this.handleSkillsChange.bind(this);
   }
-
   handleExperienceChange = (years) => {
     this.setState({experience: years})
   }
-
   handleSkillsChange = (skill) => {
     this.setState({skills: [...this.state.skills, skill]})
+  }
+  handleMondayChange = (mondayAvailability) => {
+    this.setState({monday: [...this.state.monday, mondayAvailability]})
+  }
+  handleTuesdayChange = (tuesdayAvailability) => {
+    this.setState({tuesday: [...this.state.tuesday, tuesdayAvailability]})
+  }
+  handleWednesdayChange = (wednesdayAvailability) => {
+    this.setState({wednesday: [...this.state.wednesday, wednesdayAvailability]})
+  }
+  handleThursdayChange = (thursdayAvailability) => {
+    this.setState({thursday: [...this.state.thursday, thursdayAvailability]})
+  }
+  handleFridayChange = (fridayAvailability) => {
+    this.setState({friday: [...this.state.friday, fridayAvailability]})
+  }
+  handleSaturdayChange = (saturdayAvailability) => {
+    this.setState({saturday: [...this.state.saturday, saturdayAvailability]})
+  }
+  handleSundayChange = (sundayAvailability) => {
+    this.setState({sunday: [...this.state.sunday, sundayAvailability]})
   }
 
   componentDidMount() {}
@@ -91,25 +117,32 @@ export class FormView extends Component {
                                       onSkillsChange={this.handleSkillsChange}/>
             <Label>Total Tech Experience (years)</Label>
 
-            <ExperienceSlider valueProp = {this.state.experience}
-                              onExperienceChange={this.handleExperienceChange} />
+            <ExperienceSlider experienceSlider={this.props.experienceSlider}
+                              setExperienceSlider={this.props.setExperienceSlider} />
 
 
             <Text style={styles.title}>Lunch Availability</Text>
             <Label>Monday</Label>
-            <MultiSliderUse name="monday"/>
+            <MultiSliderUse availabilityProp = {this.state.monday}
+                            onAvailabilityChange={this.handleMondayChange}/>
             <Label>Tuesday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.tuesday}
+                            onAvailabilityChange={this.handleTuesdayChange}/>
             <Label>Wednesday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.wednesday}
+                            onAvailabilityChange={this.handleWednesdayChange}/>
             <Label>Thursday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.thursday}
+                            onAvailabilityChange={this.handleThursdayChange}/>
             <Label>Friday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.friday}
+                            onAvailabilityChange={this.handleFridayChange}/>
             <Label>Saturday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.saturday}
+                            onAvailabilityChange={this.handleSaturdayChange}/>
             <Label>Sunday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.sunday}
+                            onAvailabilityChange={this.handleSundayChange}/>
 
           </Fieldset>
         </FieldsContainer>
@@ -120,8 +153,6 @@ export class FormView extends Component {
     )
   }
 }
-
-
 
 var styles = StyleSheet.create({
   title: {

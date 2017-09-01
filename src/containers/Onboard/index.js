@@ -25,6 +25,7 @@ import getRegion from '../../selectors/region';
 import getUserLocation from '../../selectors/userLocation';
 import getLunchRadiusMarker from '../../selectors/lunchRadiusMarker';
 import getLunchRadiusSlider from '../../selectors/lunchRadiusSlider';
+import getExperienceSlider from '../../selectors/experienceSlider';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -44,6 +45,8 @@ export class OnBoard extends Component {
           lunchRadiusSlider={this.props.lunchRadiusSlider}
           setLunchRadiusSlider={this.props.setLunchRadiusSlider}
           setBusiness={this.props.setBusiness}
+          setExperienceValue={this.props.setExperienceSlider}
+          experienceSlider={this.props.experienceSlider}
         />
       </View>
     );
@@ -51,20 +54,7 @@ export class OnBoard extends Component {
 }
 
 FormView.defaultProps = {
-  setFirstName: () => {},
-  setLastName: () => {},
-  setBusiness: () => {},
-  setJobTitle: () => {},
-  setLunchRadius: () => {},
-  setBio: () => {},
-  setExperienceValue: () => {},
-  experienceValue: 0,
-  company: {},
-  firstName: {},
-  lastName: {},
-  jobTitle: {},
-  lunchRadius: {},
-  bio: {},
+
 };
 
 FormView.propTypes = {
@@ -82,6 +72,8 @@ function mapStateToProps(store) {
     userLocation: getUserLocation(store),
     lunchRadiusMarker: getLunchRadiusMarker(store),
     lunchRadiusSlider: getLunchRadiusSlider(store),
+    experienceSlider: getExperienceSlider(store),
+
   };
 }
 
