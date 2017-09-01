@@ -30,11 +30,11 @@ class ExperienceSlider extends React.Component {
     return (
       <View>
         <Text style={styles.text} >
-          {this.props.value} years
+          {this.props.valueProp.toFixed()} years
         </Text>
         <Slider
           {...this.props}
-          onValueChange={(value) => this.handleChange} maximumValue={10} />
+          onValueChange={(value) => this.handleChange(value)} maximumValue={10} />
       </View>
     );
   }

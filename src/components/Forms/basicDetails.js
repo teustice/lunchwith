@@ -43,14 +43,6 @@ const onSubmit = (values, dispatch) => {
   })
 }
 
-
-const radii = [
-  {label: '1 mile', value: '1'},
-  {label: '3 miles', value: '3'},
-  {label: '5 miles', value: '5'},
-  {label: '10 miles', value: '10'},
-]
-
 export class FormView extends Component {
   constructor(props) {
     super(props);
@@ -86,16 +78,10 @@ export class FormView extends Component {
             <Input label="Last name" placeholder="Doe" name="last_name"/>
             <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} name="company_name"  />
             <Input label="Job Title" name="job_title" placeholder="Backend Developer" />
-            <Select
-            name="radius"
-            label="Lunch Radius"
-            options={radii}
-            placeholder="1 mile"
-            />
             <Input name="bio" label="Bio" placeholder="Say something about yourself!"  multiline={true} numberOfLines={2}/>
             <Skills name="experience"/>
             <Label>Total Tech Experience (years)</Label>
-            <ExperienceSlider onExperienceChange={this.handleExperienceChange} />
+            <ExperienceSlider valueProp = {this.state.experience} onExperienceChange={this.handleExperienceChange} name="experience"/>
             <Text style={styles.title}>Lunch Availability</Text>
             <Label>Monday</Label>
             <MultiSliderUse name="monday"/>
