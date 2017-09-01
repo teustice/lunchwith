@@ -13,9 +13,6 @@ import userLocation from './userLocation';
 import carousel from './carousel';
 import newUser from './newUser';
 
-
-export const reducers = { title, connectivity, region, markers, userLocation, user, business, carousel, form: formReducer, newUser };
-
 import profileModal from './profileModal';
 import lunchRadiusMarker from './lunchRadiusMarker';
 import lunchRadiusSlider from './lunchRadiusSlider';
@@ -34,7 +31,8 @@ export const reducers = {
   lunchRadiusMarker,
   lunchRadiusSlider,
   clusters,
-  form: formReducer
+  form: formReducer,
+  newUser,
 };
 
 export default function getRootReducer(navReducer) {
