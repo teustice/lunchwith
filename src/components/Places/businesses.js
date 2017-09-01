@@ -31,12 +31,6 @@ export class Businesses extends Component {
 }
 
 const staticStyles = StyleSheet.create({
-  touchableContainer: {
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#1c2833'
-  },
   text: {
     color: 'white',
   },

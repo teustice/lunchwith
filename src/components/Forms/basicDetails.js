@@ -31,6 +31,8 @@ import { bindActionCreators } from 'redux';
 import Skills from './skills';
 import ExperienceSlider from './slider';
 import MultiSliderUse from './multislider';
+import RadiusMap from './radiusMap';
+import RadiusSlider from './radiusSlider';
 
 const onSubmit = (values, dispatch) => {
   return new Promise((resolve) => {
@@ -68,6 +70,16 @@ export class FormView extends Component {
 
     return (
       <Form>
+        <RadiusMap
+          lunchRadiusMarker={this.props.lunchRadiusMarker}
+          setLunchRadiusMarker={this.props.setLunchRadiusMarker}
+          lunchRadiusSlider={this.props.lunchRadiusSlider}
+          initialRegion={this.props.userLocation}
+        />
+        <RadiusSlider
+          lunchRadiusSlider={this.props.lunchRadiusSlider}
+          setLunchRadiusSlider={this.props.setLunchRadiusSlider}
+        />
         <FieldsContainer style={{marginTop: 20}}>
           <Fieldset label="Contact details">
             <Input label="First name" placeholder="John" name="first_name" />

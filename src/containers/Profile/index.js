@@ -43,7 +43,6 @@ export class Profile extends Component {
             <Text>Go Back</Text>
             </TouchableHighlight>
             <FormView setBusiness={this.props.setBusiness} />
-
           </View>
          </View>
         </Modal>

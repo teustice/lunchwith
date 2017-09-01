@@ -5,6 +5,8 @@ import watchFetchMarkers from './fetch-markers';
 import watchFetchUser from './fetch-user';
 import watchFetchUserLocation from './fetch-userLocation';
 import watchFetchNewUser from './fetch-newUser';
+import watchFetchClusters from './fetch-clusters';
+
 
 
 export default function* rootSaga() {
@@ -13,5 +15,6 @@ export default function* rootSaga() {
     fork(watchFetchMarkers),
     fork(watchFetchUser),
     fork(watchFetchUserLocation),
+    fork(watchFetchClusters),
   ]);
 }

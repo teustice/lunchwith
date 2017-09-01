@@ -24,5 +24,19 @@ export const CAROUSEL_FETCH = 'CAROUSEL_FETCH';
 // New User for Onboarding
 export const NEWUSER_SET = 'NEWUSER_SET';
 export const NEWUSER_FETCH = 'NEWUSER_FETCH';
+
+//Profile Modal
+export const PROFILE_MODAL_SET = 'PROFILE_MODAL_SET';
+export const PROFILE_MODAL_FETCH = 'PROFILE_MODAL_FETCH';
+//Lunch Radius Marker
+export const LUNCH_RADIUS_MARKER_SET = 'LUNCH_RADIUS_MARKER_SET';
+export const LUNCH_RADIUS_MARKER_FETCH = 'LUNCH_RADIUS_MARKER_FETCH';
+//Lunch Radius Slider
+export const LUNCH_RADIUS_SLIDER_FETCH = 'LUNCH_RADIUS_SLIDER_FETCH';
+export const LUNCH_RADIUS_SLIDER_SET = 'LUNCH_RADIUS_SLIDER_SET';
+//Clusters
+export const CLUSTERS_FETCH = 'CLUSTERS_FETCH';
+export const CLUSTERS_SET = 'CLUSTERS_SET';
+
 // errors
 export const GENERIC_ERROR = 'GENERIC_ERROR';

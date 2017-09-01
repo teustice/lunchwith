@@ -11,8 +11,19 @@ import setBusiness from './set-business';
 import fetchBusiness from './fetch-business';
 import setCarousel from './set-carousel';
 import fetchCarousel from './fetch-carousel';
+
 import setNewUser from './set-newUser';
 import fetchNewUser from './fetch-newUser';
+
+import setProfileModal from './set-profileModal';
+import fetchProfileModal from './fetch-profileModal';
+import setLunchRadiusMarker from './set-lunchRadiusMarker';
+import fetchLunchRadiusMarker from './fetch-lunchRadiusMarker';
+import setLunchRadiusSlider from './set-lunchRadiusSlider';
+import fetchLunchRadiusSlider from './fetch-lunchRadiusSlider';
+import fetchClusters from './fetch-clusters';
+import setClusters from './set-clusters';
+
 import { genericError } from './errors';
 
 const ActionCreators = {
@@ -32,6 +43,14 @@ const ActionCreators = {
   fetchCarousel,
   setNewUser,
   fetchNewUser,
+  setProfileModal,
+  fetchProfileModal,
+  setLunchRadiusMarker,
+  fetchLunchRadiusMarker,
+  setLunchRadiusSlider,
+  fetchClusters,
+  setClusters,
+  fetchLunchRadiusSlider
 };
 
 export default ActionCreators;
