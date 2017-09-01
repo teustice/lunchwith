@@ -28,10 +28,12 @@ export class MapScreen extends Component {
           markers={this.props.markers}
           initialRegion={this.props.userLocation}
           clusters={this.props.clusters}
+          setClusters={this.props.setClusters}
         />
         <ProfileCarousel
           setMarkers={this.props.setMarkers}
           markers={this.props.markers}
+          clusters={this.props.clusters}
           users={this.props.users}
           setRegion={this.props.setRegion}
           carousel={this.props.carousel}

@@ -98,9 +98,9 @@ export class Map extends Component {
 
   findChildren(marker){
     if(marker.properties.cluster_id){
-      console.log(this.state.tempMarkers.getLeaves(marker.properties.cluster_id, this._getZoomLevel()));
+      this.props.setClusters(this.state.tempMarkers.getLeaves(marker.properties.cluster_id, this._getZoomLevel()));
     } else if(marker.properties.id){
-      console.log(marker);
+      this.props.setClusters(marker);
     }
   }
 
@@ -132,7 +132,7 @@ export class Map extends Component {
           showsPointsOfInterest={false}
           initialRegion={this.props.initialRegion}
           onRegionChangeComplete={region=>{this.props.setRegion(region);}}
-          showsUserLocation={true}
+          showsUserLocation={false}
           zoomEnabled={false}
           rotateEnabled={false}
           pitchEnabled={false}

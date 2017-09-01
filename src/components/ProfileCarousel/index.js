@@ -14,15 +14,17 @@ export class ProfileCarousel extends Component {
     super(props);
   }
 
-  componentDidMount(){
-    //generate carouselId in markers for region snapping
-    // for(let i=0; i < this.props.markers.length; i++) {
-    //   markers[i]['carouselId'] = i;
-    // };
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   nextProps.clusters != this.props.clusters
+  // }
 
   _renderItem (marker, index) {
-    let user = findUserById(marker.item.userId)
+    let user = {};
+    if(this.props.clusters[0] || this.props.clusters.properties) {
+      user = findUserById(marker.item.properties.userId)
+    } else {
+      user = findUserById(marker.item.userId)
+    }
     return (
       <View >
         <View style={styles.contentContainer}>
@@ -46,13 +48,22 @@ export class ProfileCarousel extends Component {
   //     }
   //   }
   // }
+  markerOrCluster(){
+    if(this.props.clusters[0]) {
+      return this.props.clusters
+    } else if(this.props.clusters.properties){
+      return [this.props.clusters]
+    } else {
+      return this.props.markers
+    }
+  }
 
   render() {
     return (
       <View style={styles.carousel}>
          <Carousel
             ref={'carousel'}
-            data={this.props.markers}
+            data={this.markerOrCluster()}
             renderItem={this._renderItem.bind(this)}
             sliderWidth={Dimensions.get('window').width}
             inactiveSlideScale={1}
@@ -70,7 +81,7 @@ export class ProfileCarousel extends Component {
   }
 }
 
-let carouselCounter = 0;
+// let carouselCounter = 0;
 
 const styles = StyleSheet.create({
   container: {
