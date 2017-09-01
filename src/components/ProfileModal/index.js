@@ -65,9 +65,9 @@ const staticStyles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     marginBottom: 30,
-    marginLeft: ((Dimensions.get('window').width)*0.1/10),
+    marginLeft: -((Dimensions.get('window').width)*0.3/10),
     height:((Dimensions.get('window').height)*2/10),
-    width:((Dimensions.get('window').width)*7.8/10),
+    width:((Dimensions.get('window').width)*7.8/10), //gap between slides
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
     borderRadius: 4,
   },
@@ -76,7 +76,6 @@ const staticStyles = StyleSheet.create({
     height: 50,
   },
   content: {
-    alignItems: 'center'
   },
   closeModal: {
     marginTop: 30,
@@ -91,7 +90,7 @@ const staticStyles = StyleSheet.create({
     color: 'grey',
   },
   profileSnippet:{
-    alignItems: 'center',
+    // alignItems: 'center',
   }
 });
 
