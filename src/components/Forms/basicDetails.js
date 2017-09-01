@@ -15,10 +15,12 @@ import {
   Form,
   FormGroup,
   Label,
+} from 'react-native-clean-form'
+import {
   Input,
   Select,
   Switch
-} from 'react-native-clean-form'
+} from 'react-native-clean-form/redux-form-immutable'
 import { Field, reduxForm } from 'redux-form'
 import Businesses from '../Places/businesses';
 import ActionCreators from '../../actions/index';
@@ -32,6 +34,15 @@ import MultiSliderUse from './multislider';
 import RadiusMap from './radiusMap';
 import RadiusSlider from './radiusSlider';
 
+const onSubmit = (values, dispatch) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log(values)
+      resolve()
+    }, 1500)
+  })
+}
+
 
 const radii = [
   {label: '1 mile', value: '1'},
@@ -43,9 +54,20 @@ const radii = [
 export class FormView extends Component {
   constructor(props) {
     super(props);
+    this.state = {experience: 0};
+    this.handleExperienceChange = this.handleExperienceChange.bind(this);
   }
 
+  handleExperienceChange = (years) => {
+    this.setState({experience: years})
+  }
+
+  componentDidMount() {}
+
   render() {
+    const { handleSubmit, submitting } = this.props
+    const experience = this.state.experience;
+
     return (
       <Form>
         <RadiusMap
@@ -60,41 +82,23 @@ export class FormView extends Component {
         />
         <FieldsContainer style={{marginTop: 20}}>
           <Fieldset label="Contact details">
-            <FormGroup>
-              <Label>First name</Label>
-              <Input placeholder="John" />
-            </FormGroup>
-            <FormGroup>
-              <Label>Last name</Label>
-              <Input placeholder="Doe" />
-            </FormGroup>
-
-              <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} />
-
-            <FormGroup>
-            <Label>Job Title</Label>
-              <Input placeholder="Backend Developer" />
-            </FormGroup>
-            <FormGroup>
-            <Label>Lunch Radius</Label>
+            <Input label="First name" placeholder="John" name="first_name" />
+            <Input label="Last name" placeholder="Doe" name="last_name"/>
+            <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} name="company_name"  />
+            <Input label="Job Title" name="job_title" placeholder="Backend Developer" />
             <Select
             name="radius"
-            label="Radius"
+            label="Lunch Radius"
             options={radii}
             placeholder="1 mile"
             />
-            </FormGroup>
-            <FormGroup>
-              <Label>Bio</Label>
-              <Input placeholder="Say something about yourself!" />
-            </FormGroup>
-            <Skills/>
-
-            <Label>Experience (years)</Label>
-            <ExperienceSlider/>
+            <Input name="bio" label="Bio" placeholder="Say something about yourself!"  multiline={true} numberOfLines={2}/>
+            <Skills name="experience"/>
+            <Label>Total Tech Experience (years)</Label>
+            <ExperienceSlider onExperienceChange={this.handleExperienceChange} />
             <Text style={styles.title}>Lunch Availability</Text>
             <Label>Monday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse name="monday"/>
             <Label>Tuesday</Label>
             <MultiSliderUse />
             <Label>Wednesday</Label>
@@ -111,7 +115,7 @@ export class FormView extends Component {
           </Fieldset>
         </FieldsContainer>
         <ActionsContainer>
-          <Button icon="md-checkmark" iconPlacement="right">Save</Button>
+          <Button icon="md-checkmark" iconPlacement="right"  onPress={handleSubmit(onSubmit)} submitting={submitting}>Save</Button>
         </ActionsContainer>
       </Form>
     )
@@ -131,4 +135,7 @@ var styles = StyleSheet.create({
 
 
 
-export default FormView;
+export default reduxForm({
+  form: 'Form',
+
+})(FormView)

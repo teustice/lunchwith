@@ -15,7 +15,7 @@ import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
 class MultiSliderUse extends React.Component {
 
-  // initial state of multislider
+  // CORRESPONDS TO 11AM AND 4PM: initial state of multislider
   state = {
     multiSliderValue: [1, 5],
   };
@@ -30,6 +30,8 @@ class MultiSliderUse extends React.Component {
     };
   }
 
+
+// ***BASED ON A RANGE FROM 10AM TO 4PM**** converts integers into time.
   timeToConvert = (i) => {
     if (i < 2) {
       return ((i + 10).toString() + " am");
@@ -46,6 +48,8 @@ class MultiSliderUse extends React.Component {
     });
   }
 
+
+// Only shows multislider if switch is turned on
   render() {
     return (
       <View style={styles.container}>
