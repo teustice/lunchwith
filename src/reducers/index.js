@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form'
 
-
-
 import title from './title';
 import connectivity from './connectivity';
 import region from './region';
