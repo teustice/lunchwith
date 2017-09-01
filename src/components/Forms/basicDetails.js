@@ -46,12 +46,20 @@ const onSubmit = (values, dispatch) => {
 export class FormView extends Component {
   constructor(props) {
     super(props);
-    this.state = {experience: 0};
+    this.state = {
+      experience: 0,
+      skills: [],
+    };
     this.handleExperienceChange = this.handleExperienceChange.bind(this);
+    this.handleSkillsChange = this.handleSkillsChange.bind(this);
   }
 
   handleExperienceChange = (years) => {
     this.setState({experience: years})
+  }
+
+  handleSkillsChange = (skill) => {
+    this.setState({skills: [...this.state.skills, skill]})
   }
 
   componentDidMount() {}
@@ -79,9 +87,14 @@ export class FormView extends Component {
             <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} name="company_name"  />
             <Input label="Job Title" name="job_title" placeholder="Backend Developer" />
             <Input name="bio" label="Bio" placeholder="Say something about yourself!"  multiline={true} numberOfLines={2}/>
-            <Skills name="experience"/>
+            <Skills name="skills" skillsProp={this.state.skills}
+                                      onSkillsChange={this.handleSkillsChange}/>
             <Label>Total Tech Experience (years)</Label>
-            <ExperienceSlider valueProp = {this.state.experience} onExperienceChange={this.handleExperienceChange} name="experience"/>
+
+            <ExperienceSlider valueProp = {this.state.experience}
+                              onExperienceChange={this.handleExperienceChange} />
+
+
             <Text style={styles.title}>Lunch Availability</Text>
             <Label>Monday</Label>
             <MultiSliderUse name="monday"/>
