@@ -127,6 +127,11 @@ export class Map extends Component {
           initialRegion={this.props.initialRegion}
           onRegionChangeComplete={region=>{this.props.setRegion(region);}}
           showsUserLocation={true}
+          zoomEnabled={false}
+          rotateEnabled={false}
+          pitchEnabled={false}
+          minZoomLevel={13}
+          maxZoomLevel={13}
           customMapStyle={mapStyle}
         >
         {this._createRegions()}
