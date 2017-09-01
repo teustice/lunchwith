@@ -16,42 +16,66 @@ import {
 } from 'react-native-clean-form'
 import { Field, reduxForm, Picker } from 'redux-form'
 import Autocomplete from 'react-native-autocomplete-input';
-
-const SKILLS = {"results": [{"title": "Javascript", "id": "1"}, {"title": "Ruby", "id": "2"}]};
+import SKILLS from '../../lib/seeds/skillSeed';
 
 class Skills extends Component {
 
+// Only renders as a placeholder the current most likely skill from suggested skills
   static renderSkill(skill) {
     const { title, id } = skill;
-
     return (
       <View>
-        <Text style={styles.titleText}>{title}, {id}</Text>
+        <Text style={styles.titleText}>{title}</Text>
       </View>
     );
+  }
+
+// Displays list of skills belonging to currentSkills state
+  static renderSkills(skills, props) {
+    return (<View>
+      <Text style={styles.listHead}>Your Skills</Text>
+      {skills.map((skill, index) =>
+        <View>
+          <Text key={index} style={styles.titleText}>{skill}</Text>
+          <TouchableOpacity
+            onPress={(skill, index) => {this.skillRemove(skill, index)}}>
+            <Text>remove skill</Text>
+          </TouchableOpacity>
+        </View>
+
+      )}
+    </View>);
+  }
+
+  static skillRemove(skill, i) {
+    var array = this.state.currentSkills;
+    var index = array.indexOf(skill.target.value)
+    array.splice(index, 1);
+    this.setState({currentSkills: array});
   }
 
   constructor(props) {
     super(props);
     this.state = {
       skills: [],
-      query: ''
+      currentSkills: [],
+      query: '',
     };
   }
 
   componentDidMount() {
     const { "results": skills } = SKILLS;
     this.setState({ skills });
-    console.log(this.state);
   }
 
   findSkill(query) {
     if (query === '') {
       return [];
     }
-
+    // slicedQuery adjusts the suggestions dropdown so that full values do not cause suggestions to disappear
+    const slicedQuery = query.split('').pop()
     const { skills } = this.state;
-    const regex = new RegExp(`${query.trim()}`, 'i');
+    const regex = new RegExp(`${slicedQuery.trim()}`, 'i');
     return skills.filter(skill => skill.title.search(regex) >= 0);
   }
 
@@ -68,19 +92,33 @@ class Skills extends Component {
         defaultValue={query}
         placeholder={"   Enter a Skill"}
         onChangeText={text => this.setState({ query: text })}
+
         renderItem={({ title }) => (
-          <TouchableOpacity onPress={() => this.setState({ query: title })}>
+          <TouchableOpacity
+            onFocus={() =>
+              {this.setState({ query: title })}}
+            onPress={() =>
+              {this.setState({ currentSkills: [...this.state.currentSkills, title],
+              query: '' })}}>
             <Text style={styles.itemText}>{title}</Text>
           </TouchableOpacity>
         )}
       />
 
-      <View style={styles.descriptionContainer}>
 
+      <View style={styles.descriptionContainer}>
         {skills.length > 0 ? (
-          Skills.renderSkill(skills[0])
-          ): null
-      }
+            <Text></Text>
+        ): null
+        }
+      </View>
+
+
+      <View style={styles.descriptionContainer}>
+        {this.state.currentSkills.length > 0 ? (
+          Skills.renderSkills(this.state.currentSkills)
+        ): null
+        }
       </View>
     </View>)
   }
@@ -88,7 +126,7 @@ class Skills extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: 'lightgrey',
+    borderColor: 'black',
     borderRadius: 2,
     height: 35,
     fontSize: 12,
@@ -102,19 +140,23 @@ const styles = StyleSheet.create({
     margin: 2,
   },
   descriptionContainer: {
-    backgroundColor: '#F5FCFF',
-    marginTop: 8
+    marginVertical: 5,
+
   },
   infoText: {
     textAlign: 'center'
   },
   titleText: {
-    fontSize: 18,
-    fontWeight: '500',
+    fontSize: 14,
+    fontWeight: '300',
     marginBottom: 10,
     marginTop: 10,
     textAlign: 'center'
-  }
+  },
+  listHead: {
+    fontSize: 12,
+    color: 'lightgrey',
+  },
 });
 
 export default Skills;

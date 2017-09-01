@@ -9,6 +9,9 @@ import getRootReducer from './reducers/index';
 import sagas from './sagas/index';
 // import eventsMap from './beacon-events';
 import getConnected from './selectors/connected';
+import Immutable from 'immutable';
+
+const state = Immutable.fromJS({});
 
 const loggerMiddleware = createLogger({
   // options...
