@@ -52,13 +52,19 @@ const radii = [
 export class FormView extends Component {
   constructor(props) {
     super(props);
+    this.state = {experience: 0};
+    this.handleExperienceChange = this.handleExperienceChange.bind(this);
+  }
 
+  handleExperienceChange = (years) => {
+    this.setState({experience: years})
   }
 
   componentDidMount() {}
 
   render() {
     const { handleSubmit, submitting } = this.props
+    const experience = this.state.experience;
 
     return (
       <Form>
@@ -77,7 +83,7 @@ export class FormView extends Component {
             <Input name="bio" label="Bio" placeholder="Say something about yourself!"  multiline={true} numberOfLines={2}/>
             <Skills name="experience"/>
             <Label>Total Tech Experience (years)</Label>
-            <ExperienceSlider />
+            <ExperienceSlider onExperienceChange={this.handleExperienceChange} />
             <Text style={styles.title}>Lunch Availability</Text>
             <Label>Monday</Label>
             <MultiSliderUse name="monday"/>
