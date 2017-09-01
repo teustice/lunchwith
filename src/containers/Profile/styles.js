@@ -1,17 +1,16 @@
 import { StyleSheet } from 'react-native';
 
-import colors from '../../lib/colors';
 
 const staticStyles = StyleSheet.create({
   container: {
-    backgroundColor: colors.white,
+    backgroundColor: 'white',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 40,
   },
   text: {
-    color: colors.black,
+    color: 'black',
   },
   calloutImage: {
     height: 150, width: 150, borderRadius: 75,

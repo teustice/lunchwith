@@ -11,20 +11,23 @@ import getUser from '../../selectors/user';
 import getMarkers from '../../selectors/markers';
 import getUserLocation from '../../selectors/userLocation';
 import getCarousel from '../../selectors/carousel';
+import getProfileModal from '../../selectors/profileModal';
+import getClusters from '../../selectors/clusters';
 import findUserById from '../../lib/helpers/userById';
 import ProfileCarousel from '../../components/ProfileCarousel';
 
 export class MapScreen extends Component {
-
   render() {
     return (
       <View>
         <Map
           carousel={this.props.carousel}
+          setCarousel={this.props.setCarousel}
           setRegion={this.props.setRegion}
           region={this.props.region}
           markers={this.props.markers}
           initialRegion={this.props.userLocation}
+          clusters={this.props.clusters}
         />
         <ProfileCarousel
           setMarkers={this.props.setMarkers}
@@ -33,6 +36,8 @@ export class MapScreen extends Component {
           setRegion={this.props.setRegion}
           carousel={this.props.carousel}
           setCarousel={this.props.setCarousel}
+          profileModal={this.props.profileModal}
+          setProfileModal={this.props.setProfileModal}
         />
       </View>
     );
@@ -51,6 +56,7 @@ MapScreen.defaultProps = {
   setRegion: () => {},
   setCarousel: () => {},
   setMarkers: () => {},
+  setProfileModal: () => {},
   region: {},
   carousel: {},
 };
@@ -72,7 +78,9 @@ function mapStateToProps(store) {
     markers: getMarkers(store),
     userLocation: getUserLocation(store),
     carousel: getCarousel(store),
-    users: getUser(store)
+    profileModal: getProfileModal(store),
+    users: getUser(store),
+    clusters: getClusters(store)
   };
 }
 
