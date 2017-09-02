@@ -57,38 +57,7 @@ export class FormView extends Component {
       saturday: [1, 5],
       sunday: [1, 5],
     };
-    this.handleExperienceChange = this.handleExperienceChange.bind(this);
-    this.handleSkillsChange = this.handleSkillsChange.bind(this);
   }
-  handleExperienceChange = (years) => {
-    this.setState({experience: years})
-  }
-  handleSkillsChange = (skill) => {
-    this.setState({skills: [...this.state.skills, skill]})
-  }
-  handleMondayChange = (mondayAvailability) => {
-    this.setState({monday: [...this.state.monday, mondayAvailability]})
-  }
-  handleTuesdayChange = (tuesdayAvailability) => {
-    this.setState({tuesday: [...this.state.tuesday, tuesdayAvailability]})
-  }
-  handleWednesdayChange = (wednesdayAvailability) => {
-    this.setState({wednesday: [...this.state.wednesday, wednesdayAvailability]})
-  }
-  handleThursdayChange = (thursdayAvailability) => {
-    this.setState({thursday: [...this.state.thursday, thursdayAvailability]})
-  }
-  handleFridayChange = (fridayAvailability) => {
-    this.setState({friday: [...this.state.friday, fridayAvailability]})
-  }
-  handleSaturdayChange = (saturdayAvailability) => {
-    this.setState({saturday: [...this.state.saturday, saturdayAvailability]})
-  }
-  handleSundayChange = (sundayAvailability) => {
-    this.setState({sunday: [...this.state.sunday, sundayAvailability]})
-  }
-
-  componentDidMount() {}
 
   render() {
     const { handleSubmit, submitting } = this.props
@@ -113,8 +82,10 @@ export class FormView extends Component {
             <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} name="company_name"  />
             <Input label="Job Title" name="job_title" placeholder="Backend Developer" />
             <Input name="bio" label="Bio" placeholder="Say something about yourself!"  multiline={true} numberOfLines={2}/>
-            <Skills name="skills" skillsProp={this.state.skills}
-                                      onSkillsChange={this.handleSkillsChange}/>
+
+            <Skills name="skills" skillsProp={this.props.skills}
+                                      setSkills={this.props.setSkills}/>
+
             <Label>Total Tech Experience (years)</Label>
 
             <ExperienceSlider experienceSlider={this.props.experienceSlider}

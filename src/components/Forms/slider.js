@@ -15,6 +15,7 @@ class ExperienceSlider extends React.Component {
     let value = sliderValue.toFixed(1);
     if(this.props.experienceSlider != value){
       this.props.setExperienceSlider(value);
+      if(this.props.experienceSlider === 10){}
     }
   }
   render() {

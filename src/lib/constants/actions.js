@@ -40,6 +40,9 @@ export const CLUSTERS_SET = 'CLUSTERS_SET';
 //Experience sliders
 export const EXPERIENCE_SLIDER_FETCH = 'EXPERIENCE_SLIDER_FETCH';
 export const EXPERIENCE_SLIDER_SET = 'EXPERIENCE_SLIDER_SET';
+//Skills array
+export const SKILLS_FETCH = 'SKILLS_FETCH';
+export const SKILLS_SET = 'SKILLS_SET';
 
 // errors
 export const GENERIC_ERROR = 'GENERIC_ERROR';

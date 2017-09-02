@@ -20,12 +20,6 @@ import SKILLS from '../../lib/seeds/skillSeed';
 
 class Skills extends Component {
 
-  handleChange(skill) {
-     return {
-       value: this.props.onSkillsChange(skill)
-     };
-   }
-
 // Only renders as a placeholder the current most likely skill from suggested skills
   static renderSkill(skill) {
     const { title, id } = skill;
@@ -42,8 +36,8 @@ class Skills extends Component {
   }
 
 // Displays list of skills belonging to currentSkills state
-  static renderSkills(skills, index) {
-    console.log("skills: " + skills);
+  renderSkills(skills, index) {
+    console.log(skills);
     return (<View>
               <Text style={styles.listHead}>Your Skills</Text>
               {skills.map((skill, index) =>
@@ -61,7 +55,6 @@ class Skills extends Component {
       currentSkills: [],
       query: '',
     };
-    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -100,7 +93,7 @@ class Skills extends Component {
             onFocus={() =>
               {this.setState({ query: title })}}
             onPress={() =>
-              {this.handleChange(title),
+              {this.props.setSkills(...this.props.skillsProp, title),
               this.setState({
               query: '' })}}>
             <Text style={styles.itemText}>{title}</Text>
@@ -119,7 +112,7 @@ class Skills extends Component {
 
       <View style={styles.descriptionContainer}>
         {this.props.skillsProp.length > 0 ? (
-          Skills.renderSkills(this.props.skillsProp)
+          this.renderSkills(this.props.skillsProp)
         ): null
         }
       </View>

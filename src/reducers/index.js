@@ -16,6 +16,7 @@ import lunchRadiusMarker from './lunchRadiusMarker';
 import lunchRadiusSlider from './lunchRadiusSlider';
 import experienceSlider from './experienceSlider';
 import clusters from './clusters';
+import skills from './skills';
 
 export const reducers = {
   title,
@@ -33,6 +34,7 @@ export const reducers = {
   form: formReducer,
   newUser,
   experienceSlider,
+  skills,
 };
 
 export default function getRootReducer(navReducer) {
