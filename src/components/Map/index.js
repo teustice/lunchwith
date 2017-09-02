@@ -7,11 +7,15 @@ import findUserById from '../../lib/helpers/userById';
 import mapStyle from '../../lib/mapStyle';
 import supercluster from 'supercluster';
 
+const pinActive = require('../../lib/images/pinActive.png');
+const pin = require('../../lib/images/pin.png');
+
 export class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tempMarkers: []
+      tempMarkers: [],
+      activeMarker: {}
     }
   }
 
@@ -71,32 +75,8 @@ export class Map extends Component {
     return markers.map(marker => this.renderMarkers(marker));
   }
 
-  // componentDidUpdate(prevProps, prevState){
-  //   //only animate region change if the carousel has moved
-  //   if(prevProps.carousel.index != this.props.carousel.index) {
-  //     if(this.props.carousel.regionAnimation === false){
-  //       console.log('no animation');
-  //     } else {
-  //       //manually trigger callout for carousel change
-  //       this.showCallout();
-  //       this.refs.map.animateToRegion(this.props.region, 350);
-  //     }
-  //   }
-  // }
-
-  // showCallout(){
-  //   let refArray = Object.entries(this.refs);
-  //   if(refArray.length >= this.props.markers.length){
-  //     for(let i=0; i < refArray.length; i++){
-  //       //only access marker refs, and compare to current region
-  //       if(refArray[i][1].props.coordinate && refArray[i][1].props.coordinate === this.props.region){
-  //         refArray[i][1].showCallout();
-  //       }
-  //     }
-  //   }
-  // }
-
   findChildren(marker){
+    this.props.setActiveMarker(marker);
     if(marker.properties.cluster_id){
       this.props.setClusters(this.state.tempMarkers.getLeaves(marker.properties.cluster_id, this._getZoomLevel()));
     } else if(marker.properties.id){
@@ -104,17 +84,39 @@ export class Map extends Component {
     }
   }
 
+  isActive(marker) {
+    if(marker.properties.id){
+      if(marker.properties.id === this.props.activeMarker.properties.id){
+        return pinActive;
+      } else {
+        return pin;
+      }
+    } else if(marker.properties.cluster_id){
+      if(marker.properties.cluster_id === this.props.activeMarker.properties.cluster_id){
+        return pinActive;
+      } else {
+        return pin;
+      }
+    }
+  }
+
   renderMarkers(marker){
+    let imagePath = this.isActive(marker)
     return(
-        <MapView.Marker
-          key={marker.properties.id || (`cluster${marker.properties.cluster_id}`)}
-          ref={`marker${marker.properties.id}`}
-          image={require('../../lib/images/pin.png')}
-          onPress={e => this.findChildren(marker)}
-          coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
-        >
+      <MapView.Marker
+        key={marker.properties.id || (`cluster${marker.properties.cluster_id}`)}
+        ref={`marker${marker.properties.id}`}
+        image={this.isActive(marker)}
+        onPress={e => this.findChildren(marker)}
+        coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
         <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
-        </MapView.Marker>
+      </MapView.Marker>
     )
   }
 

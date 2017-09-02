@@ -14,6 +14,7 @@ import profileModal from './profileModal';
 import lunchRadiusMarker from './lunchRadiusMarker';
 import lunchRadiusSlider from './lunchRadiusSlider';
 import clusters from './clusters';
+import activeMarker from './activeMarker';
 
 export const reducers = {
   title,
@@ -29,6 +30,7 @@ export const reducers = {
   lunchRadiusSlider,
   clusters,
   newUser,
+  activeMarker,
   form: formReducer
 };
 

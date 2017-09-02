@@ -31,14 +31,6 @@ export class ProfileCarousel extends Component {
     );
   }
 
-  // onSnap(index) {
-  //   this.props.setCarousel({index: index});
-  //   for(let i = 0; i < this.props.markers.length; i++){
-  //     if (this.props.markers[i].carouselId === index ){
-  //       this.props.setRegion(this.props.markers[i].coordinates);
-  //     }
-  //   }
-  // }
   markerOrCluster(){
     if(this.props.clusters[0]) {
       return this.props.clusters
@@ -69,8 +61,6 @@ export class ProfileCarousel extends Component {
     );
   }
 }
-
-// let carouselCounter = 0;
 
 const styles = StyleSheet.create({
   container: {

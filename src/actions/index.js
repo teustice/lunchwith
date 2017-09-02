@@ -23,6 +23,8 @@ import setLunchRadiusSlider from './set-lunchRadiusSlider';
 import fetchLunchRadiusSlider from './fetch-lunchRadiusSlider';
 import fetchClusters from './fetch-clusters';
 import setClusters from './set-clusters';
+import fetchActiveMarker from './fetch-activeMarker';
+import setActiveMarker from './set-activeMarker';
 
 import { genericError } from './errors';
 
@@ -50,6 +52,8 @@ const ActionCreators = {
   setLunchRadiusSlider,
   fetchClusters,
   setClusters,
+  fetchActiveMarker,
+  setActiveMarker,
   fetchLunchRadiusSlider
 };
 

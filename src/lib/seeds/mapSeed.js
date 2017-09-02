@@ -1,6 +1,6 @@
 const markers = [
   {
-    id: 0,
+    id: 1,
     userId: 9,
     coordinates: {
       latitude: 45.521371,
@@ -10,7 +10,7 @@ const markers = [
     },
   },
   {
-    id: 1,
+    id: 2,
     userId: 8,
     coordinates: {
       latitude: 45.571471,
@@ -20,7 +20,7 @@ const markers = [
     },
   },
   {
-    id: 2,
+    id: 3,
     userId: 7,
     coordinates: {
       latitude: 45.541321,
@@ -30,7 +30,7 @@ const markers = [
     },
   },
   {
-    id: 3,
+    id: 4,
     userId: 6,
     coordinates: {
       latitude: 45.521171,
@@ -40,7 +40,7 @@ const markers = [
     },
   },
   {
-    id: 4,
+    id: 5,
     userId: 5,
     coordinates: {
       latitude: 45.541371,
@@ -50,7 +50,7 @@ const markers = [
     },
   },
   {
-    id: 5,
+    id: 6,
     userId: 4,
     coordinates: {
       latitude: 45.521171,
@@ -60,7 +60,7 @@ const markers = [
     },
   },
   {
-    id: 6,
+    id: 7,
     userId: 3,
     coordinates: {
       latitude: 45.527371,
@@ -70,7 +70,7 @@ const markers = [
     },
   },
   {
-    id: 7,
+    id: 8,
     userId: 2,
     coordinates: {
       latitude: 45.531371,
@@ -80,7 +80,7 @@ const markers = [
     },
   },
   {
-    id: 8,
+    id: 9,
     userId: 1,
     coordinates: {
       latitude: 45.525391,
@@ -90,7 +90,7 @@ const markers = [
     },
   },
   {
-    id: 9,
+    id: 10,
     userId: 10,
     coordinates: {
       latitude: 45.525311,
@@ -100,7 +100,7 @@ const markers = [
     },
   },
   {
-    id: 10,
+    id: 11,
     userId: 11,
     coordinates: {
       latitude: 45.525111,
@@ -110,7 +110,7 @@ const markers = [
     },
   },
   {
-    id: 11,
+    id: 12,
     userId: 12,
     coordinates: {
       latitude: 45.521111,
@@ -120,7 +120,7 @@ const markers = [
     },
   },
   {
-    id: 12,
+    id: 13,
     userId: 13,
     coordinates: {
       latitude: 45.521511,
@@ -130,7 +130,7 @@ const markers = [
     },
   },
   {
-    id: 13,
+    id: 14,
     userId: 14,
     coordinates: {
       latitude: 45.521911,
@@ -140,7 +140,7 @@ const markers = [
     },
   },
   {
-    id: 14,
+    id: 15,
     userId: 15,
     coordinates: {
       latitude: 45.522911,

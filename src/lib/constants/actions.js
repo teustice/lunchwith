@@ -37,6 +37,9 @@ export const LUNCH_RADIUS_SLIDER_SET = 'LUNCH_RADIUS_SLIDER_SET';
 //Clusters
 export const CLUSTERS_FETCH = 'CLUSTERS_FETCH';
 export const CLUSTERS_SET = 'CLUSTERS_SET';
+//Active Marker
+export const ACTIVE_MARKER_FETCH = 'ACTIVE_MARKER_FETCH';
+export const ACTIVE_MARKER_SET = 'ACTIVE_MARKER_SET';
 
 // errors
 export const GENERIC_ERROR = 'GENERIC_ERROR';
