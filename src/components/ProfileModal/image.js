@@ -22,10 +22,11 @@ export class ProfileImage extends Component {
 
 const staticStyles = StyleSheet.create({
   carouselImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     alignSelf: 'flex-end',
+    marginRight: 9,
     marginTop: -20,
     zIndex: 500,
   },

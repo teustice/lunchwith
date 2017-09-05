@@ -52,7 +52,7 @@ class ProfileModal extends Component {
               <ProfileImage profile={this.props.profile}/>
 
               <Text style={staticStyles.profileName}>{this.props.profile.name}</Text>
-              <Text style={staticStyles.jobTitle}>{this.props.profile.jobTitle}</Text>
+              <Text style={staticStyles.jobTitle}>{this.props.profile.bio}</Text>
             </View>
           </View>
         </View>
@@ -94,12 +94,19 @@ const staticStyles = StyleSheet.create({
   },
   profileName:{
     fontFamily: 'ProximaNova-Regular',
-    fontSize: 18,
-    paddingTop: 10,
+    fontSize: 16,
+    marginTop: -17,
+    paddingLeft: 5,
     color: 'grey',
+    backgroundColor: 'rgba(255,255,255,0)',
   },
   jobTitle:{
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 12,
+    paddingTop: 13,
+    paddingLeft: 5,
     color: 'grey',
+    backgroundColor: 'rgba(255,255,255,0)',
   },
   profileSnippet:{
     // alignItems: 'center',

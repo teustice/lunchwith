@@ -103,7 +103,7 @@ export class Map extends Component {
         <MapView.Marker
           key={marker.properties.id || (marker.properties.cluster_id + 100000)}
           ref={`marker${marker.properties.id}`}
-          image={require('../../lib/images/pin.png')}
+          image={require('../../lib/images/circle2.png')}
           coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
           onPress={(event) => {this.props.setCarousel({index: marker.properties.carouselId, regionAnimation: false})}}
         >
