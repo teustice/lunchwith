@@ -68,6 +68,8 @@
 		C3B68E141F4CBCDE005B51C9 /* RCTConvert+GMSMapViewType.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B68E011F4CBCDE005B51C9 /* RCTConvert+GMSMapViewType.m */; };
 		CAC125248E9743B88A9A58B8 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74E4ADBE09B845B5B6705DA2 /* EvilIcons.ttf */; };
 		D1397EF0C4F14D3484CC90C5 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 012BB81DA7A749EBB38E9FBB /* Zocial.ttf */; };
+		FAA0E34AC1374DEA87FE56A5 /* proxima-nova-bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 043EEF5292FA4458992D78E9 /* proxima-nova-bold.otf */; };
+		C9DE39DE2D1240A7A3685BBC /* proxima-nova.otf in Resources */ = {isa = PBXBuildFile; fileRef = D683A29DA1A34563A464023D /* proxima-nova.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -393,6 +395,8 @@
 		E7C90940686912AD8BC2F8EB /* Pods-rnTemplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnTemplate.release.xcconfig"; path = "Pods/Target Support Files/Pods-rnTemplate/Pods-rnTemplate.release.xcconfig"; sourceTree = "<group>"; };
 		EBA75F9BBE0E42F58112E41F /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		F1572A9FA5F941F4B5E38FA4 /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
+		043EEF5292FA4458992D78E9 /* proxima-nova-bold.otf */ = {isa = PBXFileReference; name = "proxima-nova-bold.otf"; path = "../src/fonts/proxima-nova-bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D683A29DA1A34563A464023D /* proxima-nova.otf */ = {isa = PBXFileReference; name = "proxima-nova.otf"; path = "../src/fonts/proxima-nova.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -648,6 +652,8 @@
 				8D316F6EDCB54CB3A5499D93 /* Octicons.ttf */,
 				C18B79C26A5240E5B4BF04D8 /* SimpleLineIcons.ttf */,
 				012BB81DA7A749EBB38E9FBB /* Zocial.ttf */,
+				043EEF5292FA4458992D78E9 /* proxima-nova-bold.otf */,
+				D683A29DA1A34563A464023D /* proxima-nova.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1176,6 +1182,8 @@
 				03621A612EEA4A909011BDA9 /* Octicons.ttf in Resources */,
 				17436B29531D4161A62603B3 /* SimpleLineIcons.ttf in Resources */,
 				D1397EF0C4F14D3484CC90C5 /* Zocial.ttf in Resources */,
+				FAA0E34AC1374DEA87FE56A5 /* proxima-nova-bold.otf in Resources */,
+				C9DE39DE2D1240A7A3685BBC /* proxima-nova.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

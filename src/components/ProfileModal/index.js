@@ -75,7 +75,6 @@ const staticStyles = StyleSheet.create({
     height:((Dimensions.get('window').height)*2/10),
     width:((Dimensions.get('window').width)*7.8/10), //gap between slides
     backgroundColor: 'rgb(255, 255, 255)',
-    borderRadius: 4,
     shadowColor: 'rgb(150,150,150)',
     shadowOffset: { width: 6, height: 6 },
     shadowOpacity: 0.3,
@@ -86,14 +85,6 @@ const staticStyles = StyleSheet.create({
     width: 50,
     height: 50,
   },
-  carouselImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    alignSelf: 'flex-end',
-    marginTop: -10,
-    zIndex: 500,
-  },
   content: {
   },
   closeModal: {
@@ -102,8 +93,10 @@ const staticStyles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   profileName:{
+    fontFamily: 'ProximaNova-Regular',
     fontSize: 18,
-    paddingTop:10,
+    paddingTop: 10,
+    color: 'grey',
   },
   jobTitle:{
     color: 'grey',
