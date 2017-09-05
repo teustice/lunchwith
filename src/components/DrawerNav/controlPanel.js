@@ -5,6 +5,7 @@ StyleSheet,
 Text,
 Dimensions,
 TouchableOpacity,
+Image,
 View } from 'react-native';
 
 export default class ControlPanel extends Component {
@@ -13,10 +14,40 @@ export default class ControlPanel extends Component {
     let {closeDrawer} = this.props
     return (
       <ScrollView style={styles.container}>
-        <Text style={styles.controlText}>Control Panel</Text>
         <TouchableOpacity style={styles.button} onPress={closeDrawer}>
-          <Text>Close Drawer</Text>
+          <Text>X</Text>
         </TouchableOpacity>
+        <View style={styles.profile}>
+          <Image
+            style={{width: 50, height: 50, borderRadius: 25}}
+            source={require('../../lib/images/hass.jpeg')}
+          />
+          <Text style={styles.controlText}>Admin</Text>
+          <TouchableOpacity
+            style={styles.navButton}
+            onPress={() => {
+              this.props.navigation.navigate('MapScreen');
+            }}
+          >
+            <Text>Map</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.navButton}
+            onPress={() => {
+              this.props.navigation.navigate('Profile');
+            }}
+          >
+            <Text>Profile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.navButton}
+            onPress={() => {
+              this.props.navigation.navigate('Onboard');
+            }}
+          >
+            <Text>Onboard</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     )
   }
@@ -24,19 +55,25 @@ export default class ControlPanel extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 20,
-    marginTop: -40,
+    position: 'absolute',
+    top: -5,
     width: (Dimensions.get('window').width * 6/12),
+    height: Dimensions.get('window').height,
     backgroundColor: 'grey',
   },
   controlText: {
     color: 'white',
   },
-  button: {
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: 'black',
+  navButton: {
+    width: 80,
     padding: 10,
+    marginTop: 10,
+    backgroundColor: 'white'
+  },
+  profile: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 })

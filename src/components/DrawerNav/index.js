@@ -21,41 +21,43 @@ export class DrawerNav extends Component {
   };
   render() {
     return (
-      <Drawer
-        ref={(ref) => this._drawer = ref}
-        type="overlay"
-        side={'left'}
-        content={
-          <ControlPanel closeDrawer={this.closeDrawer} />
-        }
-        acceptDoubleTap
-        styles={{shadowColor: '#000000', shadowOpacity: 0.3, shadowRadius: 15}}
-        onOpen={() => {
-          console.log('onopen')
-          this.setState({drawerOpen: true})
-        }}
-        onClose={() => {
-          console.log('onclose')
-          this.setState({drawerOpen: false})
-        }}
-        captureGestures={false}
-        tweenDuration={100}
-        panThreshold={0.08}
-        disabled={this.state.drawerDisabled}
-        openDrawerOffset={Dimensions.get('window').width}
-        closedDrawerOffset={0}
-        >
-        <View>
-          <TouchableOpacity
-            onPress={this.openDrawer}
+      <View style={staticStyles.drawerContainer}>
+        <Drawer
+          ref={(ref) => this._drawer = ref}
+          type="overlay"
+          side={'left'}
+          content={
+            <ControlPanel closeDrawer={this.closeDrawer} navigation={this.props.navigation} />
+          }
+          acceptDoubleTap
+          onOpen={() => {
+            console.log('onopen')
+            this.setState({drawerOpen: true})
+          }}
+          onClose={() => {
+            console.log('onclose')
+            this.setState({drawerOpen: false})
+          }}
+          captureGestures={false}
+          tweenDuration={100}
+          panThreshold={0.08}
+          disabled={this.state.drawerDisabled}
+          openDrawerOffset={Dimensions.get('window').width}
+          closedDrawerOffset={0}
+          negotiatePan={true}
           >
-            <Image
-              style={{height: 30, width: 30}}
-              source={require('../../lib/images/hamburgerIcon.png')}
-            />
-          </TouchableOpacity>
-        </View>
-      </Drawer>
+          <View style={staticStyles.drawerIcon}>
+            <TouchableOpacity
+              onPress={this.openDrawer}
+            >
+              <Image
+                style={{height: 30, width: 30}}
+                source={require('../../lib/images/hamburgerIcon.png')}
+              />
+            </TouchableOpacity>
+          </View>
+        </Drawer>
+      </View>
     )
   }
 }
@@ -66,8 +68,15 @@ const staticStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
-  main: {paddingLeft: 3},
+  drawerIcon: {
+    position: 'absolute',
+    top: 0,
+    right: -(Dimensions.get('window').width * 1/12),
+  },
+  drawerContainer: {
+    width: (Dimensions.get('window').width * 4/12),
+    backgroundColor: 'white'
+  }
 });
 
 export default DrawerNav;

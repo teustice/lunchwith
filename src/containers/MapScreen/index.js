@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, StatusBar } from 'react-native';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
@@ -16,6 +16,7 @@ import getClusters from '../../selectors/clusters';
 import getActiveMarker from '../../selectors/activeMarker';
 import findUserById from '../../lib/helpers/userById';
 import ProfileCarousel from '../../components/ProfileCarousel';
+import DrawerNav from '../../components/DrawerNav/index';
 
 export class MapScreen extends Component {
   renderCarousel(){
@@ -35,9 +36,12 @@ export class MapScreen extends Component {
       )
     }
   }
+
   render() {
+    console.log(this.props);
     return (
       <View>
+        <StatusBar hidden={true} />
         <Map
           carousel={this.props.carousel}
           setCarousel={this.props.setCarousel}
@@ -51,6 +55,9 @@ export class MapScreen extends Component {
           setActiveMarker={this.props.setActiveMarker}
         />
         {this.renderCarousel()}
+        <View style={styles.drawerIcon}>
+          <DrawerNav navigation={this.props.navigation}/>
+        </View>
       </View>
     );
   }
@@ -61,6 +68,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  drawerIcon: {
+    position: 'absolute',
+    top: 5,
+    right: 50,
   }
 });
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StackNavigator, addNavigationHelpers } from 'react-navigation';
+import { DrawerNavigator, addNavigationHelpers } from 'react-navigation';
 
 import Splash from './containers/Splash';
 import MapScreen from './containers/MapScreen';
@@ -10,14 +10,14 @@ import routesNames from './lib/constants/routes';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 const routes = {
-  [routesNames.Splash]: {
-    screen: Splash,
+  [routesNames.MapScreen]: {
+    screen: MapScreen,
     navigationOptions: {
       header: null,
     },
   },
-  [routesNames.MapScreen]: {
-    screen: MapScreen,
+  [routesNames.Splash]: {
+    screen: Splash,
     navigationOptions: {
       header: null,
     },
@@ -36,7 +36,7 @@ const routes = {
   }
 };
 
-const AppNavigator = StackNavigator(routes);
+const AppNavigator = DrawerNavigator(routes);
 
 const AppWithoutNavigationState = props => (
   <AppNavigator
