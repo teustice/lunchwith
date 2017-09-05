@@ -84,6 +84,7 @@ export class Map extends Component {
     }
   }
 
+  //returns the alternate pin image for active pin
   isActive(marker) {
     if(marker.properties.id){
       if(marker.properties.id === this.props.activeMarker.properties.id){
@@ -101,7 +102,6 @@ export class Map extends Component {
   }
 
   renderMarkers(marker){
-    let imagePath = this.isActive(marker)
     return(
       <MapView.Marker
         key={marker.properties.id || (`cluster${marker.properties.cluster_id}`)}
@@ -112,7 +112,7 @@ export class Map extends Component {
         style={{
           flex: 1,
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
         }}
       >
         <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
