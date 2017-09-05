@@ -46,6 +46,10 @@ class ProfileModal extends Component {
           </Modal>
 
           <View style={staticStyles.profileSnippet}>
+            <Image
+            style={staticStyles.carouselImage}
+            source={{uri: this.props.profile.profileImage}}
+            />
             <Text style={staticStyles.profileName}>{this.props.profile.name}</Text>
             <Text style={staticStyles.jobTitle}>{this.props.profile.jobTitle}</Text>
           </View>
@@ -79,6 +83,14 @@ const staticStyles = StyleSheet.create({
   profileImage: {
     width: 50,
     height: 50,
+  },
+  carouselImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    alignSelf: 'flex-end',
+    marginTop: -10,
+    zIndex: 500,
   },
   content: {
   },
