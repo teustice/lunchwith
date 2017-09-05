@@ -37,13 +37,10 @@ class ProfileModal extends Component {
                 </TouchableHighlight>
               </View>
              <View style={staticStyles.container}>
-              <View style={staticStyles.content}>
-                <Text>{this.props.profile.name}</Text>
-                <Image
-                  style={staticStyles.profileImage}
-                  source={{uri: this.props.profile.profileImage}}
-                />
+              <View style={staticStyles.content}  style={{alignSelf:'flex-end'}}>
+                <ProfileImage profile={this.props.profile}/>
               </View>
+              <Text>{this.props.profile.name}</Text>
              </View>
             </Modal>
 
@@ -64,8 +61,9 @@ class ProfileModal extends Component {
 const staticStyles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: 10,
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.95)'
+    backgroundColor: 'rgba(255, 255, 255, 1)'
   },
   modalBackground: {
     paddingLeft: 10,
@@ -90,7 +88,7 @@ const staticStyles = StyleSheet.create({
   closeModal: {
     marginTop: 30,
     marginRight: 10,
-    alignSelf: 'flex-end',
+    alignSelf: 'flex-start',
   },
   profileName:{
     fontFamily: 'ProximaNova-Regular',
