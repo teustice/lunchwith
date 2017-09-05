@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
+import ProfileImage from './image'
 
 class ProfileModal extends Component {
 
@@ -18,40 +19,41 @@ class ProfileModal extends Component {
           this.setModalVisible(true)
         }}
       >
-        <View style={staticStyles.modalBackground}>
-          <Modal
-            animationType={"slide"}
-            transparent={true}
-            visible={this.state.modalVisible}
-            >
-            <View style={staticStyles.closeModal}>
-              <TouchableHighlight onPress={() => {
-                this.setModalVisible(!this.state.modalVisible)
-              }}>
+        <View style={staticStyles.transparentView}>
+          <View style={staticStyles.modalBackground}>
+            <Modal
+              animationType={"slide"}
+              transparent={true}
+              visible={this.state.modalVisible}
+              >
+              <View style={staticStyles.closeModal}>
+                <TouchableHighlight onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible)
+                }}>
+                  <Image
+                    source={require('../../lib/images/close-button.png')}
+                    style={{width: 30, height: 30}}
+                  />
+                </TouchableHighlight>
+              </View>
+             <View style={staticStyles.container}>
+              <View style={staticStyles.content}>
+                <Text>{this.props.profile.name}</Text>
                 <Image
-                  source={require('../../lib/images/close-button.png')}
-                  style={{width: 30, height: 30}}
+                  style={staticStyles.profileImage}
+                  source={{uri: this.props.profile.profileImage}}
                 />
-              </TouchableHighlight>
-            </View>
-           <View style={staticStyles.container}>
-            <View style={staticStyles.content}>
-              <Text>{this.props.profile.name}</Text>
-              <Image
-                style={staticStyles.profileImage}
-                source={{uri: this.props.profile.profileImage}}
-              />
-            </View>
-           </View>
-          </Modal>
+              </View>
+             </View>
+            </Modal>
 
-          <View style={staticStyles.profileSnippet}>
-            <Image
-            style={staticStyles.carouselImage}
-            source={{uri: this.props.profile.profileImage}}
-            />
-            <Text style={staticStyles.profileName}>{this.props.profile.name}</Text>
-            <Text style={staticStyles.jobTitle}>{this.props.profile.jobTitle}</Text>
+            <View style={staticStyles.profileSnippet}>
+
+              <ProfileImage profile={this.props.profile}/>
+
+              <Text style={staticStyles.profileName}>{this.props.profile.name}</Text>
+              <Text style={staticStyles.jobTitle}>{this.props.profile.jobTitle}</Text>
+            </View>
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -72,7 +74,7 @@ const staticStyles = StyleSheet.create({
     marginLeft: -((Dimensions.get('window').width)*0.3/10),
     height:((Dimensions.get('window').height)*2/10),
     width:((Dimensions.get('window').width)*7.8/10), //gap between slides
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: 'rgb(255, 255, 255)',
     borderRadius: 4,
     shadowColor: 'rgb(150,150,150)',
     shadowOffset: { width: 6, height: 6 },
@@ -108,6 +110,9 @@ const staticStyles = StyleSheet.create({
   },
   profileSnippet:{
     // alignItems: 'center',
+  },
+  transparentView:{
+    paddingTop: 20,
   }
 });
 
