@@ -77,8 +77,9 @@ function mapStateToProps(store) {
     lunchRadiusSlider: getLunchRadiusSlider(store),
     experienceSlider: getExperienceSlider(store),
     skills: getSkills(store),
-
   };
 }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormView);

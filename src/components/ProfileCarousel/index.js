@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     width: (Dimensions.get('window').width),
     marginRight: -((Dimensions.get('window').width) * 2/10),
+
   },
   viewContainer: {
 	},
