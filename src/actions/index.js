@@ -25,7 +25,10 @@ import fetchClusters from './fetch-clusters';
 import setClusters from './set-clusters';
 import fetchActiveMarker from './fetch-activeMarker';
 import setActiveMarker from './set-activeMarker';
-
+import fetchExperienceSlider from './fetch-experienceSlider';
+import setExperienceSlider from './set-experienceSlider';
+import fetchSkills from './fetch-skills';
+import setSkills from './set-skills';
 import { genericError } from './errors';
 
 const ActionCreators = {
@@ -54,7 +57,12 @@ const ActionCreators = {
   setClusters,
   fetchActiveMarker,
   setActiveMarker,
-  fetchLunchRadiusSlider
+  fetchLunchRadiusSlider,
+  fetchLunchRadiusSlider,
+  setExperienceSlider,
+  fetchExperienceSlider,
+  setSkills,
+  fetchSkills
 };
 
 export default ActionCreators;

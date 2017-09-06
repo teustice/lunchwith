@@ -13,7 +13,9 @@ import newUser from './newUser';
 import profileModal from './profileModal';
 import lunchRadiusMarker from './lunchRadiusMarker';
 import lunchRadiusSlider from './lunchRadiusSlider';
+import experienceSlider from './experienceSlider';
 import clusters from './clusters';
+import skills from './skills';
 import activeMarker from './activeMarker';
 
 export const reducers = {
@@ -29,9 +31,11 @@ export const reducers = {
   lunchRadiusMarker,
   lunchRadiusSlider,
   clusters,
-  newUser,
   activeMarker,
-  form: formReducer
+  form: formReducer,
+  newUser,
+  experienceSlider,
+  skills
 };
 
 export default function getRootReducer(navReducer) {

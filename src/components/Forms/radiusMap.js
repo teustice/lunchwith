@@ -72,7 +72,7 @@ const staticStyles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get('window').width,
-    height: 200,
+    height: 150,
   },
 });
 

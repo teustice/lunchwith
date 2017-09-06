@@ -13,8 +13,8 @@ import {
   Input,
   Select,
   Switch
-} from 'react-native-clean-form'
-import { Field, reduxForm, Picker } from 'redux-form'
+} from 'react-native-clean-form';
+import { Field, reduxForm, Picker } from 'redux-form';
 import Autocomplete from 'react-native-autocomplete-input';
 import SKILLS from '../../lib/seeds/skillSeed';
 
@@ -23,35 +23,29 @@ class Skills extends Component {
 // Only renders as a placeholder the current most likely skill from suggested skills
   static renderSkill(skill) {
     const { title, id } = skill;
+    console.log("skills: " + this.props);
     return (
       <View>
-        <Text style={styles.titleText}>{title}</Text>
+        <Text style={styles.titleText}
+        {...this.props} >
+          {title}
+          {this.props.skillsProp} skills
+        </Text>
       </View>
     );
   }
 
 // Displays list of skills belonging to currentSkills state
-  static renderSkills(skills, props) {
+  renderSkills(skills, index) {
+    console.log(skills);
     return (<View>
-      <Text style={styles.listHead}>Your Skills</Text>
-      {skills.map((skill, index) =>
-        <View>
-          <Text key={index} style={styles.titleText}>{skill}</Text>
-          <TouchableOpacity
-            onPress={(skill, index) => {this.skillRemove(skill, index)}}>
-            <Text>remove skill</Text>
-          </TouchableOpacity>
-        </View>
-
-      )}
-    </View>);
-  }
-
-  static skillRemove(skill, i) {
-    var array = this.state.currentSkills;
-    var index = array.indexOf(skill.target.value)
-    array.splice(index, 1);
-    this.setState({currentSkills: array});
+              <Text style={styles.listHead}>Your Skills</Text>
+              {skills.map((skill, index) =>
+                <View>
+                  <Text key={index} style={styles.titleText}>{skill}</Text>
+                </View>
+              )}
+            </View>);
   }
 
   constructor(props) {
@@ -84,6 +78,7 @@ class Skills extends Component {
     const skills = this.findSkill(query);
     const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
 
+    console.log("just above autocomplete: " + this.props.skillsProp);
     return(
     <View>
       <Autocomplete
@@ -98,7 +93,8 @@ class Skills extends Component {
             onFocus={() =>
               {this.setState({ query: title })}}
             onPress={() =>
-              {this.setState({ currentSkills: [...this.state.currentSkills, title],
+              {this.props.setSkills(...this.props.skillsProp, title),
+              this.setState({
               query: '' })}}>
             <Text style={styles.itemText}>{title}</Text>
           </TouchableOpacity>
@@ -115,8 +111,8 @@ class Skills extends Component {
 
 
       <View style={styles.descriptionContainer}>
-        {this.state.currentSkills.length > 0 ? (
-          Skills.renderSkills(this.state.currentSkills)
+        {this.props.skillsProp.length > 0 ? (
+          this.renderSkills(this.props.skillsProp)
         ): null
         }
       </View>

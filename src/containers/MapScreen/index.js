@@ -33,6 +33,7 @@ export class MapScreen extends Component {
           setCarousel={this.props.setCarousel}
           profileModal={this.props.profileModal}
           setProfileModal={this.props.setProfileModal}
+          userLocation={this.props.userLocation}
         />
       )
     }

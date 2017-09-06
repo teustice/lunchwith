@@ -4,7 +4,7 @@ import createReducer from '../lib/helpers/createReducer';
 import { CAROUSEL_SET } from '../lib/constants/actions';
 
 
-const defaultState = Map().set('carousel', {index: 0});
+const defaultState = Map().set('carousel', {index: 1});
 
 export default createReducer(defaultState, {
 
