@@ -5,7 +5,9 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Slider
+  Slider,
+  ScrollView,
+  Dimensions,
 } from 'react-native'
 import {
   ActionsContainer,
@@ -60,66 +62,50 @@ export class FormView extends Component {
   }
 
   render() {
-    const { handleSubmit, submitting } = this.props
+    const { handleSubmit, submitting } = this.props;
     const experience = this.state.experience;
-
+    let _onboardCarousel: ScrollView;
     return (
       <Form>
-        <RadiusMap
-          lunchRadiusMarker={this.props.lunchRadiusMarker}
-          setLunchRadiusMarker={this.props.setLunchRadiusMarker}
-          lunchRadiusSlider={this.props.lunchRadiusSlider}
-          initialRegion={this.props.userLocation}
-        />
-        <RadiusSlider
-          lunchRadiusSlider={this.props.lunchRadiusSlider}
-          setLunchRadiusSlider={this.props.setLunchRadiusSlider}
-        />
-        <FieldsContainer style={{marginTop: 20}}>
-          <Fieldset label="Contact details">
-            <Input label="First name" placeholder="John" name="first_name" />
-            <Input label="Last name" placeholder="Doe" name="last_name"/>
-            <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} name="company_name"  />
-            <Input label="Job Title" name="job_title" placeholder="Backend Developer" />
-            <Input name="bio" label="Bio" placeholder="Say something about yourself!"  multiline={true} numberOfLines={2}/>
+        <ScrollView
+          ref={(scrollView) => { _onboardCarousel = scrollView; }}
+          horizontal={true}
+          pagingEnabled={true}
+        >
+          <View style={styles.formScreen}>
+            <FieldsContainer style={{marginTop: 20}}>
+              <Fieldset label="Contact details">
+                <Input label="First name" placeholder="John" name="first_name" />
+                <Input label="Last name" placeholder="Doe" name="last_name"/>
+                <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} name="company_name"  />
+                <Input label="Job Title" name="job_title" placeholder="Backend Developer" />
+                <Input name="bio" label="Bio" placeholder="Say something about yourself!"  multiline={true} numberOfLines={2}/>
 
-            <Skills name="skills" skillsProp={this.props.skills}
-                                      setSkills={this.props.setSkills}/>
+              </Fieldset>
+            </FieldsContainer>
+            <TouchableOpacity
+              onPress={() => { _onboardCarousel.scrollTo({x: Dimensions.get('window').width})}}
+            >
+              <Text>Next</Text>
+            </TouchableOpacity>
 
-            <Label>Total Tech Experience (years)</Label>
-
-            <ExperienceSlider experienceSlider={this.props.experienceSlider}
-                              setExperienceSlider={this.props.setExperienceSlider} />
-
-
-            <Text style={styles.title}>Lunch Availability</Text>
-            <Label>Monday</Label>
-            <MultiSliderUse availabilityProp = {this.state.monday}
-                            onAvailabilityChange={this.handleMondayChange}/>
-            <Label>Tuesday</Label>
-            <MultiSliderUse availabilityProp = {this.state.tuesday}
-                            onAvailabilityChange={this.handleTuesdayChange}/>
-            <Label>Wednesday</Label>
-            <MultiSliderUse availabilityProp = {this.state.wednesday}
-                            onAvailabilityChange={this.handleWednesdayChange}/>
-            <Label>Thursday</Label>
-            <MultiSliderUse availabilityProp = {this.state.thursday}
-                            onAvailabilityChange={this.handleThursdayChange}/>
-            <Label>Friday</Label>
-            <MultiSliderUse availabilityProp = {this.state.friday}
-                            onAvailabilityChange={this.handleFridayChange}/>
-            <Label>Saturday</Label>
-            <MultiSliderUse availabilityProp = {this.state.saturday}
-                            onAvailabilityChange={this.handleSaturdayChange}/>
-            <Label>Sunday</Label>
-            <MultiSliderUse availabilityProp = {this.state.sunday}
-                            onAvailabilityChange={this.handleSundayChange}/>
-
-          </Fieldset>
-        </FieldsContainer>
-        <ActionsContainer>
-          <Button icon="md-checkmark" iconPlacement="right"  onPress={handleSubmit(onSubmit)} submitting={submitting}>Save</Button>
-        </ActionsContainer>
+          </View>
+          <View style={styles.formScreen}>
+            <RadiusMap
+              lunchRadiusMarker={this.props.lunchRadiusMarker}
+              setLunchRadiusMarker={this.props.setLunchRadiusMarker}
+              lunchRadiusSlider={this.props.lunchRadiusSlider}
+              initialRegion={this.props.userLocation}
+            />
+            <RadiusSlider
+              lunchRadiusSlider={this.props.lunchRadiusSlider}
+              setLunchRadiusSlider={this.props.setLunchRadiusSlider}
+            />
+            <ActionsContainer>
+              <Button icon="md-checkmark" iconPlacement="right"  onPress={handleSubmit(onSubmit)} submitting={submitting}>Save</Button>
+            </ActionsContainer>
+          </View>
+        </ScrollView>
       </Form>
     )
   }
@@ -132,6 +118,9 @@ var styles = StyleSheet.create({
     paddingVertical: 20,
     alignSelf: 'flex-start',
   },
+  formScreen: {
+    width: Dimensions.get('window').width
+  }
 });
 
 
