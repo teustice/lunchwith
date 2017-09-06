@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     position: 'absolute',
-    top: -5,
+    top: -10,
     width: (Dimensions.get('window').width * 9/12),
     height: Dimensions.get('window').height,
     backgroundColor: 'rgb(37, 143, 247)',

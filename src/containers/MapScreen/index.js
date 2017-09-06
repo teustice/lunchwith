@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, StatusBar } from 'react-native';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { BlurView } from 'react-native-blur';
 
 import Map from '../../components/Map/index';
 import { connect } from 'react-redux';
@@ -55,6 +56,11 @@ export class MapScreen extends Component {
           setActiveMarker={this.props.setActiveMarker}
         />
         {this.renderCarousel()}
+        <BlurView
+          style={styles.absolute}
+          blurType="light"
+          blurAmount={5}
+        />
         <View style={styles.drawerIcon}>
           <DrawerNav navigation={this.props.navigation}/>
         </View>
@@ -71,9 +77,13 @@ const styles = StyleSheet.create({
   },
   drawerIcon: {
     position: 'absolute',
-    top: 5,
+    top: 10,
     right: 50,
-  }
+  },
+  absolute: {
+    position: "absolute",
+    top: 0, left: 0, bottom: 0, right: 0,
+  },
 });
 
 MapScreen.defaultProps = {
