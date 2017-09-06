@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
 import Drawer from 'react-native-drawer';
 import ControlPanel from './controlPanel'
-import Main from './main'
 
 export class DrawerNav extends Component {
   constructor(props) {

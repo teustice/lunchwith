@@ -7,6 +7,7 @@ Dimensions,
 TouchableOpacity,
 Image,
 View } from 'react-native';
+import { NavigationActions } from 'react-navigation'
 
 export default class ControlPanel extends Component {
 
@@ -23,26 +24,29 @@ export default class ControlPanel extends Component {
             source={require('../../lib/images/hass.jpeg')}
           />
           <Text style={styles.controlText}>Admin</Text>
+
           <TouchableOpacity
             style={styles.navButton}
             onPress={() => {
-              this.props.navigation.navigate('MapScreen');
+              this.props.navigation.dispatch(resetMapScreen)
             }}
           >
             <Text>Map</Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={styles.navButton}
             onPress={() => {
-              this.props.navigation.navigate('Profile');
+              this.props.navigation.dispatch(resetProfile)
             }}
           >
             <Text>Profile</Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={styles.navButton}
             onPress={() => {
-              this.props.navigation.navigate('Onboard');
+              this.props.navigation.dispatch(resetOnboard)
             }}
           >
             <Text>Onboard</Text>
@@ -77,3 +81,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   }
 })
+
+//reset navigation to prevent stacking screens 
+const resetMapScreen = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'MapScreen'})
+  ]
+});
+const resetProfile = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Profile'})
+  ]
+});
+const resetOnboard = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'Onboard'})
+  ]
+});
