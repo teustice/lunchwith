@@ -56,11 +56,6 @@ export class MapScreen extends Component {
           setActiveMarker={this.props.setActiveMarker}
         />
         {this.renderCarousel()}
-        <BlurView
-          style={styles.absolute}
-          blurType="light"
-          blurAmount={5}
-        />
         <View style={styles.drawerIcon}>
           <DrawerNav navigation={this.props.navigation}/>
         </View>
