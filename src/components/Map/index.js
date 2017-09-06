@@ -106,16 +106,15 @@ export class Map extends Component {
       <MapView.Marker
         key={marker.properties.id || (`cluster${marker.properties.cluster_id}`)}
         ref={`marker${marker.properties.id}`}
-        image={this.isActive(marker)}
         onPress={e => this.findChildren(marker)}
         coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
       >
-        <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
+        <Image
+          source={this.isActive(marker)}
+          style={{ height: 25, width: 25 }}
+        >
+          <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
+        </Image>
       </MapView.Marker>
     )
   }
