@@ -32,7 +32,7 @@ export class DrawerNav extends Component {
             this.props.setDrawerNav({drawerOpen: false})
           }}
           captureGestures={false}
-          tweenDuration={100}
+          tweenDuration={250}
           panThreshold={0.08}
           openDrawerOffset={Dimensions.get('window').width + (Dimensions.get('window').width * 6/12)}
           closedDrawerOffset={0}

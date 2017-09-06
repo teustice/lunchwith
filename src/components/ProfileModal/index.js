@@ -44,14 +44,12 @@ class ProfileModal extends Component {
                 <ProfileImage profile={this.props.profile}/>
                 <Text style={staticStyles.quickNotes}>Quick Notes</Text>
                 <Text style={staticStyles.quickBlurb2}>Having {this.props.profile.experience} of development experience, {this.props.profile.name} specializes in SKILLS.</Text>
-
               </View>
               <View style={staticStyles.content2} >
                 <Text style={staticStyles.panelTitle}>Current Availability</Text>
               </View>
               <View style={staticStyles.content3} >
                 <Text style={staticStyles.panelTitle}>Neighborhood</Text>
-
               </View>
               <View style={staticStyles.content4} >
                 <Text style={staticStyles.panelTitle}>In {this.props.profile.name}s own words.</Text>
