@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
 import ProfileImage from './image'
+import RadiusMap from '../Forms/radiusMap';
 
 class ProfileModal extends Component {
 
@@ -50,8 +51,9 @@ class ProfileModal extends Component {
               </View>
               <View style={staticStyles.content3} >
                 <Text style={staticStyles.panelTitle}>Neighborhood</Text>
+
               </View>
-              <View style={staticStyles.content3} >
+              <View style={staticStyles.content4} >
                 <Text style={staticStyles.panelTitle}>In {this.props.profile.name}s own words.</Text>
               </View>
 
@@ -112,13 +114,19 @@ const staticStyles = StyleSheet.create({
     backgroundColor: "white",
     width: '100%',
     height: 100,
-    marginTop: 16,
+    marginTop: 13,
   },
   content3: {
     backgroundColor: "white",
     width: '100%',
+    height: 200,
+    marginTop: 4,
+  },
+  content4: {
+    backgroundColor: "white",
+    width: '100%',
     height: 100,
-    marginTop: 6,
+    marginTop: 4,
   },
   closeModal: {
     width: '100%',
