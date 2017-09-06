@@ -43,26 +43,21 @@ const onSubmit = (values, dispatch) => {
   })
 }
 
-
-const radii = [
-  {label: '1 mile', value: '1'},
-  {label: '3 miles', value: '3'},
-  {label: '5 miles', value: '5'},
-  {label: '10 miles', value: '10'},
-]
-
 export class FormView extends Component {
   constructor(props) {
     super(props);
-    this.state = {experience: 0};
-    this.handleExperienceChange = this.handleExperienceChange.bind(this);
+    this.state = {
+      experience: 0,
+      skills: [],
+      monday: [1, 5],
+      tuesday: [1, 5],
+      wednesday: [1, 5],
+      thursday: [1, 5],
+      friday: [1, 5],
+      saturday: [1, 5],
+      sunday: [1, 5],
+    };
   }
-
-  handleExperienceChange = (years) => {
-    this.setState({experience: years})
-  }
-
-  componentDidMount() {}
 
   render() {
     const { handleSubmit, submitting } = this.props
@@ -86,31 +81,39 @@ export class FormView extends Component {
             <Input label="Last name" placeholder="Doe" name="last_name"/>
             <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} name="company_name"  />
             <Input label="Job Title" name="job_title" placeholder="Backend Developer" />
-            <Select
-            name="radius"
-            label="Lunch Radius"
-            options={radii}
-            placeholder="1 mile"
-            />
             <Input name="bio" label="Bio" placeholder="Say something about yourself!"  multiline={true} numberOfLines={2}/>
-            <Skills name="experience"/>
+
+            <Skills name="skills" skillsProp={this.props.skills}
+                                      setSkills={this.props.setSkills}/>
+
             <Label>Total Tech Experience (years)</Label>
-            <ExperienceSlider onExperienceChange={this.handleExperienceChange} />
+
+            <ExperienceSlider experienceSlider={this.props.experienceSlider}
+                              setExperienceSlider={this.props.setExperienceSlider} />
+
+
             <Text style={styles.title}>Lunch Availability</Text>
             <Label>Monday</Label>
-            <MultiSliderUse name="monday"/>
+            <MultiSliderUse availabilityProp = {this.state.monday}
+                            onAvailabilityChange={this.handleMondayChange}/>
             <Label>Tuesday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.tuesday}
+                            onAvailabilityChange={this.handleTuesdayChange}/>
             <Label>Wednesday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.wednesday}
+                            onAvailabilityChange={this.handleWednesdayChange}/>
             <Label>Thursday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.thursday}
+                            onAvailabilityChange={this.handleThursdayChange}/>
             <Label>Friday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.friday}
+                            onAvailabilityChange={this.handleFridayChange}/>
             <Label>Saturday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.saturday}
+                            onAvailabilityChange={this.handleSaturdayChange}/>
             <Label>Sunday</Label>
-            <MultiSliderUse />
+            <MultiSliderUse availabilityProp = {this.state.sunday}
+                            onAvailabilityChange={this.handleSundayChange}/>
 
           </Fieldset>
         </FieldsContainer>
@@ -121,8 +124,6 @@ export class FormView extends Component {
     )
   }
 }
-
-
 
 var styles = StyleSheet.create({
   title: {

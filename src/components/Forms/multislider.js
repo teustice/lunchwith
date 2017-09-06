@@ -15,6 +15,12 @@ import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
 class MultiSliderUse extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+
   // CORRESPONDS TO 11AM AND 4PM: initial state of multislider
   state = {
     multiSliderValue: [1, 5],
@@ -43,14 +49,19 @@ class MultiSliderUse extends React.Component {
   }
 
   multiSliderValuesChange = (values) => {
-    this.setState({
-      multiSliderValue: values,
-    });
+    this.handleChange(values);
   }
+
+  handleChange(values) {
+     return {
+       value: this.props.onAvailabilityChange(values)
+     };
+   }
 
 
 // Only shows multislider if switch is turned on
   render() {
+    console.log(this.props.availabilityProp);
     return (
       <View style={styles.container}>
         <Switch
@@ -60,10 +71,11 @@ class MultiSliderUse extends React.Component {
         <View style={styles.sliders}>
           {this.state.eventSwitchIsOn ?
               <View>
-                <Text style={styles.text}>{this.timeToConvert(this.state.multiSliderValue[0])} - {this.timeToConvert(this.state.multiSliderValue[1])}</Text>
+                <Text style={styles.text}>{this.timeToConvert(this.props.availabilityProp[0])} - {this.timeToConvert(this.props.availabilityProp[1])}</Text>
                 <MultiSlider
-                values={[this.state.multiSliderValue[0], this.state.multiSliderValue[1]]}
+                values={[this.props.availabilityProp[0], this.props.availabilityProp[1]]}
                 sliderLength={320}
+                {...this.props}
                 onValuesChange={this.multiSliderValuesChange}
                 min={0}
                 max={6}
