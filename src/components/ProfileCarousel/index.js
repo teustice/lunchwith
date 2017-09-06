@@ -16,12 +16,19 @@ export class ProfileCarousel extends Component {
 
   _renderItem (marker, index) {
     let user = findUserById(marker.item.properties.userId)
+    let neighborhood = {
+      latitude: marker.item.properties.lat_x,
+      longitude: marker.item.properties.long_x,
+      longitudeDelta: 0.05,
+      latitudeDelta: 0.05
+    }
     return (
       <View >
         <View style={styles.contentContainer}>
           <View style={styles.viewContainer}>
           <ProfileModal
             profile={user}
+            neighborhood={neighborhood}
             profileModal={this.props.profileModal}
             setProfileModal={this.props.setProfileModal}
             userLocation={this.props.userLocation}

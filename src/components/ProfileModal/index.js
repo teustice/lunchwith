@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
 import ProfileImage from './image'
-import RadiusMap from '../Forms/radiusMap';
+import NeighbordhoodMap from '../Map/neighborhood';
 
 class ProfileModal extends Component {
 
@@ -50,6 +50,7 @@ class ProfileModal extends Component {
               </View>
               <View style={staticStyles.content3} >
                 <Text style={staticStyles.panelTitle}>Neighborhood</Text>
+                <NeighbordhoodMap neighborhood={this.props.neighborhood} radius={this.props.profile.lunchRadius}/>
               </View>
               <View style={staticStyles.content4} >
                 <Text style={staticStyles.panelTitle}>In {this.props.profile.name}s own words.</Text>

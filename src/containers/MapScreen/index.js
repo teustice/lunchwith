@@ -39,15 +39,14 @@ export class MapScreen extends Component {
       )
     }
   }
-  
+
   navBlur(){
     if(this.props.drawerNav.drawerOpen) {
-      console.log('BLURRING');
       return(
         <BlurView
           style={styles.absolute}
           blurType="light"
-          blurAmount={3}
+          blurAmount={2}
         />
       )
     }
