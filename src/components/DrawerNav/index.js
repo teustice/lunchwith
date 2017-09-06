@@ -41,7 +41,7 @@ export class DrawerNav extends Component {
           tweenDuration={100}
           panThreshold={0.08}
           disabled={this.state.drawerDisabled}
-          openDrawerOffset={Dimensions.get('window').width}
+          openDrawerOffset={Dimensions.get('window').width + (Dimensions.get('window').width * 6/12)}
           closedDrawerOffset={0}
           negotiatePan={true}
           >
@@ -73,7 +73,7 @@ const staticStyles = StyleSheet.create({
     right: -(Dimensions.get('window').width * 1/12),
   },
   drawerContainer: {
-    width: (Dimensions.get('window').width * 4/12),
+    width: (Dimensions.get('window').width * 7/12),
     backgroundColor: 'white'
   }
 });

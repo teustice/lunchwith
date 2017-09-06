@@ -23,7 +23,8 @@ export default class ControlPanel extends Component {
             style={{width: 50, height: 50, borderRadius: 25}}
             source={require('../../lib/images/hass.jpeg')}
           />
-          <Text style={styles.controlText}>Admin</Text>
+
+          <Text style={styles.userName}>Admin</Text>
 
           <TouchableOpacity
             style={styles.navButton}
@@ -31,7 +32,7 @@ export default class ControlPanel extends Component {
               this.props.navigation.dispatch(resetMapScreen)
             }}
           >
-            <Text>Map</Text>
+            <Text style={styles.controlText}>Map</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -40,7 +41,7 @@ export default class ControlPanel extends Component {
               this.props.navigation.dispatch(resetProfile)
             }}
           >
-            <Text>Profile</Text>
+            <Text style={styles.controlText}>Profile</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -49,7 +50,7 @@ export default class ControlPanel extends Component {
               this.props.navigation.dispatch(resetOnboard)
             }}
           >
-            <Text>Onboard</Text>
+            <Text style={styles.controlText}>Onboard</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -62,18 +63,24 @@ const styles = StyleSheet.create({
     padding: 20,
     position: 'absolute',
     top: -5,
-    width: (Dimensions.get('window').width * 6/12),
+    width: (Dimensions.get('window').width * 9/12),
     height: Dimensions.get('window').height,
-    backgroundColor: 'grey',
+    backgroundColor: 'rgb(37, 143, 247)',
   },
   controlText: {
     color: 'white',
   },
+  userName: {
+    color: 'white',
+    fontSize: 20
+  },
   navButton: {
-    width: 80,
+    alignItems: 'center',
+    width: (Dimensions.get('window').width * 7/12),
     padding: 10,
     marginTop: 10,
-    backgroundColor: 'white'
+    borderWidth: 1,
+    borderColor: 'white'
   },
   profile: {
     flex: 1,
@@ -82,7 +89,7 @@ const styles = StyleSheet.create({
   }
 })
 
-//reset navigation to prevent stacking screens 
+//reset navigation to prevent stacking screens
 const resetMapScreen = NavigationActions.reset({
   index: 0,
   actions: [
