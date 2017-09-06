@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
 import ProfileImage from './image'
 import NeighbordhoodMap from '../Map/neighborhood';
+import { BlurView } from 'react-native-blur';
 
 class ProfileModal extends Component {
 
@@ -195,7 +196,11 @@ const staticStyles = StyleSheet.create({
   },
   mapBlur:{
     backgroundColor: 'rgba(255,255,255,0.2)',
-  }
+  },
+  absolute: {
+    position: "absolute",
+    top: 0, left: 0, bottom: 0, right: 0,
+  },
 });
 
 export default ProfileModal;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Button, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import MapView from 'react-native-maps';
 import MarkerCallout from '../MarkerCallout';
 import users from '../../lib/seeds/userSeed';
@@ -109,12 +109,12 @@ export class Map extends Component {
         onPress={e => this.findChildren(marker)}
         coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
       >
-        <Image
+        <ImageBackground
           source={this.isActive(marker)}
           style={{ height: 25, width: 25 }}
         >
           <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
-        </Image>
+        </ImageBackground>
       </MapView.Marker>
     )
   }
