@@ -12,6 +12,7 @@ import profileData from '../../lib/seeds/profileData';
 import Bio from '../../components/Profile/bio';
 import Header from '../../components/Profile/header';
 import getUser from '../../selectors/user';
+import getDrawerNav from '../../selectors/drawerNav';
 import FormView from '../../components/Forms/basicDetails';
 import getCompany from '../../selectors/business';
 
@@ -62,7 +63,11 @@ export class Profile extends Component {
           </View>
         </View>
         <View style={styles.drawerIcon}>
-          <DrawerNav navigation={this.props.navigation}/>
+          <DrawerNav
+            drawerNav={this.props.drawerNav}
+            setDrawerNav={this.props.setDrawerNav}  
+            navigation={this.props.navigation}
+          />
         </View>
       </View>
 
@@ -116,7 +121,7 @@ Profile.propTypes = {
 };
 
 function mapStateToProps(store) {
-  return { company: getCompany(store) };
+  return { company: getCompany(store), drawerNav: getDrawerNav(store) };
 }
 
 function mapDispatchToProps(dispatch) {

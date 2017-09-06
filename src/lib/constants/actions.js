@@ -46,5 +46,8 @@ export const EXPERIENCE_SLIDER_SET = 'EXPERIENCE_SLIDER_SET';
 //Skills array
 export const SKILLS_FETCH = 'SKILLS_FETCH';
 export const SKILLS_SET = 'SKILLS_SET';
+//DrawerNav
+export const DRAWER_NAV_FETCH = 'DRAWER_NAV_FETCH';
+export const DRAWER_NAV_SET = 'DRAWER_NAV_SET';
 // errors
 export const GENERIC_ERROR = 'GENERIC_ERROR';

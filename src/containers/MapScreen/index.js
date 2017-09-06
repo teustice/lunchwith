@@ -13,6 +13,7 @@ import getMarkers from '../../selectors/markers';
 import getUserLocation from '../../selectors/userLocation';
 import getCarousel from '../../selectors/carousel';
 import getProfileModal from '../../selectors/profileModal';
+import getDrawerNav from '../../selectors/drawerNav';
 import getClusters from '../../selectors/clusters';
 import getActiveMarker from '../../selectors/activeMarker';
 import findUserById from '../../lib/helpers/userById';
@@ -38,6 +39,19 @@ export class MapScreen extends Component {
       )
     }
   }
+  
+  navBlur(){
+    if(this.props.drawerNav.drawerOpen) {
+      console.log('BLURRING');
+      return(
+        <BlurView
+          style={styles.absolute}
+          blurType="light"
+          blurAmount={3}
+        />
+      )
+    }
+  }
 
   render() {
     console.log(this.props);
@@ -57,8 +71,13 @@ export class MapScreen extends Component {
           setActiveMarker={this.props.setActiveMarker}
         />
         {this.renderCarousel()}
+        {this.navBlur()}
         <View style={styles.drawerIcon}>
-          <DrawerNav navigation={this.props.navigation}/>
+          <DrawerNav
+            navigation={this.props.navigation}
+            drawerNav={this.props.drawerNav}
+            setDrawerNav={this.props.setDrawerNav}
+          />
         </View>
       </View>
     );
@@ -111,7 +130,8 @@ function mapStateToProps(store) {
     profileModal: getProfileModal(store),
     activeMarker: getActiveMarker(store),
     users: getUser(store),
-    clusters: getClusters(store)
+    clusters: getClusters(store),
+    drawerNav: getDrawerNav(store)
   };
 }
 
