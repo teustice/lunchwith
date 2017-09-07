@@ -53,7 +53,6 @@ export class RadiusMap extends Component {
           showsTraffic={false}
           showsPointsOfInterest={false}
           initialRegion={this.props.initialRegion}
-          showsUserLocation={true}
           customMapStyle={mapStyle}
           onPress={e => this.createMarker(e.nativeEvent)}
         >

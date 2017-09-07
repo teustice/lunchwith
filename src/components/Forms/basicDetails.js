@@ -7,6 +7,7 @@ import {
   View,
   Slider,
   ScrollView,
+  StatusBar,
   Dimensions,
 } from 'react-native'
 import {
@@ -67,28 +68,35 @@ export class FormView extends Component {
     let _onboardCarousel: ScrollView;
     return (
       <Form>
+      <StatusBar hidden={true} />
         <ScrollView
           ref={(scrollView) => { _onboardCarousel = scrollView; }}
           horizontal={true}
           pagingEnabled={true}
+          scrollEnabled={false}
         >
           <View style={styles.formScreen}>
-            <FieldsContainer style={{marginTop: 20}}>
-              <Fieldset label="Contact details">
-                <Input label="First name" placeholder="John" name="first_name" />
-                <Input label="Last name" placeholder="Doe" name="last_name"/>
-                <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} name="company_name"  />
-                <Input label="Job Title" name="job_title" placeholder="Backend Developer" />
-                <Input name="bio" label="Bio" placeholder="Say something about yourself!"  multiline={true} numberOfLines={2}/>
+            <FieldsContainer style={styles.formContainer}>
+            <Text style={styles.label}>A Little About Yourself</Text>
 
-              </Fieldset>
-            </FieldsContainer>
-            <TouchableOpacity
+                <TextInput style={styles.input} placeholder="First Name" name="first_name" />
+                <TextInput style={styles.input} placeholder="Last Name" name="last_name"/>
+
+              <TouchableOpacity
               onPress={() => { _onboardCarousel.scrollTo({x: Dimensions.get('window').width})}}
+              >
+              <Text>Next</Text>
+              </TouchableOpacity>
+            </FieldsContainer>
+
+          </View>
+          <View style={styles.formScreen}>
+            <Text>Filler here</Text>
+            <TouchableOpacity
+              onPress={() => { _onboardCarousel.scrollTo({x: Dimensions.get('window').width * 2})}}
             >
               <Text>Next</Text>
             </TouchableOpacity>
-
           </View>
           <View style={styles.formScreen}>
             <RadiusMap
@@ -119,7 +127,28 @@ var styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   formScreen: {
-    width: Dimensions.get('window').width
+    width: Dimensions.get('window').width,
+    backgroundColor: 'white'
+  },
+  input: {
+    fontSize: 20,
+    width: Dimensions.get('window').width * 1/2,
+    paddingBottom: 5,
+    borderBottomWidth: 1,
+    marginBottom: 10,
+    borderColor: 'grey',
+    alignSelf: 'center'
+  },
+  label: {
+    fontSize: 25,
+    color: 'grey',
+    alignSelf: 'center',
+    marginBottom: 10
+  },
+  formContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: -80,
   }
 });
 
