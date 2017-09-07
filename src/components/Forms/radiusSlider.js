@@ -23,9 +23,9 @@ export class RadiusSlider extends Component {
         <Slider
           value={parseInt(this.props.lunchRadiusSlider)}
           onValueChange={(value) => this.changeSliderValue(value)}
-          maximumValue={5}
-          minimumValue={0.5}
-          step={0.5}
+          maximumValue={2}
+          minimumValue={0.1}
+          step={0.1}
         />
       </View>
     );

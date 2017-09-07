@@ -67,7 +67,7 @@ export class FormView extends Component {
     const experience = this.state.experience;
     let _onboardCarousel: ScrollView;
     return (
-      <Form>
+      <View>
       <StatusBar hidden={true} />
         <ScrollView
           ref={(scrollView) => { _onboardCarousel = scrollView; }}
@@ -76,15 +76,18 @@ export class FormView extends Component {
           scrollEnabled={false}
         >
           <View style={styles.formScreen}>
+            <View style={styles.inputContainer}>
               <Text style={styles.label}>A Little About Yourself</Text>
-                <TextInput style={styles.input} placeholder="First Name" name="first_name" />
-                <TextInput style={styles.input} placeholder="Last Name" name="last_name"/>
+              <TextInput style={styles.input} placeholder="First Name" name="first_name" />
+              <TextInput style={styles.input} placeholder="Last Name" name="last_name"/>
               <TouchableOpacity
-              onPress={() => { _onboardCarousel.scrollTo({x: Dimensions.get('window').width})}}
+                onPress={() => { _onboardCarousel.scrollTo({x: Dimensions.get('window').width})}}
               >
-              <Text>Next</Text>
+                <Text>Next</Text>
               </TouchableOpacity>
+            </View>
           </View>
+
           <View style={styles.formScreen}>
             <Text>Filler here</Text>
             <TouchableOpacity
@@ -93,6 +96,7 @@ export class FormView extends Component {
               <Text>Next</Text>
             </TouchableOpacity>
           </View>
+
           <View style={styles.formScreen}>
             <RadiusMap
               lunchRadiusMarker={this.props.lunchRadiusMarker}
@@ -104,12 +108,13 @@ export class FormView extends Component {
               lunchRadiusSlider={this.props.lunchRadiusSlider}
               setLunchRadiusSlider={this.props.setLunchRadiusSlider}
             />
-            <ActionsContainer>
-              <Button icon="md-checkmark" iconPlacement="right"  onPress={handleSubmit(onSubmit)} submitting={submitting}>Save</Button>
-            </ActionsContainer>
+            <View style={{alignItems: 'center', marginTop: 20,}}>
+              <Text style={styles.mapText}>Tap the map where you would like to have your lunches</Text>
+              <Text style={styles.mapText}>Then decide the area size that best suites you</Text>
+            </View>
           </View>
         </ScrollView>
-      </Form>
+      </View>
     )
   }
 }
@@ -123,33 +128,34 @@ var styles = StyleSheet.create({
   },
   formScreen: {
     width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
     backgroundColor: 'white'
   },
   input: {
-    fontSize: 20,
+    fontSize: 15,
     width: Dimensions.get('window').width * 1/2,
     paddingBottom: 5,
     borderBottomWidth: 1,
-    marginBottom: 10,
+    marginBottom: 20,
     borderColor: 'grey',
     alignSelf: 'center'
   },
   label: {
-    fontSize: 25,
+    fontSize: 20,
     color: 'grey',
     alignSelf: 'center',
-    marginBottom: 10
+    marginBottom: 30
   },
-  formContainer: {
+  inputContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -80,
+    marginTop: (Dimensions.get('window').height * 1/4),
+  },
+  mapText: {
+    color: 'grey'
   }
 });
 
 
 
-export default reduxForm({
-  form: 'Form',
-
-})(FormView)
+export default FormView

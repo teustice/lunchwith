@@ -27,19 +27,25 @@ export class RadiusMap extends Component {
     return (parsedNum * 1609.344);
   }
 
-  renderMarker(){
-    if(this.props.lunchRadiusMarker && this.props.lunchRadiusMarker.latitude){
-      return(
-        <View>
-          <MapView.Circle
-            center={this.props.lunchRadiusMarker}
-            radius={this.milesToMeters(this.props.lunchRadiusSlider)}
-            fillColor={'rgba(186,206,220, 0.4)'}
-            strokeColor={'rgba(186,206,220, 1)'}
-          />
-        </View>
-      );
+  calculateCenter(){
+    if(this.props.lunchRadiusMarker.latitude){
+      return this.props.lunchRadiusMarker;
+    } else {
+      return this.props.initialRegion;
     }
+  }
+
+  renderMarker(){
+    return(
+      <View>
+        <MapView.Circle
+          center={this.calculateCenter()}
+          radius={this.milesToMeters(this.props.lunchRadiusSlider)}
+          fillColor={'rgba(186,206,220, 0.4)'}
+          strokeColor={'rgba(186,206,220, 1)'}
+        />
+      </View>
+    );
   }
 
   render() {
@@ -52,6 +58,11 @@ export class RadiusMap extends Component {
           showsBuildings={false}
           showsTraffic={false}
           showsPointsOfInterest={false}
+          zoomEnabled={false}
+          rotateEnabled={false}
+          pitchEnabled={false}
+          minZoomLevel={13}
+          maxZoomLevel={13}
           initialRegion={this.props.initialRegion}
           customMapStyle={mapStyle}
           onPress={e => this.createMarker(e.nativeEvent)}
@@ -71,7 +82,7 @@ const staticStyles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get('window').width,
-    height: 150,
+    height: (Dimensions.get('window').height * 2/4),
   },
 });
 
