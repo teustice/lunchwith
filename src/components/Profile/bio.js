@@ -27,11 +27,11 @@ export class Bio extends Component {
 const staticStyle = StyleSheet.create({
   bioHeader:{
     fontFamily: 'ProximaNova-Regular',
-    paddingLeft: 10,
+    paddingLeft: 15,
     color: 'grey',
   },
   input: {
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     marginTop: 10,
     borderBottomColor: 'rgb(65,152,240)',
     borderBottomWidth: 1,
@@ -40,7 +40,8 @@ const staticStyle = StyleSheet.create({
   bioExplanation: {
     fontFamily: 'ProximaNova-Regular',
     paddingTop: 5,
-    paddingLeft: 10,
+    paddingLeft: 15,
+    paddingBottom: 20,
     color: 'grey',
     fontSize: 10,
   }

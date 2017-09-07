@@ -77,7 +77,7 @@ export class Profile extends Component {
 
 
         <View style={staticStyles.content}>
-          <ProfileImage profile={tempUser} style={{paddingRight: 15}}/>
+          <ProfileImage profile={tempUser} />
           <Bio setUser={this.props.setUser} />
         </View>
 
@@ -137,7 +137,7 @@ const staticStyles = StyleSheet.create({
   content:{
     backgroundColor: "white",
     // width: '100%',
-    height: 100,
+    height: 'auto',
     marginTop: 5,
     marginHorizontal: 10,
     shadowColor: 'rgb(150,150,150)',
