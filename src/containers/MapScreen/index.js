@@ -19,6 +19,7 @@ import getActiveMarker from '../../selectors/activeMarker';
 import findUserById from '../../lib/helpers/userById';
 import ProfileCarousel from '../../components/ProfileCarousel';
 import DrawerNav from '../../components/DrawerNav/index';
+import LogIn from '../../components/LogIn/index';
 
 export class MapScreen extends Component {
   componentDidMount() {
@@ -94,6 +95,8 @@ export class MapScreen extends Component {
               setDrawerNav={this.props.setDrawerNav}
             />
           </View>
+          <LogIn />
+
         </View>
       )
     }
