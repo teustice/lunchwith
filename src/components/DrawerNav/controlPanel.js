@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     width: (Dimensions.get('window').width * 9/12),
     height: Dimensions.get('window').height,
     backgroundColor: 'rgb(37, 143, 247)',
+    zIndex: 100,
   },
   controlText: {
     color: 'white',

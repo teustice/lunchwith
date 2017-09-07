@@ -10,11 +10,13 @@ import Button from '../../components/Button/index';
 // import { staticStyles } from './styles';
 import profileData from '../../lib/seeds/profileData';
 import Bio from '../../components/Profile/bio';
+import Skills from '../../components/Profile/skills';
 import Header from '../../components/Profile/header';
 import getUser from '../../selectors/user';
 import FormView from '../../components/Forms/basicDetails';
 import getCompany from '../../selectors/business';
 import ProfileImage from '../../components/ProfileModal/image'
+import findUserById from '../../lib/helpers/userById';
 
 export class Profile extends Component {
 
@@ -27,7 +29,7 @@ export class Profile extends Component {
   }
 
   render() {
-
+    let tempUser = findUserById(1);
     return (
       // <View>
       //   <StatusBar hidden={true} />
@@ -73,10 +75,19 @@ export class Profile extends Component {
           <Header setUser={this.props.setUser} />
         </View>
 
+
+        <View style={staticStyles.content}>
+          <ProfileImage profile={tempUser} style={{paddingRight: 15}}/>
+          <Bio setUser={this.props.setUser} />
+        </View>
+
+        <View style={staticStyles.content}>
+          <Skills setUser={this.props.setUser}/>
+        </View>
+
         <View style={styles.drawerIcon}>
           <DrawerNav navigation={this.props.navigation}/>
         </View>
-
        </View>
 
 
@@ -123,14 +134,17 @@ const staticStyles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1,
   },
-  profileImage: {
-    width: 50,
-    height: 50,
-  },
   content:{
     backgroundColor: "white",
-    width: '100%',
+    // width: '100%',
     height: 100,
+    marginTop: 5,
+    marginHorizontal: 10,
+    shadowColor: 'rgb(150,150,150)',
+    shadowOffset: { width: 6, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 1,
   },
   content2: {
     backgroundColor: "white",
