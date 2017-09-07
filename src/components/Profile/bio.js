@@ -35,6 +35,9 @@ const staticStyle = StyleSheet.create({
     marginTop: 10,
     borderBottomColor: 'rgb(65,152,240)',
     borderBottomWidth: 1,
+    color: 'grey',
+    fontSize: 12,
+    fontFamily: 'ProximaNova-Regular',
   },
 
   bioExplanation: {
