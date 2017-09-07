@@ -133,7 +133,7 @@ const staticStyles = StyleSheet.create({
     alignSelf: 'flex-start',
     backgroundColor: 'rgb(65,152,240)',
     marginBottom: 36,
-    paddingBottom: 10,
+    paddingBottom: 14,
   },
   closeImage: {
     width: 20,
