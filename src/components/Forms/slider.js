@@ -22,7 +22,7 @@ class ExperienceSlider extends React.Component {
     return (
       <View>
         <Text style={styles.text} >
-          {this.props.experienceSlider} years
+          You Have About <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.props.experienceSlider} Years</Text> of <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>Experience</Text>
         </Text>
         <Slider
           value={parseInt(this.props.experienceSlider)}
@@ -41,11 +41,12 @@ var styles = StyleSheet.create({
     margin: 10,
   },
   text: {
-    fontSize: 13,
-    color: 'grey',
-    textAlign: 'center',
-    fontWeight: '300',
-    margin: 10,
+    fontFamily: 'ProximaNovaT-Thin',
+    fontSize: 12,
+    paddingTop: 20,
+    paddingLeft: 15,
+    marginBottom: 10,
+    color: 'rgb(10,10,10)',
   },
 });
 
