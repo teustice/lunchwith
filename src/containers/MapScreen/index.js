@@ -21,6 +21,21 @@ import ProfileCarousel from '../../components/ProfileCarousel';
 import DrawerNav from '../../components/DrawerNav/index';
 
 export class MapScreen extends Component {
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.props.setUserLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, maximumAge: 1000 },
+    );
+  }
+
   renderCarousel(){
     if(this.props.clusters[0] || this.props.clusters.properties){
       return(
@@ -52,32 +67,42 @@ export class MapScreen extends Component {
     }
   }
 
+  pageRender(){
+    if(this.props.userLocation.latitude){
+      console.log(this.props.userLocation);
+      return(
+        <View>
+          <StatusBar hidden={true} />
+          <Map
+            carousel={this.props.carousel}
+            setCarousel={this.props.setCarousel}
+            setRegion={this.props.setRegion}
+            region={this.props.region}
+            markers={this.props.markers}
+            userLocation={this.props.userLocation}
+            clusters={this.props.clusters}
+            setClusters={this.props.setClusters}
+            activeMarker={this.props.activeMarker}
+            setActiveMarker={this.props.setActiveMarker}
+          />
+          {this.renderCarousel()}
+          {this.navBlur()}
+          <View style={styles.drawerIcon}>
+            <DrawerNav
+              navigation={this.props.navigation}
+              drawerNav={this.props.drawerNav}
+              setDrawerNav={this.props.setDrawerNav}
+            />
+          </View>
+        </View>
+      )
+    }
+  }
+
   render() {
-    console.log(this.props);
     return (
       <View>
-        <StatusBar hidden={true} />
-        <Map
-          carousel={this.props.carousel}
-          setCarousel={this.props.setCarousel}
-          setRegion={this.props.setRegion}
-          region={this.props.region}
-          markers={this.props.markers}
-          initialRegion={this.props.userLocation}
-          clusters={this.props.clusters}
-          setClusters={this.props.setClusters}
-          activeMarker={this.props.activeMarker}
-          setActiveMarker={this.props.setActiveMarker}
-        />
-        {this.renderCarousel()}
-        {this.navBlur()}
-        <View style={styles.drawerIcon}>
-          <DrawerNav
-            navigation={this.props.navigation}
-            drawerNav={this.props.drawerNav}
-            setDrawerNav={this.props.setDrawerNav}
-          />
-        </View>
+        {this.pageRender()}
       </View>
     );
   }

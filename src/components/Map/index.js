@@ -131,8 +131,8 @@ export class Map extends Component {
           showsBuildings={false}
           showsTraffic={false}
           showsPointsOfInterest={false}
+          initialRegion={this.props.userLocation}
           region={this.props.region}
-          initialRegion={this.props.initialRegion}
           onRegionChangeComplete={region=>{this.props.setRegion(region);}}
           showsUserLocation={false}
           zoomEnabled={false}

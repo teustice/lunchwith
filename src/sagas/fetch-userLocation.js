@@ -8,19 +8,23 @@ import { genericError } from '../actions/errors';
 const executeFetchUserLocation = () => {
   navigator.geolocation.getCurrentPosition(
     (position) => {
+      console.log(position.coords.latitude);
       return {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
+        latitudeDelta: 0.05,
+        longitudeDelta: 0.05,
       };
     },
     (error) => { return { error: error.message },
-    { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }},
+    { enableHighAccuracy: true, maximumAge: 1000 }},
   );
 };
 
 function* fetchUserLocation(action) {
   try {
     const coordinates = yield call(executeFetchUserLocation);
+    console.log(coordinates);
     yield put(setUserLocation(coordinates));
   } catch (error) {
     console.warn(error);

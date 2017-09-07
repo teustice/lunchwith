@@ -57,7 +57,6 @@ class ProfileModal extends Component {
                 <Text style={staticStyles.panelTitle}>In {this.props.profile.name}s own words.</Text>
               </View>
 
-
              </View>
             </Modal>
 
