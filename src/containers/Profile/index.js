@@ -73,6 +73,9 @@ export class Profile extends Component {
           <Header setUser={this.props.setUser} />
         </View>
 
+        <View style={styles.drawerIcon}>
+          <DrawerNav navigation={this.props.navigation}/>
+        </View>
 
        </View>
 
