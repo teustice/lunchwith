@@ -17,18 +17,25 @@ export class Skills extends Component {
     return (
       <View >
         <Text style={staticStyle.skillsHeader}>Your Top <Text style={{color: 'rgb(65,152,240)'}}>3 Expertise</Text></Text>
+        <View style={staticStyle.skillRow}>
         <Image
           source={require('../../lib/images/skillCircle.png')}
           style={staticStyle.skillImage}
         />
+      
+        </View>
+        <View style={staticStyle.skillRow}>
         <Image
           source={require('../../lib/images/skillCircle.png')}
           style={staticStyle.skillImage}
         />
+        </View>
+        <View style={staticStyle.skillRow}>
         <Image
           source={require('../../lib/images/skillCircle.png')}
           style={staticStyle.skillImage}
         />
+        </View>
         <Text style={staticStyle.skillsExplanation}>Let people know what you are willing to talk about over lunch!</Text>
       </View>
     );
@@ -43,6 +50,16 @@ const staticStyle = StyleSheet.create({
     marginBottom: 10,
     color: 'grey',
   },
+  skillImage: {
+    height: 40,
+    width: 40,
+    marginLeft: 15,
+  },
+  skillRow: {
+    height: 40,
+    width: '100%',
+    marginTop: 5,
+  },
   skillsExplanation: {
     fontFamily: 'ProximaNova-Regular',
     paddingTop: 15,
@@ -51,12 +68,6 @@ const staticStyle = StyleSheet.create({
     color: 'grey',
     fontSize: 10,
   },
-  skillImage: {
-    height: 40,
-    width: 40,
-    marginLeft: 15,
-    marginTop: 5,
-  }
 });
 
 

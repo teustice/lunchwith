@@ -26,7 +26,11 @@ export class Header extends Component {
 const staticStyles = StyleSheet.create({
   closeTitle: {
     color: 'white',
-    marginTop: 14,
+    marginTop: 8,
+    paddingTop: 8,
+    marginBottom: -3,
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 20,
     alignSelf: 'center',
     backgroundColor: 'rgba(255,255,255,0)',
   },
