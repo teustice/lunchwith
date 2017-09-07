@@ -18,28 +18,31 @@ export class Skills extends Component {
       <View >
         <Text style={staticStyle.skillsHeader}>Your Top <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>3 Expertise</Text></Text>
         <View style={staticStyle.skillRow}>
-        <Image
-          source={require('../../lib/images/skillCircle.png')}
-          style={staticStyle.skillImage}
-        />
-        <Text style={staticStyle.skillNumber}>1</Text>
-        <Text style={staticStyle.skillName}>Skill 1</Text>
+          <Image
+            source={require('../../lib/images/skillCircle.png')}
+            style={staticStyle.skillImage}
+          />
+          <Text style={staticStyle.skillNumber}>1</Text>
+          <Text style={staticStyle.skillName}>React-Native (Frontend-Mobile)</Text>
+          <Text style={staticStyle.updateButton}>Update</Text>
         </View>
         <View style={staticStyle.skillRow}>
-        <Image
-          source={require('../../lib/images/skillCircle.png')}
-          style={staticStyle.skillImage}
-        />
-        <Text style={staticStyle.skillNumberB}>2</Text>
-        <Text style={staticStyle.skillName}>Skill 2</Text>
+          <Image
+            source={require('../../lib/images/skillCircle.png')}
+            style={staticStyle.skillImage}
+          />
+          <Text style={staticStyle.skillNumberB}>2</Text>
+          <Text style={staticStyle.skillName}>Ruby on Rails</Text>
+          <Text style={staticStyle.updateButton}>Update</Text>
         </View>
         <View style={staticStyle.skillRow}>
-        <Image
-          source={require('../../lib/images/skillCircle.png')}
-          style={staticStyle.skillImage}
-        />
-        <Text style={staticStyle.skillNumberB}>3</Text>
-        <Text style={staticStyle.skillName}>- - - -</Text>
+          <Image
+            source={require('../../lib/images/skillCircle.png')}
+            style={staticStyle.skillImage}
+          />
+          <Text style={staticStyle.skillNumberB}>3</Text>
+          <Text style={staticStyle.skillName}>- - - -</Text>
+          <Text style={staticStyle.addButton}>Add</Text>
         </View>
         <Text style={staticStyle.skillsExplanation}>Let people know what you are willing to talk about over lunch!</Text>
       </View>
@@ -97,6 +100,35 @@ const staticStyle = StyleSheet.create({
     color:'rgb(10,10,10)',
     fontFamily: 'ProximaNovaT-Thin',
     fontSize: 12,
+  },
+  updateButton: {
+    height: 30,
+    width: 70,
+    color: 'rgb(65,152,240)',
+    borderWidth: 0.5,
+    borderColor: 'rgb(65,152,240)',
+    marginTop: -22,
+    alignSelf: 'flex-end',
+    marginRight: 15,
+    textAlign: 'center',
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 12,
+    paddingTop: 10,
+  },
+  addButton: {
+    height: 30,
+    width: 70,
+    color: 'white',
+    backgroundColor: 'rgb(65,152,240)',
+    borderWidth: 0.5,
+    borderColor: 'rgb(65,152,240)',
+    marginTop: -22,
+    alignSelf: 'flex-end',
+    marginRight: 15,
+    textAlign: 'center',
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 12,
+    paddingTop: 10,
   }
 });
 
