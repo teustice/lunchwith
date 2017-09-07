@@ -74,6 +74,7 @@
 		A315A06DF77E46D8B3E9F436 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B53CA63EE44CD9B6EEE58 /* libRNBlur.a */; };
 		FAA0E34AC1374DEA87FE56A5 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 043EEF5292FA4458992D78E9 /* ProximaNova-Bold.otf */; };
 		2C0B93705485430AA43BCE03 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0315D082B66343618B878BE7 /* libBVLinearGradient.a */; };
+		6BA72EDBC9B24CD684AED022 /* Mark Simonson - Proxima Nova Thin-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0364B66ED1EE4736BC55E5A0 /* Mark Simonson - Proxima Nova Thin-webfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -407,6 +408,7 @@
 		A72B53CA63EE44CD9B6EEE58 /* libRNBlur.a */ = {isa = PBXFileReference; name = "libRNBlur.a"; path = "libRNBlur.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		74B8065C8251493BAAF670B0 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		0315D082B66343618B878BE7 /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		0364B66ED1EE4736BC55E5A0 /* Mark Simonson - Proxima Nova Thin-webfont.ttf */ = {isa = PBXFileReference; name = "Mark Simonson - Proxima Nova Thin-webfont.ttf"; path = "../src/fonts/Mark Simonson - Proxima Nova Thin-webfont.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -670,6 +672,7 @@
 				D683A29DA1A34563A464023D /* ProximaNova-Regular.otf */,
 				5E724E7FF211436D8AC24481 /* ProximaNova-Bold.otf */,
 				DDDC34DDB26B4CB2BC8D32DE /* ProximaNova-Regular.otf */,
+				0364B66ED1EE4736BC55E5A0 /* Mark Simonson - Proxima Nova Thin-webfont.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1202,6 +1205,7 @@
 				C9DE39DE2D1240A7A3685BBC /* ProximaNova-Regular.otf in Resources */,
 				636F5ED841F44D68AB7C2EFE /* ProximaNova-Bold.otf in Resources */,
 				3FA460AA506A40C29A022100 /* ProximaNova-Regular.otf in Resources */,
+				6BA72EDBC9B24CD684AED022 /* Mark Simonson - Proxima Nova Thin-webfont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

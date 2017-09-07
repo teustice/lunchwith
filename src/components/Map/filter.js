@@ -36,7 +36,7 @@ const staticStyles = StyleSheet.create({
   },
 
   filterText:{
-    fontFamily: 'ProximaNova-Regular',
+    fontFamily: 'ProximaNovaT-Thin',
     fontSize: 36,
     lineHeight: 35,
     color: 'grey',
