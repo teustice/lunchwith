@@ -89,7 +89,7 @@ export class FormView extends Component {
           </View>
 
           <View style={styles.formScreen}>
-            <Text>Filler here</Text>
+            <Text>Skills/Experience</Text>
             <TouchableOpacity
               onPress={() => { _onboardCarousel.scrollTo({x: Dimensions.get('window').width * 2})}}
             >
@@ -111,7 +111,18 @@ export class FormView extends Component {
             <View style={{alignItems: 'center', marginTop: 20,}}>
               <Text style={styles.mapText}>Tap the map where you would like to have your lunches</Text>
               <Text style={styles.mapText}>Then decide the area size that best suites you</Text>
+
+              <TouchableOpacity
+              style={{marginTop: 20}}
+              onPress={() => { _onboardCarousel.scrollTo({x: Dimensions.get('window').width * 3})}}
+              >
+              <Text>Next</Text>
+              </TouchableOpacity>
             </View>
+          </View>
+
+          <View style={styles.formScreen}>
+            <Text>Availability goes here</Text>
           </View>
         </ScrollView>
       </View>
