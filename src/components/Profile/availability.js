@@ -44,7 +44,7 @@ export class Availability extends Component {
           <Text style={staticStyle.skillName}>- - - -</Text>
           <Text style={staticStyle.addButton}>Add</Text>
         </View>
-        <Text style={staticStyle.skillsExplanation}>Let people know what you are willing to talk about over lunch!</Text>
+        <Text style={staticStyle.skillsExplanation}>Let people know when you are willing to talk about over lunch!</Text>
       </View>
     );
   }
