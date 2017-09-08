@@ -7,8 +7,12 @@ class AvailabilityModal extends Component {
     pressedButtons: []
   }
 
-  componentDidMount(){
-    this.props.setAvailabilityModal({isOpen: true});
+  componentDidUpdate(prevProps, PrevState){
+    if(prevProps.currentUser != this.props.currentUser){
+      if(this.props.currentUser.name){
+        this.setState({pressedButtons: this.props.currentUser.availability})
+      }
+    }
   }
 
   hideModal(){
@@ -100,13 +104,17 @@ class AvailabilityModal extends Component {
     );
   }
 
+  submitAvailability(){
+    this.props.setCurrentUser({...this.props.currentUser, availability: this.state.pressedButtons});
+    this.hideModal();
+  }
+
   render() {
-    console.log(this.state.pressedButtons);
     return (
       <Modal
         animationType={"slide"}
         transparent={true}
-        visible={this.props.availabilityModal}
+        visible={this.props.availabilityModal.isOpen}
         >
         <View style={staticStyles.container}>
           <View style={staticStyles.modalBackground}>
@@ -114,7 +122,9 @@ class AvailabilityModal extends Component {
               <Text>X</Text>
             </TouchableHighlight>
             {this.modalContent()}
-            <TouchableHighlight>
+            <TouchableHighlight
+              onPress={() => this.submitAvailability()}
+            >
               <Text style={staticStyles.submitButton}>Submit</Text>
             </TouchableHighlight>
           </View>

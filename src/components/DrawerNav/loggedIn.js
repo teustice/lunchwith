@@ -46,6 +46,15 @@ export default class LoggedIn extends Component {
           <TouchableOpacity
             style={styles.navButton}
             onPress={() => {
+              this.props.setAvailabilityModal({onPress: true})
+            }}
+          >
+            <Text style={styles.controlText}>Availability Modal</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.navButton}
+            onPress={() => {
               this.props.setCurrentUser({})
             }}
           >

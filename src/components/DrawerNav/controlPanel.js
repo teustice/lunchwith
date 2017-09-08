@@ -22,6 +22,7 @@ export default class ControlPanel extends Component {
           setDrawerNav={this.props.setDrawerNav}
           currentUser={this.props.currentUser}
           setCurrentUser={this.props.setCurrentUser}
+          setAvailabilityModal={this.props.setAvailabilityModal}
         />)
     } else {
       return(

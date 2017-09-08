@@ -99,6 +99,7 @@ export class MapScreen extends Component {
               setLogInModal={this.props.setLogInModal}
               currentUser={this.props.currentUser}
               setCurrentUser={this.props.setCurrentUser}
+              setAvailabilityModal={this.props.setAvailabilityModal}
             />
           </View>
           <LogIn
@@ -111,6 +112,7 @@ export class MapScreen extends Component {
             availabilityModal={this.props.availabilityModal}
             setAvailabilityModal={this.props.setAvailabilityModal}
             currentUser={this.props.currentUser}
+            setCurrentUser={this.props.setCurrentUser}
           />
         </View>
       )
