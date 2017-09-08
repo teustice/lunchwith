@@ -3,13 +3,46 @@ import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, TouchableOpa
 import userSeed from '../../lib/seeds/userSeed';
 
 class AvailabilityModal extends Component {
-  toggleButton(time){
-    return(
-      <TouchableHighlight>
-        <View style={staticStyles.toggleButton}>
+  state = {
+    pressedButtons: []
+  }
+
+  buttonPress(time, day){
+    let pressedButton = {time: time, day: day};
+    let newArray = this.state.pressedButtons.slice();
+    newArray.push(pressedButton);
+    this.setState({ pressedButtons: newArray });
+  }
+
+  isButtonSelected(time, day){
+    for(let i=0; i< 20; i++){
+      if(this.state.pressedButtons[i]){
+        if(this.state.pressedButtons[i].time === time && this.state.pressedButtons[i].day === day){
+          return(
+            <View style={staticStyles.toggleButtonSelected}>
+            <Text style={staticStyles.buttonTimeSelected}>{time}</Text>
+            </View>
+          )
+        }
+      } else {
+        return(
+          <View style={staticStyles.toggleButton}>
           <Text style={staticStyles.buttonTime}>{time}</Text>
+          </View>
+        )
+      }
+    }
+  }
+
+  toggleButton(time, day){
+    return(
+      <TouchableWithoutFeedback
+        onPress={() => this.buttonPress(time, day)}
+      >
+        <View>
+          {this.isButtonSelected(time, day)}
         </View>
-      </TouchableHighlight>
+      </TouchableWithoutFeedback>
     );
   }
 
@@ -20,16 +53,16 @@ class AvailabilityModal extends Component {
           <Text style={staticStyles.dayText}>{day}</Text>
         </View>
         <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("10")}
+          {this.toggleButton("10", day)}
         </View>
         <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("11")}
+          {this.toggleButton("11", day)}
         </View>
         <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("12")}
+          {this.toggleButton("12", day)}
         </View>
         <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("1")}
+          {this.toggleButton("1", day)}
         </View>
       </View>
     )
@@ -64,7 +97,7 @@ class AvailabilityModal extends Component {
             </TouchableHighlight>
             {this.modalContent()}
             <TouchableHighlight>
-              <Text style={staticStyles.label}>Submit</Text>
+              <Text style={staticStyles.submitButton}>Submit</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -89,9 +122,9 @@ const staticStyles = StyleSheet.create({
     height: '100%',
   },
   modalBackground: {
-    height:('90%'),
+    height:('85%'),
     width:('80%'), //gap between slides
-    marginTop: '8%',
+    marginTop: '10%',
     backgroundColor: 'rgb(255, 255, 255)',
     elevation: 1,
   },
@@ -104,19 +137,29 @@ const staticStyles = StyleSheet.create({
     borderColor: 'grey',
     alignSelf: 'center'
   },
-  label: {
+  submitButton: {
     fontSize: 20,
     color: 'grey',
     alignSelf: 'center',
-    marginTop: 15
+    marginTop: 30
   },
   toggleButton: {
     width: 50,
     height: 50,
+    marginRight: 12,
     borderRadius: 25,
     borderWidth: 0.5,
-    borderColor: 'grey',
+    borderColor: 'rgb(65,152,240)',
     backgroundColor: 'white',
+  },
+  toggleButtonSelected: {
+    width: 50,
+    height: 50,
+    marginRight: 12,
+    borderRadius: 25,
+    borderWidth: 0.5,
+    borderColor: 'rgb(65,152,240)',
+    backgroundColor: 'rgb(65,152,240)',
   },
   buttonRow: {
     flexDirection: 'row',
@@ -136,12 +179,17 @@ const staticStyles = StyleSheet.create({
   buttonTime: {
     alignSelf: 'center',
     marginTop: 12,
-    color: 'grey',
+    color: 'rgb(65,152,240)',
+    fontSize: 20,
+  },
+  buttonTimeSelected: {
+    alignSelf: 'center',
+    marginTop: 12,
+    color: 'white',
     fontSize: 20,
   },
   dayText: {
     color: 'grey',
-    marginRight: -15,
     fontSize: 20,
   }
 });
