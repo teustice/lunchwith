@@ -10,13 +10,16 @@ class LogIn extends Component {
     this.props.setLogInModal(false);
   }
 
+  savePhone(phoneNumber){
+    this.setState({phoneNumber})
+  }
+
   modalContent(){
     if(this.props.currentUser === 'newUser'){
-      console.log('NEW USER ALERT');
       return(
         <View style={staticStyles.inputContainer}>
           <Text style={staticStyles.label}>Welcome to LunchWith!</Text>
-          <TextInput style={staticStyles.input} placeholder="First Name" name="first_name" />
+          <TextInput style={staticStyles.input} autoFocus={true} placeholder="First Name" name="first_name" />
           <TextInput style={staticStyles.input} placeholder="Last Name" name="last_name" />
           <TouchableOpacity>
             <Text style={{color: 'grey'}}>Get Started</Text>
@@ -28,10 +31,12 @@ class LogIn extends Component {
         <View style={staticStyles.inputContainer}>
           <Text style={staticStyles.label}>LunchWith</Text>
           <TextInput
+            ref={"phoneNumber"}
             style={staticStyles.input}
+            autoFocus={true}
             placeholder="Phone Number"
             name="phone_number"
-            onChangeText={(phoneNumber) => this.setState({phoneNumber})}
+            onChangeText={(phoneNumber) => this.savePhone(phoneNumber)}
           />
           <TouchableOpacity
             onPress={() => this.userCheck()}
@@ -44,6 +49,7 @@ class LogIn extends Component {
   }
 
   userCheck() {
+    this.refs.phoneNumber.clear();
     for(let i=0; i< userSeed.length; i++){
       if(userSeed[i].phoneNumber === this.state.phoneNumber){
         this.props.setCurrentUser(userSeed[i])
