@@ -20,7 +20,8 @@ export class Map extends Component {
   }
 
   componentDidMount(){
-    this.props.setRegion(this.props.userLocation);
+    //set map to users location on mount
+    this.refs.map.animateToRegion(this.props.userLocation, 250);
   }
 
   _createCluster(data) {
@@ -135,8 +136,7 @@ export class Map extends Component {
           showsBuildings={false}
           showsTraffic={false}
           showsPointsOfInterest={false}
-          initialRegion={this.props.userLocation}
-          onRegionChange={region=>{this.props.setRegion(region);}}
+          onRegionChangeComplete={region=>{this.props.setRegion(region);}}
           showsUserLocation={false}
           zoomEnabled={false}
           rotateEnabled={false}
