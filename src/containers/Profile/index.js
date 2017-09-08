@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StatusBar, Dimensions, Text, Image, Modal, TouchableHighlight, StyleSheet } from 'react-native';
+import { View, StatusBar, Dimensions, ScrollView, Text, Image, Modal, TouchableHighlight, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -19,6 +19,7 @@ import ProfileImage from '../../components/ProfileModal/image'
 import findUserById from '../../lib/helpers/userById';
 import ExperienceSlider from '../../components/Forms/slider'
 import getExperienceSlider from '../../selectors/experienceSlider';
+import Availability from '../../components/Profile/availability';
 
 export class Profile extends Component {
 
@@ -34,7 +35,7 @@ export class Profile extends Component {
     let tempUser = findUserById(1);
     return (
 
-      <View>
+      <ScrollView>
         <StatusBar hidden={true} />
         <View style={staticStyles.header}>
           <Header setUser={this.props.setUser} />
@@ -56,10 +57,15 @@ export class Profile extends Component {
                             setExperienceSlider={this.props.setExperienceSlider} />
         </View>
 
+        <View style={staticStyles.content}>
+          <Availability setUser={this.props.setUser} />
+        </View>
+
         <View style={styles.drawerIcon}>
           <DrawerNav navigation={this.props.navigation}/>
         </View>
-       </View>
+
+       </ScrollView>
 
 
     );
