@@ -49,7 +49,7 @@ class LogIn extends Component {
         this.props.setCurrentUser(userSeed[i])
         this.hideLogInModal();
       } else {
-        this.setState({currentUser: 'newUser'});
+        this.props.setCurrentUser('newUser');
       }
     }
   }

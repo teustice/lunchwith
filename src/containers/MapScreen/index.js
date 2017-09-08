@@ -36,7 +36,6 @@ export class MapScreen extends Component {
         });
       },
       (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, maximumAge: 1000 },
     );
   }
 

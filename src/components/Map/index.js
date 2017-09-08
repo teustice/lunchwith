@@ -19,6 +19,10 @@ export class Map extends Component {
     }
   }
 
+  componentDidMount(){
+    this.props.setRegion(this.props.userLocation);
+  }
+
   _createCluster(data) {
     const index = supercluster({
       radius: 60,
@@ -132,8 +136,7 @@ export class Map extends Component {
           showsTraffic={false}
           showsPointsOfInterest={false}
           initialRegion={this.props.userLocation}
-          region={this.props.region}
-          onRegionChangeComplete={region=>{this.props.setRegion(region);}}
+          onRegionChange={region=>{this.props.setRegion(region);}}
           showsUserLocation={false}
           zoomEnabled={false}
           rotateEnabled={false}
