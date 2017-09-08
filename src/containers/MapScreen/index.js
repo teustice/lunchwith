@@ -23,6 +23,7 @@ import ProfileCarousel from '../../components/ProfileCarousel';
 import DrawerNav from '../../components/DrawerNav/index';
 import LogIn from '../../components/LogIn/index';
 import NewUser from '../../components/LogIn/newUser';
+import AvailabilityModal from '../../components/availabilityModal';
 
 export class MapScreen extends Component {
   componentDidMount() {
@@ -105,6 +106,7 @@ export class MapScreen extends Component {
             logInModal={this.props.logInModal}
             setLogInModal={this.props.setLogInModal}
           />
+          <AvailabilityModal />
         </View>
       )
     }

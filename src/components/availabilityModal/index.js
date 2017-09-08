@@ -3,12 +3,51 @@ import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, TouchableOpa
 import userSeed from '../../lib/seeds/userSeed';
 
 class AvailabilityModal extends Component {
-  modalContent(){
+  toggleButton(time){
     return(
-      <View style={staticStyles.inputContainer}>
+      <TouchableHighlight>
+        <View style={staticStyles.toggleButton}>
+          <Text style={staticStyles.buttonTime}>{time}</Text>
+        </View>
+      </TouchableHighlight>
+    );
+  }
 
+  buttonRow(day){
+    return(
+      <View style={staticStyles.buttonRow}>
+        <View style={staticStyles.buttonContainer}>
+          <Text style={staticStyles.dayText}>{day}</Text>
+        </View>
+        <View style={staticStyles.buttonContainer}>
+          {this.toggleButton("10")}
+        </View>
+        <View style={staticStyles.buttonContainer}>
+          {this.toggleButton("11")}
+        </View>
+        <View style={staticStyles.buttonContainer}>
+          {this.toggleButton("12")}
+        </View>
+        <View style={staticStyles.buttonContainer}>
+          {this.toggleButton("1")}
+        </View>
       </View>
     )
+  }
+
+  modalContent(){
+    return(
+      <View>
+        <Text style={{alignSelf:'center', fontSize: 20}}>Set Your Availability</Text>
+        <View style={staticStyles.inputContainer}>
+            {this.buttonRow("M")}
+            {this.buttonRow("T")}
+            {this.buttonRow("W")}
+            {this.buttonRow("Th")}
+            {this.buttonRow("F")}
+        </View>
+      </View>
+    );
   }
 
   render() {
@@ -24,6 +63,9 @@ class AvailabilityModal extends Component {
               <Text>X</Text>
             </TouchableHighlight>
             {this.modalContent()}
+            <TouchableHighlight>
+              <Text style={staticStyles.label}>Submit</Text>
+            </TouchableHighlight>
           </View>
         </View>
       </Modal>
@@ -47,9 +89,9 @@ const staticStyles = StyleSheet.create({
     height: '100%',
   },
   modalBackground: {
-    height:('40%'),
+    height:('90%'),
     width:('80%'), //gap between slides
-    marginTop: '40%',
+    marginTop: '8%',
     backgroundColor: 'rgb(255, 255, 255)',
     elevation: 1,
   },
@@ -66,13 +108,42 @@ const staticStyles = StyleSheet.create({
     fontSize: 20,
     color: 'grey',
     alignSelf: 'center',
-    marginBottom: 30
+    marginTop: 15
   },
-  inputContainer: {
+  toggleButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    borderWidth: 0.5,
+    borderColor: 'grey',
+    backgroundColor: 'white',
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    marginTop: 35,
+  },
+  buttonContainer: {
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: ('10%'),
+    justifyContent: 'center'
   },
+  topBorder: {
+    borderTopWidth: 1,
+    borderColor: 'grey',
+    width: '30%',
+    alignSelf: 'center'
+  },
+  buttonTime: {
+    alignSelf: 'center',
+    marginTop: 12,
+    color: 'grey',
+    fontSize: 20,
+  },
+  dayText: {
+    color: 'grey',
+    marginRight: -15,
+    fontSize: 20,
+  }
 });
 
 export default AvailabilityModal;
