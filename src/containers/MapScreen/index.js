@@ -97,6 +97,7 @@ export class MapScreen extends Component {
               setDrawerNav={this.props.setDrawerNav}
               setLogInModal={this.props.setLogInModal}
               currentUser={this.props.currentUser}
+              setCurrentUser={this.props.setCurrentUser}
             />
           </View>
           <LogIn

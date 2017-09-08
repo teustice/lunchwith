@@ -27,6 +27,7 @@ export class DrawerNav extends Component {
               setLogInModal={this.props.setLogInModal}
               setDrawerNav={this.props.setDrawerNav}
               currentUser={this.props.currentUser}
+              setCurrentUser={this.props.setCurrentUser}
             />
           }
           acceptDoubleTap

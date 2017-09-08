@@ -13,6 +13,7 @@ import Bio from '../../components/Profile/bio';
 import Header from '../../components/Profile/header';
 import getUser from '../../selectors/user';
 import getDrawerNav from '../../selectors/drawerNav';
+import getCurrentUser from '../../selectors/currentUser';
 import FormView from '../../components/Forms/basicDetails';
 import getCompany from '../../selectors/business';
 
@@ -65,8 +66,11 @@ export class Profile extends Component {
         <View style={styles.drawerIcon}>
           <DrawerNav
             drawerNav={this.props.drawerNav}
-            setDrawerNav={this.props.setDrawerNav}  
+            setDrawerNav={this.props.setDrawerNav}
             navigation={this.props.navigation}
+            setLogInModal={this.props.setLogInModal}
+            currentUser={this.props.currentUser}
+            setCurrentUser={this.props.setCurrentUser}
           />
         </View>
       </View>
@@ -121,7 +125,11 @@ Profile.propTypes = {
 };
 
 function mapStateToProps(store) {
-  return { company: getCompany(store), drawerNav: getDrawerNav(store) };
+  return {
+    company: getCompany(store),
+    drawerNav: getDrawerNav(store) ,
+    currentUser: getCurrentUser(store)
+  };
 }
 
 function mapDispatchToProps(dispatch) {

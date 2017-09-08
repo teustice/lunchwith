@@ -46,10 +46,10 @@ export default class LoggedIn extends Component {
           <TouchableOpacity
             style={styles.navButton}
             onPress={() => {
-              this.props.navigation.dispatch(resetOnboard)
+              this.props.setCurrentUser({})
             }}
           >
-            <Text style={styles.controlText}>Onboard</Text>
+            <Text style={styles.controlText}>Log Out</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
