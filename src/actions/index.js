@@ -31,6 +31,8 @@ import fetchDrawerNav from './fetch-drawerNav';
 import setDrawerNav from './set-drawerNav';
 import fetchLogInModal from './fetch-logInModal';
 import setLogInModal from './set-logInModal';
+import fetchCurrentUser from './fetch-currentUser';
+import setCurrentUser from './set-currentUser';
 import { genericError } from './errors';
 
 const ActionCreators = {
@@ -68,7 +70,9 @@ const ActionCreators = {
   setDrawerNav,
   fetchSkills,
   fetchLogInModal,
-  setLogInModal
+  setLogInModal,
+  fetchCurrentUser,
+  setCurrentUser
 };
 
 export default ActionCreators;

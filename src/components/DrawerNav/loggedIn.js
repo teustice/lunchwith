@@ -20,10 +20,10 @@ export default class LoggedIn extends Component {
         <View style={styles.profile}>
           <Image
             style={{width: 50, height: 50, borderRadius: 25}}
-            source={require('../../lib/images/hass.jpeg')}
+            source={{uri: this.props.currentUser.profileImage}}
           />
 
-          <Text style={styles.userName}>Admin</Text>
+          <Text style={styles.userName}>{this.props.currentUser.name}</Text>
 
           <TouchableOpacity
             style={styles.navButton}

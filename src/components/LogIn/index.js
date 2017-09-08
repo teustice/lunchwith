@@ -1,10 +1,57 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity, TextInput, View, StyleSheet, Dimensions, Image } from 'react-native';
-
+import userSeed from '../../lib/seeds/userSeed';
 
 class LogIn extends Component {
+  state = {
+    phoneNumber: '',
+  }
   hideLogInModal(){
     this.props.setLogInModal(false);
+  }
+
+  modalContent(){
+    if(this.props.currentUser === 'newUser'){
+      console.log('NEW USER ALERT');
+      return(
+        <View style={staticStyles.inputContainer}>
+          <Text style={staticStyles.label}>Welcome to LunchWith!</Text>
+          <TextInput style={staticStyles.input} placeholder="First Name" name="first_name" />
+          <TextInput style={staticStyles.input} placeholder="Last Name" name="last_name" />
+          <TouchableOpacity>
+            <Text style={{color: 'grey'}}>Get Started</Text>
+          </TouchableOpacity>
+        </View>
+      )
+    } else {
+      return (
+        <View style={staticStyles.inputContainer}>
+          <Text style={staticStyles.label}>LunchWith</Text>
+          <TextInput
+            style={staticStyles.input}
+            placeholder="Phone Number"
+            name="phone_number"
+            onChangeText={(phoneNumber) => this.setState({phoneNumber})}
+          />
+          <TouchableOpacity
+            onPress={() => this.userCheck()}
+          >
+            <Text style={{color: 'grey'}}>Log In</Text>
+          </TouchableOpacity>
+        </View>
+      )
+    }
+  }
+
+  userCheck() {
+    for(let i=0; i< userSeed.length; i++){
+      if(userSeed[i].phoneNumber === this.state.phoneNumber){
+        this.props.setCurrentUser(userSeed[i])
+        this.hideLogInModal();
+      } else {
+        this.setState({currentUser: 'newUser'});
+      }
+    }
   }
 
   render() {
@@ -19,13 +66,7 @@ class LogIn extends Component {
             <TouchableHighlight onPress={() => this.hideLogInModal()}>
               <Text>X</Text>
             </TouchableHighlight>
-            <View style={staticStyles.inputContainer}>
-              <Text style={staticStyles.label}>Lunch With</Text>
-              <TextInput style={staticStyles.input} placeholder="Phone Number" name="phone_number" />
-              <TouchableOpacity>
-                <Text style={{color: 'grey'}}>Log In</Text>
-              </TouchableOpacity>
-            </View>
+            {this.modalContent()}
           </View>
         </View>
       </Modal>

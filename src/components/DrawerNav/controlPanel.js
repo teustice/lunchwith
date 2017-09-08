@@ -13,13 +13,14 @@ import NotLoggedIn from './notLoggedIn';
 
 export default class ControlPanel extends Component {
   isLoggedIn(){
-    if(currentUser) {
+    if(this.props.currentUser.name) {
       return(
         <LoggedIn
           closeDrawer={this.props.closeDrawer}
           navigation={this.props.navigation}
           setLogInModal={this.props.setLogInModal}
           setDrawerNav={this.props.setDrawerNav}
+          currentUser={this.props.currentUser}
         />)
     } else {
       return(
@@ -39,8 +40,6 @@ export default class ControlPanel extends Component {
     )
   }
 }
-
-let currentUser = true
 
 const styles = StyleSheet.create({
 

@@ -21,7 +21,8 @@ const users = [
     company: 'Planet Argon',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 1
+    lunchRadius: 1,
+    phoneNumber:' 800115'
   },
   {
     id: 2,
@@ -45,7 +46,8 @@ const users = [
     company: 'EyeCue Lab',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 1
+    lunchRadius: 1,
+    phoneNumber:' 800114'
   },
   {
     name: 'Dave the Dev3',
@@ -69,7 +71,8 @@ const users = [
     company: 'Sq1',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 1
+    lunchRadius: 1,
+    phoneNumber:' 800113'
   },
   {
     name: 'Dave the Dev4',
@@ -93,7 +96,8 @@ const users = [
     company: 'New Relic',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 1
+    lunchRadius: 1,
+    phoneNumber:' 800112'
   },
   {
     name: 'Dave the Dev5',
@@ -117,7 +121,8 @@ const users = [
     company: 'New Relic',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 1
+    lunchRadius: 1,
+    phoneNumber:' 800111'
   },
   {
     name: 'Dave the Dev6',
@@ -141,7 +146,8 @@ const users = [
     company: 'EyeCue Lab',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 1
+    lunchRadius: 1,
+    phoneNumber: '8001210'
   },
   {
     name: 'Dave the Dev7',
@@ -165,7 +171,8 @@ const users = [
     company: 'Planet Argon',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 2
+    lunchRadius: 2,
+    phoneNumber: '8001239'
   },
   {
     name: 'Dave the Dev8',
@@ -189,7 +196,8 @@ const users = [
     company: 'Planet Argon',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 2
+    lunchRadius: 2,
+    phoneNumber: '8001238'
   },
   {
     name: 'Dave the Dev9',
@@ -213,7 +221,8 @@ const users = [
     company: 'New Relic',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 1
+    lunchRadius: 1,
+    phoneNumber: '8001237'
   },
   {
     name: 'Dave the Dev10',
@@ -237,7 +246,8 @@ const users = [
     company: 'New Relic',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 0.5
+    lunchRadius: 0.5,
+    phoneNumber: '8001236'
   },
   {
     name: 'Dave the Dev11',
@@ -261,7 +271,8 @@ const users = [
     company: 'New Relic',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 1
+    lunchRadius: 1,
+    phoneNumber: '8001235'
   },
   {
     name: 'Dave the Dev12',
@@ -285,7 +296,8 @@ const users = [
     company: 'New Relic',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 3
+    lunchRadius: 3,
+    phoneNumber: '8001234'
   },
   {
     name: 'Dave the Dev13',
@@ -309,7 +321,8 @@ const users = [
     company: 'New Relic',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 2
+    lunchRadius: 2,
+    phoneNumber: '8001233'
   },
   {
     name: 'Dave the Dev14',
@@ -333,7 +346,8 @@ const users = [
     company: 'New Relic',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 0.5
+    lunchRadius: 0.5,
+    phoneNumber: '8001232'
   },
   {
     name: 'Dave the Dev15',
@@ -357,7 +371,33 @@ const users = [
     company: 'New Relic',
     jobTitle: 'React Native Developer',
     experience: 4,
-    lunchRadius: 1
+    lunchRadius: 1,
+    phoneNumber: '8001231'
+  },
+  {
+    name: 'Admin',
+    id: 16,
+    skills: [
+      {
+        name: 'skill1',
+        skillId: 1
+      },
+      {
+        name: 'skill2',
+        skillId: 2
+      },
+      {
+        name: 'skill3',
+        skillId: 3
+      }
+    ],
+    profileImage:"https://yt3.ggpht.com/-dBAyPP2BX9E/AAAAAAAAAAI/AAAAAAAAAAA/kJwZUNcPu-s/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
+    bio: "The chosen one!",
+    company: 'nope',
+    jobTitle: 'React Native Developer',
+    experience: 10,
+    lunchRadius: 1,
+    phoneNumber: '1234567'
   }
 ]
 

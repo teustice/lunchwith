@@ -19,6 +19,7 @@ import skills from './skills';
 import activeMarker from './activeMarker';
 import drawerNav from './drawerNav';
 import logInModal from './logInModal';
+import currentUser from './currentUser';
 
 export const reducers = {
   title,
@@ -39,7 +40,8 @@ export const reducers = {
   experienceSlider,
   skills,
   drawerNav,
-  logInModal
+  logInModal,
+  currentUser
 };
 
 export default function getRootReducer(navReducer) {
