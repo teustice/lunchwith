@@ -22,7 +22,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 1,
-    phoneNumber:' 800115'
+    phoneNumber:' 800115',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     id: 2,
@@ -47,7 +52,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 1,
-    phoneNumber:' 800114'
+    phoneNumber:' 800114',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev3',
@@ -72,7 +82,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 1,
-    phoneNumber:' 800113'
+    phoneNumber:' 800113',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev4',
@@ -97,7 +112,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 1,
-    phoneNumber:' 800112'
+    phoneNumber:' 800112',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev5',
@@ -122,7 +142,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 1,
-    phoneNumber:' 800111'
+    phoneNumber:' 800111',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev6',
@@ -147,7 +172,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 1,
-    phoneNumber: '8001210'
+    phoneNumber: '8001210',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev7',
@@ -172,7 +202,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 2,
-    phoneNumber: '8001239'
+    phoneNumber: '8001239',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev8',
@@ -197,7 +232,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 2,
-    phoneNumber: '8001238'
+    phoneNumber: '8001238',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev9',
@@ -222,7 +262,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 1,
-    phoneNumber: '8001237'
+    phoneNumber: '8001237',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev10',
@@ -247,7 +292,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 0.5,
-    phoneNumber: '8001236'
+    phoneNumber: '8001236',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev11',
@@ -272,7 +322,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 1,
-    phoneNumber: '8001235'
+    phoneNumber: '8001235',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev12',
@@ -297,7 +352,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 3,
-    phoneNumber: '8001234'
+    phoneNumber: '8001234',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev13',
@@ -322,7 +382,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 2,
-    phoneNumber: '8001233'
+    phoneNumber: '8001233',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev14',
@@ -347,7 +412,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 0.5,
-    phoneNumber: '8001232'
+    phoneNumber: '8001232',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev15',
@@ -372,7 +442,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 1,
-    phoneNumber: '8001231'
+    phoneNumber: '8001231',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Admin',
@@ -397,7 +472,12 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 10,
     lunchRadius: 1,
-    phoneNumber: '1234567'
+    phoneNumber: '1234567',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   }
 ]
 

@@ -52,6 +52,9 @@ export const DRAWER_NAV_SET = 'DRAWER_NAV_SET';
 //Log in modal
 export const LOG_IN_MODAL_FETCH = 'LOG_IN_MODAL_FETCH';
 export const LOG_IN_MODAL_SET = 'LOG_IN_MODAL_SET';
+//Availability modal
+export const AVAILABILITY_MODAL_FETCH = 'AVAILABILITY_MODAL_FETCH';
+export const AVAILABILITY_MODAL_SET = 'AVAILABILITY_MODAL_SET';
 //Current user
 export const CURRENT_USER_FETCH = 'CURRENT_USER_FETCH';
 export const CURRENT_USER_SET = 'CURRENT_USER_SET';

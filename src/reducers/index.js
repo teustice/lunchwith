@@ -20,6 +20,7 @@ import activeMarker from './activeMarker';
 import drawerNav from './drawerNav';
 import logInModal from './logInModal';
 import currentUser from './currentUser';
+import availabilityModal from './availabilityModal';
 
 export const reducers = {
   title,
@@ -41,6 +42,7 @@ export const reducers = {
   skills,
   drawerNav,
   logInModal,
+  availabilityModal,
   currentUser
 };
 

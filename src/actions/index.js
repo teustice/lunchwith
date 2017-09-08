@@ -33,6 +33,8 @@ import fetchLogInModal from './fetch-logInModal';
 import setLogInModal from './set-logInModal';
 import fetchCurrentUser from './fetch-currentUser';
 import setCurrentUser from './set-currentUser';
+import fetchAvailabilityModal from './fetch-availabilityModal';
+import setAvailabiltyModal from './set-availabilityModal';
 import { genericError } from './errors';
 
 const ActionCreators = {
@@ -72,7 +74,9 @@ const ActionCreators = {
   fetchLogInModal,
   setLogInModal,
   fetchCurrentUser,
-  setCurrentUser
+  setCurrentUser,
+  fetchAvailabilityModal,
+  setAvailabiltyModal
 };
 
 export default ActionCreators;

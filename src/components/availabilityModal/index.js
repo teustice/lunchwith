@@ -7,6 +7,14 @@ class AvailabilityModal extends Component {
     pressedButtons: []
   }
 
+  componentDidMount(){
+    this.props.setAvailabilityModal({isOpen: true});
+  }
+
+  hideModal(){
+    this.props.setAvailabilityModal({isOpen: false});
+  }
+
   buttonPress(time, day){
     let newArray = this.state.pressedButtons.slice();
     let pressedButton = {time: time, day: day};
@@ -93,15 +101,16 @@ class AvailabilityModal extends Component {
   }
 
   render() {
+    console.log(this.state.pressedButtons);
     return (
       <Modal
         animationType={"slide"}
         transparent={true}
-        visible={this.props.logInModal}
+        visible={this.props.availabilityModal}
         >
         <View style={staticStyles.container}>
           <View style={staticStyles.modalBackground}>
-            <TouchableHighlight onPress={() => this.hideLogInModal()}>
+            <TouchableHighlight onPress={() => this.hideModal()}>
               <Text>X</Text>
             </TouchableHighlight>
             {this.modalContent()}
