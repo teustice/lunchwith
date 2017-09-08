@@ -14,9 +14,21 @@ import NotLoggedIn from './notLoggedIn';
 export default class ControlPanel extends Component {
   isLoggedIn(){
     if(currentUser) {
-      return(<LoggedIn closeDrawer={this.props.closeDrawer} navigation={this.props.navigation}/>)
+      return(
+        <LoggedIn
+          closeDrawer={this.props.closeDrawer}
+          navigation={this.props.navigation}
+          setLogInModal={this.props.setLogInModal}
+          setDrawerNav={this.props.setDrawerNav}
+        />)
     } else {
-      return(<NotLoggedIn closeDrawer={this.props.closeDrawer} navigation={this.props.navigation}/>)
+      return(
+        <NotLoggedIn
+          closeDrawer={this.props.closeDrawer}
+          navigation={this.props.navigation}
+          setLogInModal={this.props.setLogInModal}
+          setDrawerNav={this.props.setDrawerNav}
+        />)
     }
   }
   render() {
@@ -28,7 +40,7 @@ export default class ControlPanel extends Component {
   }
 }
 
-let currentUser = false
+let currentUser = true
 
 const styles = StyleSheet.create({
 

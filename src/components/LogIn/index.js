@@ -3,13 +3,8 @@ import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, TouchableOpa
 
 
 class LogIn extends Component {
-
-  state = {
-    modalVisible: true,
-  }
-
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+  hideLogInModal(){
+    this.props.setLogInModal(false);
   }
 
   render() {
@@ -17,24 +12,18 @@ class LogIn extends Component {
       <Modal
         animationType={"slide"}
         transparent={true}
-        visible={this.state.modalVisible}
+        visible={this.props.logInModal}
         >
         <View style={staticStyles.container}>
           <View style={staticStyles.modalBackground}>
-            <TouchableHighlight onPress={() => {
-              this.setModalVisible(!this.state.modalVisible)
-            }}>
+            <TouchableHighlight onPress={() => this.hideLogInModal()}>
               <Text>X</Text>
             </TouchableHighlight>
             <View style={staticStyles.inputContainer}>
               <Text style={staticStyles.label}>Lunch With</Text>
               <TextInput style={staticStyles.input} placeholder="Phone Number" name="phone_number" />
-              <TextInput style={staticStyles.input} placeholder="Password" name="password" />
               <TouchableOpacity>
                 <Text style={{color: 'grey'}}>Log In</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={{marginTop: 10,}}>
-                <Text style={{color: 'grey'}}>Sign Up</Text>
               </TouchableOpacity>
             </View>
           </View>

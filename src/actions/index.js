@@ -29,6 +29,8 @@ import fetchSkills from './fetch-skills';
 import setSkills from './set-skills';
 import fetchDrawerNav from './fetch-drawerNav';
 import setDrawerNav from './set-drawerNav';
+import fetchLogInModal from './fetch-logInModal';
+import setLogInModal from './set-logInModal';
 import { genericError } from './errors';
 
 const ActionCreators = {
@@ -64,7 +66,9 @@ const ActionCreators = {
   setSkills,
   fetchDrawerNav,
   setDrawerNav,
-  fetchSkills
+  fetchSkills,
+  fetchLogInModal,
+  setLogInModal
 };
 
 export default ActionCreators;

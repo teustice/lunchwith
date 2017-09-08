@@ -12,10 +12,9 @@ import { NavigationActions } from 'react-navigation'
 export default class LoggedIn extends Component {
 
   render() {
-    let {closeDrawer} = this.props
     return (
       <ScrollView style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={closeDrawer}>
+        <TouchableOpacity style={styles.button} onPress={this.props.closeDrawer}>
           <Text>X</Text>
         </TouchableOpacity>
         <View style={styles.profile}>

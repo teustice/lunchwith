@@ -49,5 +49,8 @@ export const SKILLS_SET = 'SKILLS_SET';
 //DrawerNav
 export const DRAWER_NAV_FETCH = 'DRAWER_NAV_FETCH';
 export const DRAWER_NAV_SET = 'DRAWER_NAV_SET';
+//Log in modal
+export const LOG_IN_MODAL_FETCH = 'LOG_IN_MODAL_FETCH';
+export const LOG_IN_MODAL_SET = 'LOG_IN_MODAL_SET';
 // errors
 export const GENERIC_ERROR = 'GENERIC_ERROR';

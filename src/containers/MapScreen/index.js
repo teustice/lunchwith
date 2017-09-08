@@ -11,6 +11,7 @@ import getRegion from '../../selectors/region';
 import getUser from '../../selectors/user';
 import getMarkers from '../../selectors/markers';
 import getUserLocation from '../../selectors/userLocation';
+import getLogInModal from '../../selectors/logInModal';
 import getCarousel from '../../selectors/carousel';
 import getProfileModal from '../../selectors/profileModal';
 import getDrawerNav from '../../selectors/drawerNav';
@@ -70,7 +71,6 @@ export class MapScreen extends Component {
 
   pageRender(){
     if(this.props.userLocation.latitude){
-      console.log(this.props.userLocation);
       return(
         <View>
           <StatusBar hidden={true} />
@@ -93,10 +93,13 @@ export class MapScreen extends Component {
               navigation={this.props.navigation}
               drawerNav={this.props.drawerNav}
               setDrawerNav={this.props.setDrawerNav}
+              setLogInModal={this.props.setLogInModal}
             />
           </View>
-          <LogIn />
-
+          <LogIn
+            logInModal={this.props.logInModal}
+            setLogInModal={this.props.setLogInModal}
+          />
         </View>
       )
     }
@@ -158,7 +161,8 @@ function mapStateToProps(store) {
     activeMarker: getActiveMarker(store),
     users: getUser(store),
     clusters: getClusters(store),
-    drawerNav: getDrawerNav(store)
+    drawerNav: getDrawerNav(store),
+    logInModal: getLogInModal(store)
   };
 }
 
