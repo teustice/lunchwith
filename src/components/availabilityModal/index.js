@@ -8,8 +8,17 @@ class AvailabilityModal extends Component {
   }
 
   buttonPress(time, day){
-    let pressedButton = {time: time, day: day};
     let newArray = this.state.pressedButtons.slice();
+    let pressedButton = {time: time, day: day};
+    for(let i=0; i< 20; i++){
+      if(this.state.pressedButtons[i]){
+        if(this.state.pressedButtons[i].time === time && this.state.pressedButtons[i].day === day){
+          newArray.splice(i, 1);
+          this.setState({ pressedButtons: newArray });
+          return 0
+        }
+      }
+    }
     newArray.push(pressedButton);
     this.setState({ pressedButtons: newArray });
   }
@@ -20,14 +29,14 @@ class AvailabilityModal extends Component {
         if(this.state.pressedButtons[i].time === time && this.state.pressedButtons[i].day === day){
           return(
             <View style={staticStyles.toggleButtonSelected}>
-            <Text style={staticStyles.buttonTimeSelected}>{time}</Text>
+              <Text style={staticStyles.buttonTimeSelected}>{time}</Text>
             </View>
           )
         }
       } else {
         return(
           <View style={staticStyles.toggleButton}>
-          <Text style={staticStyles.buttonTime}>{time}</Text>
+            <Text style={staticStyles.buttonTime}>{time}</Text>
           </View>
         )
       }
