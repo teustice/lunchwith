@@ -128,12 +128,15 @@ const staticStyles = StyleSheet.create({
     // flex: 1,
     width: '100%',
     height: 175,
+    position: 'absolute',
+
 
   },
   filterBox:{
     paddingTop: 25,
     paddingLeft: 20,
-    backgroundColor: 'rgba(255,255,155,0)',
+    backgroundColor: 'white',
+
   },
 
   filterText:{

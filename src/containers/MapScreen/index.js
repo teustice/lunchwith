@@ -25,6 +25,7 @@ import DrawerNav from '../../components/DrawerNav/index';
 import LogIn from '../../components/LogIn/index';
 import NewUser from '../../components/LogIn/newUser';
 import AvailabilityModal from '../../components/availabilityModal';
+import MapFilter from './filter';
 
 export class MapScreen extends Component {
   componentDidMount() {
@@ -89,6 +90,7 @@ export class MapScreen extends Component {
             activeMarker={this.props.activeMarker}
             setActiveMarker={this.props.setActiveMarker}
           />
+          <MapFilter/>
           {this.renderCarousel()}
           {this.navBlur()}
           <View style={styles.drawerIcon}>
