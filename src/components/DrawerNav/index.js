@@ -6,12 +6,7 @@ import ControlPanel from './controlPanel'
 export class DrawerNav extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      drawerOpen: false,
-      drawerDisabled: false,
-    };
   }
-
   closeDrawer = () => {
     this._drawer.close()
   };
@@ -26,21 +21,26 @@ export class DrawerNav extends Component {
           type="overlay"
           side={'left'}
           content={
-            <ControlPanel closeDrawer={this.closeDrawer} navigation={this.props.navigation} />
+            <ControlPanel
+              closeDrawer={this.closeDrawer}
+              navigation={this.props.navigation}
+              setLogInModal={this.props.setLogInModal}
+              setDrawerNav={this.props.setDrawerNav}
+              currentUser={this.props.currentUser}
+              setCurrentUser={this.props.setCurrentUser}
+              setAvailabilityModal={this.props.setAvailabilityModal}
+            />
           }
           acceptDoubleTap
           onOpen={() => {
-            console.log('onopen')
-            this.setState({drawerOpen: true})
+            this.props.setDrawerNav({drawerOpen: true})
           }}
           onClose={() => {
-            console.log('onclose')
-            this.setState({drawerOpen: false})
+            this.props.setDrawerNav({drawerOpen: false})
           }}
           captureGestures={false}
-          tweenDuration={100}
+          tweenDuration={250}
           panThreshold={0.08}
-          disabled={this.state.drawerDisabled}
           openDrawerOffset={Dimensions.get('window').width + (Dimensions.get('window').width * 6/12)}
           closedDrawerOffset={0}
           negotiatePan={true}

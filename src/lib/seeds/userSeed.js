@@ -20,7 +20,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'Planet Argon',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1,
+    phoneNumber:' 800115',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     id: 2,
@@ -43,7 +50,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'EyeCue Lab',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1,
+    phoneNumber:' 800114',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev3',
@@ -66,7 +80,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'Sq1',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1,
+    phoneNumber:' 800113',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev4',
@@ -89,7 +110,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1,
+    phoneNumber:' 800112',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev5',
@@ -112,7 +140,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1,
+    phoneNumber:' 800111',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev6',
@@ -135,7 +170,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'EyeCue Lab',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1,
+    phoneNumber: '8001210',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev7',
@@ -158,7 +200,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'Planet Argon',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 2,
+    phoneNumber: '8001239',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev8',
@@ -181,7 +230,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'Planet Argon',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 2,
+    phoneNumber: '8001238',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev9',
@@ -204,7 +260,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1,
+    phoneNumber: '8001237',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev10',
@@ -227,7 +290,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 0.5,
+    phoneNumber: '8001236',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev11',
@@ -250,7 +320,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1,
+    phoneNumber: '8001235',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev12',
@@ -273,7 +350,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 3,
+    phoneNumber: '8001234',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev13',
@@ -296,7 +380,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 2,
+    phoneNumber: '8001233',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev14',
@@ -319,7 +410,14 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 0.5,
+    phoneNumber: '8001232',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   },
   {
     name: 'Dave the Dev15',
@@ -342,7 +440,44 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1,
+    phoneNumber: '8001231',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
+  },
+  {
+    name: 'Admin',
+    id: 16,
+    skills: [
+      {
+        name: 'skill1',
+        skillId: 1
+      },
+      {
+        name: 'skill2',
+        skillId: 2
+      },
+      {
+        name: 'skill3',
+        skillId: 3
+      }
+    ],
+    profileImage:"https://yt3.ggpht.com/-dBAyPP2BX9E/AAAAAAAAAAI/AAAAAAAAAAA/kJwZUNcPu-s/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
+    bio: "The chosen one!",
+    company: 'nope',
+    jobTitle: 'React Native Developer',
+    experience: 10,
+    lunchRadius: 1,
+    phoneNumber: '1234567',
+    availability: [
+      {time: "10", day: "F"},
+      {time: "12", day: "M"},
+      {time: "1", day: "W"}
+    ]
   }
 ]
 

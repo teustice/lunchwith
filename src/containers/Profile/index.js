@@ -13,6 +13,8 @@ import Bio from '../../components/Profile/bio';
 import Skills from '../../components/Profile/skills';
 import Header from '../../components/Profile/header';
 import getUser from '../../selectors/user';
+import getDrawerNav from '../../selectors/drawerNav';
+import getCurrentUser from '../../selectors/currentUser';
 import FormView from '../../components/Forms/basicDetails';
 import getCompany from '../../selectors/business';
 import ProfileImage from '../../components/ProfileModal/image'
@@ -62,7 +64,14 @@ export class Profile extends Component {
         </View>
 
         <View style={styles.drawerIcon}>
-          <DrawerNav navigation={this.props.navigation}/>
+          <DrawerNav
+            drawerNav={this.props.drawerNav}
+            setDrawerNav={this.props.setDrawerNav}
+            navigation={this.props.navigation}
+            setLogInModal={this.props.setLogInModal}
+            currentUser={this.props.currentUser}
+            setCurrentUser={this.props.setCurrentUser}
+          />
         </View>
 
        </ScrollView>
@@ -141,6 +150,8 @@ function mapStateToProps(store) {
   return {
     company: getCompany(store),
     experienceSlider: getExperienceSlider(store),
+    drawerNav: getDrawerNav(store) ,
+    currentUser: getCurrentUser(store)
   };
 }
 

@@ -8,52 +8,37 @@ TouchableOpacity,
 Image,
 View } from 'react-native';
 import { NavigationActions } from 'react-navigation'
+import LoggedIn from './loggedIn';
+import NotLoggedIn from './notLoggedIn';
 
 export default class ControlPanel extends Component {
-
+  isLoggedIn(){
+    if(this.props.currentUser.name) {
+      return(
+        <LoggedIn
+          closeDrawer={this.props.closeDrawer}
+          navigation={this.props.navigation}
+          setLogInModal={this.props.setLogInModal}
+          setDrawerNav={this.props.setDrawerNav}
+          currentUser={this.props.currentUser}
+          setCurrentUser={this.props.setCurrentUser}
+          setAvailabilityModal={this.props.setAvailabilityModal}
+        />)
+    } else {
+      return(
+        <NotLoggedIn
+          closeDrawer={this.props.closeDrawer}
+          navigation={this.props.navigation}
+          setLogInModal={this.props.setLogInModal}
+          setDrawerNav={this.props.setDrawerNav}
+        />)
+    }
+  }
   render() {
-    let {closeDrawer} = this.props
     return (
-      <ScrollView style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={closeDrawer}>
-          <Text>X</Text>
-        </TouchableOpacity>
-        <View style={styles.profile}>
-          <Image
-            style={{width: 50, height: 50, borderRadius: 25}}
-            source={require('../../lib/images/hass.jpeg')}
-          />
-
-          <Text style={styles.userName}>Admin</Text>
-
-          <TouchableOpacity
-            style={styles.navButton}
-            onPress={() => {
-              this.props.navigation.dispatch(resetMapScreen)
-            }}
-          >
-            <Text style={styles.controlText}>Map</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.navButton}
-            onPress={() => {
-              this.props.navigation.dispatch(resetProfile)
-            }}
-          >
-            <Text style={styles.controlText}>Profile</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.navButton}
-            onPress={() => {
-              this.props.navigation.dispatch(resetOnboard)
-            }}
-          >
-            <Text style={styles.controlText}>Onboard</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+      <View>
+        {this.isLoggedIn()}
+      </View>
     )
   }
 }
@@ -90,22 +75,4 @@ const styles = StyleSheet.create({
   }
 })
 
-//reset navigation to prevent stacking screens
-const resetMapScreen = NavigationActions.reset({
-  index: 0,
-  actions: [
-    NavigationActions.navigate({ routeName: 'MapScreen'})
-  ]
-});
-const resetProfile = NavigationActions.reset({
-  index: 0,
-  actions: [
-    NavigationActions.navigate({ routeName: 'Profile'})
-  ]
-});
-const resetOnboard = NavigationActions.reset({
-  index: 0,
-  actions: [
-    NavigationActions.navigate({ routeName: 'Onboard'})
-  ]
-});
+})

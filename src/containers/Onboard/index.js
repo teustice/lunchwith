@@ -4,7 +4,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  StatusBar
 } from 'react-native'
 import {
   ActionsContainer,
@@ -38,6 +39,7 @@ export class OnBoard extends Component {
   render() {
     return (
       <View>
+        <StatusBar hidden={true} />
         <FormView
           markers={this.props.markers}
           initialRegion={this.props.userLocation}

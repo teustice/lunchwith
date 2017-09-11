@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } f
 import MapView from 'react-native-maps';
 import mapStyle from '../../lib/mapStyle';
 
-export class RadiusMap extends Component {
+export class Neighborhood extends Component {
   constructor(props) {
     super(props);
   }
@@ -27,20 +27,12 @@ export class RadiusMap extends Component {
     return (parsedNum * 1609.344);
   }
 
-  calculateCenter(){
-    if(this.props.lunchRadiusMarker.latitude){
-      return this.props.lunchRadiusMarker;
-    } else {
-      return this.props.initialRegion;
-    }
-  }
-
   renderMarker(){
     return(
       <View>
         <MapView.Circle
-          center={this.calculateCenter()}
-          radius={this.milesToMeters(this.props.lunchRadiusSlider)}
+          center={this.props.neighborhood}
+          radius={this.milesToMeters(this.props.radius)}
           fillColor={'rgba(186,206,220, 0.4)'}
           strokeColor={'rgba(186,206,220, 1)'}
         />
@@ -52,20 +44,17 @@ export class RadiusMap extends Component {
     return (
       <View >
         <MapView
-          ref={'radiusMap'}
+          ref={'neighborhood'}
           style={staticStyles.map}
           provider={'google'}
           showsBuildings={false}
           showsTraffic={false}
           showsPointsOfInterest={false}
-          zoomEnabled={false}
-          rotateEnabled={false}
-          pitchEnabled={false}
-          minZoomLevel={13}
-          maxZoomLevel={13}
-          initialRegion={this.props.initialRegion}
+          region={this.props.neighborhood}
           customMapStyle={mapStyle}
-          onPress={e => this.createMarker(e.nativeEvent)}
+          cacheEnabled={true}
+          scrollEnabled={false}
+          pitchEnabled={false}
         >
         {this.renderMarker()}
         </MapView>
@@ -82,8 +71,8 @@ const staticStyles = StyleSheet.create({
   },
   map: {
     width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').height * 2/4),
+    height: 150,
   },
 });
 
-export default RadiusMap;
+export default Neighborhood;
