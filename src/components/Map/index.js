@@ -6,6 +6,7 @@ import users from '../../lib/seeds/userSeed';
 import findUserById from '../../lib/helpers/userById';
 import mapStyle from '../../lib/mapStyle';
 import supercluster from 'supercluster';
+import MapFilter from './filter';
 
 const pinActive = require('../../lib/images/pinActive.png');
 const pin = require('../../lib/images/pin.png');
@@ -129,6 +130,7 @@ export class Map extends Component {
     this.state.tempMarkers = this._createCluster(convertedMarkers);
     return (
       <View >
+
         <MapView
           ref={'map'}
           style={staticStyles.map}
@@ -145,6 +147,7 @@ export class Map extends Component {
           maxZoomLevel={13}
           customMapStyle={mapStyle}
         >
+              <MapFilter />
         {this._createRegions()}
         </MapView>
       </View>

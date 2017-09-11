@@ -25,7 +25,7 @@ const staticStyles = StyleSheet.create({
     height: 48,
     borderRadius: 24,
     alignSelf: 'flex-end',
-    marginRight: 9,
+    marginRight: 12,
     marginTop: -20,
     zIndex: 500,
   },

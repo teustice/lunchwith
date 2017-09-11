@@ -15,14 +15,25 @@ export class Header extends Component {
   render() {
     let tempUser = findUserById(1);
     return (
-      <View >
-
-        <Text>{tempUser.name}</Text>
-        <Text>{tempUser.company}</Text>
+      <View>
+        <Text style={staticStyles.closeTitle}>{tempUser.name}</Text>
       </View>
     );
   }
 }
 
+
+const staticStyles = StyleSheet.create({
+  closeTitle: {
+    color: 'white',
+    marginTop: 8,
+    paddingTop: 8,
+    marginBottom: -3,
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 20,
+    alignSelf: 'center',
+    backgroundColor: 'rgba(255,255,255,0)',
+  },
+});
 
 export default Header;
