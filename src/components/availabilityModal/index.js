@@ -74,16 +74,16 @@ class AvailabilityModal extends Component {
           <Text style={staticStyles.dayText}>{day}</Text>
         </View>
         <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("10", day)}
+          {this.toggleButton("10-11", day)}
         </View>
         <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("11", day)}
+          {this.toggleButton("11-12", day)}
         </View>
         <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("12", day)}
+          {this.toggleButton("12-1", day)}
         </View>
         <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("1", day)}
+          {this.toggleButton("1-2", day)}
         </View>
       </View>
     )
@@ -206,15 +206,15 @@ const staticStyles = StyleSheet.create({
   },
   buttonTime: {
     alignSelf: 'center',
-    marginTop: 12,
+    marginTop: 15,
     color: 'rgb(65,152,240)',
-    fontSize: 20,
+    fontSize: 14,
   },
   buttonTimeSelected: {
     alignSelf: 'center',
-    marginTop: 12,
+    marginTop: 15,
     color: 'white',
-    fontSize: 20,
+    fontSize: 14,
   },
   dayText: {
     color: 'grey',
