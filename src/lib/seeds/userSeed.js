@@ -22,7 +22,7 @@ const users = [
     jobTitle: 'React Native Developer',
     experience: 4,
     lunchRadius: 1,
-    phoneNumber:' 800115',
+    phoneNumber: '800115',
     availability: [
       {time: "10", day: "F"},
       {time: "12", day: "M"},

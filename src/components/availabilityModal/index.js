@@ -10,7 +10,7 @@ class AvailabilityModal extends Component {
   componentDidUpdate(prevProps, PrevState){
     if(prevProps.currentUser != this.props.currentUser){
       if(this.props.currentUser.name){
-        this.setState({pressedButtons: this.props.currentUser.availability})
+        this.setState(this.props.currentUser.availability)
       }
     }
   }

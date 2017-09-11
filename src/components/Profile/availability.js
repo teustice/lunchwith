@@ -12,38 +12,37 @@ export class Availability extends Component {
     this.props.setRegion({ region });
   }
 
+  availabilityLength(){
+    return this.props.currentUser.availability.length
+  }
+
+  availabilitySample(){
+    let availabilityList = [];
+    for(let i=0; i<this.props.currentUser.availability.length; i++){
+      if(i === 3) {
+        break;
+      } else {
+        availabilityList.push(
+          <View style={staticStyle.skillRow}>
+            <Image
+              source={require('../../lib/images/skillCircle.png')}
+              style={staticStyle.skillImage}
+            />
+            <Text style={staticStyle.skillNumber}>{this.props.currentUser.availability[i].day}</Text>
+            <Text style={staticStyle.skillName}>{this.props.currentUser.availability[i].time}</Text>
+            <Text style={staticStyle.updateButton}>Update</Text>
+          </View>
+        )
+      }
+    }
+    return availabilityList;
+  }
+
   render() {
-    let tempUser = findUserById(1);
     return (
       <View >
-        <Text style={staticStyle.skillsHeader}><Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>3 Available Hours</Text> During the Week</Text>
-        <View style={staticStyle.skillRow}>
-          <Image
-            source={require('../../lib/images/skillCircle.png')}
-            style={staticStyle.skillImage}
-          />
-          <Text style={staticStyle.skillNumber}>MON</Text>
-          <Text style={staticStyle.skillName}>11:00AM to 12:00PM</Text>
-          <Text style={staticStyle.updateButton}>Update</Text>
-        </View>
-        <View style={staticStyle.skillRow}>
-          <Image
-            source={require('../../lib/images/skillCircle.png')}
-            style={staticStyle.skillImage}
-          />
-          <Text style={staticStyle.skillNumber}>MON</Text>
-          <Text style={staticStyle.skillName}>1:00pm to 2:00pm</Text>
-          <Text style={staticStyle.updateButton}>Update</Text>
-        </View>
-        <View style={staticStyle.skillRow}>
-          <Image
-            source={require('../../lib/images/skillCircle.png')}
-            style={staticStyle.skillImage}
-          />
-          <Text style={staticStyle.skillNumberB}>N/A</Text>
-          <Text style={staticStyle.skillName}>- - - -</Text>
-          <Text style={staticStyle.addButton}>Add</Text>
-        </View>
+        <Text style={staticStyle.skillsHeader}><Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.availabilityLength()} Available Hours</Text> During the Week</Text>
+        {this.availabilitySample()}
         <Text style={staticStyle.skillsExplanation}>Let people know when you are willing to talk about over lunch!</Text>
       </View>
     );

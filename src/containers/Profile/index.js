@@ -34,33 +34,35 @@ export class Profile extends Component {
   }
 
   render() {
-    let tempUser = findUserById(1);
     return (
 
       <ScrollView>
         <StatusBar hidden={true} />
         <View style={staticStyles.header}>
-          <Header setUser={this.props.setUser} />
+          <Header profile={this.props.currentUser} />
         </View>
 
 
         <View style={staticStyles.content}>
-          <ProfileImage profile={tempUser} />
-          <Bio setUser={this.props.setUser} />
+          <ProfileImage profile={this.props.currentUser} />
+          <Bio currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser} />
         </View>
 
         <View style={staticStyles.content}>
-          <Skills setUser={this.props.setUser}/>
+          <Skills setUser={this.props.currentUser}/>
         </View>
 
         <View style={staticStyles.content}>
-          <ExperienceSlider setUser={this.props.setUser}
+          <ExperienceSlider setUser={this.props.currentUser}
                             experienceSlider={this.props.experienceSlider}
                             setExperienceSlider={this.props.setExperienceSlider} />
         </View>
 
         <View style={staticStyles.content}>
-          <Availability setUser={this.props.setUser} />
+          <Availability
+            currentUser={this.props.currentUser}
+            setAvailabilityModal={this.props.setAvailabilityModal}
+          />
         </View>
 
         <View style={styles.drawerIcon}>
@@ -151,7 +153,7 @@ function mapStateToProps(store) {
     company: getCompany(store),
     experienceSlider: getExperienceSlider(store),
     drawerNav: getDrawerNav(store) ,
-    currentUser: getCurrentUser(store)
+    currentUser: getCurrentUser(store),
   };
 }
 

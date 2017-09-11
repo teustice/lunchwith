@@ -9,9 +9,6 @@ const timeOptions = [
   {label: '1:00pm', value: '2'}
 ]
 
-
-
-
 export class MapFilter extends Component {
   constructor(props) {
     super(props);
