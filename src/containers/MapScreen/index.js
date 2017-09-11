@@ -74,6 +74,45 @@ export class MapScreen extends Component {
     }
   }
 
+  existsInArray(array, element){
+    for(let i=0; i<array.length; i++){
+      if(element.id === array[i].id){
+        return true;
+      }
+    }
+  }
+
+  filterMap(){
+    let tempUser = {};
+    let newMarkers= [];
+    let startTime = parseInt(this.props.availabilityFilter.timeStart);
+    let endTime = parseInt(this.props.availabilityFilter.timeEnd);
+
+    if(startTime == 1){
+      startTime += 12;
+    }
+    if(endTime == 1 || endTime == 2){
+      endTime += 12;
+    }
+
+    for(let i=0; i<this.props.markers.length; i++){
+      tempUser = findUserById(this.props.markers[i].userId);
+      for(let x=0; x<tempUser.availability.length; x++){
+        if(this.existsInArray(newMarkers, this.props.markers[i])){
+        } else {
+          if(tempUser.availability[x].time == 1) {
+            if(startTime <= (tempUser.availability[x].time + 12) && (tempUser.availability[x].time + 12) <= endTime){
+              newMarkers.push(this.props.markers[i]);
+            }
+          } else if(startTime <= (tempUser.availability[x].time) && (tempUser.availability[x].time) <= endTime) {
+            newMarkers.push(this.props.markers[i]);
+          }
+        }
+      }
+    }
+    return newMarkers;
+  }
+
   pageRender(){
     if(this.props.userLocation.latitude){
       return(
@@ -84,7 +123,7 @@ export class MapScreen extends Component {
             setCarousel={this.props.setCarousel}
             setRegion={this.props.setRegion}
             region={this.props.region}
-            markers={this.props.markers}
+            markers={this.filterMap()}
             userLocation={this.props.userLocation}
             clusters={this.props.clusters}
             setClusters={this.props.setClusters}
