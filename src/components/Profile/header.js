@@ -13,10 +13,9 @@ export class Header extends Component {
   }
 
   render() {
-    let tempUser = findUserById(1);
     return (
       <View>
-        <Text style={staticStyles.closeTitle}>{tempUser.name}</Text>
+        <Text style={staticStyles.closeTitle}>{this.props.profile.name}</Text>
       </View>
     );
   }

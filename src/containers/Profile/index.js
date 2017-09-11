@@ -15,6 +15,10 @@ import Header from '../../components/Profile/header';
 import getUser from '../../selectors/user';
 import getDrawerNav from '../../selectors/drawerNav';
 import getCurrentUser from '../../selectors/currentUser';
+import getAvailabilityModal from '../../selectors/availabilityModal';
+import getLunchRadiusMarker from '../../selectors/lunchRadiusMarker';
+import getLunchRadiusSlider from '../../selectors/lunchRadiusSlider';
+import getUserLocation from '../../selectors/userLocation';
 import FormView from '../../components/Forms/basicDetails';
 import getCompany from '../../selectors/business';
 import ProfileImage from '../../components/ProfileModal/image'
@@ -22,6 +26,9 @@ import findUserById from '../../lib/helpers/userById';
 import ExperienceSlider from '../../components/Forms/slider'
 import getExperienceSlider from '../../selectors/experienceSlider';
 import Availability from '../../components/Profile/availability';
+import AvailabilityModal from '../../components/availabilityModal';
+import RadiusMap from '../../components/Forms/radiusMap';
+import RadiusSlider from '../../components/Forms/radiusSlider';
 
 export class Profile extends Component {
 
@@ -34,33 +41,38 @@ export class Profile extends Component {
   }
 
   render() {
-    let tempUser = findUserById(1);
     return (
 
       <ScrollView>
         <StatusBar hidden={true} />
         <View style={staticStyles.header}>
-          <Header setUser={this.props.setUser} />
-        </View>
-
-
-        <View style={staticStyles.content}>
-          <ProfileImage profile={tempUser} />
-          <Bio setUser={this.props.setUser} />
+          <Header profile={this.props.currentUser} />
         </View>
 
         <View style={staticStyles.content}>
-          <Skills setUser={this.props.setUser}/>
+          <ProfileImage profile={this.props.currentUser} />
+          <Bio currentUser={this.props.currentUser} setCurrentUser={this.props.setCurrentUser} />
         </View>
 
         <View style={staticStyles.content}>
-          <ExperienceSlider setUser={this.props.setUser}
-                            experienceSlider={this.props.experienceSlider}
-                            setExperienceSlider={this.props.setExperienceSlider} />
+          <Skills setUser={this.props.currentUser}/>
         </View>
 
         <View style={staticStyles.content}>
-          <Availability setUser={this.props.setUser} />
+          <ExperienceSlider
+            setUser={this.props.currentUser}
+            experienceSlider={this.props.experienceSlider}
+            setExperienceSlider={this.props.setExperienceSlider}
+            currentUser={this.props.currentUser}
+            setCurrentUser={this.props.setCurrentUser}
+          />
+        </View>
+
+        <View style={staticStyles.content}>
+          <Availability
+            currentUser={this.props.currentUser}
+            setAvailabilityModal={this.props.setAvailabilityModal}
+          />
         </View>
 
         <View style={styles.drawerIcon}>
@@ -71,6 +83,26 @@ export class Profile extends Component {
             setLogInModal={this.props.setLogInModal}
             currentUser={this.props.currentUser}
             setCurrentUser={this.props.setCurrentUser}
+            setAvailabilityModal={this.props.setAvailabilityModal}
+          />
+        </View>
+        <AvailabilityModal
+          availabilityModal={this.props.availabilityModal}
+          setAvailabilityModal={this.props.setAvailabilityModal}
+          currentUser={this.props.currentUser}
+          setCurrentUser={this.props.setCurrentUser}
+        />
+
+        <View style={staticStyles.content}>
+          <RadiusMap
+            lunchRadiusMarker={this.props.lunchRadiusMarker}
+            setLunchRadiusMarker={this.props.setLunchRadiusMarker}
+            lunchRadiusSlider={this.props.lunchRadiusSlider}
+            initialRegion={this.props.userLocation}
+          />
+          <RadiusSlider
+            lunchRadiusSlider={this.props.lunchRadiusSlider}
+            setLunchRadiusSlider={this.props.setLunchRadiusSlider}
           />
         </View>
 
@@ -151,7 +183,11 @@ function mapStateToProps(store) {
     company: getCompany(store),
     experienceSlider: getExperienceSlider(store),
     drawerNav: getDrawerNav(store) ,
-    currentUser: getCurrentUser(store)
+    currentUser: getCurrentUser(store),
+    availabilityModal: getAvailabilityModal(store),
+    lunchRadiusMarker: getLunchRadiusMarker(store),
+    lunchRadiusSlider: getLunchRadiusSlider(store),
+    userLocation: getUserLocation(store),
   };
 }
 

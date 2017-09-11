@@ -79,10 +79,11 @@ const staticStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 10,
   },
   map: {
-    width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').height * 2/4),
+    width: '100%',
+    height: (Dimensions.get('window').height * 1/3),
   },
 });
 
