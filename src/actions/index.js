@@ -35,6 +35,9 @@ import fetchCurrentUser from './fetch-currentUser';
 import setCurrentUser from './set-currentUser';
 import fetchAvailabilityModal from './fetch-availabilityModal';
 import setAvailabilityModal from './set-availabilityModal';
+import fetchAvailabilityFilter from './fetch-availabilityFilter';
+import setAvailabilityFilter from './set-availabilityFilter';
+
 import { genericError } from './errors';
 
 const ActionCreators = {
@@ -76,7 +79,9 @@ const ActionCreators = {
   fetchCurrentUser,
   setCurrentUser,
   fetchAvailabilityModal,
-  setAvailabilityModal
+  setAvailabilityModal,
+  fetchAvailabilityFilter,
+  setAvailabilityFilter,
 };
 
 export default ActionCreators;
