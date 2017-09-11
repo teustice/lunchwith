@@ -11,16 +11,36 @@ import getRegion from '../../selectors/region';
 import getUser from '../../selectors/user';
 import getMarkers from '../../selectors/markers';
 import getUserLocation from '../../selectors/userLocation';
+import getLogInModal from '../../selectors/logInModal';
 import getCarousel from '../../selectors/carousel';
 import getProfileModal from '../../selectors/profileModal';
 import getDrawerNav from '../../selectors/drawerNav';
 import getClusters from '../../selectors/clusters';
 import getActiveMarker from '../../selectors/activeMarker';
+import getCurrentUser from '../../selectors/currentUser';
+import getAvailabilityModal from '../../selectors/availabilityModal';
 import findUserById from '../../lib/helpers/userById';
 import ProfileCarousel from '../../components/ProfileCarousel';
 import DrawerNav from '../../components/DrawerNav/index';
+import LogIn from '../../components/LogIn/index';
+import NewUser from '../../components/LogIn/newUser';
+import AvailabilityModal from '../../components/availabilityModal';
 
 export class MapScreen extends Component {
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.props.setUserLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+    );
+  }
+
   renderCarousel(){
     if(this.props.clusters[0] || this.props.clusters.properties){
       return(
@@ -52,32 +72,57 @@ export class MapScreen extends Component {
     }
   }
 
-  render() {
-    console.log(this.props);
-    return (
-      <View>
-        <StatusBar hidden={true} />
-        <Map
-          carousel={this.props.carousel}
-          setCarousel={this.props.setCarousel}
-          setRegion={this.props.setRegion}
-          region={this.props.region}
-          markers={this.props.markers}
-          initialRegion={this.props.userLocation}
-          clusters={this.props.clusters}
-          setClusters={this.props.setClusters}
-          activeMarker={this.props.activeMarker}
-          setActiveMarker={this.props.setActiveMarker}
-        />
-        {this.renderCarousel()}
-        {this.navBlur()}
-        <View style={styles.drawerIcon}>
-          <DrawerNav
-            navigation={this.props.navigation}
-            drawerNav={this.props.drawerNav}
-            setDrawerNav={this.props.setDrawerNav}
+  pageRender(){
+    if(this.props.userLocation.latitude){
+      return(
+        <View>
+          <StatusBar hidden={true} />
+          <Map
+            carousel={this.props.carousel}
+            setCarousel={this.props.setCarousel}
+            setRegion={this.props.setRegion}
+            region={this.props.region}
+            markers={this.props.markers}
+            userLocation={this.props.userLocation}
+            clusters={this.props.clusters}
+            setClusters={this.props.setClusters}
+            activeMarker={this.props.activeMarker}
+            setActiveMarker={this.props.setActiveMarker}
+          />
+          {this.renderCarousel()}
+          {this.navBlur()}
+          <View style={styles.drawerIcon}>
+            <DrawerNav
+              navigation={this.props.navigation}
+              drawerNav={this.props.drawerNav}
+              setDrawerNav={this.props.setDrawerNav}
+              setLogInModal={this.props.setLogInModal}
+              currentUser={this.props.currentUser}
+              setCurrentUser={this.props.setCurrentUser}
+              setAvailabilityModal={this.props.setAvailabilityModal}
+            />
+          </View>
+          <LogIn
+            currentUser={this.props.currentUser}
+            setCurrentUser={this.props.setCurrentUser}
+            logInModal={this.props.logInModal}
+            setLogInModal={this.props.setLogInModal}
+          />
+          <AvailabilityModal
+            availabilityModal={this.props.availabilityModal}
+            setAvailabilityModal={this.props.setAvailabilityModal}
+            currentUser={this.props.currentUser}
+            setCurrentUser={this.props.setCurrentUser}
           />
         </View>
+      )
+    }
+  }
+
+  render() {
+    return (
+      <View>
+        {this.pageRender()}
       </View>
     );
   }
@@ -105,6 +150,7 @@ MapScreen.defaultProps = {
   setCarousel: () => {},
   setMarkers: () => {},
   setProfileModal: () => {},
+  setAvailabilityModal: () => {},
   region: {},
   carousel: {},
 };
@@ -130,7 +176,10 @@ function mapStateToProps(store) {
     activeMarker: getActiveMarker(store),
     users: getUser(store),
     clusters: getClusters(store),
-    drawerNav: getDrawerNav(store)
+    drawerNav: getDrawerNav(store),
+    logInModal: getLogInModal(store),
+    currentUser: getCurrentUser(store),
+    availabilityModal: getAvailabilityModal(store)
   };
 }
 

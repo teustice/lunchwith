@@ -5,22 +5,25 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Slider
+  Slider,
+  ScrollView,
+  StatusBar,
+  Dimensions,
 } from 'react-native'
-import {
-  ActionsContainer,
-  Button,
-  FieldsContainer,
-  Fieldset,
-  Form,
-  FormGroup,
-  Label,
-} from 'react-native-clean-form'
-import {
-  Input,
-  Select,
-  Switch
-} from 'react-native-clean-form/redux-form-immutable'
+// import {
+//   ActionsContainer,
+//   Button,
+//   FieldsContainer,
+//   Fieldset,
+//   Form,
+//   FormGroup,
+//   Label,
+// } from 'react-native-clean-form'
+// import {
+//   Input,
+//   Select,
+//   Switch
+// } from 'react-native-clean-form/redux-form-immutable'
 import { Field, reduxForm } from 'redux-form'
 import Businesses from '../Places/businesses';
 import ActionCreators from '../../actions/index';
@@ -34,14 +37,14 @@ import MultiSliderUse from './multislider';
 import RadiusMap from './radiusMap';
 import RadiusSlider from './radiusSlider';
 
-const onSubmit = (values, dispatch) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log(values)
-      resolve()
-    }, 1500)
-  })
-}
+// const onSubmit = (values, dispatch) => {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       console.log(values)
+//       resolve()
+//     }, 1500)
+//   })
+// }
 
 export class FormView extends Component {
   constructor(props) {
@@ -60,67 +63,69 @@ export class FormView extends Component {
   }
 
   render() {
-    const { handleSubmit, submitting } = this.props
+    const { handleSubmit, submitting } = this.props;
     const experience = this.state.experience;
-
+    let _onboardCarousel: ScrollView;
     return (
-      <Form>
-        <RadiusMap
-          lunchRadiusMarker={this.props.lunchRadiusMarker}
-          setLunchRadiusMarker={this.props.setLunchRadiusMarker}
-          lunchRadiusSlider={this.props.lunchRadiusSlider}
-          initialRegion={this.props.userLocation}
-        />
-        <RadiusSlider
-          lunchRadiusSlider={this.props.lunchRadiusSlider}
-          setLunchRadiusSlider={this.props.setLunchRadiusSlider}
-        />
-        <FieldsContainer style={{marginTop: 20}}>
-          <Fieldset label="Contact details">
-            <Input label="First name" placeholder="John" name="first_name" />
-            <Input label="Last name" placeholder="Doe" name="last_name"/>
-            <Businesses setBusiness={this.props.setBusiness} company={this.props.company.name} name="company_name"  />
-            <Input label="Job Title" name="job_title" placeholder="Backend Developer" />
-            <Input name="bio" label="Bio" placeholder="Say something about yourself!"  multiline={true} numberOfLines={2}/>
+      <View>
+      <StatusBar hidden={true} />
+        <ScrollView
+          ref={(scrollView) => { _onboardCarousel = scrollView; }}
+          horizontal={true}
+          pagingEnabled={true}
+          scrollEnabled={false}
+        >
+          <View style={styles.formScreen}>
+            <View style={styles.inputContainer}>
+              <Text style={styles.label}>A Little About Yourself</Text>
+              <TextInput style={styles.input} placeholder="First Name" name="first_name" />
+              <TextInput style={styles.input} placeholder="Last Name" name="last_name"/>
+              <TouchableOpacity
+                onPress={() => { _onboardCarousel.scrollTo({x: Dimensions.get('window').width})}}
+              >
+                <Text>Next</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
 
-            <Skills name="skills" skillsProp={this.props.skills}
-                                      setSkills={this.props.setSkills}/>
+          <View style={styles.formScreen}>
+            <Text>Skills/Experience</Text>
+            <TouchableOpacity
+              onPress={() => { _onboardCarousel.scrollTo({x: Dimensions.get('window').width * 2})}}
+            >
+              <Text>Next</Text>
+            </TouchableOpacity>
+          </View>
 
-            <Label>Total Tech Experience (years)</Label>
+          <View style={styles.formScreen}>
+            <RadiusMap
+              lunchRadiusMarker={this.props.lunchRadiusMarker}
+              setLunchRadiusMarker={this.props.setLunchRadiusMarker}
+              lunchRadiusSlider={this.props.lunchRadiusSlider}
+              initialRegion={this.props.userLocation}
+            />
+            <RadiusSlider
+              lunchRadiusSlider={this.props.lunchRadiusSlider}
+              setLunchRadiusSlider={this.props.setLunchRadiusSlider}
+            />
+            <View style={{alignItems: 'center', marginTop: 20,}}>
+              <Text style={styles.mapText}>Tap the map where you would like to have your lunches</Text>
+              <Text style={styles.mapText}>Then decide the area size that best suites you</Text>
 
-            <ExperienceSlider experienceSlider={this.props.experienceSlider}
-                              setExperienceSlider={this.props.setExperienceSlider} />
+              <TouchableOpacity
+              style={{marginTop: 20}}
+              onPress={() => { _onboardCarousel.scrollTo({x: Dimensions.get('window').width * 3})}}
+              >
+              <Text>Next</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
 
-
-            <Text style={styles.title}>Lunch Availability</Text>
-            <Label>Monday</Label>
-            <MultiSliderUse availabilityProp = {this.state.monday}
-                            onAvailabilityChange={this.handleMondayChange}/>
-            <Label>Tuesday</Label>
-            <MultiSliderUse availabilityProp = {this.state.tuesday}
-                            onAvailabilityChange={this.handleTuesdayChange}/>
-            <Label>Wednesday</Label>
-            <MultiSliderUse availabilityProp = {this.state.wednesday}
-                            onAvailabilityChange={this.handleWednesdayChange}/>
-            <Label>Thursday</Label>
-            <MultiSliderUse availabilityProp = {this.state.thursday}
-                            onAvailabilityChange={this.handleThursdayChange}/>
-            <Label>Friday</Label>
-            <MultiSliderUse availabilityProp = {this.state.friday}
-                            onAvailabilityChange={this.handleFridayChange}/>
-            <Label>Saturday</Label>
-            <MultiSliderUse availabilityProp = {this.state.saturday}
-                            onAvailabilityChange={this.handleSaturdayChange}/>
-            <Label>Sunday</Label>
-            <MultiSliderUse availabilityProp = {this.state.sunday}
-                            onAvailabilityChange={this.handleSundayChange}/>
-
-          </Fieldset>
-        </FieldsContainer>
-        <ActionsContainer>
-          <Button icon="md-checkmark" iconPlacement="right"  onPress={handleSubmit(onSubmit)} submitting={submitting}>Save</Button>
-        </ActionsContainer>
-      </Form>
+          <View style={styles.formScreen}>
+            <Text>Availability goes here</Text>
+          </View>
+        </ScrollView>
+      </View>
     )
   }
 }
@@ -132,11 +137,36 @@ var styles = StyleSheet.create({
     paddingVertical: 20,
     alignSelf: 'flex-start',
   },
+  formScreen: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    backgroundColor: 'white'
+  },
+  input: {
+    fontSize: 15,
+    width: Dimensions.get('window').width * 1/2,
+    paddingBottom: 5,
+    borderBottomWidth: 1,
+    marginBottom: 20,
+    borderColor: 'grey',
+    alignSelf: 'center'
+  },
+  label: {
+    fontSize: 20,
+    color: 'grey',
+    alignSelf: 'center',
+    marginBottom: 30
+  },
+  inputContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: (Dimensions.get('window').height * 1/4),
+  },
+  mapText: {
+    color: 'grey'
+  }
 });
 
 
 
-export default reduxForm({
-  form: 'Form',
-
-})(FormView)
+export default FormView

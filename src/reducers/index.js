@@ -18,6 +18,9 @@ import clusters from './clusters';
 import skills from './skills';
 import activeMarker from './activeMarker';
 import drawerNav from './drawerNav';
+import logInModal from './logInModal';
+import currentUser from './currentUser';
+import availabilityModal from './availabilityModal';
 
 export const reducers = {
   title,
@@ -37,7 +40,10 @@ export const reducers = {
   newUser,
   experienceSlider,
   skills,
-  drawerNav
+  drawerNav,
+  logInModal,
+  availabilityModal,
+  currentUser
 };
 
 export default function getRootReducer(navReducer) {

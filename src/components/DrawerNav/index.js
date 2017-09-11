@@ -7,7 +7,6 @@ export class DrawerNav extends Component {
   constructor(props) {
     super(props);
   }
-
   closeDrawer = () => {
     this._drawer.close()
   };
@@ -22,7 +21,15 @@ export class DrawerNav extends Component {
           type="overlay"
           side={'left'}
           content={
-            <ControlPanel closeDrawer={this.closeDrawer} navigation={this.props.navigation} />
+            <ControlPanel
+              closeDrawer={this.closeDrawer}
+              navigation={this.props.navigation}
+              setLogInModal={this.props.setLogInModal}
+              setDrawerNav={this.props.setDrawerNav}
+              currentUser={this.props.currentUser}
+              setCurrentUser={this.props.setCurrentUser}
+              setAvailabilityModal={this.props.setAvailabilityModal}
+            />
           }
           acceptDoubleTap
           onOpen={() => {

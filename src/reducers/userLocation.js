@@ -4,12 +4,7 @@ import createReducer from '../lib/helpers/createReducer';
 import { USER_LOCATION_SET } from '../lib/constants/actions';
 
 
-const defaultState = Map().set('userLocation', {
-    latitude: 45.521371,
-    longitude: -122.673168,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421
-  });
+const defaultState = Map().set('userLocation', {});
 
 export default createReducer(defaultState, {
 

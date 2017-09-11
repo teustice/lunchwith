@@ -19,6 +19,11 @@ export class Map extends Component {
     }
   }
 
+  componentDidMount(){
+    //set map to users location on mount
+    this.refs.map.animateToRegion(this.props.userLocation, 250);
+  }
+
   _createCluster(data) {
     const index = supercluster({
       radius: 60,
@@ -131,8 +136,6 @@ export class Map extends Component {
           showsBuildings={false}
           showsTraffic={false}
           showsPointsOfInterest={false}
-          region={this.props.region}
-          initialRegion={this.props.initialRegion}
           onRegionChangeComplete={region=>{this.props.setRegion(region);}}
           showsUserLocation={false}
           zoomEnabled={false}
