@@ -470,7 +470,7 @@ const users = [
     bio: "The chosen one!",
     company: 'nope',
     jobTitle: 'React Native Developer',
-    experience: 10,
+    experience: 4,
     lunchRadius: 1,
     phoneNumber: '1234567',
     availability: [

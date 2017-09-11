@@ -14,20 +14,19 @@ class ExperienceSlider extends React.Component {
 
   changeSliderValue(sliderValue){
     let value = sliderValue.toFixed(0);
-    if(this.props.experienceSlider != value){
-      this.props.setExperienceSlider(value);
-      if(this.props.experienceSlider === 10){}
+    if(this.props.currentUser.experience != value){
+      this.props.setCurrentUser({...this.props.currentUser, experience: value});
     }
   }
   render() {
     return (
       <View>
         <Text style={styles.text} >
-          You Have About <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.props.experienceSlider} Years</Text> of <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>Experience</Text>
+          You Have About <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.props.currentUser.experience} Years</Text> of <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>Experience</Text>
         </Text>
         <Slider
           thumbSize={10}
-          value={parseInt(this.props.experienceSlider)}
+          value={parseInt(this.props.currentUser.experience)}
           onValueChange={(value) => this.changeSliderValue(value)}
           maximumValue={10}
           style={{marginHorizontal: 15}}
