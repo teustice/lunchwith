@@ -21,6 +21,7 @@ import drawerNav from './drawerNav';
 import logInModal from './logInModal';
 import currentUser from './currentUser';
 import availabilityModal from './availabilityModal';
+import availabilityFilter from './availabilityFilter';
 
 export const reducers = {
   title,
@@ -43,7 +44,8 @@ export const reducers = {
   drawerNav,
   logInModal,
   availabilityModal,
-  currentUser
+  currentUser,
+  availabilityFilter,
 };
 
 export default function getRootReducer(navReducer) {

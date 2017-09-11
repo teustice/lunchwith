@@ -19,12 +19,14 @@ import getClusters from '../../selectors/clusters';
 import getActiveMarker from '../../selectors/activeMarker';
 import getCurrentUser from '../../selectors/currentUser';
 import getAvailabilityModal from '../../selectors/availabilityModal';
+import getAvailabilityFilter from '../../selectors/availabilityFilter';
 import findUserById from '../../lib/helpers/userById';
 import ProfileCarousel from '../../components/ProfileCarousel';
 import DrawerNav from '../../components/DrawerNav/index';
 import LogIn from '../../components/LogIn/index';
 import NewUser from '../../components/LogIn/newUser';
 import AvailabilityModal from '../../components/availabilityModal';
+import MapFilter from './filter';
 
 export class MapScreen extends Component {
   componentDidMount() {
@@ -89,6 +91,10 @@ export class MapScreen extends Component {
             activeMarker={this.props.activeMarker}
             setActiveMarker={this.props.setActiveMarker}
           />
+          <MapFilter
+            availabilityFilter={this.props.availabilityFilter}
+            setAvailabilityFilter={this.props.setAvailabilityFilter}
+          />
           {this.renderCarousel()}
           {this.navBlur()}
           <View style={styles.drawerIcon}>
@@ -151,6 +157,7 @@ MapScreen.defaultProps = {
   setMarkers: () => {},
   setProfileModal: () => {},
   setAvailabilityModal: () => {},
+  setAvailabilityFilter: () => {},
   region: {},
   carousel: {},
 };
@@ -179,7 +186,8 @@ function mapStateToProps(store) {
     drawerNav: getDrawerNav(store),
     logInModal: getLogInModal(store),
     currentUser: getCurrentUser(store),
-    availabilityModal: getAvailabilityModal(store)
+    availabilityModal: getAvailabilityModal(store),
+    availabilityFilter: getAvailabilityFilter(store),
   };
 }
 

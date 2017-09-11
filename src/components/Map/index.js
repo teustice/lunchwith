@@ -6,7 +6,7 @@ import users from '../../lib/seeds/userSeed';
 import findUserById from '../../lib/helpers/userById';
 import mapStyle from '../../lib/mapStyle';
 import supercluster from 'supercluster';
-import MapFilter from './filter';
+// import MapFilter from './filter';
 
 const pinActive = require('../../lib/images/pinActive.png');
 const pin = require('../../lib/images/pin.png');
