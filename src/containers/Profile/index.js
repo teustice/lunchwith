@@ -15,6 +15,7 @@ import Header from '../../components/Profile/header';
 import getUser from '../../selectors/user';
 import getDrawerNav from '../../selectors/drawerNav';
 import getCurrentUser from '../../selectors/currentUser';
+import getAvailabilityModal from '../../selectors/availabilityModal';
 import FormView from '../../components/Forms/basicDetails';
 import getCompany from '../../selectors/business';
 import ProfileImage from '../../components/ProfileModal/image'
@@ -22,6 +23,7 @@ import findUserById from '../../lib/helpers/userById';
 import ExperienceSlider from '../../components/Forms/slider'
 import getExperienceSlider from '../../selectors/experienceSlider';
 import Availability from '../../components/Profile/availability';
+import AvailabilityModal from '../../components/availabilityModal';
 
 export class Profile extends Component {
 
@@ -41,7 +43,6 @@ export class Profile extends Component {
         <View style={staticStyles.header}>
           <Header profile={this.props.currentUser} />
         </View>
-
 
         <View style={staticStyles.content}>
           <ProfileImage profile={this.props.currentUser} />
@@ -73,8 +74,15 @@ export class Profile extends Component {
             setLogInModal={this.props.setLogInModal}
             currentUser={this.props.currentUser}
             setCurrentUser={this.props.setCurrentUser}
+            setAvailabilityModal={this.props.setAvailabilityModal}
           />
         </View>
+        <AvailabilityModal
+          availabilityModal={this.props.availabilityModal}
+          setAvailabilityModal={this.props.setAvailabilityModal}
+          currentUser={this.props.currentUser}
+          setCurrentUser={this.props.setCurrentUser}
+        />
 
        </ScrollView>
 
@@ -154,6 +162,7 @@ function mapStateToProps(store) {
     experienceSlider: getExperienceSlider(store),
     drawerNav: getDrawerNav(store) ,
     currentUser: getCurrentUser(store),
+    availabilityModal: getAvailabilityModal(store),
   };
 }
 

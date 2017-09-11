@@ -16,6 +16,24 @@ export class Availability extends Component {
     return this.props.currentUser.availability.length
   }
 
+  formatTime(time){
+    let parsedTime = parseInt(time);
+    switch(parsedTime){
+      case 10:
+        return `${time}:00AM to 11:00AM`;
+        break;
+      case 11:
+        return `${time}:00AM to 12:00PM`;
+        break;
+      case 12:
+        return `${time}:00PM to 1:00PM`;
+        break;
+      case 1:
+        return `${time}:00PM to 2:00PM`;
+        break;
+    }
+  }
+
   availabilitySample(){
     let availabilityList = [];
     for(let i=0; i<this.props.currentUser.availability.length; i++){
@@ -23,13 +41,15 @@ export class Availability extends Component {
         break;
       } else {
         availabilityList.push(
-          <View style={staticStyle.skillRow}>
+          <View key={i} style={staticStyle.skillRow}>
             <Image
               source={require('../../lib/images/skillCircle.png')}
               style={staticStyle.skillImage}
             />
             <Text style={staticStyle.skillNumber}>{this.props.currentUser.availability[i].day}</Text>
-            <Text style={staticStyle.skillName}>{this.props.currentUser.availability[i].time}</Text>
+            <Text style={staticStyle.skillName}>
+              {this.formatTime(this.props.currentUser.availability[i].time)}
+            </Text>
             <Text style={staticStyle.updateButton}>Update</Text>
           </View>
         )
