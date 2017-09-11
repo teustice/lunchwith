@@ -17,6 +17,7 @@ import experienceSlider from './experienceSlider';
 import clusters from './clusters';
 import skills from './skills';
 import activeMarker from './activeMarker';
+import drawerNav from './drawerNav';
 
 export const reducers = {
   title,
@@ -35,7 +36,8 @@ export const reducers = {
   form: formReducer,
   newUser,
   experienceSlider,
-  skills
+  skills,
+  drawerNav
 };
 
 export default function getRootReducer(navReducer) {

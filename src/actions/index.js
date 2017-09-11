@@ -11,10 +11,8 @@ import setBusiness from './set-business';
 import fetchBusiness from './fetch-business';
 import setCarousel from './set-carousel';
 import fetchCarousel from './fetch-carousel';
-
 import setNewUser from './set-newUser';
 import fetchNewUser from './fetch-newUser';
-
 import setProfileModal from './set-profileModal';
 import fetchProfileModal from './fetch-profileModal';
 import setLunchRadiusMarker from './set-lunchRadiusMarker';
@@ -29,6 +27,8 @@ import fetchExperienceSlider from './fetch-experienceSlider';
 import setExperienceSlider from './set-experienceSlider';
 import fetchSkills from './fetch-skills';
 import setSkills from './set-skills';
+import fetchDrawerNav from './fetch-drawerNav';
+import setDrawerNav from './set-drawerNav';
 import { genericError } from './errors';
 
 const ActionCreators = {
@@ -62,6 +62,8 @@ const ActionCreators = {
   setExperienceSlider,
   fetchExperienceSlider,
   setSkills,
+  fetchDrawerNav,
+  setDrawerNav,
   fetchSkills
 };
 

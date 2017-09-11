@@ -20,7 +20,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'Planet Argon',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1
   },
   {
     id: 2,
@@ -43,7 +44,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'EyeCue Lab',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1
   },
   {
     name: 'Dave the Dev3',
@@ -66,7 +68,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'Sq1',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1
   },
   {
     name: 'Dave the Dev4',
@@ -89,7 +92,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1
   },
   {
     name: 'Dave the Dev5',
@@ -112,7 +116,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1
   },
   {
     name: 'Dave the Dev6',
@@ -135,7 +140,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'EyeCue Lab',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1
   },
   {
     name: 'Dave the Dev7',
@@ -158,7 +164,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'Planet Argon',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 2
   },
   {
     name: 'Dave the Dev8',
@@ -181,7 +188,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'Planet Argon',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 2
   },
   {
     name: 'Dave the Dev9',
@@ -204,7 +212,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1
   },
   {
     name: 'Dave the Dev10',
@@ -227,7 +236,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 0.5
   },
   {
     name: 'Dave the Dev11',
@@ -250,7 +260,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1
   },
   {
     name: 'Dave the Dev12',
@@ -273,7 +284,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 3
   },
   {
     name: 'Dave the Dev13',
@@ -296,7 +308,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 2
   },
   {
     name: 'Dave the Dev14',
@@ -319,7 +332,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 0.5
   },
   {
     name: 'Dave the Dev15',
@@ -342,7 +356,8 @@ const users = [
     bio: "Hey I'm Dave, the coolest developer of them all!",
     company: 'New Relic',
     jobTitle: 'React Native Developer',
-    experience: 4
+    experience: 4,
+    lunchRadius: 1
   }
 ]
 

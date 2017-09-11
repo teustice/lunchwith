@@ -6,10 +6,6 @@ import ControlPanel from './controlPanel'
 export class DrawerNav extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      drawerOpen: false,
-      drawerDisabled: false,
-    };
   }
 
   closeDrawer = () => {
@@ -30,17 +26,14 @@ export class DrawerNav extends Component {
           }
           acceptDoubleTap
           onOpen={() => {
-            console.log('onopen')
-            this.setState({drawerOpen: true})
+            this.props.setDrawerNav({drawerOpen: true})
           }}
           onClose={() => {
-            console.log('onclose')
-            this.setState({drawerOpen: false})
+            this.props.setDrawerNav({drawerOpen: false})
           }}
           captureGestures={false}
-          tweenDuration={100}
+          tweenDuration={250}
           panThreshold={0.08}
-          disabled={this.state.drawerDisabled}
           openDrawerOffset={Dimensions.get('window').width + (Dimensions.get('window').width * 6/12)}
           closedDrawerOffset={0}
           negotiatePan={true}

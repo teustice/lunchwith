@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
 import ProfileImage from './image'
-import RadiusMap from '../Forms/radiusMap';
+import NeighbordhoodMap from '../Map/neighborhood';
+import { BlurView } from 'react-native-blur';
 
 class ProfileModal extends Component {
 
@@ -44,14 +45,13 @@ class ProfileModal extends Component {
                 <ProfileImage profile={this.props.profile}/>
                 <Text style={staticStyles.quickNotes}>Quick Notes</Text>
                 <Text style={staticStyles.quickBlurb2}>Having {this.props.profile.experience} of development experience, {this.props.profile.name} specializes in SKILLS.</Text>
-
               </View>
               <View style={staticStyles.content2} >
                 <Text style={staticStyles.panelTitle}>Current Availability</Text>
               </View>
               <View style={staticStyles.content3} >
                 <Text style={staticStyles.panelTitle}>Neighborhood</Text>
-
+                <NeighbordhoodMap neighborhood={this.props.neighborhood} radius={this.props.profile.lunchRadius}/>
               </View>
               <View style={staticStyles.content4} >
                 <Text style={staticStyles.panelTitle}>In {this.props.profile.name}s own words.</Text>
@@ -196,7 +196,11 @@ const staticStyles = StyleSheet.create({
   },
   mapBlur:{
     backgroundColor: 'rgba(255,255,255,0.2)',
-  }
+  },
+  absolute: {
+    position: "absolute",
+    top: 0, left: 0, bottom: 0, right: 0,
+  },
 });
 
 export default ProfileModal;

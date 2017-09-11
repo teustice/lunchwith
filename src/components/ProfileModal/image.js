@@ -19,7 +19,6 @@ export class ProfileImage extends Component {
   }
 }
 
-
 const staticStyles = StyleSheet.create({
   carouselImage: {
     width: 48,
