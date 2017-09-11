@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -74,6 +73,8 @@
 		CAC125248E9743B88A9A58B8 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74E4ADBE09B845B5B6705DA2 /* EvilIcons.ttf */; };
 		D1397EF0C4F14D3484CC90C5 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 012BB81DA7A749EBB38E9FBB /* Zocial.ttf */; };
 		FAA0E34AC1374DEA87FE56A5 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 043EEF5292FA4458992D78E9 /* ProximaNova-Bold.otf */; };
+		2C0B93705485430AA43BCE03 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0315D082B66343618B878BE7 /* libBVLinearGradient.a */; };
+		6BA72EDBC9B24CD684AED022 /* Mark Simonson - Proxima Nova Thin-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0364B66ED1EE4736BC55E5A0 /* Mark Simonson - Proxima Nova Thin-webfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -419,6 +420,12 @@
 		E7C90940686912AD8BC2F8EB /* Pods-rnTemplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnTemplate.release.xcconfig"; path = "Pods/Target Support Files/Pods-rnTemplate/Pods-rnTemplate.release.xcconfig"; sourceTree = "<group>"; };
 		EBA75F9BBE0E42F58112E41F /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		F1572A9FA5F941F4B5E38FA4 /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
+		C9BD8BEDF6BA4714B693B6CF /* RNBlur.xcodeproj */ = {isa = PBXFileReference; name = "RNBlur.xcodeproj"; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		A72B53CA63EE44CD9B6EEE58 /* libRNBlur.a */ = {isa = PBXFileReference; name = "libRNBlur.a"; path = "libRNBlur.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		74B8065C8251493BAAF670B0 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		0315D082B66343618B878BE7 /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		0364B66ED1EE4736BC55E5A0 /* Mark Simonson - Proxima Nova Thin-webfont.ttf */ = {isa = PBXFileReference; name = "Mark Simonson - Proxima Nova Thin-webfont.ttf"; path = "../src/fonts/Mark Simonson - Proxima Nova Thin-webfont.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,6 +457,7 @@
 				5F163EB387EB42D898952E6A /* libRNVectorIcons.a in Frameworks */,
 				280CB931733FF6A6E57B8243 /* libPods-rnTemplate.a in Frameworks */,
 				A315A06DF77E46D8B3E9F436 /* libRNBlur.a in Frameworks */,
+				2C0B93705485430AA43BCE03 /* libBVLinearGradient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +632,7 @@
 				D9A078E3132E448F92D468D2 /* RNGooglePlaces.xcodeproj */,
 				77C975ADEE59499597CFA26A /* RNVectorIcons.xcodeproj */,
 				C9BD8BEDF6BA4714B693B6CF /* RNBlur.xcodeproj */,
+				74B8065C8251493BAAF670B0 /* BVLinearGradient.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -680,6 +689,7 @@
 				D683A29DA1A34563A464023D /* ProximaNova-Regular.otf */,
 				5E724E7FF211436D8AC24481 /* ProximaNova-Bold.otf */,
 				DDDC34DDB26B4CB2BC8D32DE /* ProximaNova-Regular.otf */,
+				0364B66ED1EE4736BC55E5A0 /* Mark Simonson - Proxima Nova Thin-webfont.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1239,6 +1249,7 @@
 				C9DE39DE2D1240A7A3685BBC /* ProximaNova-Regular.otf in Resources */,
 				636F5ED841F44D68AB7C2EFE /* ProximaNova-Bold.otf in Resources */,
 				3FA460AA506A40C29A022100 /* ProximaNova-Regular.otf in Resources */,
+				6BA72EDBC9B24CD684AED022 /* Mark Simonson - Proxima Nova Thin-webfont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1440,12 +1451,14 @@
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 				INFOPLIST_FILE = rnTemplateTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1473,12 +1486,14 @@
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 				INFOPLIST_FILE = rnTemplateTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1508,6 +1523,7 @@
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 				INFOPLIST_FILE = rnTemplate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1535,6 +1551,7 @@
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 				INFOPLIST_FILE = rnTemplate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1567,11 +1584,13 @@
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 				INFOPLIST_FILE = "rnTemplate-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1607,11 +1626,13 @@
 					"$(SRCROOT)/../node_modules/react-native-google-places/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 				INFOPLIST_FILE = "rnTemplate-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1648,6 +1669,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.rnTemplate-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1672,6 +1694,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

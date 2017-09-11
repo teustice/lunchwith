@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
+import { Modal, Text, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
 import ProfileImage from './image'
 import NeighbordhoodMap from '../Map/neighborhood';
 import { BlurView } from 'react-native-blur';
@@ -29,17 +29,17 @@ class ProfileModal extends Component {
               visible={this.state.modalVisible}
               style={staticStyles.mapBlur}
               >
-              <View style={staticStyles.closeModal}>
-                <TouchableHighlight onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible)
-                }}>
-                  <Image
-                    source={require('../../lib/images/arrow3.png')}
-                    style={staticStyles.closeImage}
-                  />
-                </TouchableHighlight>
-                <Text style={staticStyles.closeTitle}>Lunch with {this.props.profile.name}</Text>
-              </View>
+              <TouchableWithoutFeedback onPress={() => {
+                this.setModalVisible(!this.state.modalVisible)
+              }}>
+                <View style={staticStyles.closeModal}>
+                    <Image
+                      source={require('../../lib/images/arrow3.png')}
+                      style={staticStyles.closeImage}
+                    />
+                  <Text style={staticStyles.closeTitle}>Lunch with {this.props.profile.name}</Text>
+                </View>
+              </TouchableWithoutFeedback>
              <View style={staticStyles.container}>
               <View style={{alignSelf:'flex-end'}} style={staticStyles.content}>
                 <ProfileImage profile={this.props.profile}/>
@@ -132,7 +132,7 @@ const staticStyles = StyleSheet.create({
     alignSelf: 'flex-start',
     backgroundColor: 'rgb(65,152,240)',
     marginBottom: 36,
-    paddingBottom: 10,
+    paddingBottom: 14,
   },
   closeImage: {
     width: 20,
@@ -147,7 +147,7 @@ const staticStyles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
   },
   title:{
-    fontFamily: 'ProximaNova-Regular',
+    fontFamily: 'Helvetica',
     fontSize: 16,
     marginTop: -17,
     paddingLeft: 5,
@@ -155,14 +155,14 @@ const staticStyles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
   },
   quickNotes:{
-    fontFamily: 'ProximaNova-Regular',
+    fontFamily: 'Helvetica',
     fontSize: 16,
     alignSelf: 'flex-start',
     paddingLeft: 20,
     color: 'grey',
   },
   panelTitle:{
-    fontFamily: 'ProximaNova-Regular',
+    fontFamily: 'Helvetica',
     fontSize: 16,
     alignSelf: 'flex-start',
     paddingLeft: 20,
@@ -170,7 +170,7 @@ const staticStyles = StyleSheet.create({
     paddingTop: 20,
   },
   quickBlurb:{
-    fontFamily: 'ProximaNova-Regular',
+    fontFamily: 'Helvetica',
     fontSize: 12,
     paddingTop: 13,
     paddingLeft: 5,
@@ -179,7 +179,7 @@ const staticStyles = StyleSheet.create({
     lineHeight: 16,
   },
   quickBlurb2:{
-    fontFamily: 'ProximaNova-Regular',
+    fontFamily: 'Helvetica',
     fontSize: 12,
     paddingTop: 13,
     paddingLeft: 20,

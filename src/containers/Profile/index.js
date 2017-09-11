@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Modal, TouchableHighlight, StyleSheet, StatusBar } from 'react-native';
+import { View, StatusBar, Dimensions, ScrollView, Text, Image, Modal, TouchableHighlight, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -7,15 +7,21 @@ import DrawerNav from '../../components/DrawerNav/index'
 import ActionCreators from '../../actions/index';
 import positionerStyle from '../../lib/styles/positioner';
 import Button from '../../components/Button/index';
-import { staticStyles } from './styles';
+// import { staticStyles } from './styles';
 import profileData from '../../lib/seeds/profileData';
 import Bio from '../../components/Profile/bio';
+import Skills from '../../components/Profile/skills';
 import Header from '../../components/Profile/header';
 import getUser from '../../selectors/user';
 import getDrawerNav from '../../selectors/drawerNav';
 import getCurrentUser from '../../selectors/currentUser';
 import FormView from '../../components/Forms/basicDetails';
 import getCompany from '../../selectors/business';
+import ProfileImage from '../../components/ProfileModal/image'
+import findUserById from '../../lib/helpers/userById';
+import ExperienceSlider from '../../components/Forms/slider'
+import getExperienceSlider from '../../selectors/experienceSlider';
+import Availability from '../../components/Profile/availability';
 
 export class Profile extends Component {
 
@@ -28,41 +34,35 @@ export class Profile extends Component {
   }
 
   render() {
-
+    let tempUser = findUserById(1);
     return (
-      <View>
-        <StatusBar hidden={true} />
-        <View style={{marginTop: 40}}>
-          <Modal
-            animationType={"slide"}
-            transparent={false}
-            visible={this.state.modalVisible}
-            onRequestClose={() => {alert("Modal has been closed.")}}
-            >
-           <View style={{marginTop: 22}}>
-            <View>
-              <TouchableHighlight onPress={() => {
-                this.setModalVisible(!this.state.modalVisible)
-              }}>
-              <Text>Go Back</Text>
-              </TouchableHighlight>
-              <FormView setBusiness={this.props.setBusiness} />
-            </View>
-           </View>
-          </Modal>
 
-          <TouchableHighlight onPress={() => {
-            this.setModalVisible(true)
-          }}>
-            <Text>Edit Profile</Text>
-          </TouchableHighlight>
-          <View style={staticStyles.container}>
-            <View style={positionerStyle.centeringFromBottom('50%')}>
-              <Header setUser={this.props.setUser} />
-              <Bio setUser={this.props.setUser} />
-            </View>
-          </View>
+      <ScrollView>
+        <StatusBar hidden={true} />
+        <View style={staticStyles.header}>
+          <Header setUser={this.props.setUser} />
         </View>
+
+
+        <View style={staticStyles.content}>
+          <ProfileImage profile={tempUser} />
+          <Bio setUser={this.props.setUser} />
+        </View>
+
+        <View style={staticStyles.content}>
+          <Skills setUser={this.props.setUser}/>
+        </View>
+
+        <View style={staticStyles.content}>
+          <ExperienceSlider setUser={this.props.setUser}
+                            experienceSlider={this.props.experienceSlider}
+                            setExperienceSlider={this.props.setExperienceSlider} />
+        </View>
+
+        <View style={staticStyles.content}>
+          <Availability setUser={this.props.setUser} />
+        </View>
+
         <View style={styles.drawerIcon}>
           <DrawerNav
             drawerNav={this.props.drawerNav}
@@ -73,7 +73,8 @@ export class Profile extends Component {
             setCurrentUser={this.props.setCurrentUser}
           />
         </View>
-      </View>
+
+       </ScrollView>
 
 
     );
@@ -81,16 +82,39 @@ export class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   drawerIcon: {
     position: 'absolute',
     top: 10,
     right: 50,
   }
+});
+
+const staticStyles = StyleSheet.create({
+  content:{
+    backgroundColor: "white",
+    // width: '100%',
+    height: 'auto',
+    marginTop: 5,
+    marginHorizontal: 10,
+    shadowColor: 'rgb(150,150,150)',
+    shadowOffset: { width: 6, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  header: {
+    width: '100%',
+    alignSelf: 'flex-start',
+    backgroundColor: 'rgb(65,152,240)',
+    marginBottom: 24,
+    paddingBottom: 19,
+  },
+  closeImage: {
+    width: 20,
+    height: 20,
+    marginTop: 10,
+    marginLeft: 20,
+  },
 });
 
 FormView.defaultProps = {
@@ -100,8 +124,6 @@ FormView.defaultProps = {
   setJobTitle: () => {},
   setLunchRadius: () => {},
   setBio: () => {},
-  setExperienceValue: () => {},
-  experienceValue: 0,
   company: {},
   firstName: {},
   lastName: {},
@@ -127,6 +149,7 @@ Profile.propTypes = {
 function mapStateToProps(store) {
   return {
     company: getCompany(store),
+    experienceSlider: getExperienceSlider(store),
     drawerNav: getDrawerNav(store) ,
     currentUser: getCurrentUser(store)
   };

@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
@@ -53,6 +53,7 @@
 		<string>proxima-nova.otf</string>
 		<string>ProximaNova-Bold.otf</string>
 		<string>ProximaNova-Regular.otf</string>
+		<string>Mark Simonson - Proxima Nova Thin-webfont.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
