@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Button, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import user from '../../lib/seeds/profileData';
 import findUserById from '../../lib/helpers/userById';
 
@@ -12,38 +12,80 @@ export class Availability extends Component {
     this.props.setRegion({ region });
   }
 
+  availabilityLength(){
+    return this.props.currentUser.availability.length
+  }
+
+  formatTime(time){
+    let parsedTime = parseInt(time);
+    switch(parsedTime){
+      case 10:
+        return `${time}:00AM to 11:00AM`;
+        break;
+      case 11:
+        return `${time}:00AM to 12:00PM`;
+        break;
+      case 12:
+        return `${time}:00PM to 1:00PM`;
+        break;
+      case 1:
+        return `${time}:00PM to 2:00PM`;
+        break;
+    }
+  }
+
+  formatDay(day){
+    switch(day){
+      case 'M':
+        return `MON`;
+        break;
+      case 'T':
+        return `TUE`;
+        break;
+      case 'W':
+        return `WED`
+        break;
+      case 'Th':
+        return `THU`;
+        break;
+      case 'F':
+        return `FRI`;
+        break;
+    }
+  }
+
+  availabilitySample(){
+    let availabilityList = [];
+    for(let i=0; i<this.props.currentUser.availability.length; i++){
+      if(i === 3) {
+        break;
+      } else {
+        availabilityList.push(
+          <View key={i} style={staticStyle.skillRow}>
+            <ImageBackground
+              source={require('../../lib/images/skillCircle.png')}
+              style={staticStyle.skillImage}
+            >
+              <Text style={staticStyle.skillNumber}>
+                {this.formatDay(this.props.currentUser.availability[i].day)}
+              </Text>
+            </ImageBackground>
+            <Text style={staticStyle.skillName}>
+              {this.formatTime(this.props.currentUser.availability[i].time)}
+            </Text>
+            <Text style={staticStyle.updateButton}>Update</Text>
+          </View>
+        )
+      }
+    }
+    return availabilityList;
+  }
+
   render() {
-    let tempUser = findUserById(1);
     return (
       <View >
-        <Text style={staticStyle.skillsHeader}><Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>3 Available Hours</Text> During the Week</Text>
-        <View style={staticStyle.skillRow}>
-          <Image
-            source={require('../../lib/images/skillCircle.png')}
-            style={staticStyle.skillImage}
-          />
-          <Text style={staticStyle.skillNumber}>MON</Text>
-          <Text style={staticStyle.skillName}>11:00AM to 12:00PM</Text>
-          <Text style={staticStyle.updateButton}>Update</Text>
-        </View>
-        <View style={staticStyle.skillRow}>
-          <Image
-            source={require('../../lib/images/skillCircle.png')}
-            style={staticStyle.skillImage}
-          />
-          <Text style={staticStyle.skillNumber}>MON</Text>
-          <Text style={staticStyle.skillName}>1:00pm to 2:00pm</Text>
-          <Text style={staticStyle.updateButton}>Update</Text>
-        </View>
-        <View style={staticStyle.skillRow}>
-          <Image
-            source={require('../../lib/images/skillCircle.png')}
-            style={staticStyle.skillImage}
-          />
-          <Text style={staticStyle.skillNumberB}>N/A</Text>
-          <Text style={staticStyle.skillName}>- - - -</Text>
-          <Text style={staticStyle.addButton}>Add</Text>
-        </View>
+        <Text style={staticStyle.skillsHeader}><Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.availabilityLength()} Available Hours</Text> During the Week</Text>
+        {this.availabilitySample()}
         <Text style={staticStyle.skillsExplanation}>Let people know when you are willing to talk about over lunch!</Text>
       </View>
     );
@@ -78,9 +120,8 @@ const staticStyle = StyleSheet.create({
     fontSize: 10,
   },
   skillNumber: {
-    marginTop: -25.5,
-    paddingRight: 40,
-    paddingLeft: 24,
+    alignSelf: 'center',
+    marginTop: '40%',
     fontFamily: 'ProximaNova-Regular',
     fontSize: 10,
     backgroundColor: 'rgba(255,255,255,0)',
@@ -94,7 +135,8 @@ const staticStyle = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
   },
   skillName: {
-    marginTop: -13,
+    marginTop: '-7.5%',
+    // justifyContent: 'center',
     paddingLeft: 65,
     backgroundColor: 'rgba(255,255,255,0)',
     color:'rgb(10,10,10)',

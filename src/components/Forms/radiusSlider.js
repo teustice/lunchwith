@@ -18,7 +18,7 @@ export class RadiusSlider extends Component {
     return (
       <View>
         <Text style={styles.text} >
-          Lunch Radius: {this.props.lunchRadiusSlider} miles
+          Lunch Radius: <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.props.lunchRadiusSlider} miles</Text>
         </Text>
         <Slider
           value={parseInt(this.props.lunchRadiusSlider)}
@@ -27,6 +27,7 @@ export class RadiusSlider extends Component {
           minimumValue={0.1}
           step={0.1}
         />
+        <Text style={styles.explanation}>Touch the map to set the radius where you would like to have lunch!</Text>
       </View>
     );
   }
@@ -35,15 +36,25 @@ export class RadiusSlider extends Component {
 var styles = StyleSheet.create({
   slider: {
     height: 10,
+    width: '90%',
     margin: 10,
   },
   text: {
-    fontSize: 13,
-    color: 'grey',
-    textAlign: 'center',
-    fontWeight: '300',
-    margin: 10,
+    fontFamily: 'ProximaNovaT-Thin',
+    fontSize: 12,
+    paddingTop: 20,
+    paddingLeft: 15,
+    marginBottom: 10,
+    color: 'rgb(10,10,10)',
   },
+  explanation: {
+    fontFamily: 'ProximaNova-Regular',
+    paddingTop: 5,
+    paddingLeft: 15,
+    paddingBottom: 20,
+    color: 'grey',
+    fontSize: 10,
+  }
 });
 
 export default RadiusSlider;

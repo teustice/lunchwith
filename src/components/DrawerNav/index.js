@@ -31,7 +31,6 @@ export class DrawerNav extends Component {
               setAvailabilityModal={this.props.setAvailabilityModal}
             />
           }
-          acceptDoubleTap
           onOpen={() => {
             this.props.setDrawerNav({drawerOpen: true})
           }}
@@ -39,8 +38,9 @@ export class DrawerNav extends Component {
             this.props.setDrawerNav({drawerOpen: false})
           }}
           captureGestures={false}
+          acceptPan={true}
           tweenDuration={250}
-          panThreshold={0.08}
+          panThreshold={0.25}
           openDrawerOffset={Dimensions.get('window').width + (Dimensions.get('window').width * 6/12)}
           closedDrawerOffset={0}
           negotiatePan={true}

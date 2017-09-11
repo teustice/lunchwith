@@ -12,12 +12,18 @@ export class Bio extends Component {
     this.props.setRegion({ region });
   }
 
+  updateBio(bio){
+    this.props.setCurrentUser({...this.props.currentUser, bio: bio})
+  }
+
   render() {
-    let tempUser = findUserById(1);
     return (
       <View >
         <Text style={staticStyle.bioHeader}>A Little About Yourself</Text>
-        <TextInput style={staticStyle.input}></TextInput>
+        <TextInput style={staticStyle.input}
+          value={this.props.currentUser.bio}
+          onChangeText={(bio) => this.updateBio(bio)}
+        />
         <Text style={staticStyle.bioExplanation}>This is all about your interests or pet peeves!</Text>
       </View>
     );
