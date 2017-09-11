@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Button, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import user from '../../lib/seeds/profileData';
 import findUserById from '../../lib/helpers/userById';
 
@@ -34,6 +34,26 @@ export class Availability extends Component {
     }
   }
 
+  formatDay(day){
+    switch(day){
+      case 'M':
+        return `MON`;
+        break;
+      case 'T':
+        return `TUE`;
+        break;
+      case 'W':
+        return `WED`
+        break;
+      case 'Th':
+        return `THU`;
+        break;
+      case 'F':
+        return `FRI`;
+        break;
+    }
+  }
+
   availabilitySample(){
     let availabilityList = [];
     for(let i=0; i<this.props.currentUser.availability.length; i++){
@@ -42,11 +62,14 @@ export class Availability extends Component {
       } else {
         availabilityList.push(
           <View key={i} style={staticStyle.skillRow}>
-            <Image
+            <ImageBackground
               source={require('../../lib/images/skillCircle.png')}
               style={staticStyle.skillImage}
-            />
-            <Text style={staticStyle.skillNumber}>{this.props.currentUser.availability[i].day}</Text>
+            >
+              <Text style={staticStyle.skillNumber}>
+                {this.formatDay(this.props.currentUser.availability[i].day)}
+              </Text>
+            </ImageBackground>
             <Text style={staticStyle.skillName}>
               {this.formatTime(this.props.currentUser.availability[i].time)}
             </Text>
@@ -97,9 +120,8 @@ const staticStyle = StyleSheet.create({
     fontSize: 10,
   },
   skillNumber: {
-    marginTop: -25.5,
-    paddingRight: 40,
-    paddingLeft: 24,
+    alignSelf: 'center',
+    marginTop: '40%',
     fontFamily: 'ProximaNova-Regular',
     fontSize: 10,
     backgroundColor: 'rgba(255,255,255,0)',
@@ -113,7 +135,8 @@ const staticStyle = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
   },
   skillName: {
-    marginTop: -13,
+    marginTop: '-7.5%',
+    // justifyContent: 'center',
     paddingLeft: 65,
     backgroundColor: 'rgba(255,255,255,0)',
     color:'rgb(10,10,10)',
