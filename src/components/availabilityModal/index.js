@@ -20,11 +20,12 @@ class AvailabilityModal extends Component {
   }
 
   buttonPress(time, day){
+    let trimmedTime = time.substr(0, time.indexOf('-'));
     let newArray = this.state.pressedButtons.slice();
-    let pressedButton = {time: time, day: day};
+    let pressedButton = {time: trimmedTime, day: day};
     for(let i=0; i< 20; i++){
       if(this.state.pressedButtons[i]){
-        if(this.state.pressedButtons[i].time === time && this.state.pressedButtons[i].day === day){
+        if(this.state.pressedButtons[i].time === trimmedTime && this.state.pressedButtons[i].day === day){
           newArray.splice(i, 1);
           this.setState({ pressedButtons: newArray });
           return 0
@@ -36,9 +37,10 @@ class AvailabilityModal extends Component {
   }
 
   isButtonSelected(time, day){
+    let trimmedTime = time.substr(0, time.indexOf('-'));
     for(let i=0; i< 20; i++){
       if(this.state.pressedButtons[i]){
-        if(this.state.pressedButtons[i].time === time && this.state.pressedButtons[i].day === day){
+        if(this.state.pressedButtons[i].time === trimmedTime && this.state.pressedButtons[i].day === day){
           return(
             <View style={staticStyles.toggleButtonSelected}>
               <Text style={staticStyles.buttonTimeSelected}>{time}</Text>
