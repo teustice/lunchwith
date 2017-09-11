@@ -51,7 +51,7 @@ export class MapFilter extends Component {
   render() {
     return (
 
-      <LinearGradient colors={['white','white','rgba(255,255,255,0)']} style={staticStyles.linearGradient}>
+      <LinearGradient colors={['white', 'white', 'rgba(255,255,255,0)']} style={staticStyles.linearGradient}>
           <View style={staticStyles.filterBox}>
 
             <Text style={staticStyles.filterText}>Devs &</Text>
@@ -132,7 +132,7 @@ const staticStyles = StyleSheet.create({
   filterBox:{
     paddingTop: 25,
     paddingLeft: 20,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255,255,255,0)',
 
   },
 
@@ -142,9 +142,11 @@ const staticStyles = StyleSheet.create({
     lineHeight: 35,
     color: 'grey',
     fontWeight: '100',
+    backgroundColor: 'rgba(255,255,255,0)',
   },
   filterAvailability:{
     fontFamily: 'ProximaNova-Regular',
+    backgroundColor: 'rgba(255,255,255,0)',
     color: 'rgb(180,180,180)',
     fontSize: 12,
     paddingTop: 0,
