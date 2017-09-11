@@ -15,12 +15,23 @@ class ProfileModal extends Component {
   }
 
   render() {
+
+    const profileSkills = this.props.profile.skills.map((skill, key) => {
+      return (
+        <Text style={{color: 'rgb(65,152,240)'}} key={key}>{skill.name}</Text>
+      );
+    });
+
     return (
       <TouchableWithoutFeedback
         onPress={() => {
           this.setModalVisible(true)
         }}
       >
+
+
+
+
         <View style={staticStyles.transparentView}>
           <View style={staticStyles.modalBackground}>
             <Modal
@@ -44,8 +55,10 @@ class ProfileModal extends Component {
               <View style={{alignSelf:'flex-end'}} style={staticStyles.content}>
                 <ProfileImage profile={this.props.profile}/>
                 <Text style={staticStyles.quickNotes}>Quick Notes</Text>
-                <Text style={staticStyles.quickBlurb2}>Having {this.props.profile.experience} of development experience, {this.props.profile.name} specializes in SKILLS.</Text>
+                <Text style={staticStyles.quickBlurb2}>Having {this.props.profile.experience} of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
               </View>
+
+
               <View style={staticStyles.content2} >
                 <Text style={staticStyles.panelTitle}>Current Availability</Text>
               </View>
@@ -65,7 +78,7 @@ class ProfileModal extends Component {
               <ProfileImage profile={this.props.profile}/>
 
               <Text style={staticStyles.title}>{this.props.profile.name}</Text>
-              <Text style={staticStyles.quickBlurb}>Having {this.props.profile.experience} of development experience, {this.props.profile.name} specializes in SKILLS.</Text>
+              <Text style={staticStyles.quickBlurb}>Having {this.props.profile.experience} of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
             </View>
           </View>
         </View>
