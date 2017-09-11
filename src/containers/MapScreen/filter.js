@@ -22,6 +22,32 @@ export class MapFilter extends Component {
     this.setState({placeHolderVisible: visible})
   }
 
+  displayAvailabilityStartToTime() {
+    start = this.props.availabilityFilter.timeStart;
+    if (start === '10') {
+      return '10:00am';
+    } else if (start === '11'){
+      return '11:00am';
+    } else if (start === '12'){
+      return '12:00pm';
+    } else {
+      return '1:00pm';
+    };
+  }
+
+  displayAvailabilityEndToTime() {
+    end = this.props.availabilityFilter.timeEnd;
+    if (end === '11') {
+      return '11:00am';
+    } else if (end === '12'){
+      return '12:00pm';
+    } else if (end === '1'){
+      return '1:00pm';
+    } else {
+      return '2:00pm';
+    };
+  }
+
   render() {
     return (
 
@@ -45,7 +71,7 @@ export class MapFilter extends Component {
                   visible={this.state.placeHolderVisible}
                   style={{position:'absolute', paddingTop: 100, paddingLeft: 125}}>
                   { this.state.placeHolderVisible &&
-                    <Text  style={staticStyles.time1}>10:00am and 2:00pm</Text>
+                    <Text  style={staticStyles.time1}>{this.displayAvailabilityStartToTime()} and {this.displayAvailabilityEndToTime()}</Text>
                   }
                 </View>
               </TouchableWithoutFeedback>
