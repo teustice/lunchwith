@@ -53,13 +53,17 @@ class ProfileModal extends Component {
                  <View style={staticStyles.container}>
                     <View style={{alignSelf:'flex-end'}} style={staticStyles.content}>
                       <ProfileImage profile={this.props.profile}/>
-                      <Text style={staticStyles.quickNotes}>Quick Notes</Text>
-                      <Text style={staticStyles.quickBlurb2}>Having {this.props.profile.experience} years of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
+                      <View style={staticStyles.quickBlock}>
+                        <Text style={staticStyles.quickNotes}>Quick Notes</Text>
+                        <Text style={staticStyles.quickBlurb2}>Having {this.props.profile.experience} years of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
+                      </View>
                     </View>
 
                     <View style={staticStyles.content2} >
                       <Availability profile={this.props.profile}
                                     currentUser={this.props.currentUser}
+                                    navigation={this.props.navigation}
+                                    modalState={this.state.modalVisible}
                       />
                     </View>
                     <View style={staticStyles.content3} >
@@ -127,7 +131,7 @@ const staticStyles = StyleSheet.create({
     backgroundColor: "white",
     width: '100%',
     height: 'auto',
-    marginTop: 13,
+    marginTop: 5,
   },
   content3: {
     backgroundColor: "white",
@@ -173,18 +177,21 @@ const staticStyles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
   },
   quickNotes:{
-    fontFamily: 'ProximaNova-Regular',
-    fontSize: 13,
+    fontFamily: 'ProximaNovaT-Thin',
+    fontSize: 12,
     alignSelf: 'flex-start',
     paddingLeft: 20,
-    color: 'grey',
+    color: 'rgb(10,10,10)',
+  },
+  quickBlock:{
+    marginTop: -10,
   },
   panelTitle:{
-    fontFamily: 'ProximaNova-Regular',
-    fontSize: 13,
+    fontFamily: 'ProximaNovaT-Thin',
+    fontSize: 12,
     alignSelf: 'flex-start',
     paddingLeft: 20,
-    color: 'grey',
+    color: 'rgb(10,10,10)',
     paddingTop: 20,
   },
   quickBlurb:{

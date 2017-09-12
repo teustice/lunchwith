@@ -58,6 +58,7 @@ export class MapScreen extends Component {
           setProfileModal={this.props.setProfileModal}
           userLocation={this.props.userLocation}
           currentUser={this.props.currentUser}
+          navigation={this.props.navigation}
         />
       )
     }
@@ -92,6 +93,7 @@ export class MapScreen extends Component {
             activeMarker={this.props.activeMarker}
             setActiveMarker={this.props.setActiveMarker}
             currentUser={this.props.currentUser}
+
           />
           <MapFilter
             availabilityFilter={this.props.availabilityFilter}

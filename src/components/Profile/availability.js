@@ -4,6 +4,7 @@ import user from '../../lib/seeds/profileData';
 import findUserById from '../../lib/helpers/userById';
 
 export class Availability extends Component {
+
   constructor(props) {
     super(props);
   }
@@ -81,13 +82,16 @@ export class Availability extends Component {
 
 
   buttonText(){
+
     if(this.props.currentUser.name && !this.props.profile){
       return(
         <Text style={staticStyle.updateButton}>Update</Text>
       );
     } else if (this.props.currentUser.name && this.props.profile.name) {
       return(
-        <Text style={staticStyle.addButton}>Invite</Text>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Lunch')}>
+          <Text style={staticStyle.addButton}>Invite</Text>
+        </TouchableOpacity>
       );
     } else {
       return null;
@@ -138,7 +142,6 @@ export class Availability extends Component {
   }
 
   render() {
-
     return (
       <View >
         {this.header()}

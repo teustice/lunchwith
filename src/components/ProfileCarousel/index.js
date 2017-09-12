@@ -33,6 +33,7 @@ export class ProfileCarousel extends Component {
             setProfileModal={this.props.setProfileModal}
             userLocation={this.props.userLocation}
             currentUser={this.props.currentUser}
+            navigation={this.props.navigation}
           />
         </View>
         </View>
