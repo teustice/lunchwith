@@ -17,9 +17,12 @@ export class Lunch extends Component {
   };
 
   render() {
+    console.log(this.props.navigation.state.params.selectedUser);
+    const selectedUser = this.props.navigation.state.params.selectedUser;
+    
     return (
       <View>
-        <Text>Ask for lunches here.</Text>
+        <Text>Ask out {selectedUser.name} for lunches here.</Text>
         <Restaurants/>
       </View>
     )
