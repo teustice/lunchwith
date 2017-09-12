@@ -3,10 +3,6 @@ import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, TouchableOpa
 import userSeed from '../../lib/seeds/userSeed';
 
 class AvailabilityModal extends Component {
-  state = {
-    pressedButtons: []
-  }
-
   componentDidUpdate(prevProps, PrevState){
     // if(prevProps.currentUser != this.props.currentUser){
     //   if(this.props.currentUser.name){
@@ -14,16 +10,58 @@ class AvailabilityModal extends Component {
     //   }
     // }
   }
+  dayCodes(day){
+    switch(day){
+      case 'Monday':
+        return 'M';
+        break;
+      case 'Tuesday':
+        return 'T';
+        break;
+      case 'Wednesday':
+        return 'W';
+        break;
+      case 'Thursday':
+        return 'Th';
+        break;
+      case 'Friday':
+        return 'F';
+        break;
+    }
+  }
 
   hideModal(){
     this.props.setAvailabilityModal({isOpen: false});
+  }
+
+  switchPress(value, day, time){
+    if(this.props.currentUser.name){
+      let availability = this.props.currentUser.availability;
+      availability.push({time: time, day: day});
+      this.props.setCurrentUser(...this.props.currentUser, availability: availability);
+    }
+  }
+
+  isPressed(day, time){
+    if(this.props.currentUser.name){
+      let availability = this.props.currentUser.availability;
+      for(let i=0; i<availability.length; i++){
+        // console.log(`user:${availability[i].time} | time: ${time}`);
+        if(availability[i].time == time && availability[i].day == this.dayCodes(day)){
+          console.log("NAILED IT");
+          return true;
+        }
+      }
+    }
   }
 
   renderSwitch(day, time){
     return(
       <View style={{marginRight: '10%'}}>
         <Switch
+          value={this.isPressed(day,time)}
           onTintColor={'rgb(65,152,240)'}
+          onValueChange={(value) => this.switchPress(value, this.dayCodes(day), time)}
         />
       </View>
     )
