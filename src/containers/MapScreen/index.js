@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { BlurView } from 'react-native-blur';
@@ -65,11 +65,13 @@ export class MapScreen extends Component {
   navBlur(){
     if(this.props.drawerNav.drawerOpen) {
       return(
-        <BlurView
-          style={styles.absolute}
-          blurType="light"
-          blurAmount={2}
-        />
+        <TouchableWithoutFeedback onPress={() => this.props.setDrawerNav({drawerOpen: false})}>
+          <BlurView
+            style={styles.absolute}
+            blurType="light"
+            blurAmount={2}
+          />
+        </TouchableWithoutFeedback>
       )
     }
   }

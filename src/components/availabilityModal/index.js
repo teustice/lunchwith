@@ -179,28 +179,23 @@ class AvailabilityModal extends Component {
     );
   }
 
-  submitAvailability(){
-    this.hideModal();
-  }
-
   render() {
     return (
-      <Modal
-        animationType={"slide"}
-        transparent={true}
-        visible={this.props.availabilityModal.isOpen}
-        >
-        <View style={staticStyles.container}>
-          <View style={staticStyles.modalBackground}>
-            {this.modalContent()}
-            <TouchableHighlight
-              onPress={() => this.submitAvailability()}
-            >
-              <Text style={staticStyles.submitButton}>Submit</Text>
-            </TouchableHighlight>
+        <Modal
+          animationType={"fade"}
+          transparent={true}
+          visible={this.props.availabilityModal.isOpen}
+          >
+
+          <View style={staticStyles.container}>
+          <TouchableWithoutFeedback onPress={() => this.hideModal()}>
+            <View style={staticStyles.container}></View>
+          </TouchableWithoutFeedback>
+            <View style={staticStyles.modalBackground}>
+              {this.modalContent()}
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
     );
   }
 }
@@ -221,13 +216,13 @@ const staticStyles = StyleSheet.create({
     height: '100%',
   },
   dayBanner: {
-    marginTop: 10,
+    marginTop: 30,
     width: '100%',
     height: 30,
     backgroundColor: 'rgb(65,152,240)',
   },
   inputContainer: {
-    height: '60%',
+    height: '69%',
     width: '100%',
   },
   tagBubbles: {
@@ -373,6 +368,13 @@ const staticStyles = StyleSheet.create({
     color: 'white',
     fontSize: 14,
   },
+  absolute: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  }
 });
 
 export default AvailabilityModal;

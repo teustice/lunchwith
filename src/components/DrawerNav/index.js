@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import Drawer from 'react-native-drawer';
 import ControlPanel from './controlPanel'
 
@@ -7,6 +7,13 @@ export class DrawerNav extends Component {
   constructor(props) {
     super(props);
   }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.drawerNav.drawerOpen === false){
+      this.closeDrawer();
+    }
+  }
+
   closeDrawer = () => {
     this._drawer.close()
   };

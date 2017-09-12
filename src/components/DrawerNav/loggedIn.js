@@ -14,9 +14,6 @@ export default class LoggedIn extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={this.props.closeDrawer}>
-          <Text>X</Text>
-        </TouchableOpacity>
         <View style={styles.profile}>
           <Image
             style={{width: 50, height: 50, borderRadius: 25}}
