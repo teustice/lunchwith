@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
+import { Modal, Text, ScrollView, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
 import ProfileImage from './image'
 import NeighbordhoodMap from '../Map/neighborhood';
 import { BlurView } from 'react-native-blur';
@@ -38,6 +38,7 @@ class ProfileModal extends Component {
               visible={this.state.modalVisible}
               style={staticStyles.mapBlur}
               >
+              <ScrollView>
               <TouchableWithoutFeedback onPress={() => {
                 this.setModalVisible(!this.state.modalVisible)
               }}>
@@ -49,37 +50,31 @@ class ProfileModal extends Component {
                   <Text style={staticStyles.closeTitle}>Lunch with {this.props.profile.name}</Text>
                 </View>
               </TouchableWithoutFeedback>
-             <View style={staticStyles.container}>
-              <View style={{alignSelf:'flex-end'}} style={staticStyles.content}>
-                <ProfileImage profile={this.props.profile}/>
-                <Text style={staticStyles.quickNotes}>Quick Notes</Text>
-                <Text style={staticStyles.quickBlurb2}>Having {this.props.profile.experience} years of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
-              </View>
+                 <View style={staticStyles.container}>
+                    <View style={{alignSelf:'flex-end'}} style={staticStyles.content}>
+                      <ProfileImage profile={this.props.profile}/>
+                      <Text style={staticStyles.quickNotes}>Quick Notes</Text>
+                      <Text style={staticStyles.quickBlurb2}>Having {this.props.profile.experience} years of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
+                    </View>
 
-
-              <View style={staticStyles.content2} >
-
-                <Availability profile={this.props.profile}
-                              currentUser={this.props.currentUser}
-
-                />
-
-              </View>
-              <View style={staticStyles.content3} >
-                <Text style={staticStyles.panelTitle}>Neighborhood</Text>
-                <NeighbordhoodMap neighborhood={this.props.neighborhood} radius={this.props.profile.lunchRadius}/>
-              </View>
-              <View style={staticStyles.content4} >
-                <Text style={staticStyles.panelTitle}>In {this.props.profile.name}s own words.</Text>
-              </View>
-
-             </View>
+                    <View style={staticStyles.content2} >
+                      <Availability profile={this.props.profile}
+                                    currentUser={this.props.currentUser}
+                      />
+                    </View>
+                    <View style={staticStyles.content3} >
+                      <Text style={staticStyles.panelTitle}>Neighborhood</Text>
+                      <NeighbordhoodMap neighborhood={this.props.neighborhood} radius={this.props.profile.lunchRadius}/>
+                    </View>
+                    <View style={staticStyles.content4} >
+                      <Text style={staticStyles.panelTitle}>In {this.props.profile.name}s own words.</Text>
+                    </View>
+                  </View>
+                </ScrollView>
             </Modal>
 
             <View style={staticStyles.profileSnippet}>
-
               <ProfileImage profile={this.props.profile}/>
-
               <Text style={staticStyles.title}>{this.props.profile.name}</Text>
               <Text style={staticStyles.quickBlurb}>Having {this.props.profile.experience} years of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
             </View>
@@ -94,6 +89,7 @@ const staticStyles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 10,
+    marginTop: -10,
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0)',
     shadowColor: 'rgb(150,150,150)',
@@ -119,6 +115,7 @@ const staticStyles = StyleSheet.create({
   profileImage: {
     width: 50,
     height: 50,
+    // marginTop: -15,
   },
   content:{
     backgroundColor: "white",
@@ -136,6 +133,7 @@ const staticStyles = StyleSheet.create({
     width: '100%',
     height: 200,
     marginTop: 4,
+
   },
   content4: {
     backgroundColor: "white",
@@ -147,6 +145,7 @@ const staticStyles = StyleSheet.create({
     width: '100%',
     alignSelf: 'flex-start',
     backgroundColor: 'rgb(65,152,240)',
+    height: 50,
     marginBottom: 36,
     paddingBottom: 23,
   },
@@ -159,8 +158,10 @@ const staticStyles = StyleSheet.create({
   closeTitle: {
     textAlign: 'center',
     color: 'white',
-    marginTop: -20,
+    marginTop: -12,
     backgroundColor: 'rgba(255,255,255,0)',
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 20,
   },
   title:{
     fontFamily: 'Helvetica',
