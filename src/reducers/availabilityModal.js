@@ -4,7 +4,7 @@ import createReducer from '../lib/helpers/createReducer';
 import { AVAILABILITY_MODAL_SET } from '../lib/constants/actions';
 
 
-const defaultState = Map().set('availabilityModal', {isOpen: false});
+const defaultState = Map().set('availabilityModal', {isOpen: true});
 
 export default createReducer(defaultState, {
 

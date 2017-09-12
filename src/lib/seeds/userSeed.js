@@ -24,9 +24,9 @@ const users = [
     lunchRadius: 1,
     phoneNumber: '800115',
     availability: [
-      {time: "10", day: "F"},
-      {time: "12", day: "M"},
-      {time: "1", day: "W"}
+      {time: "11", day: "F"},
+      {time: "11", day: "M"},
+      {time: "11", day: "W"}
     ]
   },
   {
@@ -54,8 +54,8 @@ const users = [
     lunchRadius: 1,
     phoneNumber:' 800114',
     availability: [
-      {time: "10", day: "F"},
-      {time: "12", day: "M"},
+      {time: "12", day: "F"},
+      {time: "1", day: "M"},
       {time: "1", day: "W"}
     ]
   },
