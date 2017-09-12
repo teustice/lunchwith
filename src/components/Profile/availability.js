@@ -89,7 +89,7 @@ export class Availability extends Component {
       );
     } else if (this.props.currentUser.name && this.props.profile.name) {
       return(
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Lunch')}>
+        <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch'), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
           <Text style={staticStyle.addButton}>Invite</Text>
         </TouchableOpacity>
       );

@@ -11,15 +11,9 @@ import getCurrentUser from '../../selectors/currentUser';
 
 
 class ProfileModal extends Component {
-  //
-  // state = {
-  //   modalVisible: false,
-  // }
-
 
   setModalVisible(visible) {
     this.props.setProfileModal({...this.props.profileModal, modalVisible: visible});
-    // this.setState({modalVisible: visible});
   }
 
   render() {
@@ -70,7 +64,8 @@ class ProfileModal extends Component {
                       <Availability profile={this.props.profile}
                                     currentUser={this.props.currentUser}
                                     navigation={this.props.navigation}
-                                    modalState={this.props.profileModal.modalVisible}
+                                    profileModal={this.props.profileModal}
+                                    setProfileModal={this.props.setProfileModal}
                       />
                     </View>
                     <View style={staticStyles.content3} >
