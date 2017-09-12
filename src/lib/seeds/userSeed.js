@@ -114,9 +114,9 @@ const users = [
     lunchRadius: 1,
     phoneNumber:' 800112',
     availability: [
-      {time: "10", day: "F"},
-      {time: "12", day: "M"},
-      {time: "1", day: "W"}
+      {time: "11", day: "F"},
+      {time: "11", day: "M"},
+      {time: "11", day: "W"}
     ]
   },
   {

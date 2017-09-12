@@ -3,6 +3,7 @@ import { Modal, Text, TouchableHighlight, TouchableOpacity, TouchableWithoutFeed
 import ProfileImage from './image'
 import NeighbordhoodMap from '../Map/neighborhood';
 import { BlurView } from 'react-native-blur';
+import Availability from '../Profile/availability';
 
 class ProfileModal extends Component {
 
@@ -57,7 +58,12 @@ class ProfileModal extends Component {
 
 
               <View style={staticStyles.content2} >
-                <Text style={staticStyles.panelTitle}>Current Availability</Text>
+
+                <Availability profile={this.props.profile}
+                              currentUser={this.props.currentUser}
+
+                />
+
               </View>
               <View style={staticStyles.content3} >
                 <Text style={staticStyles.panelTitle}>Neighborhood</Text>
@@ -122,7 +128,7 @@ const staticStyles = StyleSheet.create({
   content2: {
     backgroundColor: "white",
     width: '100%',
-    height: 100,
+    height: 'auto',
     marginTop: 13,
   },
   content3: {
@@ -142,7 +148,7 @@ const staticStyles = StyleSheet.create({
     alignSelf: 'flex-start',
     backgroundColor: 'rgb(65,152,240)',
     marginBottom: 36,
-    paddingBottom: 14,
+    paddingBottom: 23,
   },
   closeImage: {
     width: 20,
@@ -165,22 +171,22 @@ const staticStyles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
   },
   quickNotes:{
-    fontFamily: 'Helvetica',
-    fontSize: 16,
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 13,
     alignSelf: 'flex-start',
     paddingLeft: 20,
     color: 'grey',
   },
   panelTitle:{
-    fontFamily: 'Helvetica',
-    fontSize: 16,
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 13,
     alignSelf: 'flex-start',
     paddingLeft: 20,
     color: 'grey',
     paddingTop: 20,
   },
   quickBlurb:{
-    fontFamily: 'Helvetica',
+    fontFamily: 'ProximaNova-Regular',
     fontSize: 12,
     paddingTop: 13,
     paddingLeft: 5,
@@ -189,7 +195,7 @@ const staticStyles = StyleSheet.create({
     lineHeight: 16,
   },
   quickBlurb2:{
-    fontFamily: 'Helvetica',
+    fontFamily: 'ProximaNova-Regular',
     fontSize: 12,
     paddingTop: 13,
     paddingLeft: 20,
