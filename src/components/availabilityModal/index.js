@@ -59,7 +59,6 @@ class AvailabilityModal extends Component {
           if(newAvailability[i].time == time && newAvailability[i].day == day){
             newAvailability.splice(i, 1);
             this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
-            console.log(newAvailability);
             return 0
           }
         }
@@ -123,6 +122,16 @@ class AvailabilityModal extends Component {
     )
   }
 
+  removeTagPress(day, time){
+    let newAvailability = this.props.currentUser.availability.slice();
+    for(let i=0; i<newAvailability.length; i++){
+      if(newAvailability[i].day == day && newAvailability[i].time == time){
+        newAvailability.splice(i, 1);
+        this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
+      }
+    }
+  }
+
   renderTags(){
     if(this.props.currentUser.name){
       let availability = this.props.currentUser.availability.slice();
@@ -131,7 +140,11 @@ class AvailabilityModal extends Component {
         content.push(
           <View key={i} style={staticStyles.bubble}>
             <Text style={staticStyles.bubbleText}>{availability[i].day} - {this.displayTime(availability[i].time)}</Text>
-            <TouchableHighlight style={staticStyles.tagDelete}>
+            <TouchableHighlight
+              style={staticStyles.tagDelete}
+              underlayColor={'rgb(65,152,240)'}
+              onPress={() => this.removeTagPress(availability[i].day, availability[i].time)}
+            >
               <Text style={staticStyles.tagX}>x</Text>
             </TouchableHighlight>
           </View>
@@ -244,6 +257,7 @@ const staticStyles = StyleSheet.create({
     width:18,
     height:18,
     marginLeft: 10,
+    marginRight: -1,
     marginTop: -2,
     borderWidth: 0.5,
     borderRadius: 20,
@@ -311,7 +325,7 @@ const staticStyles = StyleSheet.create({
     fontSize: 20,
     color: 'grey',
     alignSelf: 'center',
-    marginTop: 30
+    marginTop: 23
   },
   toggleButton: {
     width: 50,
