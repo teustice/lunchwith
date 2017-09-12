@@ -3,13 +3,6 @@ import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, TouchableOpa
 import userSeed from '../../lib/seeds/userSeed';
 
 class AvailabilityModal extends Component {
-  componentDidUpdate(prevProps, PrevState){
-    // if(prevProps.currentUser != this.props.currentUser){
-    //   if(this.props.currentUser.name){
-    //     this.setState({pressedButtons: this.props.currentUser.availability})
-    //   }
-    // }
-  }
   dayCodes(day){
     switch(day){
       case 'Monday':
@@ -36,22 +29,35 @@ class AvailabilityModal extends Component {
 
   switchPress(value, day, time){
     if(this.props.currentUser.name){
-      let availability = this.props.currentUser.availability;
-      availability.push({time: time, day: day});
-      this.props.setCurrentUser(...this.props.currentUser, availability: availability);
+      let newAvailability = this.props.currentUser.availability.slice();
+      if(value){
+        newAvailability.push({time: time, day: day});
+        this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
+      } else {
+        for(let i=0; i<newAvailability.length; i++){
+          // console.log(`user:${availability[i].time} | time: ${time}`);
+          if(newAvailability[i].time == time && newAvailability[i].day == day){
+            newAvailability.splice(i, 1);
+            this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
+            console.log(newAvailability);
+            return 0
+          }
+        }
+      }
+      console.log(newAvailability);
     }
   }
 
   isPressed(day, time){
     if(this.props.currentUser.name){
-      let availability = this.props.currentUser.availability;
-      for(let i=0; i<availability.length; i++){
+      // let availability = this.props.currentUser.availability;
+      for(let i=0; i<this.props.currentUser.availability.length; i++){
         // console.log(`user:${availability[i].time} | time: ${time}`);
-        if(availability[i].time == time && availability[i].day == this.dayCodes(day)){
-          console.log("NAILED IT");
+        if(this.props.currentUser.availability[i].time == time && this.props.currentUser.availability[i].day == this.dayCodes(day)){
           return true;
         }
       }
+      return false;
     }
   }
 
@@ -115,7 +121,6 @@ class AvailabilityModal extends Component {
   }
 
   submitAvailability(){
-    this.props.setCurrentUser({...this.props.currentUser, availability: this.state.pressedButtons});
     this.hideModal();
   }
 
