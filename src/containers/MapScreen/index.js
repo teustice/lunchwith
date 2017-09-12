@@ -59,6 +59,7 @@ export class MapScreen extends Component {
           userLocation={this.props.userLocation}
           currentUser={this.props.currentUser}
           navigation={this.props.navigation}
+
         />
       )
     }

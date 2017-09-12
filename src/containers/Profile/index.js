@@ -107,7 +107,7 @@ export class Profile extends Component {
           />
         </View>
 
-       </ScrollView>
+      </ScrollView>
 
 
     );

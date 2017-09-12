@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { Modal, Text, ScrollView, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import ActionCreators from '../../actions/index';
 import ProfileImage from './image'
 import NeighbordhoodMap from '../Map/neighborhood';
 import { BlurView } from 'react-native-blur';
 import Availability from '../Profile/availability';
+import getCurrentUser from '../../selectors/currentUser';
+
 
 class ProfileModal extends Component {
+  //
+  // state = {
+  //   modalVisible: false,
+  // }
 
-  state = {
-    modalVisible: false,
-  }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.props.setProfileModal({...this.props.profileModal, modalVisible: visible});
+    // this.setState({modalVisible: visible});
   }
 
   render() {
@@ -35,12 +42,12 @@ class ProfileModal extends Component {
             <Modal
               animationType={"slide"}
               transparent={true}
-              visible={this.state.modalVisible}
+              visible={this.props.profileModal.modalVisible}
               style={staticStyles.mapBlur}
               >
               <ScrollView>
               <TouchableWithoutFeedback onPress={() => {
-                this.setModalVisible(!this.state.modalVisible)
+                this.setModalVisible(!this.props.profileModal.modalVisible)
               }}>
                 <View style={staticStyles.closeModal}>
                     <Image
@@ -63,7 +70,7 @@ class ProfileModal extends Component {
                       <Availability profile={this.props.profile}
                                     currentUser={this.props.currentUser}
                                     navigation={this.props.navigation}
-                                    modalState={this.state.modalVisible}
+                                    modalState={this.props.profileModal.modalVisible}
                       />
                     </View>
                     <View style={staticStyles.content3} >
@@ -226,5 +233,15 @@ const staticStyles = StyleSheet.create({
     top: 0, left: 0, bottom: 0, right: 0,
   },
 });
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ActionCreators, dispatch);
+}
+
+function mapStateToProps(store) {
+  return {
+    currentUser: getCurrentUser(store),
+  };
+}
 
 export default ProfileModal;

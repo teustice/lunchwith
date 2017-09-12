@@ -9,7 +9,13 @@ export class Restaurants extends Component {
  }
 
  openSearchModal() {
-   RNGooglePlaces.openAutocompleteModal()
+   RNGooglePlaces.openAutocompleteModal({
+     type: 'establishment',
+     country: 'USA',
+     latitude: 55.544389,
+     longitude: -121.490927,
+     radius: 10
+   })
      .then((place) => {
  		console.log(place);
      return place;
@@ -24,7 +30,7 @@ export class Restaurants extends Component {
      <TouchableOpacity
        onPress={() => this.openSearchModal()}
      >
-       <Text>Company</Text>
+       <Text>Rezzys</Text>
      </TouchableOpacity>
    );
  }
