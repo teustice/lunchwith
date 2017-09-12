@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity, TextInput, View, StyleSheet, Dimensions, Image, Switch, ScrollView } from 'react-native';
-import userSeed from '../../lib/seeds/userSeed';
+import LinearGradient from 'react-native-linear-gradient';
 
 class AvailabilityModal extends Component {
   dayCodes(day){
@@ -155,6 +155,19 @@ class AvailabilityModal extends Component {
     }
   }
 
+  tagSection(){
+    if(this.props.currentUser.name && this.props.currentUser.availability.length < 1) {
+      return (
+        <Text style={staticStyles.subText}>{`Select up to 3 times that you would like to have lunch`}</Text>
+      )
+    } else {
+      return(
+        <View style={{flexDirection: 'row'}}>
+          {this.renderTags()}
+        </View>
+      )
+    }
+  }
 
   modalContent(){
     return(
@@ -162,19 +175,20 @@ class AvailabilityModal extends Component {
         <View style={staticStyles.header}>
           <Text style={{alignSelf:'center', fontSize: 20, color: 'white'}}>Availability</Text>
         </View>
-        <View style={staticStyles.subTextContainer}>
-          <Text style={staticStyles.subText}>{`Select up to 3 times that you would like to have lunch`}</Text>
-        </View>
+
         <View style={staticStyles.tagBubbles}>
-          {this.renderTags()}
+          {this.tagSection()}
         </View>
         <ScrollView style={staticStyles.inputContainer}>
+            <View style={{marginTop: -30}}>
             {this.section("Monday")}
+            </View>
             {this.section("Tuesday")}
             {this.section("Wednesday")}
             {this.section("Thursday")}
             {this.section("Friday")}
         </ScrollView>
+        <LinearGradient colors={['rgba(255,255,255,0)', 'white', 'white']} style={staticStyles.linearGradient}/>
       </View>
     );
   }
@@ -215,6 +229,12 @@ const staticStyles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  linearGradient:{
+    width: '100%',
+    height: 20,
+    position: 'absolute',
+    marginTop: '154%',
+  },
   dayBanner: {
     marginTop: 30,
     width: '100%',
@@ -222,7 +242,7 @@ const staticStyles = StyleSheet.create({
     backgroundColor: 'rgb(65,152,240)',
   },
   inputContainer: {
-    height: '69%',
+    height: '78%',
     width: '100%',
   },
   tagBubbles: {
@@ -268,8 +288,8 @@ const staticStyles = StyleSheet.create({
   subText: {
     color: 'grey',
     fontSize: 12,
-    marginTop: 20,
     height: 20,
+    marginTop: 5,
     // marginLeft: '5%',
   },
   subTextContainer: {
