@@ -49,21 +49,22 @@ class AvailabilityModal extends Component {
 
   switchPress(value, day, time){
     if(this.props.currentUser.name){
-      let newAvailability = this.props.currentUser.availability.slice();
-      if(value){
-        newAvailability.push({time: time, day: day});
-        this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
-      } else {
-        for(let i=0; i<newAvailability.length; i++){
-          // console.log(`user:${availability[i].time} | time: ${time}`);
-          if(newAvailability[i].time == time && newAvailability[i].day == day){
-            newAvailability.splice(i, 1);
-            this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
-            return 0
+      if(value === false || (!(this.props.currentUser.availability.length >= 3))){    
+        let newAvailability = this.props.currentUser.availability.slice();
+        if(value){
+          newAvailability.push({time: time, day: day});
+          this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
+        } else {
+          for(let i=0; i<newAvailability.length; i++){
+            // console.log(`user:${availability[i].time} | time: ${time}`);
+            if(newAvailability[i].time == time && newAvailability[i].day == day){
+              newAvailability.splice(i, 1);
+              this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
+              return 0
+            }
           }
         }
       }
-      console.log(newAvailability);
     }
   }
 
