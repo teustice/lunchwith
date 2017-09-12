@@ -8,8 +8,8 @@ import Map from '../../components/Map/index';
 import { connect } from 'react-redux';
 import ActionCreators from '../../actions/index';
 import getCurrentUser from '../../selectors/currentUser';
-import Header from '../../components/Profile/header';
 import { NavigationActions } from 'react-navigation';
+import Restaurants from '../../components/LunchComponents/restaurants';
 
 export class Lunch extends Component {
   static navigationOptions = {
@@ -20,6 +20,7 @@ export class Lunch extends Component {
     return (
       <View>
         <Text>Ask for lunches here.</Text>
+        <Restaurants/>
       </View>
     )
   }
