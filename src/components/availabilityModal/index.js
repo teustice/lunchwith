@@ -49,7 +49,7 @@ class AvailabilityModal extends Component {
 
   switchPress(value, day, time){
     if(this.props.currentUser.name){
-      if(value === false || (!(this.props.currentUser.availability.length >= 3))){    
+      if(value === false || (!(this.props.currentUser.availability.length >= 3))){
         let newAvailability = this.props.currentUser.availability.slice();
         if(value){
           newAvailability.push({time: time, day: day});
@@ -83,7 +83,7 @@ class AvailabilityModal extends Component {
 
   renderSwitch(day, time){
     return(
-      <View style={{marginRight: '10%'}}>
+      <View style={{marginRight: '7%'}}>
         <Switch
           value={this.isPressed(day,time)}
           onTintColor={'rgb(65,152,240)'}
@@ -222,11 +222,9 @@ const staticStyles = StyleSheet.create({
   },
   dayBanner: {
     marginTop: 10,
-    marginLeft: '7%',
-    width: '85%',
-    height: 25,
-    borderBottomWidth: 0.5,
-    borderColor: 'rgb(65,152,240)',
+    width: '100%',
+    height: 30,
+    backgroundColor: 'rgb(65,152,240)',
   },
   inputContainer: {
     height: '60%',
@@ -252,6 +250,7 @@ const staticStyles = StyleSheet.create({
     color: 'rgb(65,152,240)',
     fontFamily:'ProximaNova-Regular',
     marginTop: 2,
+    marginLeft: 2,
     fontSize: 12,
   },
   tagDelete: {
@@ -282,12 +281,10 @@ const staticStyles = StyleSheet.create({
     marginTop: 10,
     width: '85%',
     marginLeft: '7%',
-    borderBottomWidth: 0.5,
-    borderColor: 'grey',
   },
   header: {
     width: '100%',
-    height: 50,
+    height: 60,
     justifyContent: 'center',
     backgroundColor: 'rgb(65,152,240)',
   },
@@ -304,7 +301,10 @@ const staticStyles = StyleSheet.create({
   dayText: {
     fontFamily: 'ProximaNova-Regular',
     fontSize: 18,
-    color: 'grey',
+    marginLeft: '8%',
+    marginTop: 6,
+    color: 'white',
+    justifyContent: 'center'
   },
   modalBackground: {
     height:('85%'),
