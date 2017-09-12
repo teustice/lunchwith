@@ -68,6 +68,7 @@ class ProfileModal extends Component {
                     </View>
                     <View style={staticStyles.content4} >
                       <Text style={staticStyles.panelTitle}>In {this.props.profile.name}s own words.</Text>
+                      <Text style={staticStyles.quickBlurb2}>{this.props.profile.bio}</Text>
                     </View>
                   </View>
                 </ScrollView>
