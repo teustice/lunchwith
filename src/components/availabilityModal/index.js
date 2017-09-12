@@ -1,17 +1,45 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity, TextInput, View, StyleSheet, Dimensions, Image } from 'react-native';
+import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity, TextInput, View, StyleSheet, Dimensions, Image, Switch, ScrollView } from 'react-native';
 import userSeed from '../../lib/seeds/userSeed';
 
 class AvailabilityModal extends Component {
-  state = {
-    pressedButtons: []
+  dayCodes(day){
+    switch(day){
+      case 'Monday':
+        return 'M';
+        break;
+      case 'Tuesday':
+        return 'T';
+        break;
+      case 'Wednesday':
+        return 'W';
+        break;
+      case 'Thursday':
+        return 'Th';
+        break;
+      case 'Friday':
+        return 'F';
+        break;
+    }
   }
 
-  componentDidUpdate(prevProps, PrevState){
-    if(prevProps.currentUser != this.props.currentUser){
-      if(this.props.currentUser.name){
-        this.setState({pressedButtons: this.props.currentUser.availability})
-      }
+  displayTime(time){
+    switch(time){
+      case '9':
+        return '9:00AM';
+        break;
+      case '10':
+        return '10:00AM';
+        break;
+      case '11':
+        return '11:00AM';
+        break;
+      case '12':
+        return '12:00PM';
+        break;
+      case '1':
+        return '1:00PM';
+        break;
     }
   }
 
@@ -19,95 +47,125 @@ class AvailabilityModal extends Component {
     this.props.setAvailabilityModal({isOpen: false});
   }
 
-  buttonPress(time, day){
-    let trimmedTime = time.substr(0, time.indexOf('-'));
-    let newArray = this.state.pressedButtons.slice();
-    let pressedButton = {time: trimmedTime, day: day};
-    for(let i=0; i< 20; i++){
-      if(this.state.pressedButtons[i]){
-        if(this.state.pressedButtons[i].time === trimmedTime && this.state.pressedButtons[i].day === day){
-          newArray.splice(i, 1);
-          this.setState({ pressedButtons: newArray });
-          return 0
-        }
-      }
-    }
-    newArray.push(pressedButton);
-    this.setState({ pressedButtons: newArray });
-  }
-
-  isButtonSelected(time, day){
-    let trimmedTime = time.substr(0, time.indexOf('-'));
-    for(let i=0; i< 20; i++){
-      if(this.state.pressedButtons[i]){
-        if(this.state.pressedButtons[i].time === trimmedTime && this.state.pressedButtons[i].day === day){
-          return(
-            <View style={staticStyles.toggleButtonSelected}>
-              <Text style={staticStyles.buttonTimeSelected}>{time}</Text>
-            </View>
-          )
-        }
+  switchPress(value, day, time){
+    if(this.props.currentUser.name){
+      let newAvailability = this.props.currentUser.availability.slice();
+      if(value){
+        newAvailability.push({time: time, day: day});
+        this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
       } else {
-        return(
-          <View style={staticStyles.toggleButton}>
-            <Text style={staticStyles.buttonTime}>{time}</Text>
-          </View>
-        )
+        for(let i=0; i<newAvailability.length; i++){
+          // console.log(`user:${availability[i].time} | time: ${time}`);
+          if(newAvailability[i].time == time && newAvailability[i].day == day){
+            newAvailability.splice(i, 1);
+            this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
+            console.log(newAvailability);
+            return 0
+          }
+        }
       }
+      console.log(newAvailability);
     }
   }
 
-  toggleButton(time, day){
-    return(
-      <TouchableWithoutFeedback
-        onPress={() => this.buttonPress(time, day)}
-      >
-        <View>
-          {this.isButtonSelected(time, day)}
-        </View>
-      </TouchableWithoutFeedback>
-    );
+  isPressed(day, time){
+    if(this.props.currentUser.name){
+      // let availability = this.props.currentUser.availability;
+      for(let i=0; i<this.props.currentUser.availability.length; i++){
+        // console.log(`user:${availability[i].time} | time: ${time}`);
+        if(this.props.currentUser.availability[i].time == time && this.props.currentUser.availability[i].day == this.dayCodes(day)){
+          return true;
+        }
+      }
+      return false;
+    }
   }
 
-  buttonRow(day){
+  renderSwitch(day, time){
     return(
-      <View style={staticStyles.buttonRow}>
-        <View style={staticStyles.buttonContainer}>
+      <View style={{marginRight: '10%'}}>
+        <Switch
+          value={this.isPressed(day,time)}
+          onTintColor={'rgb(65,152,240)'}
+          onValueChange={(value) => this.switchPress(value, this.dayCodes(day), time)}
+        />
+      </View>
+    )
+  }
+
+  section(day){
+    return(
+      <View style={{flex: 1}}>
+        <View style={staticStyles.dayBanner}>
           <Text style={staticStyles.dayText}>{day}</Text>
         </View>
-        <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("10-11", day)}
+        <View style={staticStyles.timeEntry}>
+          <Text style={staticStyles.timeText}>9:00AM - 10:00AM</Text>
+          {this.renderSwitch(day, '9')}
         </View>
-        <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("11-12", day)}
+        <View style={staticStyles.timeEntry}>
+          <Text style={staticStyles.timeText}>10:00AM - 11:00AM</Text>
+          {this.renderSwitch(day, '10')}
         </View>
-        <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("12-1", day)}
+        <View style={staticStyles.timeEntry}>
+          <Text style={staticStyles.timeText}>11:00AM - 12:00PM</Text>
+          {this.renderSwitch(day, '11')}
         </View>
-        <View style={staticStyles.buttonContainer}>
-          {this.toggleButton("1-2", day)}
+        <View style={staticStyles.timeEntry}>
+          <Text style={staticStyles.timeText}>12:00PM - 1:00PM</Text>
+          {this.renderSwitch(day, '12')}
+        </View>
+        <View style={staticStyles.timeEntry}>
+          <Text style={staticStyles.timeText}>1:00PM - 2:00PM</Text>
+          {this.renderSwitch(day, '1')}
         </View>
       </View>
     )
   }
 
+  renderTags(){
+    if(this.props.currentUser.name){
+      let availability = this.props.currentUser.availability.slice();
+      let content = [];
+      for(let i=0; i<availability.length; i++){
+        content.push(
+          <View key={i} style={staticStyles.bubble}>
+            <Text style={staticStyles.bubbleText}>{availability[i].day} - {this.displayTime(availability[i].time)}</Text>
+            <TouchableHighlight style={staticStyles.tagDelete}>
+              <Text style={staticStyles.tagX}>x</Text>
+            </TouchableHighlight>
+          </View>
+        )
+      }
+      return content;
+    }
+  }
+
+
   modalContent(){
     return(
       <View>
-        <Text style={{alignSelf:'center', fontSize: 20}}>Set Your Availability</Text>
-        <View style={staticStyles.inputContainer}>
-            {this.buttonRow("M")}
-            {this.buttonRow("T")}
-            {this.buttonRow("W")}
-            {this.buttonRow("Th")}
-            {this.buttonRow("F")}
+        <View style={staticStyles.header}>
+          <Text style={{alignSelf:'center', fontSize: 20, color: 'white'}}>Availability</Text>
         </View>
+        <View style={staticStyles.subTextContainer}>
+          <Text style={staticStyles.subText}>{`Select up to 3 times that you would like to have lunch`}</Text>
+        </View>
+        <View style={staticStyles.tagBubbles}>
+          {this.renderTags()}
+        </View>
+        <ScrollView style={staticStyles.inputContainer}>
+            {this.section("Monday")}
+            {this.section("Tuesday")}
+            {this.section("Wednesday")}
+            {this.section("Thursday")}
+            {this.section("Friday")}
+        </ScrollView>
       </View>
     );
   }
 
   submitAvailability(){
-    this.props.setCurrentUser({...this.props.currentUser, availability: this.state.pressedButtons});
     this.hideModal();
   }
 
@@ -120,9 +178,6 @@ class AvailabilityModal extends Component {
         >
         <View style={staticStyles.container}>
           <View style={staticStyles.modalBackground}>
-            <TouchableHighlight onPress={() => this.hideModal()}>
-              <Text>X</Text>
-            </TouchableHighlight>
             {this.modalContent()}
             <TouchableHighlight
               onPress={() => this.submitAvailability()}
@@ -151,9 +206,94 @@ const staticStyles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  dayBanner: {
+    marginTop: 10,
+    marginLeft: '7%',
+    width: '85%',
+    height: 25,
+    borderBottomWidth: 0.5,
+    borderColor: 'rgb(65,152,240)',
+  },
+  inputContainer: {
+    height: '60%',
+    width: '100%',
+  },
+  tagBubbles: {
+    height: 50,
+    flexDirection: 'row',
+    marginLeft: '7%',
+    marginTop: 15,
+  },
+  bubble: {
+    borderWidth: 0.5,
+    height: 25,
+    padding: 5,
+    marginRight: 5,
+    borderRadius: 20,
+    justifyContent:'center',
+    flexDirection: 'row',
+    borderColor: 'rgb(65,152,240)',
+  },
+  bubbleText: {
+    color: 'rgb(65,152,240)',
+    fontFamily:'ProximaNova-Regular',
+    marginTop: 2,
+    fontSize: 12,
+  },
+  tagDelete: {
+    width:18,
+    height:18,
+    marginLeft: 10,
+    marginTop: -2,
+    borderWidth: 0.5,
+    borderRadius: 20,
+    borderColor: 'rgb(65,152,240)',
+    // justifyContent:'center',
+  },
+  tagX: {
+    // justifyContent:'center',
+    alignSelf:'center',
+    color: 'rgb(65,152,240)',
+    fontFamily:'ProximaNova-Regular',
+  },
+  subText: {
+    color: 'grey',
+    fontSize: 12,
+    marginTop: 20,
+    height: 20,
+    // marginLeft: '5%',
+  },
+  subTextContainer: {
+    marginTop: 10,
+    width: '85%',
+    marginLeft: '7%',
+    borderBottomWidth: 0.5,
+    borderColor: 'grey',
+  },
+  header: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    backgroundColor: 'rgb(65,152,240)',
+  },
+  timeEntry: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+  timeText: {
+    marginLeft: '8%',
+    marginTop: 10,
+    fontFamily: 'ProximaNova-Regular',
+  },
+  dayText: {
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 18,
+    color: 'grey',
+  },
   modalBackground: {
     height:('85%'),
-    width:('80%'), //gap between slides
+    width:('95%'), //gap between slides
     marginTop: '10%',
     backgroundColor: 'rgb(255, 255, 255)',
     elevation: 1,
@@ -218,10 +358,6 @@ const staticStyles = StyleSheet.create({
     color: 'white',
     fontSize: 14,
   },
-  dayText: {
-    color: 'grey',
-    fontSize: 20,
-  }
 });
 
 export default AvailabilityModal;

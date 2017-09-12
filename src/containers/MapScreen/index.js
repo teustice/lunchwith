@@ -25,7 +25,7 @@ import ProfileCarousel from '../../components/ProfileCarousel';
 import DrawerNav from '../../components/DrawerNav/index';
 import LogIn from '../../components/LogIn/index';
 import NewUser from '../../components/LogIn/newUser';
-import AvailabilityModal from '../../components/availabilityModal/switch';
+import AvailabilityModal from '../../components/availabilityModal';
 import MapFilter from './filter';
 
 export class MapScreen extends Component {
