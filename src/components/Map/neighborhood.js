@@ -42,7 +42,7 @@ export class Neighborhood extends Component {
 
   render() {
     return (
-      <View >
+      <View style={staticStyles.container}>
         <MapView
           ref={'neighborhood'}
           style={staticStyles.map}
@@ -70,7 +70,7 @@ const staticStyles = StyleSheet.create({
     alignItems: 'center',
   },
   map: {
-    width: Dimensions.get('window').width,
+    width: (Dimensions.get('window').width * 0.90),
     height: 150,
   },
 });

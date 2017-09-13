@@ -1,36 +1,47 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
+import { Modal, Text, ScrollView, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, View, StyleSheet, Dimensions, Image } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import ActionCreators from '../../actions/index';
 import ProfileImage from './image'
 import NeighbordhoodMap from '../Map/neighborhood';
 import { BlurView } from 'react-native-blur';
+import Availability from '../Profile/availability';
+import getCurrentUser from '../../selectors/currentUser';
+
 
 class ProfileModal extends Component {
 
-  state = {
-    modalVisible: false,
-  }
-
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.props.setProfileModal({...this.props.profileModal, modalVisible: visible});
   }
 
   render() {
+
+    const profileSkills = this.props.profile.skills.map((skill, key) => {
+      return (
+        <Text style={{color: 'rgb(65,152,240)'}} key={key}>{skill.name}</Text>
+      );
+    });
+
     return (
       <TouchableWithoutFeedback
         onPress={() => {
           this.setModalVisible(true)
         }}
       >
+
         <View style={staticStyles.transparentView}>
           <View style={staticStyles.modalBackground}>
             <Modal
               animationType={"slide"}
               transparent={true}
-              visible={this.state.modalVisible}
+              visible={this.props.profileModal.modalVisible}
               style={staticStyles.mapBlur}
               >
+              <ScrollView>
               <TouchableWithoutFeedback onPress={() => {
-                this.setModalVisible(!this.state.modalVisible)
+                this.setModalVisible(!this.props.profileModal.modalVisible)
               }}>
                 <View style={staticStyles.closeModal}>
                     <Image
@@ -40,32 +51,39 @@ class ProfileModal extends Component {
                   <Text style={staticStyles.closeTitle}>Lunch with {this.props.profile.name}</Text>
                 </View>
               </TouchableWithoutFeedback>
-             <View style={staticStyles.container}>
-              <View style={{alignSelf:'flex-end'}} style={staticStyles.content}>
-                <ProfileImage profile={this.props.profile}/>
-                <Text style={staticStyles.quickNotes}>Quick Notes</Text>
-                <Text style={staticStyles.quickBlurb2}>Having {this.props.profile.experience} of development experience, {this.props.profile.name} specializes in SKILLS.</Text>
-              </View>
-              <View style={staticStyles.content2} >
-                <Text style={staticStyles.panelTitle}>Current Availability</Text>
-              </View>
-              <View style={staticStyles.content3} >
-                <Text style={staticStyles.panelTitle}>Neighborhood</Text>
-                <NeighbordhoodMap neighborhood={this.props.neighborhood} radius={this.props.profile.lunchRadius}/>
-              </View>
-              <View style={staticStyles.content4} >
-                <Text style={staticStyles.panelTitle}>In {this.props.profile.name}s own words.</Text>
-              </View>
+                 <View style={staticStyles.container}>
+                    <View style={{alignSelf:'flex-end'}} style={staticStyles.content}>
+                      <ProfileImage profile={this.props.profile}/>
+                      <View style={staticStyles.quickBlock}>
+                        <Text style={staticStyles.quickNotes}>Quick Notes</Text>
+                        <Text style={staticStyles.quickBlurb2}>Having {this.props.profile.experience} years of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
+                      </View>
+                    </View>
 
-             </View>
+                    <View style={staticStyles.content2} >
+                      <Availability profile={this.props.profile}
+                                    currentUser={this.props.currentUser}
+                                    navigation={this.props.navigation}
+                                    profileModal={this.props.profileModal}
+                                    setProfileModal={this.props.setProfileModal}
+                      />
+                    </View>
+                    <View style={staticStyles.content3} >
+                      <Text style={staticStyles.panelTitle}>Neighborhood</Text>
+                      <NeighbordhoodMap neighborhood={this.props.neighborhood} radius={this.props.profile.lunchRadius}/>
+                    </View>
+                    <View style={staticStyles.content4} >
+                      <Text style={staticStyles.panelTitle}>In {this.props.profile.name}s own words.</Text>
+                      <Text style={staticStyles.quickBlurb2}>{this.props.profile.bio}</Text>
+                    </View>
+                  </View>
+                </ScrollView>
             </Modal>
 
             <View style={staticStyles.profileSnippet}>
-
               <ProfileImage profile={this.props.profile}/>
-
               <Text style={staticStyles.title}>{this.props.profile.name}</Text>
-              <Text style={staticStyles.quickBlurb}>Having {this.props.profile.experience} of development experience, {this.props.profile.name} specializes in SKILLS.</Text>
+              <Text style={staticStyles.quickBlurb}>Having {this.props.profile.experience} years of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
             </View>
           </View>
         </View>
@@ -78,6 +96,7 @@ const staticStyles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 10,
+    marginTop: -10,
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0)',
     shadowColor: 'rgb(150,150,150)',
@@ -103,6 +122,7 @@ const staticStyles = StyleSheet.create({
   profileImage: {
     width: 50,
     height: 50,
+    // marginTop: -15,
   },
   content:{
     backgroundColor: "white",
@@ -112,14 +132,15 @@ const staticStyles = StyleSheet.create({
   content2: {
     backgroundColor: "white",
     width: '100%',
-    height: 100,
-    marginTop: 13,
+    height: 'auto',
+    marginTop: 5,
   },
   content3: {
     backgroundColor: "white",
     width: '100%',
     height: 200,
     marginTop: 4,
+
   },
   content4: {
     backgroundColor: "white",
@@ -131,13 +152,14 @@ const staticStyles = StyleSheet.create({
     width: '100%',
     alignSelf: 'flex-start',
     backgroundColor: 'rgb(65,152,240)',
-    marginBottom: 36,
-    paddingBottom: 14,
+    height: 50,
+    marginBottom: 41,
+    paddingBottom: 23,
   },
   closeImage: {
     width: 20,
     height: 20,
-    marginTop: 10,
+    marginTop: 15,
     marginLeft: 20,
   },
   closeTitle: {
@@ -145,6 +167,8 @@ const staticStyles = StyleSheet.create({
     color: 'white',
     marginTop: -20,
     backgroundColor: 'rgba(255,255,255,0)',
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 20,
   },
   title:{
     fontFamily: 'Helvetica',
@@ -155,22 +179,25 @@ const staticStyles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
   },
   quickNotes:{
-    fontFamily: 'Helvetica',
-    fontSize: 16,
+    fontFamily: 'ProximaNovaT-Thin',
+    fontSize: 12,
     alignSelf: 'flex-start',
     paddingLeft: 20,
-    color: 'grey',
+    color: 'rgb(10,10,10)',
+  },
+  quickBlock:{
+    marginTop: -10,
   },
   panelTitle:{
-    fontFamily: 'Helvetica',
-    fontSize: 16,
+    fontFamily: 'ProximaNovaT-Thin',
+    fontSize: 12,
     alignSelf: 'flex-start',
     paddingLeft: 20,
-    color: 'grey',
+    color: 'rgb(10,10,10)',
     paddingTop: 20,
   },
   quickBlurb:{
-    fontFamily: 'Helvetica',
+    fontFamily: 'ProximaNova-Regular',
     fontSize: 12,
     paddingTop: 13,
     paddingLeft: 5,
@@ -179,7 +206,7 @@ const staticStyles = StyleSheet.create({
     lineHeight: 16,
   },
   quickBlurb2:{
-    fontFamily: 'Helvetica',
+    fontFamily: 'ProximaNova-Regular',
     fontSize: 12,
     paddingTop: 13,
     paddingLeft: 20,
@@ -201,5 +228,15 @@ const staticStyles = StyleSheet.create({
     top: 0, left: 0, bottom: 0, right: 0,
   },
 });
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ActionCreators, dispatch);
+}
+
+function mapStateToProps(store) {
+  return {
+    currentUser: getCurrentUser(store),
+  };
+}
 
 export default ProfileModal;

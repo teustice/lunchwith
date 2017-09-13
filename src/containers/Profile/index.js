@@ -98,6 +98,7 @@ export class Profile extends Component {
           setAvailabilityModal={this.props.setAvailabilityModal}
           currentUser={this.props.currentUser}
           setCurrentUser={this.props.setCurrentUser}
+          navigation={this.props.navigation}
         />
         <SkillModal
           skillModal={this.props.skillModal}
@@ -121,7 +122,7 @@ export class Profile extends Component {
           />
         </View>
 
-       </ScrollView>
+      </ScrollView>
 
 
     );
