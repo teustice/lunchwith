@@ -16,6 +16,8 @@ import getUser from '../../selectors/user';
 import getDrawerNav from '../../selectors/drawerNav';
 import getCurrentUser from '../../selectors/currentUser';
 import getAvailabilityModal from '../../selectors/availabilityModal';
+import getSkillModal from '../../selectors/skillModal';
+import getSkills from '../../selectors/skills';
 import getLunchRadiusMarker from '../../selectors/lunchRadiusMarker';
 import getLunchRadiusSlider from '../../selectors/lunchRadiusSlider';
 import getUserLocation from '../../selectors/userLocation';
@@ -27,6 +29,7 @@ import ExperienceSlider from '../../components/Forms/slider'
 import getExperienceSlider from '../../selectors/experienceSlider';
 import Availability from '../../components/Profile/availability';
 import AvailabilityModal from '../../components/availabilityModal';
+import SkillModal from '../../components/skillModal';
 import RadiusMap from '../../components/Forms/radiusMap';
 import RadiusSlider from '../../components/Forms/radiusSlider';
 
@@ -55,7 +58,10 @@ export class Profile extends Component {
         </View>
 
         <View style={staticStyles.content}>
-          <Skills setUser={this.props.currentUser}/>
+          <Skills
+            currentUser={this.props.currentUser}
+            setSkillModal={this.props.setSkillModal}
+          />
         </View>
 
         <View style={staticStyles.content}>
@@ -92,6 +98,14 @@ export class Profile extends Component {
           setAvailabilityModal={this.props.setAvailabilityModal}
           currentUser={this.props.currentUser}
           setCurrentUser={this.props.setCurrentUser}
+        />
+        <SkillModal
+          skillModal={this.props.skillModal}
+          setSkillModal={this.props.setSkillModal}
+          currentUser={this.props.currentUser}
+          setCurrentUser={this.props.setCurrentUser}
+          skills={this.props.skills}
+          setSkills={this.props.setSkills}
         />
 
         <View style={staticStyles.content}>
@@ -186,6 +200,8 @@ function mapStateToProps(store) {
     drawerNav: getDrawerNav(store) ,
     currentUser: getCurrentUser(store),
     availabilityModal: getAvailabilityModal(store),
+    skillModal: getSkillModal(store),
+    skills: getSkills(store),
     lunchRadiusMarker: getLunchRadiusMarker(store),
     lunchRadiusSlider: getLunchRadiusSlider(store),
     userLocation: getUserLocation(store),

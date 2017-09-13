@@ -52,7 +52,7 @@ const SKILLS = [
   "BlueTrip",
   "YUI",
   "52framework",
-  "elastiCSS"
+  "elastiCSS",
   "Boilerplate",
   "Emastic",
   "Malo",

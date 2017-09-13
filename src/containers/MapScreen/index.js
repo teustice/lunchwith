@@ -25,7 +25,6 @@ import ProfileCarousel from '../../components/ProfileCarousel';
 import DrawerNav from '../../components/DrawerNav/index';
 import LogIn from '../../components/LogIn/index';
 import NewUser from '../../components/LogIn/newUser';
-import SkillModal from '../../components/skillModal';
 import MapFilter from './filter';
 
 export class MapScreen extends Component {
@@ -152,11 +151,6 @@ export class MapScreen extends Component {
             setCurrentUser={this.props.setCurrentUser}
             logInModal={this.props.logInModal}
             setLogInModal={this.props.setLogInModal}
-          />
-          <SkillModal
-            
-            currentUser={this.props.currentUser}
-            setCurrentUser={this.props.setCurrentUser}
           />
         </View>
       )

@@ -37,6 +37,8 @@ import fetchAvailabilityModal from './fetch-availabilityModal';
 import setAvailabilityModal from './set-availabilityModal';
 import fetchAvailabilityFilter from './fetch-availabilityFilter';
 import setAvailabilityFilter from './set-availabilityFilter';
+import fetchSkillModal from './fetch-skillModal';
+import setSkillModal from './set-skillModal';
 
 import { genericError } from './errors';
 
@@ -82,6 +84,8 @@ const ActionCreators = {
   setAvailabilityModal,
   fetchAvailabilityFilter,
   setAvailabilityFilter,
+  fetchSkillModal,
+  setSkillModal,
 };
 
 export default ActionCreators;
