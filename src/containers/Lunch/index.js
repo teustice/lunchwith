@@ -187,7 +187,6 @@ export class Lunch extends Component {
   }
 }
 
-
 var {width, height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
@@ -258,7 +257,6 @@ const styles = StyleSheet.create({
     width: '90%',
     height: 35,
     marginTop: '2.5%',
-    // marginBottom: '4%',
   },
   sendText: {
     color: 'white',
