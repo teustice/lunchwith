@@ -35,9 +35,87 @@ export class Lunch extends Component {
   }
 
   findDate(day){
-    time = new Date();
-    date = time.getDate;
-    day = time.getday;
+
+    var m_names = ["Jan", "Feb", "Mar",
+    "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+    "Oct", "Nov", "Dec"];
+
+    var time = new Date();
+    var weekDay = time.getDay();
+
+    switch(day){
+      case 'M':
+        difference = weekDay - 1
+        time.setDate(time.getDate()+(7-difference));
+        date = time.getDate();
+        month = time.getMonth();
+        return `${m_names[month]} ${date}`;
+        break;
+      case 'T':
+        if (weekDay > 1) {
+          difference = weekDay - 2
+          time.setDate(time.getDate()+(7-difference));
+          date = time.getDate();
+          month = time.getMonth();
+          return `${m_names[month]} ${date}`;
+          break;
+        } else {
+          difference = 2 - weekDay
+          time.setDate(time.getDate()+(difference));
+          date = time.getDate();
+          month = time.getMonth();
+          return `${m_names[month]} ${date}`;
+          break;
+        }
+      case 'W':
+        if (weekDay > 2) {
+          difference = weekDay - 3
+          time.setDate(time.getDate()+(7-difference));
+          date = time.getDate();
+          month = time.getMonth();
+          return `${m_names[month]} ${date}`;
+          break;
+        } else {
+          difference = 3 - weekDay
+          time.setDate(time.getDate()+(difference));
+          date = time.getDate();
+          month = time.getMonth();
+          return `${m_names[month]} ${date}`;
+          break;
+        }
+      case 'Th':
+        if (weekDay > 3) {
+          difference = weekDay - 4
+          time.setDate(time.getDate()+(7-difference));
+          date = time.getDate();
+          month = time.getMonth();
+          return `${m_names[month]} ${date}`;
+          break;
+        } else {
+          difference = 4 - weekDay
+          time.setDate(time.getDate()+(difference));
+          date = time.getDate();
+          month = time.getMonth();
+          return `${m_names[month]} ${date}`;
+          break;
+        }
+      case 'F':
+        if (weekDay > 4) {
+          difference = weekDay - 5
+          time.setDate(time.getDate()+(7-difference));
+          date = time.getDate();
+          month = time.getMonth();
+          return `${m_names[month]} ${date}`;
+          break;
+        } else {
+          difference = 5 - weekDay
+          time.setDate(time.getDate()+(difference));
+          date = time.getDate();
+          month = time.getMonth();
+          return `${m_names[month]} ${date}`;
+          break;
+        }
+    }
   }
 
   formatTime(time){
