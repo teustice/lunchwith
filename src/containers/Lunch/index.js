@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, StatusBar } from 'react-native';
+import { View, ScrollView, Text, StyleSheet, Dimensions, StatusBar } from 'react-native';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { BlurView } from 'react-native-blur';
@@ -158,21 +158,23 @@ export class Lunch extends Component {
     console.log(this.findDate(selectedTime.day));
 
     return (
-      <View>
+      <ScrollView>
         <View style={styles.closeModal}>
           <Text style={styles.header}>{this.formatDay(selectedTime.day)}, {this.findDate(selectedTime.day)} at {this.formatTime(selectedTime.time)}</Text>
           <Text style={styles.subHeader}>Lunch With {selectedUser.name}</Text>
         </View>
+
         <View style={styles.panels}>
           <View style={{alignSelf:'flex-end'}} style={styles.content}>
-            <ProfileImage profile={selectedUser}/>
+            <ProfileImage profile={selectedUser} />
             <Message profile={selectedUser}/>
           </View>
-        </View>
-        <View style={styles.content2}>
+
+          <View style={styles.content2}>
           <Restaurants/>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -208,35 +210,30 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0)',
   },
   panels:{
+    marginTop: -33,
+    marginHorizontal: 10,
+  },
+  content:{
+    backgroundColor: "white",
+    width: '100%',
+    height: 'auto',
     shadowColor: 'rgb(150,150,150)',
     shadowOffset: { width: 6, height: 6 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
     elevation: 1,
-    marginHorizontal: 10,
-    marginTop: -33,
-  },
-  content:{
-    backgroundColor: "white",
-    width: '100%',
-    height: 100,
   },
   content2:{
     backgroundColor: "white",
     width: '100%',
     height: 30,
-    marginTop: 10,
+    marginTop: 15,
+    shadowColor: 'rgb(150,150,150)',
+    shadowOffset: { width: 6, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 1,
   },
-  quickNotes:{
-    fontFamily: 'ProximaNovaT-Thin',
-    fontSize: 12,
-    alignSelf: 'flex-start',
-    paddingLeft: 20,
-    color: 'rgb(10,10,10)',
-  },
-  quickBlock:{
-    marginTop: -10,
-  }
 
 });
 
