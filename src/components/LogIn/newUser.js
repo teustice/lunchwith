@@ -16,9 +16,6 @@ class NewUser extends Component {
         >
         <View style={staticStyles.container}>
           <View style={staticStyles.modalBackground}>
-            <TouchableHighlight onPress={() => this.hideLogInModal()}>
-              <Text>X</Text>
-            </TouchableHighlight>
             <View style={staticStyles.inputContainer}>
               <Text style={staticStyles.label}>Welcome to LunchWith!</Text>
               <TextInput style={staticStyles.input} placeholder="First Name" name="first_name" />

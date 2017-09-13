@@ -1,65 +1,26 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, TouchableOpacity, TextInput, View, StyleSheet, Dimensions, Image, Switch, ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import groupByLetter from '../../lib/helpers/groupByLetter';
+import skillSeed from '../../lib/seeds/skillSeed';
 
-class AvailabilityModal extends Component {
-  dayCodes(day){
-    switch(day){
-      case 'Monday':
-        return 'M';
-        break;
-      case 'Tuesday':
-        return 'T';
-        break;
-      case 'Wednesday':
-        return 'W';
-        break;
-      case 'Thursday':
-        return 'Th';
-        break;
-      case 'Friday':
-        return 'F';
-        break;
-    }
-  }
-
-  displayTime(time){
-    switch(time){
-      case '9':
-        return '9:00AM';
-        break;
-      case '10':
-        return '10:00AM';
-        break;
-      case '11':
-        return '11:00AM';
-        break;
-      case '12':
-        return '12:00PM';
-        break;
-      case '1':
-        return '1:00PM';
-        break;
-    }
-  }
-
+class SkillModal extends Component {
   hideModal(){
-    this.props.setAvailabilityModal({isOpen: false});
+    this.props.setSkillModal({isOpen: false});
   }
 
-  switchPress(value, day, time){
+  switchPress(value, skill){
     if(this.props.currentUser.name){
-      if(value === false || (!(this.props.currentUser.availability.length >= 3))){
-        let newAvailability = this.props.currentUser.availability.slice();
+      if(value === false || (!(this.props.currentUser.skills.length >= 3))){
+        let newSkills = this.props.currentUser.skills.slice();
         if(value){
-          newAvailability.push({time: time, day: day});
-          this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
+          newSkills.push(skill);
+          this.props.setCurrentUser({...this.props.currentUser, skills: newSkills});
         } else {
-          for(let i=0; i<newAvailability.length; i++){
-            // console.log(`user:${availability[i].time} | time: ${time}`);
-            if(newAvailability[i].time == time && newAvailability[i].day == day){
-              newAvailability.splice(i, 1);
-              this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
+          for(let i=0; i<newSkills.length; i++){
+            if(newSkills[i] == skill){
+              newSkills.splice(i, 1);
+              this.props.setCurrentUser({...this.props.currentUser, skills: newSkills});
               return 0
             }
           }
@@ -68,12 +29,10 @@ class AvailabilityModal extends Component {
     }
   }
 
-  isPressed(day, time){
+  isPressed(skill){
     if(this.props.currentUser.name){
-      // let availability = this.props.currentUser.availability;
-      for(let i=0; i<this.props.currentUser.availability.length; i++){
-        // console.log(`user:${availability[i].time} | time: ${time}`);
-        if(this.props.currentUser.availability[i].time == time && this.props.currentUser.availability[i].day == this.dayCodes(day)){
+      for(let i=0; i<this.props.currentUser.skills.length; i++){
+        if(this.props.currentUser.skills[i] == skill){
           return true;
         }
       }
@@ -81,70 +40,77 @@ class AvailabilityModal extends Component {
     }
   }
 
-  renderSwitch(day, time){
+  renderSwitch(skill){
     return(
       <View style={{marginRight: '7%'}}>
         <Switch
-          value={this.isPressed(day,time)}
+          value={this.isPressed(skill)}
           onTintColor={'rgb(65,152,240)'}
-          onValueChange={(value) => this.switchPress(value, this.dayCodes(day), time)}
+          onValueChange={(value) => this.switchPress(value, skill)}
         />
       </View>
     )
   }
 
-  section(day){
+  renderSkills(){
+    let content = [];
+    let sections = [];
+    let sortedSkills = groupByLetter(this.props.skills);
+    let keyCount = 0;
+    for (let key in sortedSkills) {
+      if (sortedSkills.hasOwnProperty(key) && sortedSkills[key].length >= 1) {
+        sections = [];
+        for(let i=0; i<sortedSkills[key].length; i++){
+          sections.push(
+            <View key={`${sortedSkills[key][i]}${i}`} style={staticStyles.timeEntry}>
+              <Text style={staticStyles.timeText}>{sortedSkills[key][i]}</Text>
+              {this.renderSwitch(sortedSkills[key][i])}
+            </View>
+          )
+        }
+        content.push(
+          <View key={`${key}${keyCount}`}>
+            <View style={staticStyles.dayBanner}>
+              <Text style={staticStyles.dayText}>{key.toUpperCase()}</Text>
+            </View>
+            <View style={{marginBottom: 30}}>
+              {sections}
+            </View>
+          </View>
+        )
+      }
+      keyCount++;
+    }
+
     return(
       <View style={{flex: 1}}>
-        <View style={staticStyles.dayBanner}>
-          <Text style={staticStyles.dayText}>{day}</Text>
-        </View>
-        <View style={staticStyles.timeEntry}>
-          <Text style={staticStyles.timeText}>9:00AM - 10:00AM</Text>
-          {this.renderSwitch(day, '9')}
-        </View>
-        <View style={staticStyles.timeEntry}>
-          <Text style={staticStyles.timeText}>10:00AM - 11:00AM</Text>
-          {this.renderSwitch(day, '10')}
-        </View>
-        <View style={staticStyles.timeEntry}>
-          <Text style={staticStyles.timeText}>11:00AM - 12:00PM</Text>
-          {this.renderSwitch(day, '11')}
-        </View>
-        <View style={staticStyles.timeEntry}>
-          <Text style={staticStyles.timeText}>12:00PM - 1:00PM</Text>
-          {this.renderSwitch(day, '12')}
-        </View>
-        <View style={staticStyles.timeEntry}>
-          <Text style={staticStyles.timeText}>1:00PM - 2:00PM</Text>
-          {this.renderSwitch(day, '1')}
-        </View>
+        {content}
       </View>
     )
   }
 
-  removeTagPress(day, time){
-    let newAvailability = this.props.currentUser.availability.slice();
-    for(let i=0; i<newAvailability.length; i++){
-      if(newAvailability[i].day == day && newAvailability[i].time == time){
-        newAvailability.splice(i, 1);
-        this.props.setCurrentUser({...this.props.currentUser, availability: newAvailability});
+  removeTagPress(skill){
+    let newSkills = this.props.currentUser.skills.slice();
+    for(let i=0; i<newSkills.length; i++){
+      if(newSkills[i] == skill){
+        newSkills.splice(i, 1);
+        this.props.setCurrentUser({...this.props.currentUser, skills: newSkills});
       }
     }
   }
 
   renderTags(){
     if(this.props.currentUser.name){
-      let availability = this.props.currentUser.availability.slice();
+      let skills = this.props.currentUser.skills.slice();
       let content = [];
-      for(let i=0; i<availability.length; i++){
+      for(let i=0; i<skills.length; i++){
         content.push(
           <View key={i} style={staticStyles.bubble}>
-            <Text style={staticStyles.bubbleText}>{availability[i].day} - {this.displayTime(availability[i].time)}</Text>
+            <Text style={staticStyles.bubbleText}>{skills[i]}</Text>
             <TouchableHighlight
               style={staticStyles.tagDelete}
               underlayColor={'rgb(65,152,240)'}
-              onPress={() => this.removeTagPress(availability[i].day, availability[i].time)}
+              onPress={() => this.removeTagPress(skills[i])}
             >
               <Text style={staticStyles.tagX}>x</Text>
             </TouchableHighlight>
@@ -155,38 +121,60 @@ class AvailabilityModal extends Component {
     }
   }
 
+  filterList(text){
+    let inputArray = text.toLowerCase();
+    let newSkills = [];
+    let allSkills = skillSeed;
+
+    for(let i=0; i<allSkills.length; i++){
+      let skillWordArr = allSkills[i].toLowerCase().split('');
+      let skillChunk = skillWordArr.slice(0, (inputArray.length));
+      if(inputArray == skillChunk.join('')){
+          if(!(newSkills.includes(allSkills[i]))){
+            newSkills.push(allSkills[i]);
+          }
+      }
+    }
+    this.props.setSkills(newSkills);
+  }
+
   tagSection(){
-    if(this.props.currentUser.name && this.props.currentUser.availability.length < 1) {
-      return (
-        <Text style={staticStyles.subText}>{`Select up to 3 times that you would like to have lunch`}</Text>
+    let tagsPresent;
+    if(this.props.currentUser.name && this.props.currentUser.skills.length < 1) {
+      tagsPresent = (
+        <Text style={staticStyles.subText}>{`Select your 3 top skills`}</Text>
       )
     } else {
-      return(
-        <View style={{flexDirection: 'row', marginTop: 5,}}>
+      tagsPresent = (
+        <View style={{flexDirection: 'row', marginTop: 5}}>
           {this.renderTags()}
         </View>
       )
     }
+
+    return (
+      <View style={{width:'100%'}}>
+        <TextInput
+          style={staticStyles.inputField}
+          placeholder={'Match By Keywords'}
+          onChangeText={(text) => this.filterList(text)}
+        />
+        {tagsPresent}
+      </View>
+    )
   }
 
   modalContent(){
     return(
       <View>
         <View style={staticStyles.header}>
-          <Text style={{alignSelf:'center', fontSize: 20, color: 'white'}}>Availability</Text>
+          <Text style={{alignSelf:'center', fontSize: 20, color: 'white'}}>Top 3 Expertise</Text>
         </View>
-
         <View style={staticStyles.tagBubbles}>
           {this.tagSection()}
         </View>
         <ScrollView style={staticStyles.inputContainer}>
-            <View style={{marginTop: -30}}>
-            {this.section("Monday")}
-            </View>
-            {this.section("Tuesday")}
-            {this.section("Wednesday")}
-            {this.section("Thursday")}
-            {this.section("Friday")}
+            {this.renderSkills()}
         </ScrollView>
         <LinearGradient colors={['rgba(255,255,255,0)', 'white', 'white']} style={staticStyles.linearGradient}/>
       </View>
@@ -198,9 +186,8 @@ class AvailabilityModal extends Component {
         <Modal
           animationType={"fade"}
           transparent={true}
-          visible={this.props.availabilityModal.isOpen}
+          visible={this.props.skillModal.isOpen}
           >
-
           <View style={staticStyles.container}>
           <TouchableWithoutFeedback onPress={() => this.hideModal()}>
             <View style={staticStyles.container}></View>
@@ -236,20 +223,19 @@ const staticStyles = StyleSheet.create({
     marginTop: '154%',
   },
   dayBanner: {
-    marginTop: 30,
     width: '100%',
     height: 30,
     backgroundColor: 'rgb(65,152,240)',
   },
   inputContainer: {
-    height: '78%',
+    height: '72%',
     width: '100%',
   },
   tagBubbles: {
-    height: 50,
+    height: 80,
     flexDirection: 'row',
     marginLeft: '7%',
-    marginTop: 15,
+    marginBottom: 15,
   },
   bubble: {
     borderWidth: 0.5,
@@ -285,17 +271,28 @@ const staticStyles = StyleSheet.create({
     color: 'rgb(65,152,240)',
     fontFamily:'ProximaNova-Regular',
   },
-  subText: {
+  inputField: {
     color: 'grey',
     fontSize: 12,
     height: 20,
-    marginTop: 10,
+    marginTop: 20,
+    marginBottom: 10,
+    width: '85%',
+    borderBottomWidth: 0.5,
+    borderColor: 'grey',
     // marginLeft: '5%',
   },
   subTextContainer: {
     marginTop: 10,
     width: '85%',
     marginLeft: '7%',
+  },
+  subText: {
+    color: 'grey',
+    fontSize: 12,
+    height: 20,
+    marginTop: 10,
+    // marginLeft: '5%',
   },
   header: {
     width: '100%',
@@ -397,4 +394,4 @@ const staticStyles = StyleSheet.create({
   }
 });
 
-export default AvailabilityModal;
+export default SkillModal;

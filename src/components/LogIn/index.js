@@ -63,15 +63,15 @@ class LogIn extends Component {
   render() {
     return (
       <Modal
-        animationType={"slide"}
+        animationType={"fade"}
         transparent={true}
         visible={this.props.logInModal}
         >
         <View style={staticStyles.container}>
+          <TouchableWithoutFeedback onPress={() => this.hideLogInModal()}>
+            <View style={staticStyles.container}></View>
+          </TouchableWithoutFeedback>
           <View style={staticStyles.modalBackground}>
-            <TouchableHighlight onPress={() => this.hideLogInModal()}>
-              <Text>X</Text>
-            </TouchableHighlight>
             {this.modalContent()}
           </View>
         </View>
@@ -91,15 +91,16 @@ const staticStyles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1,
     position: "absolute",
+    justifyContent:'center',
     top: 0, left: 0, bottom: 0, right: 0,
     width: '100%',
     height: '100%',
   },
   modalBackground: {
     height:('40%'),
-    width:('80%'), //gap between slides
-    marginTop: '40%',
+    width:('80%'),
     backgroundColor: 'rgb(255, 255, 255)',
+    paddingTop: 40,
     elevation: 1,
   },
   input: {

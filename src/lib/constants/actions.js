@@ -61,5 +61,8 @@ export const AVAILABILITY_FILTER_SET = 'AVAILABILITY_FILTER_SET';
 //Current user
 export const CURRENT_USER_FETCH = 'CURRENT_USER_FETCH';
 export const CURRENT_USER_SET = 'CURRENT_USER_SET';
+//Skill modal
+export const SKILL_MODAL_FETCH = 'SKILL_MODAL_FETCH';
+export const SKILL_MODAL_SET = 'SKILL_MODAL_SET';
 // errors
 export const GENERIC_ERROR = 'GENERIC_ERROR';

@@ -130,7 +130,6 @@ export class Map extends Component {
     this.state.tempMarkers = this._createCluster(convertedMarkers);
     return (
       <View >
-
         <MapView
           ref={'map'}
           style={staticStyles.map}

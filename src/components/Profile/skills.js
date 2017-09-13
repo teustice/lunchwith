@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Button, Image, ImageBackground,TouchableHighlight, TouchableOpacity } from 'react-native';
 import user from '../../lib/seeds/profileData';
 import findUserById from '../../lib/helpers/userById';
 
@@ -8,43 +8,45 @@ export class Skills extends Component {
     super(props);
   }
 
-  onRegionChange(region) {
-    this.props.setRegion({ region });
+  skillsLength(){
+    return this.props.currentUser.skills.length
+  }
+
+  skillSample(){
+    let skillList = [];
+    for(let i=0; i<this.props.currentUser.skills.length; i++){
+      if(i === 3) {
+        break;
+      } else {
+        skillList.push(
+          <View key={i} style={staticStyle.skillRow}>
+            <ImageBackground
+              source={require('../../lib/images/skillCircle.png')}
+              style={staticStyle.skillImage}
+            >
+              <Text style={staticStyle.skillNumber}>
+                {i + 1}
+              </Text>
+            </ImageBackground>
+            <Text style={staticStyle.skillName}>
+              {this.props.currentUser.skills[i]}
+            </Text>
+          </View>
+        )
+      }
+    }
+    return skillList;
   }
 
   render() {
-    let tempUser = findUserById(1);
     return (
       <View >
-        <Text style={staticStyle.skillsHeader}>Your Top <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>3 Expertise</Text></Text>
-        <View style={staticStyle.skillRow}>
-          <Image
-            source={require('../../lib/images/skillCircle.png')}
-            style={staticStyle.skillImage}
-          />
-          <Text style={staticStyle.skillNumber}>1</Text>
-          <Text style={staticStyle.skillName}>React-Native (Frontend-Mobile)</Text>
+        <Text style={staticStyle.skillsHeader}>Your Top <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.skillsLength()} Expertise</Text></Text>
+        {this.skillSample()}
+        <TouchableHighlight onPress={() => this.props.setSkillModal({isOpen: true})}>
           <Text style={staticStyle.updateButton}>Update</Text>
-        </View>
-        <View style={staticStyle.skillRow}>
-          <Image
-            source={require('../../lib/images/skillCircle.png')}
-            style={staticStyle.skillImage}
-          />
-          <Text style={staticStyle.skillNumberB}>2</Text>
-          <Text style={staticStyle.skillName}>Ruby on Rails</Text>
-          <Text style={staticStyle.updateButton}>Update</Text>
-        </View>
-        <View style={staticStyle.skillRow}>
-          <Image
-            source={require('../../lib/images/skillCircle.png')}
-            style={staticStyle.skillImage}
-          />
-          <Text style={staticStyle.skillNumberB}>3</Text>
-          <Text style={staticStyle.skillName}>- - - -</Text>
-          <Text style={staticStyle.addButton}>Add</Text>
-        </View>
-        <Text style={staticStyle.skillsExplanation}>Let people know what you are willing to talk about over lunch!</Text>
+        </TouchableHighlight>
+        <Text style={staticStyle.skillsExplanation}>Let people know when you are willing to talk about over lunch!</Text>
       </View>
     );
   }
@@ -78,9 +80,8 @@ const staticStyle = StyleSheet.create({
     fontSize: 10,
   },
   skillNumber: {
-    marginTop: -25.5,
-    paddingRight: 40,
-    paddingLeft: 32.5,
+    alignSelf: 'center',
+    marginTop: '40%',
     fontFamily: 'ProximaNova-Regular',
     fontSize: 10,
     backgroundColor: 'rgba(255,255,255,0)',
@@ -88,13 +89,14 @@ const staticStyle = StyleSheet.create({
   skillNumberB: {
     marginTop: -25.5,
     paddingRight: 40,
-    paddingLeft: 32,
+    paddingLeft: 27,
     fontFamily: 'ProximaNova-Regular',
     fontSize: 10,
     backgroundColor: 'rgba(255,255,255,0)',
   },
   skillName: {
-    marginTop: -13,
+    marginTop: '-7.5%',
+    // justifyContent: 'center',
     paddingLeft: 65,
     backgroundColor: 'rgba(255,255,255,0)',
     color:'rgb(10,10,10)',
@@ -107,7 +109,7 @@ const staticStyle = StyleSheet.create({
     color: 'rgb(65,152,240)',
     borderWidth: 0.5,
     borderColor: 'rgb(65,152,240)',
-    marginTop: -22,
+    marginTop: -30,
     alignSelf: 'flex-end',
     marginRight: 15,
     textAlign: 'center',

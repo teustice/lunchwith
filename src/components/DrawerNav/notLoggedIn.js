@@ -5,6 +5,7 @@ StyleSheet,
 Text,
 Dimensions,
 TouchableOpacity,
+TouchableWithoutFeedback,
 Image,
 View } from 'react-native';
 import { NavigationActions } from 'react-navigation'
@@ -16,12 +17,7 @@ export default class NotLoggedIn extends Component {
   render() {
     return (
       <View>
-        <View style={styles.mapArea}>
-        </View>
         <ScrollView style={styles.container}>
-          <TouchableOpacity style={styles.button} onPress={this.props.closeDrawer}>
-            <Text>X</Text>
-          </TouchableOpacity>
           <View style={styles.profile}>
             <Image
               style={{width: 50, height: 50, borderRadius: 25}}
@@ -52,13 +48,12 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
     backgroundColor: 'rgb(37, 143, 247)',
   },
-  mapArea: {
+  absolute: {
     position: 'absolute',
     top: 0,
     left: 0,
-    height: '100%',
-    width:  '20%',
-    backgroundColor: 'white'
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
   controlText: {
     color: 'white',
