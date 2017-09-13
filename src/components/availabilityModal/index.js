@@ -162,7 +162,7 @@ class AvailabilityModal extends Component {
       )
     } else {
       return(
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row', marginTop: 5,}}>
           {this.renderTags()}
         </View>
       )
@@ -289,7 +289,7 @@ const staticStyles = StyleSheet.create({
     color: 'grey',
     fontSize: 12,
     height: 20,
-    marginTop: 5,
+    marginTop: 10,
     // marginLeft: '5%',
   },
   subTextContainer: {
