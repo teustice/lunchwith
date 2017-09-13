@@ -4,16 +4,30 @@ import user from '../../lib/seeds/profileData';
 import findUserById from '../../lib/helpers/userById';
 
 export class Availability extends Component {
+
   constructor(props) {
     super(props);
   }
+
+
+  componentWillMount(){
+    if (this.props.currentUser.name && !this.props.profile){
+      availabilityUser = this.props.currentUser;
+    } else if (this.props.currentUser.name && this.props.profile.name){
+      availabilityUser = this.props.profile;
+    } else {
+      availabilityUser = this.props.profile;
+    }
+    return availabilityUser;
+  }
+
 
   onRegionChange(region) {
     this.props.setRegion({ region });
   }
 
   availabilityLength(){
-    return this.props.currentUser.availability.length
+    return availabilityUser.availability.length
   }
 
   formatTime(time){
@@ -54,9 +68,45 @@ export class Availability extends Component {
     }
   }
 
+  header(){
+    if(this.props.currentUser.name && !this.props.profile){
+      return(
+        <Text style={staticStyle.skillsHeader}><Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>3 Available Hours</Text> During the Week</Text>
+      )
+    } else {
+      return(
+        <Text style={staticStyle.skillsHeader}>Current Availability</Text>
+      );
+    }
+  }
+
+
+  button(time){
+
+    if(this.props.currentUser.name && !this.props.profile){
+      return(
+        <Text style={staticStyle.updateButton}>Update</Text>
+      );
+    } else if (this.props.currentUser.name && this.props.profile.name) {
+      return(
+        <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: availabilityUser, selectedTime: time}), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
+          <Text style={staticStyle.addButton}>Invite</Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return null;
+      // Take out authorization to speed up development
+      // return(
+      //   <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: availabilityUser, selectedTime: time}), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
+      //     <Text style={staticStyle.addButton}>Invite</Text>
+      //   </TouchableOpacity>
+      // );
+    }
+  }
+
   availabilitySample(){
     let availabilityList = [];
-    for(let i=0; i<this.props.currentUser.availability.length; i++){
+    for(let i=0; i< availabilityUser.availability.length; i++){
       if(i === 3) {
         break;
       } else {
@@ -67,13 +117,13 @@ export class Availability extends Component {
               style={staticStyle.skillImage}
             >
               <Text style={staticStyle.skillNumber}>
-                {this.formatDay(this.props.currentUser.availability[i].day)}
+                {this.formatDay(availabilityUser.availability[i].day)}
               </Text>
             </ImageBackground>
             <Text style={staticStyle.skillName}>
-              {this.formatTime(this.props.currentUser.availability[i].time)}
+              {this.formatTime(availabilityUser.availability[i].time)}
             </Text>
-            <Text style={staticStyle.updateButton}>Update</Text>
+            {this.button(availabilityUser.availability[i])}
           </View>
         )
       }
@@ -81,12 +131,28 @@ export class Availability extends Component {
     return availabilityList;
   }
 
+  bottomText(){
+    console.log(this.props.currentUser.name);
+    console.log(this.props.profile);
+    if (this.props.currentUser.name && !this.props.profile) {
+      return(
+        <Text style={staticStyle.skillsExplanation}>Let people know when you are willing to talk about over lunch!</Text>
+      )
+    } else if (this.props.currentUser.name && this.props.profile.name) {
+      return <Text></Text>;
+    } else {
+      return(
+        <Text style={staticStyle.skillsExplanation}>Log in to invite {this.props.profile.name} to lunch!</Text>
+      )
+    }
+  }
+
   render() {
     return (
       <View >
-        <Text style={staticStyle.skillsHeader}><Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.availabilityLength()} Available Hours</Text> During the Week</Text>
+        {this.header()}
         {this.availabilitySample()}
-        <Text style={staticStyle.skillsExplanation}>Let people know when you are willing to talk about over lunch!</Text>
+        {this.bottomText()}
       </View>
     );
   }

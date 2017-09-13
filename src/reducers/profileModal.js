@@ -4,7 +4,7 @@ import createReducer from '../lib/helpers/createReducer';
 import { PROFILE_MODAL_SET } from '../lib/constants/actions';
 
 
-const defaultState = Map().set('profileModal', {properties: {id: -999}});
+const defaultState = Map().set('profileModal', {modalVisible: false});
 
 export default createReducer(defaultState, {
 

@@ -6,6 +6,7 @@ import Splash from './containers/Splash';
 import MapScreen from './containers/MapScreen';
 import Profile from './containers/Profile';
 import Onboard from './containers/Onboard';
+import Lunch from './containers/Lunch';
 import routesNames from './lib/constants/routes';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -30,6 +31,12 @@ const routes = {
   },
   [routesNames.Onboard]: {
     screen: Onboard,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  [routesNames.Lunch]: {
+    screen: Lunch,
     navigationOptions: {
       header: null,
     }

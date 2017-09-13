@@ -147,7 +147,6 @@ export class Map extends Component {
           maxZoomLevel={13}
           customMapStyle={mapStyle}
         >
-        <MapFilter />
         {this._createRegions()}
         </MapView>
       </View>
