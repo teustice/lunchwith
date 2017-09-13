@@ -37,8 +37,6 @@ const staticStyle = StyleSheet.create({
     fontSize: 12,
     paddingLeft: 15,
     color: 'rgb(10,10,10)',
-    // fontWeight: '300',
-
   },
   input: {
     marginHorizontal: 15,

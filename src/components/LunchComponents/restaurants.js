@@ -30,7 +30,7 @@ export class Restaurants extends Component {
      <TouchableOpacity
        onPress={() => this.openSearchModal()}
      >
-       <Text>Rezzys</Text>
+       <Text style={staticStyles.header}>Suggest <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Bold'}}>3</Text> Locations near {this.props.profile.name}</Text>
      </TouchableOpacity>
    );
  }
@@ -45,7 +45,15 @@ const staticStyles = StyleSheet.create({
  },
  text: {
    color: 'white',
- }
+ },
+ header:{
+   fontFamily: 'ProximaNovaT-Thin',
+   fontSize: 12,
+   paddingTop: 20,
+   paddingLeft: 15,
+   marginBottom: 10,
+   color: 'rgb(10,10,10)',
+ },
 });
 
 export default Restaurants;

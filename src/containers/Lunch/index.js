@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, StyleSheet, Dimensions, StatusBar } from 'react-native';
+import { View, TouchableOpacity, ScrollView, Text, StyleSheet, Dimensions, StatusBar } from 'react-native';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { BlurView } from 'react-native-blur';
@@ -158,27 +158,37 @@ export class Lunch extends Component {
     console.log(this.findDate(selectedTime.day));
 
     return (
-      <ScrollView>
-        <View style={styles.closeModal}>
-          <Text style={styles.header}>{this.formatDay(selectedTime.day)}, {this.findDate(selectedTime.day)} at {this.formatTime(selectedTime.time)}</Text>
-          <Text style={styles.subHeader}>Lunch With {selectedUser.name}</Text>
-        </View>
-
-        <View style={styles.panels}>
-          <View style={{alignSelf:'flex-end'}} style={styles.content}>
-            <ProfileImage profile={selectedUser} />
-            <Message profile={selectedUser}/>
+      <View>
+        <View style={{height: height-50}}>
+          <View style={styles.closeModal}>
+            <Text style={styles.header}>{this.formatDay(selectedTime.day)}, {this.findDate(selectedTime.day)} at {this.formatTime(selectedTime.time)}</Text>
+            <Text style={styles.subHeader}>Lunch With {selectedUser.name}</Text>
           </View>
 
-          <View style={styles.content2}>
-          <Restaurants/>
+          <View style={styles.panels}>
+            <View style={{alignSelf:'flex-end'}} style={styles.content}>
+              <ProfileImage profile={selectedUser} />
+              <Message profile={selectedUser}/>
+            </View>
+
+            <View style={styles.content2}>
+              <Restaurants profile={selectedUser}/>
+            </View>
           </View>
         </View>
-      </ScrollView>
+
+        <View style={styles.sendRequest}>
+          <TouchableOpacity style={styles.sendButton}>
+            <Text style={styles.sendText}>Send Invitation to {selectedUser.name}!</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     )
   }
 }
 
+
+var {width, height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   closeModal: {
@@ -226,15 +236,40 @@ const styles = StyleSheet.create({
   content2:{
     backgroundColor: "white",
     width: '100%',
-    height: 30,
-    marginTop: 15,
+    height: 'auto',
+    marginTop: 6,
     shadowColor: 'rgb(150,150,150)',
     shadowOffset: { width: 6, height: 6 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
     elevation: 1,
   },
-
+  sendRequest: {
+    width: '100%',
+    alignSelf: 'flex-end',
+    backgroundColor: 'rgb(35,35,35)',
+    height: 50,
+    flex: 0,
+    bottom: 0,
+  },
+  sendButton: {
+    backgroundColor: 'rgb(65,152,240)',
+    alignSelf: 'center',
+    width: '90%',
+    height: 35,
+    marginTop: '2.5%',
+    // marginBottom: '4%',
+  },
+  sendText: {
+    color: 'white',
+    marginTop: 5,
+    paddingTop: 5,
+    marginBottom: -2,
+    fontFamily: 'ProximaNova-Regular',
+    fontSize: 12,
+    alignSelf: 'center',
+    backgroundColor: 'rgba(255,255,255,0)',
+  },
 });
 
 Lunch.defaultProps = {
