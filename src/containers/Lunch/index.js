@@ -45,12 +45,24 @@ export class Lunch extends Component {
 
     switch(day){
       case 'M':
-        difference = weekDay - 1
-        time.setDate(time.getDate()+(7-difference));
-        date = time.getDate();
-        month = time.getMonth();
-        return `${m_names[month]} ${date}`;
-        break;
+      // if it's monday or later in the week, select date for next monday, else if it's sunday
+      // select this coming monday (next day). Same logic applies for each of the following
+      // weekdays for determining a day either this week or next week
+        if (weekDay != 0){
+          difference = weekDay - 1
+          time.setDate(time.getDate()+(7-difference));
+          date = time.getDate();
+          month = time.getMonth();
+          return `${m_names[month]} ${date}`;
+          break;
+        } else {
+          difference = 1 - weekDay
+          time.setDate(time.getDate()+(difference));
+          date = time.getDate();
+          month = time.getMonth();
+          return `${m_names[month]} ${date}`;
+          break;
+        }
       case 'T':
         if (weekDay > 1) {
           difference = weekDay - 2
