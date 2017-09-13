@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, Button, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Button, Image, ImageBackground, TouchableOpacity, TouchableHighlight } from 'react-native';
 import user from '../../lib/seeds/profileData';
 import findUserById from '../../lib/helpers/userById';
 
@@ -30,6 +30,9 @@ export class Availability extends Component {
         break;
       case 1:
         return `${time}:00PM to 2:00PM`;
+        break;
+      case 9:
+        return `${time}:00AM to 10:00AM`;
         break;
     }
   }
@@ -73,7 +76,6 @@ export class Availability extends Component {
             <Text style={staticStyle.skillName}>
               {this.formatTime(this.props.currentUser.availability[i].time)}
             </Text>
-            <Text style={staticStyle.updateButton}>Update</Text>
           </View>
         )
       }
@@ -86,6 +88,9 @@ export class Availability extends Component {
       <View >
         <Text style={staticStyle.skillsHeader}><Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.availabilityLength()} Available Hours</Text> During the Week</Text>
         {this.availabilitySample()}
+        <TouchableHighlight onPress={() => this.props.setAvailabilityModal({isOpen: true})}>
+          <Text style={staticStyle.updateButton}>Update</Text>
+        </TouchableHighlight>
         <Text style={staticStyle.skillsExplanation}>Let people know when you are willing to talk about over lunch!</Text>
       </View>
     );
@@ -149,7 +154,7 @@ const staticStyle = StyleSheet.create({
     color: 'rgb(65,152,240)',
     borderWidth: 0.5,
     borderColor: 'rgb(65,152,240)',
-    marginTop: -22,
+    marginTop: -30,
     alignSelf: 'flex-end',
     marginRight: 15,
     textAlign: 'center',

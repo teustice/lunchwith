@@ -89,14 +89,12 @@ export class MapScreen extends Component {
     let newMarkers= [];
     let startTime = parseInt(this.props.availabilityFilter.timeStart);
     let endTime = parseInt(this.props.availabilityFilter.timeEnd);
-
     if(startTime == 1){
       startTime += 12;
     }
     if(endTime == 1 || endTime == 2){
       endTime += 12;
     }
-
     for(let i=0; i<this.props.markers.length; i++){
       tempUser = findUserById(this.props.markers[i].userId);
       for(let x=0; x<tempUser.availability.length; x++){
