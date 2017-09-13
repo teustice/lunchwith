@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, Dimensions, Button, Image, TouchableOpacity, To
 import Drawer from 'react-native-drawer';
 import ControlPanel from './controlPanel'
 
+const whiteBurger = require('../../lib/images/hamburgerIconWhite.png');
+const burger = require('../../lib/images/hamburgerIcon.png');
+
 export class DrawerNav extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +23,14 @@ export class DrawerNav extends Component {
   openDrawer = () => {
     this._drawer.open()
   };
+
+  iconColor(){
+    if(this.props.whiteIcon){
+      return whiteBurger;
+    } else{
+      return burger;
+    }
+  }
   render() {
     return (
       <View style={staticStyles.drawerContainer}>
@@ -58,7 +69,7 @@ export class DrawerNav extends Component {
             >
               <Image
                 style={{height: 30, width: 30}}
-                source={require('../../lib/images/hamburgerIcon.png')}
+                source={this.iconColor()}
               />
             </TouchableOpacity>
           </View>

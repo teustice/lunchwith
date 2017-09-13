@@ -77,6 +77,7 @@ export class Profile extends Component {
 
         <View style={styles.drawerIcon}>
           <DrawerNav
+            whiteIcon={true}
             drawerNav={this.props.drawerNav}
             setDrawerNav={this.props.setDrawerNav}
             navigation={this.props.navigation}
