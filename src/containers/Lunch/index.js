@@ -10,7 +10,9 @@ import ActionCreators from '../../actions/index';
 import getCurrentUser from '../../selectors/currentUser';
 import { NavigationActions } from 'react-navigation';
 import Restaurants from '../../components/LunchComponents/restaurants';
-import Header from '../../components/Profile/header';
+import ProfileImage from '../../components/ProfileModal/image';
+import Message from '../../components/LunchComponents/message';
+
 
 export class Lunch extends Component {
 
@@ -45,9 +47,9 @@ export class Lunch extends Component {
 
     switch(day){
       case 'M':
-      // if it's monday or later in the week, select date for next monday, else if it's sunday
-      // select this coming monday (next day). Same logic applies for each of the following
-      // weekdays for determining a day either this week or next week
+      // if it's currently monday or later in the week, find date for next monday, else if it's sunday
+      // find date for this coming monday (next day). Same logic applies for each of the following
+      // weekdays for determining a date either this week or next week
         if (weekDay != 0){
           difference = weekDay - 1
           time.setDate(time.getDate()+(7-difference));
@@ -161,7 +163,13 @@ export class Lunch extends Component {
           <Text style={styles.header}>{this.formatDay(selectedTime.day)}, {this.findDate(selectedTime.day)} at {this.formatTime(selectedTime.time)}</Text>
           <Text style={styles.subHeader}>Lunch With {selectedUser.name}</Text>
         </View>
-        <View>
+        <View style={styles.panels}>
+          <View style={{alignSelf:'flex-end'}} style={styles.content}>
+            <ProfileImage profile={selectedUser}/>
+            <Message profile={selectedUser}/>
+          </View>
+        </View>
+        <View style={styles.content2}>
           <Restaurants/>
         </View>
       </View>
@@ -198,6 +206,36 @@ const styles = StyleSheet.create({
     fontSize: 10,
     alignSelf: 'center',
     backgroundColor: 'rgba(255,255,255,0)',
+  },
+  panels:{
+    shadowColor: 'rgb(150,150,150)',
+    shadowOffset: { width: 6, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 1,
+    marginHorizontal: 10,
+    marginTop: -33,
+  },
+  content:{
+    backgroundColor: "white",
+    width: '100%',
+    height: 100,
+  },
+  content2:{
+    backgroundColor: "white",
+    width: '100%',
+    height: 30,
+    marginTop: 10,
+  },
+  quickNotes:{
+    fontFamily: 'ProximaNovaT-Thin',
+    fontSize: 12,
+    alignSelf: 'flex-start',
+    paddingLeft: 20,
+    color: 'rgb(10,10,10)',
+  },
+  quickBlock:{
+    marginTop: -10,
   }
 
 });
