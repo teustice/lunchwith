@@ -94,12 +94,12 @@ export class Availability extends Component {
         </TouchableOpacity>
       );
     } else {
-      // return null;
+      return null;
       // Take out authorization to speed up development
-      return(
-        <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: availabilityUser, selectedTime: time}), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
-          <Text style={staticStyle.addButton}>Invite</Text>
-        </TouchableOpacity>
+      // return(
+      //   <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: availabilityUser, selectedTime: time}), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
+      //     <Text style={staticStyle.addButton}>Invite</Text>
+      //   </TouchableOpacity>
       );
     }
   }
