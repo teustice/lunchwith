@@ -20,7 +20,7 @@ class ProfileModal extends Component {
 
     const profileSkills = this.props.profile.skills.map((skill, key) => {
       return (
-        <Text style={{color: 'rgb(65,152,240)'}} key={key}>{skill.name}</Text>
+        <Text style={{color: 'rgb(65,152,240)'}} key={key}>{skill}</Text>
       );
     });
 
