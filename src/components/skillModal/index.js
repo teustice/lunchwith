@@ -228,11 +228,11 @@ const staticStyles = StyleSheet.create({
     backgroundColor: 'rgb(65,152,240)',
   },
   inputContainer: {
-    height: '74%',
+    height: '72%',
     width: '100%',
   },
   tagBubbles: {
-    height: 70,
+    height: 80,
     flexDirection: 'row',
     marginLeft: '7%',
     marginBottom: 15,
