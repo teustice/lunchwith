@@ -81,7 +81,7 @@ export class Availability extends Component {
   }
 
 
-  buttonText(){
+  button(time){
 
     if(this.props.currentUser.name && !this.props.profile){
       return(
@@ -89,7 +89,7 @@ export class Availability extends Component {
       );
     } else if (this.props.currentUser.name && this.props.profile.name) {
       return(
-        <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: availabilityUser}), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
+        <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: availabilityUser, selectedTime: time}), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
           <Text style={staticStyle.addButton}>Invite</Text>
         </TouchableOpacity>
       );
@@ -117,7 +117,7 @@ export class Availability extends Component {
             <Text style={staticStyle.skillName}>
               {this.formatTime(availabilityUser.availability[i].time)}
             </Text>
-            {this.buttonText()}
+            {this.button(availabilityUser.availability[i])}
           </View>
         )
       }
