@@ -11,7 +11,6 @@ export class MapFilter extends Component {
   state = {
     modalVisible1: false,
     placeHolderVisible: true,
-
   }
 
   setModalVisible1(visible) {
