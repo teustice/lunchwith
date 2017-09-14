@@ -11,8 +11,31 @@ import getCurrentUser from '../../selectors/currentUser';
 
 
 class ProfileModal extends Component {
+  state={
+    availabilityUser: {}
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    if(this.state.availabilityUser.id && this.props.profileModal.modalVisible != nextProps.profileModal.modalVisible){
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   setModalVisible(visible) {
+    if(visible){
+      let tempUser = {};
+      if (this.props.currentUser.name && !this.props.profile){
+        tempUser = this.props.currentUser;
+      } else if (this.props.currentUser.name && this.props.profile.name){
+        tempUser = this.props.profile;
+      } else {
+        tempUser = this.props.profile;
+      }
+      this.setState({availabilityUser: tempUser})
+    }
+
     this.props.setProfileModal({...this.props.profileModal, modalVisible: visible});
   }
 
@@ -61,11 +84,12 @@ class ProfileModal extends Component {
                     </View>
 
                     <View style={staticStyles.content2} >
-                      <Availability profile={this.props.profile}
-                                    currentUser={this.props.currentUser}
-                                    navigation={this.props.navigation}
-                                    profileModal={this.props.profileModal}
-                                    setProfileModal={this.props.setProfileModal}
+                      <Availability
+                        profile={this.state.availabilityUser}
+                        currentUser={this.props.currentUser}
+                        navigation={this.props.navigation}
+                        profileModal={this.props.profileModal}
+                        setProfileModal={this.props.setProfileModal}
                       />
                     </View>
                     <View style={staticStyles.content3} >

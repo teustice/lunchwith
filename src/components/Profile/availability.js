@@ -4,44 +4,8 @@ import user from '../../lib/seeds/profileData';
 import findUserById from '../../lib/helpers/userById';
 
 export class Availability extends Component {
-  state = {
-    availabilityUser: {}
-  }
   constructor(props) {
     super(props);
-  }
-
-  componentWillMount(){
-    let tempUser = {};
-    if (this.props.currentUser.name && !this.props.profile){
-      tempUser = this.props.currentUser;
-    } else if (this.props.currentUser.name && this.props.profile.name){
-      tempUser = this.props.profile;
-    } else {
-      tempUser = this.props.profile;
-    }
-    this.setState({availabilityUser: tempUser});
-  }
-
-  componentWillReceiveProps(nextProps){
-    let tempUser = {};
-    if (nextProps.currentUser.name && !nextProps.profile){
-      tempUser = nextProps.currentUser;
-    } else if (nextProps.currentUser.name && nextProps.profile.name){
-      tempUser = nextProps.profile;
-    } else {
-      tempUser = nextProps.profile;
-    }
-    this.setState({availabilityUser: tempUser});
-  }
-
-
-  onRegionChange(region) {
-    this.props.setRegion({ region });
-  }
-
-  availabilityLength(){
-    return this.state.availabilityUser.availability.length
   }
 
   formatTime(time){
@@ -88,7 +52,7 @@ export class Availability extends Component {
   header(){
     if(this.props.currentUser.name && !this.props.profile){
       return(
-        <Text style={staticStyle.skillsHeader}><Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.state.availabilityUser.availability.length} Available Hours</Text> During the Week</Text>
+        <Text style={staticStyle.skillsHeader}><Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.props.profile.availability.length} Available Hours</Text> During the Week</Text>
       )
     } else {
       return(
@@ -101,7 +65,7 @@ export class Availability extends Component {
   button(time){
       if (this.props.currentUser.name && this.props.profile && this.props.profile.name) {
         return(
-          <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: this.state.availabilityUser, selectedTime: time}), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
+          <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: this.props.profile, selectedTime: time}), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
             <Text style={staticStyle.addButton}>Invite</Text>
           </TouchableOpacity>
         );
@@ -109,7 +73,7 @@ export class Availability extends Component {
       return null;
       // Take out authorization to speed up development
       // return(
-      //   <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: this.state.availabilityUser, selectedTime: time}), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
+      //   <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: this.props.profile, selectedTime: time}), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
       //     <Text style={staticStyle.addButton}>Invite</Text>
       //   </TouchableOpacity>
       // );
@@ -117,9 +81,9 @@ export class Availability extends Component {
   }
 
   availabilitySample(){
-    console.log(this.state.availabilityUser);
+    console.log(this.props.profile);
     let availabilityList = [];
-    for(let i=0; i< this.state.availabilityUser.availability.length; i++){
+    for(let i=0; i< this.props.profile.availability.length; i++){
       if(i === 3) {
         break;
       } else {
@@ -130,14 +94,14 @@ export class Availability extends Component {
               style={staticStyle.skillImage}
             >
               <Text style={staticStyle.skillNumber}>
-                {this.formatDay(this.state.availabilityUser.availability[i].day)}
+                {this.formatDay(this.props.profile.availability[i].day)}
               </Text>
             </ImageBackground>
             <Text style={staticStyle.skillName}>
-              {this.formatTime(this.state.availabilityUser.availability[i].time)}
+              {this.formatTime(this.props.profile.availability[i].time)}
             </Text>
 
-            {this.button(this.state.availabilityUser.availability[i])}
+            {this.button(this.props.profile.availability[i])}
 
           </View>
         )
@@ -147,8 +111,6 @@ export class Availability extends Component {
   }
 
   bottomText(){
-    console.log(this.props.currentUser.name);
-    console.log('my profile!' + this.props.profile);
     if (this.props.currentUser.name && !this.props.profile) {
       return(
         <Text style={staticStyle.skillsExplanation}>Let people know when you are willing to talk about over lunch!</Text>

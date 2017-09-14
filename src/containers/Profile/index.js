@@ -76,6 +76,7 @@ export class Profile extends Component {
         <View style={staticStyles.content}>
           <Availability
             currentUser={this.props.currentUser}
+            profile={this.props.currentUser}
             setAvailabilityModal={this.props.setAvailabilityModal}
           />
         </View>
