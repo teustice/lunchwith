@@ -10,18 +10,18 @@ import {
 export class RadiusSlider extends Component {
   changeSliderValue(sliderValue){
     let value = sliderValue.toFixed(1);
-    if(this.props.lunchRadiusSlider != value){
-      this.props.setLunchRadiusSlider(value);
+    if(this.props.currentUser.lunchRadius != value){
+      this.props.setCurrentUser({...this.props.currentUser, lunchRadius: value});
     }
   }
   render() {
     return (
       <View>
         <Text style={styles.text} >
-          Lunch Radius: <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.props.lunchRadiusSlider} miles</Text>
+          Lunch Radius: <Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.props.currentUser.lunchRadius} miles</Text>
         </Text>
         <Slider
-          value={parseInt(this.props.lunchRadiusSlider)}
+          value={parseInt(this.props.currentUser.lunchRadius)}
           onValueChange={(value) => this.changeSliderValue(value)}
           maximumValue={2}
           minimumValue={0.1}

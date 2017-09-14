@@ -3,10 +3,6 @@ import { Modal, Text, TouchableHighlight, TouchableWithoutFeedback, TouchableOpa
 
 
 class NewUser extends Component {
-  // hideLogInModal(){
-  //   this.props.setLogInModal(false);
-  // }
-
   render() {
     return (
       <Modal
