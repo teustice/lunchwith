@@ -127,7 +127,7 @@ class ProfileModal extends Component {
               <ProfileImage profile={this.props.profile}/>
               <Text style={staticStyles.title}>{this.props.profile.name}</Text>
               <Text style={staticStyles.quickBlurb}>Having {this.props.profile.experience} years of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
-                <View style={{flexDirection: 'row', height: 100, padding: 20}}>
+                <View style={{flexDirection: 'row', height: 100, paddingTop: 17, paddingLeft: 5}}>
                   {this.snippetAvailability()}
                 </View>
             </View>
@@ -270,13 +270,13 @@ const staticStyles = StyleSheet.create({
     height: 40,
     width: 40,
     borderRadius: 20,
-    marginRight: 10,
+    marginRight: 7,
   },
   circleText:{
     alignSelf: 'center',
     marginTop: 15,
     paddingLeft: 1,
-    fontFamily: 'ProximaNova-Regular',
+    fontFamily: 'ProximaNova-Bold',
     fontSize: 10,
     color: 'grey',
   },
@@ -293,7 +293,7 @@ const staticStyles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 15,
     paddingLeft: 1,
-    fontFamily: 'ProximaNova-Regular',
+    fontFamily: 'ProximaNova-Bold',
     fontSize: 10,
     color: 'white',
   },
