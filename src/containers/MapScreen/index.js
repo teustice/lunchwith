@@ -65,7 +65,7 @@ export class MapScreen extends Component {
   }
 
   navBlur(){
-    if(this.props.drawerNav.drawerOpen || this.props.profileModal.modalVisible) {
+    if(this.props.drawerNav.drawerOpen || this.props.profileModal.modalVisible || this.props.availabilityFilter.modalVisible) {
       return(
         <TouchableWithoutFeedback onPress={() => this.props.setDrawerNav({drawerOpen: false})}>
           <BlurView
