@@ -10,19 +10,6 @@ import Availability from '../Profile/availability';
 import getCurrentUser from '../../selectors/currentUser';
 
 class ProfileModal extends Component {
-  shouldComponentUpdate(nextProps, nextState){
-    if(this.props.profileModal.profile){
-      if(this.props.profileModal.profile.id != nextProps.profileModal.profile.id){
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return true;
-    }
-  }
-
-
   setModalVisible(visible) {
     // if(visible){
     //   if (this.props.currentUser.name && this.props.profile.name){
@@ -80,6 +67,7 @@ class ProfileModal extends Component {
                     currentUser={this.props.currentUser}
                     navigation={this.props.navigation}
                     profileModal={this.props.profileModal}
+                    profile={this.props.profileModal.profile}
                     setProfileModal={this.props.setProfileModal}
                   />
                 </View>

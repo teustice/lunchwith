@@ -50,10 +50,9 @@ export class Availability extends Component {
   }
 
   header(){
-    let profile = this.props.profileModal.profile;
     if(this.props.currentUser.name && !this.props.profile){
       return(
-        <Text style={staticStyle.skillsHeader}><Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{profile.availability.length} Available Hours</Text> During the Week</Text>
+        <Text style={staticStyle.skillsHeader}><Text style={{color: 'rgb(65,152,240)', fontFamily: 'ProximaNova-Regular'}}>{this.props.profile.availability.length} Available Hours</Text> During the Week</Text>
       )
     } else {
       return(
@@ -64,10 +63,9 @@ export class Availability extends Component {
 
 
   button(time){
-    let profile = this.props.profileModal.profile;
-      if (this.props.currentUser.name && profile && profile.name) {
+      if (this.props.currentUser.name && this.props.currentUser.id != this.props.profile.id) {
         return(
-          <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: profile, selectedTime: time}), this.props.setProfileModal({modalVisible: false, profile: {}}))}>
+          <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: this.props.profile, selectedTime: time}), this.props.setProfileModal({modalVisible: false, profile: {}}))}>
             <Text style={staticStyle.addButton}>Invite</Text>
           </TouchableOpacity>
         );
@@ -75,7 +73,7 @@ export class Availability extends Component {
       return null;
       // Take out authorization to speed up development
       // return(
-      //   <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: profile, selectedTime: time}), this.props.setProfileModal({...this.props.profileModal, modalVisible: false}))}>
+      //   <TouchableOpacity onPress={() => (this.props.navigation.navigate('Lunch', {selectedUser: profil
       //     <Text style={staticStyle.addButton}>Invite</Text>
       //   </TouchableOpacity>
       // );
@@ -83,9 +81,8 @@ export class Availability extends Component {
   }
 
   availabilitySample(){
-    let profile = this.props.profileModal.profile;
     let availabilityList = [];
-    for(let i=0; i< profile.availability.length; i++){
+    for(let i=0; i< this.props.profile.availability.length; i++){
       if(i === 3) {
         break;
       } else {
@@ -96,14 +93,14 @@ export class Availability extends Component {
               style={staticStyle.skillImage}
             >
               <Text style={staticStyle.skillNumber}>
-                {this.formatDay(profile.availability[i].day)}
+                {this.formatDay(this.props.profile.availability[i].day)}
               </Text>
             </ImageBackground>
             <Text style={staticStyle.skillName}>
-              {this.formatTime(profile.availability[i].time)}
+              {this.formatTime(this.props.profile.availability[i].time)}
             </Text>
 
-            {this.button(profile.availability[i])}
+            {this.button(this.props.profile.availability[i])}
 
           </View>
         )
@@ -113,23 +110,21 @@ export class Availability extends Component {
   }
 
   bottomText(){
-    let profile = this.props.profileModal.profile;
-    if (this.props.currentUser.name && !profile) {
+    if (this.props.currentUser.id === this.props.profile.id) {
       return(
         <Text style={staticStyle.skillsExplanation}>Let people know when you are willing to talk about over lunch!</Text>
       )
-    } else if (this.props.currentUser.name && profile.name) {
+    } else if (this.props.currentUser.id && this.props.profile.name) {
       return <Text></Text>;
     } else {
       return(
-        <Text style={staticStyle.skillsExplanation}>Log in to invite {profile.name} to lunch!</Text>
+        <Text style={staticStyle.skillsExplanation}>Log in to invite {this.props.profile.name} to lunch!</Text>
       )
     }
   }
 
   renderUpdateButton(){
-    let profile = this.props.profileModal.profile;
-    if(!profile){
+    if(this.props.profile.id === this.props.currentUser.id){
       return(
         <TouchableHighlight onPress={() => this.props.setAvailabilityModal({isOpen: true})}>
           <Text style={staticStyle.updateButton}>Update</Text>
