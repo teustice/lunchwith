@@ -101,7 +101,6 @@ export class Availability extends Component {
             </Text>
 
             {this.button(this.props.profile.availability[i])}
-
           </View>
         )
       }

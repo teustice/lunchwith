@@ -20,6 +20,7 @@ import getActiveMarker from '../../selectors/activeMarker';
 import getCurrentUser from '../../selectors/currentUser';
 import getAvailabilityModal from '../../selectors/availabilityModal';
 import getAvailabilityFilter from '../../selectors/availabilityFilter';
+import getBusiness from '../../selectors/business';
 import findUserById from '../../lib/helpers/userById';
 import ProfileCarousel from '../../components/ProfileCarousel';
 import DrawerNav from '../../components/DrawerNav/index';
@@ -162,6 +163,8 @@ export class MapScreen extends Component {
   }
 
   render() {
+    this.props.fetchBusiness();
+    console.log(this.props.business);
     return (
       <View>
         {this.pageRender()}
@@ -224,6 +227,7 @@ function mapStateToProps(store) {
     currentUser: getCurrentUser(store),
     availabilityModal: getAvailabilityModal(store),
     availabilityFilter: getAvailabilityFilter(store),
+    business: getBusiness(store)
   };
 }
 
