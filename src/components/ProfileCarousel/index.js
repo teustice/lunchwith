@@ -50,6 +50,7 @@ export class ProfileCarousel extends Component {
   }
 
   render() {
+    console.log("CAROUSEL RENDER");
     return (
       <View style={styles.carousel}>
          <Carousel

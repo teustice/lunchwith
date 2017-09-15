@@ -10,6 +10,8 @@ class SkillModal extends Component {
   }
 
   switchPress(value, skill){
+    this.refs.filterInput.clear();
+    this.props.setSkills(skillSeed);
     if(this.props.currentUser.name){
       if(value === false || (!(this.props.currentUser.skills.length >= 3))){
         let newSkills = this.props.currentUser.skills.slice();
@@ -155,6 +157,7 @@ class SkillModal extends Component {
     return (
       <View style={{width:'100%'}}>
         <TextInput
+          ref={"filterInput"}
           style={staticStyles.inputField}
           placeholder={'Match By Keywords'}
           onChangeText={(text) => this.filterList(text)}

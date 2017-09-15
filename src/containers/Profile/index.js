@@ -19,7 +19,7 @@ import getAvailabilityModal from '../../selectors/availabilityModal';
 import getSkillModal from '../../selectors/skillModal';
 import getSkills from '../../selectors/skills';
 import getLunchRadiusMarker from '../../selectors/lunchRadiusMarker';
-import getLunchRadiusSlider from '../../selectors/lunchRadiusSlider';
+import getMarkers from '../../selectors/markers';
 import getUserLocation from '../../selectors/userLocation';
 import FormView from '../../components/Forms/basicDetails';
 import getCompany from '../../selectors/business';
@@ -45,7 +45,6 @@ export class Profile extends Component {
 
   render() {
     return (
-
       <ScrollView>
         <StatusBar hidden={true} />
         <View style={staticStyles.header}>
@@ -77,6 +76,7 @@ export class Profile extends Component {
         <View style={staticStyles.content}>
           <Availability
             currentUser={this.props.currentUser}
+            profile={this.props.currentUser}
             setAvailabilityModal={this.props.setAvailabilityModal}
           />
         </View>
@@ -111,14 +111,15 @@ export class Profile extends Component {
 
         <View style={staticStyles.content}>
           <RadiusMap
-            lunchRadiusMarker={this.props.lunchRadiusMarker}
-            setLunchRadiusMarker={this.props.setLunchRadiusMarker}
-            lunchRadiusSlider={this.props.lunchRadiusSlider}
+            markers={this.props.markers}
+            setMarkers={this.props.setMarkers}
             initialRegion={this.props.userLocation}
+            currentUser={this.props.currentUser}
+            setCurrentUser={this.props.setCurrentUser}
           />
           <RadiusSlider
-            lunchRadiusSlider={this.props.lunchRadiusSlider}
-            setLunchRadiusSlider={this.props.setLunchRadiusSlider}
+            currentUser={this.props.currentUser}
+            setCurrentUser={this.props.setCurrentUser}
           />
         </View>
 
@@ -204,8 +205,9 @@ function mapStateToProps(store) {
     skillModal: getSkillModal(store),
     skills: getSkills(store),
     lunchRadiusMarker: getLunchRadiusMarker(store),
-    lunchRadiusSlider: getLunchRadiusSlider(store),
+    lunchRadiusSlider: getMarkers(store),
     userLocation: getUserLocation(store),
+    markers: getMarkers(store),
   };
 }
 

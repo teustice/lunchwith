@@ -8,7 +8,6 @@ import ActionCreators from '../../actions/index';
 import getTitle from '../../selectors/title';
 import positionerStyle from '../../lib/styles/positioner';
 import Button from '../../components/Button/index';
-import DrawerNav from '../../components/DrawerNav/index';
 import { staticStyles, dynamicStyles } from './styles';
 
 export class Splash extends Component {
@@ -32,7 +31,6 @@ export class Splash extends Component {
             }}
           />
         </View>
-        <DrawerNav/>
       </View>
     );
   }
