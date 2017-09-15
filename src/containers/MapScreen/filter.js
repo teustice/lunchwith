@@ -8,20 +8,6 @@ export class MapFilter extends Component {
     super(props);
   }
 
-  state = {
-    modalVisible1: false,
-    placeHolderVisible: true,
-
-  }
-
-  setModalVisible1(visible) {
-    this.setState({modalVisible1: visible});
-  }
-
-  setPlaceHolderVisible(visible) {
-    this.setState({placeHolderVisible: visible})
-  }
-
   displayAvailabilityStartToTime() {
     start = this.props.availabilityFilter.timeStart;
     if (start === '10') {
@@ -63,14 +49,13 @@ export class MapFilter extends Component {
 
               <TouchableWithoutFeedback
                 onPress={() => {
-                  this.setModalVisible1(true)
-                  this.setPlaceHolderVisible(false)
+                  this.props.setAvailabilityFilter({ ...this.props.availabilityFilter, placeHolderVisible: false, modalVisible: true})
                 }}
               >
                 <View
-                  visible={this.state.placeHolderVisible}
+                  visible={this.props.availabilityFilter.placeHolderVisible}
                   style={{position:'absolute', paddingTop: 100, paddingLeft: 125}}>
-                  { this.state.placeHolderVisible &&
+                  { this.props.availabilityFilter.placeHolderVisible &&
                     <Text  style={staticStyles.time1}>{this.displayAvailabilityStartToTime()} and {this.displayAvailabilityEndToTime()}</Text>
                   }
                 </View>
@@ -82,12 +67,11 @@ export class MapFilter extends Component {
         <Modal
         animationType={"none"}
         transparent={true}
-        visible={this.state.modalVisible1}
+        visible={this.props.availabilityFilter.modalVisible}
         style={staticStyles.mapBlur}>
           <TouchableWithoutFeedback
             onPress={() => {
-              this.setModalVisible1(false)
-              this.setPlaceHolderVisible(true)
+              this.props.setAvailabilityFilter({ ...this.props.availabilityFilter, modalVisible: false, placeHolderVisible: true})
             }}
           >
             <View>
