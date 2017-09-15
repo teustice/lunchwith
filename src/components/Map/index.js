@@ -16,7 +16,9 @@ export class Map extends Component {
     super(props);
     this.state = {
       tempMarkers: [],
-      activeMarker: {}
+      activeMarker: {},
+      size: 40,
+      backgroundColor: 'rgba(65,152,240, 0.3)',
     }
   }
 
@@ -107,20 +109,98 @@ export class Map extends Component {
     }
   }
 
+  renderMarkersNew(marker){
+    if(marker.properties.id){
+      if(marker.properties.id === this.props.activeMarker.properties.id){
+        return (
+          <MapView.Circle
+            key={marker.properties.id || (`cluster${marker.properties.cluster_id}`)}
+            ref={`marker${marker.properties.id}`}
+            onPress={e => this.findChildren(marker)}
+            center={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
+            radius={((marker.properties.point_count + 1) * 1.25) + 1000}
+            fillColor={'rgba(65,152,240, 0.3)'}
+            strokeWidth={0}
+          >
+          <Text style={staticStyles.markerText} style={{zIndex: 100}}>{marker.properties.point_count}</Text>
+          </MapView.Circle>
+        )
+      } else {
+        return(
+          <MapView.Marker
+          key={marker.properties.id || (`cluster${marker.properties.cluster_id}`)}
+          ref={`marker${marker.properties.id}`}
+          onPress={e => this.findChildren(marker)}
+          coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
+          >
+          <ImageBackground
+          source={pin}
+          style={{ height: 24, width: 24, marginTop: 6.85, marginLeft: 6.85 }}
+          >
+          <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
+          </ImageBackground>
+          </MapView.Marker>
+        )
+      }
+    } else if (marker.properties.cluster_i) {
+      return(
+        <MapView.Circle
+          key={marker.properties.id || (`cluster${marker.properties.cluster_id}`)}
+          ref={`marker${marker.properties.id}`}
+          onPress={e => this.findChildren(marker)}
+          center={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
+          radius={((marker.properties.point_count + 1) * 1.25) + 1000}
+          fillColor={'rgba(65,152,240, 0.3)'}
+          strokeWidth={0}
+        >
+        <Text style={staticStyles.markerText} style={{zIndex: 100}}>{marker.properties.point_count}</Text>
+        </MapView.Circle>
+      )
+    } else {
+      return(
+        <MapView.Marker
+        key={marker.properties.id || (`cluster${marker.properties.cluster_id}`)}
+        ref={`marker${marker.properties.id}`}
+        onPress={e => this.findChildren(marker)}
+        coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
+        >
+        <ImageBackground
+        source={pin}
+        style={{ height: 24, width: 24, marginTop: 6.85, marginLeft: 6.85 }}
+        >
+        <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
+        </ImageBackground>
+        </MapView.Marker>
+      )
+    }
+  }
+
   renderMarkers(marker){
     return(
       <MapView.Marker
+        zIndex={1000}
         key={marker.properties.id || (`cluster${marker.properties.cluster_id}`)}
         ref={`marker${marker.properties.id}`}
         onPress={e => this.findChildren(marker)}
         coordinate={{latitude: marker.geometry.coordinates[1], longitude: marker.geometry.coordinates[0]}}
       >
-        <ImageBackground
-          source={this.isActive(marker)}
-          style={{ height: 25, width: 25 }}
-        >
-          <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
-        </ImageBackground>
+        <View
+          style={{ height: (this.state.size),
+                   width: (this.state.size),
+                   borderRadius: (this.state.size) / 2,
+                   backgroundColor: (this.state.backgroundColor),
+                   flex:1,
+                   flexDirection:'row',
+                   alignItems:'center',
+                   justifyContent:'center',
+                 }}>
+          <ImageBackground
+            source={this.isActive(marker)}
+            style={{ height: 24, width: 24}}
+          >
+            <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
+          </ImageBackground>
+        </View>
       </MapView.Marker>
     )
   }
@@ -167,6 +247,9 @@ const staticStyles = StyleSheet.create({
     color: 'white',
     marginLeft: 8,
     marginTop: 3,
+  },
+  radiusStyle: {
+
   }
 });
 

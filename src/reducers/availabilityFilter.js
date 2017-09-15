@@ -4,7 +4,11 @@ import createReducer from '../lib/helpers/createReducer';
 import { AVAILABILITY_FILTER_SET } from '../lib/constants/actions';
 
 
-const defaultState = Map().set('availabilityFilter', {timeStart: '10', timeEnd: '2'});
+const defaultState = Map().set('availabilityFilter', {timeStart: '10',
+                                                      timeEnd: '2',
+                                                      modalVisible: false,
+                                                      placeHolderVisible: true,
+                                                      });
 
 export default createReducer(defaultState, {
 

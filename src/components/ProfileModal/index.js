@@ -26,13 +26,53 @@ class ProfileModal extends Component {
     }
   }
 
+  whichDays(days) {
+    console.log('day test' + days[0]);
+    let finalDays = [];
+    let inputDays = ['M', 'T', 'W', 'Th', 'F'];
+    let weekDays = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
+    for(let i=0; i < inputDays.length; i++){
+      if (i === 5){
+        break;
+      } else if (days.includes(inputDays[i])) {
+        finalDays.push(
+          <View key={i} style={staticStyles.circleInclude}>
+            <Text style={staticStyles.circleTextInclude}>{weekDays[i]}</Text>
+          </View>
+        )
+      } else {
+        finalDays.push(
+          <View key={i} style={staticStyles.circle}>
+            <Text style={staticStyles.circleText}>{weekDays[i]}</Text>
+          </View>
+        )
+      }
+    }
+    return finalDays;
+  }
+
+  snippetAvailability() {
+    let dayList = [];
+    for(let i=0; i< this.props.profile.availability.length; i++){
+      if(i==3){
+        break;
+      } else {
+        dayList.push(
+          this.props.profile.availability[i].day
+        )
+      }
+    }
+    return this.whichDays(dayList);
+  }
+
+  
   modalContent(){
     let profileSkills = this.props.profile.skills.map((skill, key) => {
       return (
         <Text style={{color: 'rgb(65,152,240)'}} key={key}>{skill}</Text>
       );
-    });
-
+    });  
+    
     if(this.props.profileModal.profile){
       return (
         <Modal
@@ -92,14 +132,13 @@ class ProfileModal extends Component {
         <Text style={{color: 'rgb(65,152,240)'}} key={key}>{skill}</Text>
       );
     });
-
+    
     return (
       <TouchableWithoutFeedback
         onPress={() => {
           this.setModalVisible(true)
         }}
       >
-
         <View style={staticStyles.transparentView}>
           <View style={staticStyles.modalBackground}>
 
@@ -108,6 +147,9 @@ class ProfileModal extends Component {
               <ProfileImage profile={this.props.profile}/>
               <Text style={staticStyles.title}>{this.props.profile.name}</Text>
               <Text style={staticStyles.quickBlurb}>Having {this.props.profile.experience} years of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
+                <View style={{flexDirection: 'row', height: 100, paddingTop: 17, paddingLeft: 5}}>
+                  {this.snippetAvailability()}
+                </View>
             </View>
           </View>
         </View>
@@ -240,6 +282,40 @@ const staticStyles = StyleSheet.create({
   },
   profileSnippet:{
     // alignItems: 'center',
+  },
+  circle:{
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: 'lightgrey',
+    height: 34,
+    width: 34,
+    borderRadius: 17,
+    marginRight: 7,
+  },
+  circleText:{
+    alignSelf: 'center',
+    marginTop: 12,
+    paddingLeft: 1,
+    fontFamily: 'ProximaNova-Bold',
+    fontSize: 9,
+    color: 'grey',
+  },
+  circleInclude: {
+    backgroundColor: 'lightgrey',
+    borderWidth: 1,
+    borderColor: 'lightgrey',
+    height: 34,
+    width: 34,
+    borderRadius: 17,
+    marginRight: 10,
+  },
+  circleTextInclude: {
+    alignSelf: 'center',
+    marginTop: 12,
+    paddingLeft: 1,
+    fontFamily: 'ProximaNova-Bold',
+    fontSize: 9,
+    color: 'white',
   },
   transparentView:{
     paddingTop: 20,
