@@ -132,7 +132,6 @@ export class MapScreen extends Component {
             activeMarker={this.props.activeMarker}
             setActiveMarker={this.props.setActiveMarker}
             currentUser={this.props.currentUser}
-
           />
           <MapFilter
             availabilityFilter={this.props.availabilityFilter}

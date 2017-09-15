@@ -9,41 +9,99 @@ import { BlurView } from 'react-native-blur';
 import Availability from '../Profile/availability';
 import getCurrentUser from '../../selectors/currentUser';
 
-
 class ProfileModal extends Component {
-  state={
-    availabilityUser: {}
-  }
-
   shouldComponentUpdate(nextProps, nextState){
-    if(this.state.availabilityUser.id && this.props.profileModal.modalVisible != nextProps.profileModal.modalVisible){
-      return true;
+    if(this.props.profileModal.profile){
+      if(this.props.profileModal.profile.id != nextProps.profileModal.profile.id){
+        return true;
+      } else {
+        return false;
+      }
     } else {
-      return false;
+      return true;
     }
   }
+
 
   setModalVisible(visible) {
-    if(visible){
-      let tempUser = {};
-      if (this.props.currentUser.name && !this.props.profile){
-        tempUser = this.props.currentUser;
-      } else if (this.props.currentUser.name && this.props.profile.name){
-        tempUser = this.props.profile;
-      } else {
-        tempUser = this.props.profile;
-      }
-      this.setState({availabilityUser: tempUser})
-    }
+    // if(visible){
+    //   if (this.props.currentUser.name && this.props.profile.name){
+    //     this.setState({availabilityUser: this.props.profile})
+    //   } else {
+    //     this.setState({availabilityUser: this.props.profile})
+    //   }
+    // }
 
-    this.props.setProfileModal({...this.props.profileModal, modalVisible: visible});
+    if(visible){
+      this.props.setProfileModal({modalVisible: visible, profile: this.props.profile})
+    } else {
+      this.props.setProfileModal({modalVisible: visible, profile: {}});
+    }
+  }
+
+  modalContent(){
+    let profileSkills = this.props.profile.skills.map((skill, key) => {
+      return (
+        <Text style={{color: 'rgb(65,152,240)'}} key={key}>{skill}</Text>
+      );
+    });
+
+    if(this.props.profileModal.profile){
+      return (
+        <Modal
+          animationType={"slide"}
+          transparent={true}
+          visible={this.props.profileModal.modalVisible}
+          style={staticStyles.mapBlur}
+          >
+          <ScrollView>
+          <TouchableWithoutFeedback onPress={() => {
+            this.setModalVisible(!this.props.profileModal.modalVisible)
+          }}>
+            <View style={staticStyles.closeModal}>
+                <Image
+                  source={require('../../lib/images/arrow3.png')}
+                  style={staticStyles.closeImage}
+                />
+              <Text style={staticStyles.closeTitle}>Lunch with {this.props.profileModal.profile.name}</Text>
+            </View>
+          </TouchableWithoutFeedback>
+             <View style={staticStyles.container}>
+                <View style={{alignSelf:'flex-end'}} style={staticStyles.content}>
+                  <ProfileImage profile={this.props.profileModal.profile}/>
+                  <View style={staticStyles.quickBlock}>
+                    <Text style={staticStyles.quickNotes}>Quick Notes</Text>
+                    <Text style={staticStyles.quickBlurb2}>Having {this.props.profileModal.profile.experience} years of development experience, {this.props.profileModal.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
+                  </View>
+                </View>
+
+                <View style={staticStyles.content2} >
+                  <Availability
+                    currentUser={this.props.currentUser}
+                    navigation={this.props.navigation}
+                    profileModal={this.props.profileModal}
+                    setProfileModal={this.props.setProfileModal}
+                  />
+                </View>
+                <View style={staticStyles.content3} >
+                  <Text style={staticStyles.panelTitle}>Neighborhood</Text>
+                  <NeighbordhoodMap neighborhood={this.props.neighborhood} radius={this.props.profileModal.profile.lunchRadius}/>
+                </View>
+                <View style={staticStyles.content4} >
+                  <Text style={staticStyles.panelTitle}>In {this.props.profileModal.profile.name}s own words.</Text>
+                  <Text style={staticStyles.quickBlurb2}>{this.props.profileModal.profile.bio}</Text>
+                </View>
+              </View>
+            </ScrollView>
+        </Modal>
+      )
+    }
   }
 
   render() {
-
-    const profileSkills = this.props.profile.skills.map((skill, key) => {
+    let profileSkills = this.props.profile.skills.map((skill, key) => {
       return (
-        <Text style={{color: 'rgb(65,152,240)'}} key={key}>{skill.name}</Text>
+        <Text style={{color: 'rgb(65,152,240)'}} key={key}>{skill}</Text>
       );
     });
 
@@ -56,54 +114,8 @@ class ProfileModal extends Component {
 
         <View style={staticStyles.transparentView}>
           <View style={staticStyles.modalBackground}>
-            <Modal
-              animationType={"slide"}
-              transparent={true}
-              visible={this.props.profileModal.modalVisible}
-              style={staticStyles.mapBlur}
-              >
-              <ScrollView>
-              <TouchableWithoutFeedback onPress={() => {
-                this.setModalVisible(!this.props.profileModal.modalVisible)
-              }}>
-                <View style={staticStyles.closeModal}>
-                    <Image
-                      source={require('../../lib/images/arrow3.png')}
-                      style={staticStyles.closeImage}
-                    />
-                  <Text style={staticStyles.closeTitle}>Lunch with {this.props.profile.name}</Text>
-                </View>
-              </TouchableWithoutFeedback>
-                 <View style={staticStyles.container}>
-                    <View style={{alignSelf:'flex-end'}} style={staticStyles.content}>
-                      <ProfileImage profile={this.props.profile}/>
-                      <View style={staticStyles.quickBlock}>
-                        <Text style={staticStyles.quickNotes}>Quick Notes</Text>
-                        <Text style={staticStyles.quickBlurb2}>Having {this.props.profile.experience} years of development experience, {this.props.profile.name} specializes in {profileSkills[0]}, {profileSkills[1]}, and {profileSkills[2]}.</Text>
-                      </View>
-                    </View>
 
-                    <View style={staticStyles.content2} >
-                      <Availability
-                        profile={this.state.availabilityUser}
-                        currentUser={this.props.currentUser}
-                        navigation={this.props.navigation}
-                        profileModal={this.props.profileModal}
-                        setProfileModal={this.props.setProfileModal}
-                      />
-                    </View>
-                    <View style={staticStyles.content3} >
-                      <Text style={staticStyles.panelTitle}>Neighborhood</Text>
-                      <NeighbordhoodMap neighborhood={this.props.neighborhood} radius={this.props.profile.lunchRadius}/>
-                    </View>
-                    <View style={staticStyles.content4} >
-                      <Text style={staticStyles.panelTitle}>In {this.props.profile.name}s own words.</Text>
-                      <Text style={staticStyles.quickBlurb2}>{this.props.profile.bio}</Text>
-                    </View>
-                  </View>
-                </ScrollView>
-            </Modal>
-
+            {this.modalContent()}
             <View style={staticStyles.profileSnippet}>
               <ProfileImage profile={this.props.profile}/>
               <Text style={staticStyles.title}>{this.props.profile.name}</Text>
