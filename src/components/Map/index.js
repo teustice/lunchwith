@@ -132,12 +132,21 @@ export class Map extends Component {
       )
     } else {
         return(
-          <ImageBackground
-            source={this.isActive(marker)}
-            style={{ height: 24, width: 24}}
-          >
-            <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
-          </ImageBackground>
+          <View style={{ height: (this.state.size),
+                   width: (this.state.size),
+                   borderRadius: (this.state.size) / 2,
+                   flex:1,
+                   flexDirection:'row',
+                   alignItems:'center',
+                   justifyContent:'center',
+                 }}>
+            <ImageBackground
+              source={this.isActive(marker)}
+              style={{ height: 24, width: 24}}
+            >
+              <Text style={staticStyles.markerText}>{marker.properties.point_count}</Text>
+            </ImageBackground>
+          </View>
         )
     }
   }
