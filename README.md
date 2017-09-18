@@ -21,4 +21,5 @@ $ react-native run-ios
 Tanner Eustice, Grady Shelton
 
 ### License
-MIT &copy; 2017
+An EyeCue Lab Product,
+MIT 2017
