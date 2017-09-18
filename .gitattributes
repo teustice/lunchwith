@@ -1,2 +1,2 @@
 *.pbxproj -text
-*.html 
+lib/images/* linguist-vendored
